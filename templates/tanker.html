@@ -1833,13 +1833,37 @@
 
 
 
-                            {% if order.status == "Accepted" %}
+                            {% if order.tanker_request_status|default("")|lower == "pending" %}
 
-                            <!-- MANUAL ACCEPT PICKUP -->
+                            <!-- TANKER APPROVAL -->
+
+                            <div class="tanker-request-actions">
+
+                                <button
+                                    type="button"
+                                    class="tanker-request-button tanker-request-accept"
+                                    onclick="respondToTankerRequest('{{ order.order_id }}', 'accept')"
+                                >
+                                    ✓ Accept Request
+                                </button>
+
+                                <button
+                                    type="button"
+                                    class="tanker-request-button tanker-request-reject"
+                                    onclick="respondToTankerRequest('{{ order.order_id }}', 'reject')"
+                                >
+                                    ✕ Reject
+                                </button>
+
+                            </div>
+
+                            {% elif order.tanker_request_status|default("")|lower == "accepted" %}
+
+                            <!-- ACCEPT PICKUP AFTER APPROVAL -->
 
                             <form
                                 method="POST"
-                                action="{{ url_for('accept_pickup') }}"
+                                action="/accept_pickup"
                                 class="pickup-form"
                             >
 

@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>STP Order Tracking</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{font-family:'Inter',Arial,sans-serif;background:#f5f8fc;color:#172033;min-height:100vh}
+.navbar{height:72px;background:linear-gradient(90deg,#0758c9,#0878ee);color:#fff;display:flex;align-items:center;padding:0 32px;gap:28px;box-shadow:0 2px 10px rgba(10,60,130,.15);position:sticky;top:0;z-index:1000}
+.brand{font-size:18px;font-weight:700;white-space:nowrap;display:flex;align-items:center;gap:9px}
+.brand-icon{font-size:24px}.nav-links{display:flex;align-items:stretch;height:100%;gap:8px;margin-left:20px}.nav-links a{color:#dcecff;text-decoration:none;padding:0 18px;display:flex;align-items:center;font-size:12px;font-weight:600;border-bottom:3px solid transparent}.nav-links a:hover{color:#fff;background:rgba(255,255,255,.06)}.nav-links a.active{color:#fff;border-bottom-color:#fff}
+.account-area{margin-left:auto;display:flex;align-items:center;gap:12px;position:relative}.notification{font-size:20px;position:relative;cursor:pointer}.notification-badge{position:absolute;right:-7px;top:-7px;background:#ef4444;color:#fff;border-radius:999px;min-width:16px;height:16px;padding:0 4px;font-size:9px;display:none;align-items:center;justify-content:center;font-weight:700}.profile-button{display:flex;align-items:center;gap:9px;color:#fff;border:0;background:transparent;cursor:pointer;font-family:inherit}.avatar{width:38px;height:38px;border-radius:50%;background:#eaf3ff;color:#1466d8;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700}.profile-text{line-height:1.2;text-align:left}.profile-text strong{display:block;font-size:12px}.profile-text span{font-size:10px;color:#d8eaff}.chevron{font-size:11px;margin-left:3px}
+.account-menu{display:none;position:absolute;right:0;top:52px;width:220px;background:#fff;color:#172033;border:1px solid #e7edf5;border-radius:12px;box-shadow:0 15px 40px rgba(15,23,42,.18);padding:8px;z-index:1100}.account-menu.open{display:block}.account-menu .head{padding:9px;border-bottom:1px solid #edf1f5;margin-bottom:5px}.account-menu .head strong{display:block;font-size:13px}.account-menu .head span{font-size:10px;color:#7b8799}.account-menu a{display:block;text-decoration:none;color:#334155;padding:10px;border-radius:8px;font-size:11px;font-weight:600}.account-menu a:hover{background:#f5f8fc}.account-menu .logout{color:#d13b3b}
+.container{max-width:1310px;margin:0 auto;padding:36px 30px 50px}.page-top{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:22px}.page-title h2{margin:0;font-size:28px;letter-spacing:-.4px}.page-title p{margin:6px 0 0;color:#718096;font-size:13px}.refresh-area{display:flex;align-items:center;gap:16px;color:#718096;font-size:11px}.refresh-btn{border:1px solid #cfe0f7;background:#fff;color:#176bdc;border-radius:8px;padding:9px 15px;font:600 11px Inter;cursor:pointer}.refresh-btn:hover{background:#f4f8ff}.loading-dot{width:7px;height:7px;border-radius:50%;background:#22c55e;display:inline-block;margin-right:5px}
+#results{display:grid;gap:16px}.order-card{background:#fff;border:1px solid #e5ebf3;border-radius:14px;box-shadow:0 5px 18px rgba(15,23,42,.07);overflow:hidden}.order-main{padding:21px 24px 18px}.order-header{display:flex;align-items:center;justify-content:space-between;gap:15px}.order-title-wrap{display:flex;align-items:center;gap:14px}.order-icon{width:42px;height:42px;border-radius:50%;background:#e7f1ff;color:#1475ed;display:flex;align-items:center;justify-content:center;font-size:20px}.order-id{font-size:16px;font-weight:700;color:#172033}.order-date{margin-top:4px;color:#8490a2;font-size:10px}.status-badge{padding:7px 11px;border-radius:7px;font-size:10px;font-weight:700;white-space:nowrap}.status-pending{background:#fff4df;color:#c47a00}.status-accepted{background:#fff5df;color:#bd7800}.status-out{background:#e8f8eb;color:#16834d}.status-delivered{background:#e7f0ff;color:#176bdc}.status-rejected{background:#fff0f0;color:#c93636}.details-button{border:1px solid #1976f3;background:#fff;color:#1976f3;border-radius:7px;padding:9px 13px;font:600 10px Inter;cursor:pointer;text-decoration:none;white-space:nowrap}.details-button:hover{background:#f2f7ff}
+.order-grid{display:grid;grid-template-columns:1fr 1fr 1.05fr 1.45fr .9fr .95fr;gap:0;margin-top:20px;border-top:1px solid #edf1f5;padding-top:17px}.detail{padding:0 15px;border-right:1px solid #edf1f5;min-width:0}.detail:first-child{padding-left:0}.detail:last-child{border-right:0}.detail-label{display:block;color:#778397;font-size:9px;margin-bottom:6px}.detail-value{display:block;color:#202b3d;font-size:11px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.payment-paid{color:#16834d}.payment-cod{color:#b7791f}
+.progress-wrap{border-top:1px solid #edf1f5;padding:19px 24px 17px}.progress{display:flex;align-items:flex-start;width:100%}.progress-item{display:flex;flex-direction:column;align-items:center;min-width:88px;position:relative;z-index:2}.circle{width:29px;height:29px;border-radius:50%;border:2px solid #d6dce5;background:#fff;color:#a0a9b8;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700}.progress-item.completed .circle{background:#20a34a;border-color:#20a34a;color:#fff}.progress-item.current .circle{background:#1976f3;border-color:#1976f3;color:#fff;box-shadow:0 0 0 5px rgba(25,118,243,.08)}.progress-item.accepted.current .circle{background:#f59e0b;border-color:#f59e0b}.progress-label{margin-top:7px;text-align:center;color:#596579;font-size:9px;font-weight:600;white-space:nowrap}.progress-item.completed .progress-label{color:#263449}.progress-time{margin-top:3px;color:#8b96a7;font-size:8px;text-align:center;white-space:nowrap}.progress-line{height:3px;background:#dce2ea;flex:1;margin:13px -1px 0}.progress-line.completed{background:#20a34a}
+.empty-state{background:#eef6ff;border:1px solid #cfe1fa;border-radius:12px;padding:25px;text-align:center;margin-top:16px}.empty-icon{width:42px;height:42px;border-radius:50%;margin:0 auto 9px;background:#dcecff;color:#176bdc;display:flex;align-items:center;justify-content:center;font-size:20px}.empty-state h3{margin:0 0 5px;font-size:14px}.empty-state p{margin:0 0 14px;color:#7b8799;font-size:11px}.order-now{display:inline-block;background:#1976f3;color:#fff;text-decoration:none;padding:10px 16px;border-radius:7px;font-size:10px;font-weight:700}.not-found{display:none;background:#eef6ff;border:1px solid #cfe1fa;border-radius:12px;padding:35px;text-align:center}.not-found-icon{font-size:35px;margin-bottom:8px}.not-found h3{margin:0 0 6px;font-size:15px}.not-found p{margin:0;color:#718096;font-size:11px}.error-box{display:none;background:#fff0f0;border:1px solid #ffdada;color:#c93636;border-radius:9px;padding:11px 13px;margin-bottom:15px;font-size:11px}
+@media(max-width:1050px){.nav-links a{padding:0 9px}.order-grid{grid-template-columns:repeat(3,1fr);gap:14px}.detail{border-right:0;padding:0}.detail:nth-child(3n+1){padding-left:0}.detail:nth-child(n+4){border-top:1px solid #edf1f5;padding-top:12px}.progress-label{font-size:8px}}
+@media(max-width:760px){.navbar{height:auto;min-height:64px;padding:10px 14px;flex-wrap:wrap;gap:8px}.brand{font-size:15px}.nav-links{order:3;width:100%;height:42px;margin:0;overflow:auto}.nav-links a{padding:0 12px}.profile-text{display:none}.container{padding:25px 15px}.page-top{align-items:flex-start;flex-direction:column;gap:15px}.page-title h2{font-size:23px}.refresh-area{width:100%;justify-content:space-between}.order-main{padding:17px}.order-header{align-items:flex-start}.order-title-wrap{gap:9px}.order-id{font-size:13px}.status-badge{font-size:9px}.details-button{display:none}.order-grid{grid-template-columns:1fr 1fr;gap:13px}.detail:nth-child(n){border:0;padding:0}.detail:nth-child(n+3){border-top:1px solid #edf1f5;padding-top:12px}.progress-wrap{overflow-x:auto}.progress{min-width:620px}.account-menu{right:-5px}}
+
+.order-track-actions{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap}
+.track-order-btn{border:1px solid #1976f3;background:#1976f3;color:#fff;border-radius:7px;padding:9px 14px;font:600 10px Inter,Arial,sans-serif;cursor:pointer}
+.route-panel{display:none;margin-top:16px;border:1px solid #e5ebf3;border-radius:12px;overflow:hidden;background:#fff}
+.route-panel.show{display:block}
+.route-header{display:flex;align-items:center;justify-content:space-between;padding:13px 15px;border-bottom:1px solid #edf1f5}
+.route-header-title{font-size:12px;font-weight:700;color:#172033}
+.route-header-status{margin-top:3px;font-size:9px;color:#718096;font-weight:600}
+.route-map{width:100%;height:420px;min-height:320px;background:#e9eef3}
+.route-bottom{display:flex;gap:24px;flex-wrap:wrap;padding:10px 15px;border-top:1px solid #edf1f5;color:#718096;font-size:9px}
+.route-bottom strong{color:#172033}
+.route-close{border:1px solid #cfe0f7;background:#fff;color:#176bdc;border-radius:7px;padding:7px 10px;font:600 9px Inter,Arial,sans-serif;cursor:pointer}
+.tanker-map-icon{background:transparent;border:0}
+.tanker-map-icon span{display:flex;align-items:center;justify-content:center;width:42px;height:28px;border-radius:8px;background:#fff;border:2px solid #1976f3;box-shadow:0 3px 10px rgba(0,0,0,.25);font-size:18px;line-height:1}
+@media(max-width:760px){.route-map{height:350px;min-height:280px}}
+
+</style>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/responsive.css') }}">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+</head>
+
+<body>
+
+<div class="navbar">
+    <div class="brand"><span class="brand-icon">💧</span> WasteWater Management System</div>
+    <div class="nav-links">
+        <a href="/">⌂ Home</a>
+        <a href="/supply">◉ STP Dashboard</a>
+        <a href="/stp-track" class="active">▣ STP Order Tracking</a>
+        <a href="/profile">♙ Profile</a>
+    </div>
+    <div class="account-area">
+        <div class="notification" title="Notifications">🔔<span id="orderBadge" class="notification-badge">0</span></div>
+        <button id="profileButton" class="profile-button" type="button">
+            <span id="avatar" class="avatar">👤</span>
+            <span class="profile-text"><strong id="profileName">User</strong><span id="profileRole">Buyer</span></span>
+            <span class="chevron">⌄</span>
+        </button>
+        <div id="accountMenu" class="account-menu">
+            <div class="head"><strong id="menuName">User</strong><span id="menuRole">Buyer</span></div>
+            <a href="/profile">👤 My Profile</a>
+            <a href="/logout" class="logout">↪ Logout</a>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="page-top">
+        <div class="page-title">
+            <h2>STP Order Tracking</h2>
+            <p>Track orders assigned to your STP and monitor tanker delivery</p>
+        </div>
+        <div class="refresh-area">
+            <span><span class="loading-dot"></span><span id="lastUpdated">Updating...</span></span>
+            <button class="refresh-btn" onclick="loadMyOrders(true)">⟳ Refresh</button>
+        </div>
+    </div>
+
+    <div id="errorBox" class="error-box"></div>
+    <div id="results"></div>
+
+    <div id="emptyState" class="empty-state" style="display:none;">
+        <div class="empty-icon">👜</div>
+        <h3>No STP orders yet</h3>
+        <p>There are no orders assigned to the selected STP.</p>
+        <a class="order-now" href="/supply">← Back to STP Dashboard</a>
+    </div>
+
+    <div id="notFound" class="not-found">
+        <div class="not-found-icon">📦</div>
+        <h3>No orders found</h3>
+        <p>There are no orders assigned to this STP yet.</p>
+    </div>
+</div>
+
+<script>
+"use strict";
+
+let lastOrders = [];
+
+function escapeHTML(value){
+    const div=document.createElement("div");
+    div.textContent=value==null?"":value;
+    return div.innerHTML;
+}
+
+function formatMoney(quantity){
+    const q=parseFloat(quantity)||0;
+    const subtotal=q*40;
+    const gst=subtotal*0.18;
+    return "₹"+(subtotal+gst).toFixed(2);
+}
+
+function paymentLabel(payment){
+    const p=(payment||"").toLowerCase();
+    if(p.includes("paid")) return '<span class="payment-paid">✓ Paid</span>';
+    if(p.includes("cash") || p.includes("cod")) return '<span class="payment-cod">✓ COD</span>';
+    return '<span style="color:#7b8799">Pending</span>';
+}
+
+function statusInfo(raw){
+    const status=(raw||"Pending").trim().toLowerCase();
+    if(status==="accepted") return {step:1,label:"STP Accepted",cls:"status-accepted"};
+    if(status==="out for delivery" || status==="out_for_delivery") return {step:2,label:"Out for Delivery",cls:"status-out"};
+    if(status==="delivered") return {step:3,label:"Delivered",cls:"status-delivered"};
+    if(status==="rejected") return {step:-1,label:"Rejected",cls:"status-rejected"};
+    return {step:0,label:"Order Placed",cls:"status-pending"};
+}
+
+function buildProgress(order, info){
+    if(info.step===-1){
+        return '<div style="width:100%;text-align:center;padding:12px;background:#fff5f5;border-radius:8px;color:#dc2626;font-size:10px;font-weight:700">❌ This order has been rejected.</div>';
+    }
+
+    const steps=["Order Placed","STP Accepted","Out for Delivery","Delivered"];
+    let html="";
+    steps.forEach((step,index)=>{
+        const completed=index<info.step || info.step===3;
+        const current=index===info.step && info.step!==3;
+        const acceptedCurrent=current && index===1;
+        html += `<div class="progress-item ${completed?'completed':''} ${current?'current':''} ${acceptedCurrent?'accepted':''}">
+            <div class="circle">${completed?'✓':index+1}</div>
+            <div class="progress-label">${step}</div>
+            <div class="progress-time">${index===0 ? escapeHTML(order.created_at||"") : (current ? "Current" : (index<info.step || info.step===3 ? "Completed" : "Pending"))}</div>
+        </div>`;
+        if(index<steps.length-1){
+            const lineCompleted=index<info.step || info.step===3;
+            html += `<div class="progress-line ${lineCompleted?'completed':''}"></div>`;
+        }
+    });
+    return `<div class="progress">${html}</div>`;
+}
+
+function createOrderCard(order){
+    const info=statusInfo(order.status);
+    const card=document.createElement("div");
+    card.className="order-card";
+    card.dataset.orderId=order.order_id||"";
+    card.innerHTML=`
+        <div class="order-main">
+            <div class="order-header">
+                <div class="order-title-wrap">
+                    <div class="order-icon">▣</div>
+                    <div>
+                        <div class="order-id">Order #${escapeHTML(order.order_id)}</div>
+                        <div class="order-date">▣ ${escapeHTML(order.created_at||"")}</div>
+                    </div>
+                </div>
+                <div style="display:flex;align-items:center;gap:10px">
+                    <div class="status-badge ${info.cls}">${escapeHTML(info.label)}</div>
+                    <a class="details-button" href="/invoice?order_id=${encodeURIComponent(order.order_id||"")}">View Details ›</a>
+                </div>
+            </div>
+
+            <div class="order-grid">
+                <div class="detail"><span class="detail-label">STP Name</span><span class="detail-value">${escapeHTML(order.stp_name||"N/A")}</span></div>
+                <div class="detail"><span class="detail-label">Quantity</span><span class="detail-value">${escapeHTML(order.quantity_kld||"0")} KLD</span></div>
+                <div class="detail"><span class="detail-label">Water Type</span><span class="detail-value">Treated Water</span></div>
+                <div class="detail"><span class="detail-label">Delivery Location</span><span class="detail-value" title="${escapeHTML(order.location||"N/A")}">${escapeHTML(order.location||"N/A")}</span></div>
+                <div class="detail"><span class="detail-label">Total Amount</span><span class="detail-value">${formatMoney(order.quantity_kld)}</span></div>
+                <div class="detail"><span class="detail-label">Payment Status</span><span class="detail-value">${paymentLabel(order.payment_status)}</span></div>
+            </div>
+            <div class="order-track-actions">
+                ${info.step!==-1 ? `<button type="button" class="track-order-btn" onclick="toggleRoute(this,'${escapeHTML(order.order_id||"")}')">Track Order</button>` : ""}
+            </div>
+            <div class="route-panel">
+                <div class="route-header">
+                    <div>
+                        <div class="route-header-title">Tanker Route</div>
+                        <div class="route-header-status">Preparing route...</div>
+                    </div>
+                    <button type="button" class="route-close" onclick="closeRoute(this)">Hide Map</button>
+                </div>
+                <div class="route-map"></div>
+                <div class="route-bottom">
+                    <span>🛣 Distance: <strong class="route-distance">--</strong></span>
+                    <span>⏱ ETA: <strong class="route-eta">--</strong></span>
+                    <span>🚛 Status: <strong class="route-live-status">${escapeHTML(info.label)}</strong></span>
+                </div>
+            </div>
+        </div>
+        <div class="progress-wrap">${buildProgress(order,info)}</div>
+    `;
+    return card;
+}
+
+const STP_ID = new URLSearchParams(window.location.search).get("stp_id") || "";
+
+async function loadMyOrders(showError){
+    const results=document.getElementById("results");
+    const empty=document.getElementById("emptyState");
+    const notFound=document.getElementById("notFound");
+    const error=document.getElementById("errorBox");
+    const updated=document.getElementById("lastUpdated");
+
+    try{
+        const endpoint="/api/stp_orders"+(STP_ID?"?stp_id="+encodeURIComponent(STP_ID):"");
+        const response=await fetch(endpoint,{credentials:"same-origin",cache:"no-store"});
+        const payload=await response.json();
+        if(response.status===401){ window.location.replace("/login"); return; }
+        if(response.status===403){ window.location.replace("/track"); return; }
+        if(!response.ok || !Array.isArray(payload.orders)) throw new Error(payload.error||"Unable to load STP orders");
+
+        lastOrders=payload.orders;
+        results.innerHTML="";
+        empty.style.display="none";
+        notFound.style.display="none";
+        error.style.display="none";
+
+        if(payload.orders.length===0){
+            empty.style.display="block";
+        }else{
+            payload.orders.forEach(order=>results.appendChild(createOrderCard(order)));
+        }
+        updated.textContent="Last updated: "+new Date().toLocaleTimeString([], {hour:"2-digit",minute:"2-digit"});
+        const badge=document.getElementById("orderBadge");
+        const active=payload.orders.filter(o=>!['delivered','rejected'].includes((o.status||'').toLowerCase())).length;
+        if(active>0){badge.textContent=active;badge.style.display="flex";}else{badge.style.display="none";}
+    }catch(err){
+        console.error(err);
+        if(showError || !lastOrders.length){
+            error.textContent="Unable to load your orders. Please try again.";
+            error.style.display="block";
+        }
+    }
+}
+
+
+let activeTrackingMap=null;
+let activeTruckMarker=null;
+let activeTruckAnimation=null;
+let activeRouteKey=null;
+
+const tankerMapIcon=L.divIcon({
+    className:"tanker-map-icon",
+    html:"<span>🚛</span>",
+    iconSize:[34,34],
+    iconAnchor:[17,17]
+});
+
+function stopTruckAnimation(){
+    if(activeTruckAnimation){
+        cancelAnimationFrame(activeTruckAnimation);
+        activeTruckAnimation=null;
+    }
+}
+
+function closeRoute(button){
+    const card=button.closest(".order-card");
+    if(!card)return;
+    const panel=card.querySelector(".route-panel");
+    const btn=card.querySelector(".track-order-btn");
+    if(panel)panel.classList.remove("show");
+    if(btn)btn.textContent="Track Order";
+    stopTruckAnimation();
+    if(activeTrackingMap){
+        activeTrackingMap.remove();
+        activeTrackingMap=null;
+    }
+    activeTruckMarker=null;
+    activeRouteKey=null;
+}
+
+async function toggleRoute(button,orderId){
+    const card=button.closest(".order-card");
+    if(!card)return;
+    const panel=card.querySelector(".route-panel");
+    if(!panel)return;
+    if(panel.classList.contains("show")){
+        closeRoute(panel.querySelector(".route-close"));
+        return;
+    }
+    document.querySelectorAll(".route-panel.show").forEach(p=>{
+        const c=p.querySelector(".route-close");
+        if(c)closeRoute(c);
+    });
+    panel.classList.add("show");
+    button.textContent="Hide Route";
+    if(typeof L==="undefined"){
+        panel.querySelector(".route-header-status").textContent="Map library failed to load. Please refresh.";
+        return;
+    }
+    await openOrderRoute(orderId,card);
+}
+
+async function geocodePlace(q){
+    if(!q)return null;
+    try{
+        const r=await fetch("https://nominatim.openstreetmap.org/search?format=json&limit=1&q="+encodeURIComponent(q),{headers:{Accept:"application/json"}});
+        if(!r.ok)return null;
+        const d=await r.json();
+        return d.length?{lat:Number(d[0].lat),lon:Number(d[0].lon)}:null;
+    }catch(e){console.error(e);return null;}
+}
+
+async function getTrackingCoordinates(o){
+    try{
+        const trackingQuery=selectedStpId
+            ? "?stp_id="+encodeURIComponent(selectedStpId)
+            : "";
+
+        const r=await fetch(
+            "/api/order_tracking/"+encodeURIComponent(o.order_id||"")+trackingQuery,
+            {credentials:"same-origin",cache:"no-store"}
+        );
+
+        if(r.ok){
+            const d=await r.json();
+
+            if(d && d.success && d.stp && d.delivery){
+                return {
+                    stp:{lat:Number(d.stp.latitude),lon:Number(d.stp.longitude)},
+                    delivery:{lat:Number(d.delivery.latitude),lon:Number(d.delivery.longitude)},
+                    deliveryName:d.delivery.location||o.location||"Delivery Location",
+                    status:d.status||o.status
+                };
+            }
+
+            const slat=Number(d.stp_latitude??d.stp_lat);
+            const slon=Number(d.stp_longitude??d.stp_lon);
+            const dlat=Number(d.delivery_lat??d.delivery_latitude??d.demand_latitude??d.buyer_latitude??d.latitude);
+            const dlon=Number(d.delivery_lon??d.delivery_longitude??d.demand_longitude??d.buyer_longitude??d.longitude);
+
+            if([slat,slon,dlat,dlon].every(Number.isFinite)){
+                return {
+                    stp:{lat:slat,lon:slon},
+                    delivery:{lat:dlat,lon:dlon},
+                    deliveryName:d.location||o.location||"Delivery Location",
+                    status:d.status||o.status
+                };
+            }
+        }
+    }catch(e){
+        console.warn("Exact tracking endpoint unavailable",e);
+    }
+
+    const slat=Number(o.stp_latitude??o.stp_lat??o.stp?.latitude??o.stp?.lat);
+    const slon=Number(o.stp_longitude??o.stp_lon??o.stp?.longitude??o.stp?.lon);
+    const dlat=Number(o.delivery_lat??o.delivery_latitude??o.demand_latitude??o.buyer_latitude??o.delivery?.latitude??o.delivery?.lat);
+    const dlon=Number(o.delivery_lon??o.delivery_longitude??o.demand_longitude??o.buyer_longitude??o.delivery?.longitude??o.delivery?.lon);
+
+    if([slat,slon,dlat,dlon].every(Number.isFinite)){
+        return {
+            stp:{lat:slat,lon:slon},
+            delivery:{lat:dlat,lon:dlon},
+            deliveryName:o.location||"Delivery Location",
+            status:o.status
+        };
+    }
+
+    const [stp,delivery]=await Promise.all([
+        geocodePlace((o.stp_name||"STP")+" Bengaluru Karnataka India"),
+        geocodePlace((o.location||"")+" Bengaluru Karnataka India")
+    ]);
+
+    return stp&&delivery
+        ? {stp,delivery,deliveryName:o.location||"Delivery Location",status:o.status}
+        : null;
+}
+
+async function openOrderRoute(orderId,card){
+    const order=(lastOrders||[]).find(x=>String(x.order_id)===String(orderId));
+    if(!order)return;
+    const el=card.querySelector(".route-map");
+    const statusEl=card.querySelector(".route-header-status");
+    if(!el)return;
+    statusEl.textContent="Loading road route...";
+    const c=await getTrackingCoordinates(order);
+    if(!c){
+        statusEl.textContent="STP or delivery location could not be found.";
+        return;
+    }
+    stopTruckAnimation();
+    if(activeTrackingMap)activeTrackingMap.remove();
+    activeRouteKey=String(orderId);
+    const map=L.map(el,{zoomControl:true});
+    activeTrackingMap=map;
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:19,attribution:"&copy; OpenStreetMap contributors"}).addTo(map);
+    L.marker([c.stp.lat,c.stp.lon]).addTo(map).bindPopup("<b>"+escapeHTML(order.stp_name||"STP")+"</b><br>Pickup");
+    L.marker([c.delivery.lat,c.delivery.lon]).addTo(map).bindPopup("<b>"+escapeHTML(order.location||"Delivery Location")+"</b><br>Delivery");
+    const endpoints=[[c.stp.lat,c.stp.lon],[c.delivery.lat,c.delivery.lon]];
+    map.fitBounds(L.latLngBounds(endpoints),{padding:[40,40]});
+    setTimeout(()=>map.invalidateSize(),100);
+
+    const url="https://router.project-osrm.org/route/v1/driving/"+c.stp.lon+","+c.stp.lat+";"+c.delivery.lon+","+c.delivery.lat+"?overview=full&geometries=geojson";
+    try{
+        const r=await fetch(url,{cache:"no-store"});
+        if(!r.ok)throw Error("OSRM "+r.status);
+        const d=await r.json();
+        if(!d.routes?.length)throw Error("No route");
+        const route=d.routes[0];
+        const pts=route.geometry.coordinates.map(p=>[Number(p[1]),Number(p[0])]);
+        const line=L.polyline(pts,{weight:6,opacity:.85}).addTo(map);
+        map.fitBounds(line.getBounds(),{padding:[40,40]});
+        card.querySelector(".route-distance").textContent=(route.distance/1000).toFixed(2)+" km";
+        card.querySelector(".route-eta").textContent=Math.max(1,Math.round(route.duration/60))+" min";
+        const st=String(order.status||"").toLowerCase().replace(/_/g," ");
+        statusEl.textContent=st==="out for delivery"?"🚛 Tanker is on the way":st==="delivered"?"✓ Delivered":"Route ready";
+        if(st==="out for delivery")animateTanker(pts,order,card);
+        else if(st==="delivered")activeTruckMarker=L.marker(pts[pts.length-1],{icon:tankerMapIcon,zIndexOffset:1000}).addTo(map);
+    }catch(e){
+        console.error("OSRM route failed",e);
+        const pts=[[c.stp.lat,c.stp.lon],[c.delivery.lat,c.delivery.lon]];
+        L.polyline(pts,{weight:5,dashArray:"8 8",opacity:.65}).addTo(map);
+        map.fitBounds(L.latLngBounds(pts),{padding:[40,40]});
+        card.querySelector(".route-distance").textContent=(map.distance(pts[0],pts[1])/1000).toFixed(2)+" km (direct)";
+        statusEl.textContent="Road route unavailable — showing direct route";
+    }
+    setTimeout(()=>map.invalidateSize(),250);
+}
+
+function animateTanker(pts,order,card){
+    if(!activeTrackingMap||!pts.length)return;
+    if(activeTruckMarker)activeTrackingMap.removeLayer(activeTruckMarker);
+    activeTruckMarker=L.marker(pts[0],{icon:tankerMapIcon,zIndexOffset:1000}).addTo(activeTrackingMap);
+    let i=0,p=0;
+    function frame(){
+        if(!activeTrackingMap||activeRouteKey!==String(order.order_id))return;
+        if(i>=pts.length-1){
+            activeTruckMarker.setLatLng(pts[pts.length-1]);
+            const rs=card.querySelector(".route-live-status");
+            const hs=card.querySelector(".route-header-status");
+            const backendStatus=String(order.status||"").toLowerCase().replace(/_/g," ");
+            if(rs)rs.textContent=backendStatus==="delivered"?"Delivered":"Tanker reached destination";
+            if(hs)hs.textContent=backendStatus==="delivered"?"✓ Delivered":"Tanker reached destination";
+            stopTruckAnimation();
+            return;
+        }
+        const a=pts[i],b=pts[i+1];
+        p+=0.018;
+        if(p>=1){p=0;i++;}
+        activeTruckMarker.setLatLng([a[0]+(b[0]-a[0])*p,a[1]+(b[1]-a[1])*p]);
+        activeTruckAnimation=requestAnimationFrame(frame);
+    }
+    frame();
+}
+
+
+fetch("/api/current_user",{credentials:"same-origin",cache:"no-store"})
+.then(r=>r.json())
+.then(user=>{
+    if(!user || !user.logged_in){ window.location.replace("/login"); return; }
+    if(String(user.role||"").toLowerCase()!=="stp"){ window.location.replace("/track"); return; }
+    {
+        const name=user.name||"User";
+        const initials=user.initials||name.split(/\s+/).map(x=>x[0]).slice(0,2).join("").toUpperCase();
+        document.getElementById("avatar").textContent=initials;
+        document.getElementById("profileName").textContent=name;
+        document.getElementById("menuName").textContent=name;
+        const role="STP Operator";
+        document.getElementById("profileRole").textContent=role;
+        document.getElementById("menuRole").textContent=role;
+    }
+});
+
+const profileButton=document.getElementById("profileButton");
+const accountMenu=document.getElementById("accountMenu");
+profileButton.addEventListener("click",function(e){e.stopPropagation();accountMenu.classList.toggle("open");});
+document.addEventListener("click",function(){accountMenu.classList.remove("open");});
+
+loadMyOrders(false);
+setInterval(()=>loadMyOrders(false),5000);
+</script>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+</body>
+</html>

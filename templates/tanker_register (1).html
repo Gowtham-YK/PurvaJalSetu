@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Tanker Partner Registration</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            text-align: center;
+        }
+
+        .header {
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 36px;
+            color: #163b65;
+            margin-bottom: 12px;
+        }
+
+        .header p {
+            color: #6b7280;
+            font-size: 16px;
+        }
+
+        .options {
+            display: flex;
+            gap: 25px;
+            justify-content: center;
+        }
+
+        .option-card {
+            background: white;
+            width: 420px;
+            padding: 40px 30px;
+            border-radius: 18px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            transition: 0.2s ease;
+        }
+
+        .option-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .icon {
+            font-size: 50px;
+            margin-bottom: 20px;
+        }
+
+        .option-card h2 {
+            color: #163b65;
+            margin-bottom: 12px;
+        }
+
+        .option-card p {
+            color: #6b7280;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            border-radius: 8px;
+            background: #1769aa;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .btn:hover {
+            background: #12558a;
+        }
+
+        @media (max-width: 750px) {
+            .options {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .option-card {
+                width: 100%;
+                max-width: 420px;
+            }
+
+            .header h1 {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="header">
+            <h1>Become a Tanker Partner</h1>
+            <p>
+                Join the Purvankara Tanker Partner Network
+            </p>
+        </div>
+
+        <div class="options">
+
+            <!-- Existing Contracted Operator -->
+            <div class="option-card">
+
+                <div class="icon">🏢</div>
+
+                <h2>Existing Purvankara Partner</h2>
+
+                <p>
+                    I already have an existing contract with Purvankara
+                    and want to register my tanker on the platform.
+                </p>
+
+                <a href="/tanker/register/contracted" class="btn">
+                Continue
+                </a>
+
+            </div>
+
+
+            <!-- Independent Operator -->
+            <div class="option-card">
+
+                <div class="icon">🚛</div>
+
+                <h2>Independent Operator</h2>
+
+                <p>
+                    I operate my own tanker and want to find
+                    delivery jobs through the Purvankara platform.
+                </p>
+
+                <a href="/tanker/register/independent" class="btn">
+                Continue
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
