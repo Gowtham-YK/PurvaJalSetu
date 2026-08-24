@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Independent Tanker Operator</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 700px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            color: #163b65;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #6b7280;
+        }
+
+        .form-card {
+            background: white;
+            padding: 35px;
+            border-radius: 18px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+        }
+
+        .form-card h2 {
+            color: #163b65;
+            margin-bottom: 8px;
+        }
+
+        .description {
+            color: #6b7280;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .section-title {
+            color: #1769aa;
+            margin: 25px 0 15px;
+            font-size: 17px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 7px;
+            font-weight: 600;
+            color: #374151;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 15px;
+            outline: none;
+        }
+
+        input:focus,
+        select:focus {
+            border-color: #1769aa;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 13px;
+            border: none;
+            border-radius: 8px;
+            background: #1769aa;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .submit-btn:hover {
+            background: #12558a;
+        }
+
+        .back {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #1769aa;
+            text-decoration: none;
+        }
+
+        .info-box {
+            background: #eef6ff;
+            border-left: 4px solid #1769aa;
+            padding: 14px;
+            margin-bottom: 25px;
+            color: #374151;
+            line-height: 1.5;
+            font-size: 14px;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 15px;
+            }
+
+            .form-card {
+                padding: 25px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+        <h1>Independent Tanker Operator</h1>
+        <p>Join the Purvankara Tanker Partner Network</p>
+    </div>
+
+    <div class="form-card">
+
+        <h2>Operator Registration</h2>
+
+        <p class="description">
+            Register your tanker and become an independent delivery
+            partner. Once your account is verified, you can receive
+            eligible customer delivery opportunities through the platform.
+        </p>
+
+        <div class="info-box">
+            Your application will be reviewed before your account becomes
+            active. You will be able to receive orders only after verification.
+        </div>
+
+        <form method="POST" action="/tanker/register/independent">
+
+            <h3 class="section-title">Personal Details</h3>
+
+            <div class="form-group">
+                <label for="operator_name">Full Name</label>
+                <input
+                    type="text"
+                    id="operator_name"
+                    name="operator_name"
+                    placeholder="Enter your full name"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Mobile Number</label>
+                <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    placeholder="Enter mobile number"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="Enter email address"
+                    required
+                >
+            </div>
+
+
+            <h3 class="section-title">Location</h3>
+
+            <div class="form-group">
+                <label for="area">Operating Area</label>
+                <input
+                    type="text"
+                    id="area"
+                    name="area"
+                    placeholder="Example: Whitefield"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="pincode">Pincode</label>
+                <input
+                    type="text"
+                    id="pincode"
+                    name="pincode"
+                    placeholder="Enter pincode"
+                    required
+                >
+            </div>
+
+
+            <h3 class="section-title">Tanker Details</h3>
+
+            <div class="form-group">
+                <label for="registration_no">
+                    Tanker Registration Number
+                </label>
+
+                <input
+                    type="text"
+                    id="registration_no"
+                    name="registration_no"
+                    placeholder="Example: KA-01-XX-1234"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="capacity">Tanker Capacity</label>
+
+                <select id="capacity" name="capacity" required>
+
+                    <option value="">
+                        Select capacity
+                    </option>
+
+                    <option value="5">5 KL</option>
+                    <option value="6">6 KL</option>
+                    <option value="8">8 KL</option>
+                    <option value="10">10 KL</option>
+                    <option value="12">12 KL</option>
+                    <option value="14">14 KL</option>
+                    <option value="16">16 KL</option>
+                    <option value="20">20 KL</option>
+
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="vehicle_model">
+                    Vehicle Model
+                </label>
+
+                <input
+                    type="text"
+                    id="vehicle_model"
+                    name="vehicle_model"
+                    placeholder="Enter vehicle model"
+                    required
+                >
+            </div>
+
+
+            <h3 class="section-title">Service Preferences</h3>
+
+            <div class="form-group">
+                <label for="water_type">
+                    Water Type Supported
+                </label>
+
+                <select id="water_type" name="water_type" required>
+
+                    <option value="">
+                        Select water type
+                    </option>
+
+                    <option value="treated">
+                        Treated Water
+                    </option>
+
+                    <option value="fresh">
+                        Fresh Water
+                    </option>
+
+                    <option value="general">
+                        General Water
+                    </option>
+
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="radius">
+                    Maximum Service Radius
+                </label>
+
+                <select id="radius" name="radius" required>
+
+                    <option value="">
+                        Select radius
+                    </option>
+
+                    <option value="10">10 km</option>
+                    <option value="15">15 km</option>
+                    <option value="20">20 km</option>
+                    <option value="25">25 km</option>
+                    <option value="30">30 km</option>
+                    <option value="40">40 km</option>
+                    <option value="50">50 km</option>
+
+                </select>
+            </div>
+
+
+            <button type="submit" class="submit-btn">
+                Submit Registration
+            </button>
+
+        </form>
+
+        <a href="/tanker/register" class="back">
+            ← Back to Partner Selection
+        </a>
+
+    </div>
+
+</div>
+
+
+
+
+
+</body>
+</html>

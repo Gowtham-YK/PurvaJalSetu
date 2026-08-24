@@ -1,0 +1,2 @@
+order_id,stp_id,stp_name,quantity_kld,quality,water_type,distance_km,location,buyer_user_id,buyer_name,buyer_phone,status,created_at,payment_status,accepted_at,capacity_release_at,capacity_released,delivery_lat,delivery_lon
+ORD-7E5FE52A78,PSTP005,Purva Palm Beach - Labour Colony,4,Silver,general,10.57,"K Kamaraj Ward, Gangadhar Chetty Road, Bengaluru Urban, Karnataka, 560042",USR-A62C83339C,Gowtham Y K,8431041386,Out for Delivery,2026-08-24 11:20:58,Cash on Delivery,2026-08-24T11:21:22.326904,2026-08-25T11:21:22.326904,False,12.97632328812721,77.61936816421016

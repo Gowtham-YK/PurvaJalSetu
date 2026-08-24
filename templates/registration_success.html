@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Registration Submitted</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            min-height: 100vh;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            padding: 20px;
+        }
+
+        .card {
+            background: white;
+            width: 100%;
+            max-width: 520px;
+
+            padding: 40px;
+
+            border-radius: 20px;
+
+            box-shadow:
+                0 10px 30px rgba(0, 0, 0, 0.08);
+
+            text-align: center;
+        }
+
+        .success-icon {
+            width: 70px;
+            height: 70px;
+
+            margin: 0 auto 20px;
+
+            border-radius: 50%;
+
+            background: #e8f7ee;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 35px;
+        }
+
+        h1 {
+            color: #163b65;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #6b7280;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .details {
+            background: #f7f9fc;
+
+            border-radius: 12px;
+
+            padding: 20px;
+
+            text-align: left;
+
+            margin-bottom: 25px;
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+
+            padding: 10px 0;
+
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .detail-row:last-child {
+            border-bottom: none;
+        }
+
+        .label {
+            color: #6b7280;
+        }
+
+        .value {
+            font-weight: 600;
+            color: #163b65;
+        }
+
+        .status {
+            color: #d97706;
+        }
+
+        .info-box {
+            background: #eef6ff;
+
+            border-left: 4px solid #1769aa;
+
+            padding: 15px;
+
+            text-align: left;
+
+            color: #374151;
+
+            line-height: 1.5;
+
+            font-size: 14px;
+
+            margin-bottom: 25px;
+        }
+
+        .btn {
+            display: block;
+
+            width: 100%;
+
+            padding: 13px;
+
+            background: #1769aa;
+
+            color: white;
+
+            text-decoration: none;
+
+            border-radius: 8px;
+
+            font-weight: bold;
+
+            margin-top: 10px;
+        }
+
+        .btn:hover {
+            background: #12558a;
+        }
+
+        .secondary-btn {
+            background: transparent;
+
+            color: #1769aa;
+
+            border: 1px solid #1769aa;
+        }
+
+        .secondary-btn:hover {
+            background: #eef6ff;
+        }
+
+        @media (max-width: 600px) {
+
+            .card {
+                padding: 30px 20px;
+            }
+
+            .detail-row {
+                flex-direction: column;
+                gap: 4px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="card">
+
+    <div class="success-icon">
+        ✓
+    </div>
+
+    <h1>Registration Submitted</h1>
+
+    <p class="subtitle">
+        Your tanker partner registration has been successfully
+        submitted to the Purvankara team.
+    </p>
+
+    <div class="details">
+
+        <div class="detail-row">
+            <span class="label">Operator ID</span>
+
+            <span class="value">
+                {{ operator_id }}
+            </span>
+        </div>
+
+        <div class="detail-row">
+            <span class="label">Operator Type</span>
+
+            <span class="value">
+                {{ operator_type }}
+            </span>
+        </div>
+
+        <div class="detail-row">
+            <span class="label">Status</span>
+
+            <span class="value status">
+                Pending Verification
+            </span>
+        </div>
+
+    </div>
+
+    <div class="info-box">
+
+        <strong>What happens next?</strong>
+
+        <br><br>
+
+        The Purvankara team will review your submitted
+        information and verify your tanker details.
+
+        <br><br>
+
+        Once your registration is approved, you will be
+        able to access the tanker partner dashboard.
+
+    </div>
+
+    <a href="/tanker/register" class="btn">
+        Register Another Tanker
+    </a>
+
+    <a href="/" class="btn secondary-btn">
+        Back to Home
+    </a>
+
+</div>
+
+
+
+
+
+</body>
+</html>

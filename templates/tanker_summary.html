@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tanker Assignment Summary</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: 'Inter', sans-serif;
+            background: #f5f7fb;
+            color: #172033;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 30px 20px;
+        }
+
+        .page {
+            width: 100%;
+            max-width: 760px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #0d1b2e, #17365d);
+            color: white;
+            padding: 28px 32px;
+            border-radius: 16px 16px 0 0;
+        }
+
+        .header-top {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, #1683ff, #20c997);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 25px;
+            flex-shrink: 0;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 21px;
+            font-weight: 600;
+        }
+
+        .header p {
+            margin: 5px 0 0;
+            color: #b8c7da;
+            font-size: 12px;
+        }
+
+        .content {
+            background: white;
+            padding: 28px 32px 32px;
+            border-radius: 0 0 16px 16px;
+            box-shadow: 0 15px 40px rgba(25, 40, 70, 0.10);
+            border: 1px solid #e8edf4;
+            border-top: none;
+        }
+
+        .status {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 13px 15px;
+            border-radius: 10px;
+            margin-bottom: 22px;
+            background: #e8f8ef;
+            color: #16834d;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .status-dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: #28ae69;
+        }
+
+        .details-title {
+            margin: 0 0 14px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #172033;
+        }
+
+        .details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .detail {
+            padding: 15px;
+            background: #f8fafc;
+            border: 1px solid #edf0f5;
+            border-radius: 10px;
+        }
+
+        .detail label {
+            display: block;
+            color: #7b8799;
+            font-size: 10px;
+            margin-bottom: 5px;
+        }
+
+        .detail strong {
+            display: block;
+            color: #263449;
+            font-size: 13px;
+            font-weight: 600;
+            word-break: break-word;
+        }
+
+        .tanker-section {
+            margin-top: 22px;
+            padding-top: 20px;
+            border-top: 1px solid #edf0f5;
+        }
+
+        .tanker-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .tanker-box {
+            padding: 17px;
+            border-radius: 10px;
+            text-align: center;
+            background: #eef5ff;
+            border: 1px solid #dbe9ff;
+        }
+
+        .tanker-box.available {
+            background: #eaf8f0;
+            border-color: #d2f0df;
+        }
+
+        .tanker-box span {
+            display: block;
+            color: #718096;
+            font-size: 10px;
+            margin-bottom: 5px;
+        }
+
+        .tanker-box strong {
+            font-size: 23px;
+            color: #1976f3;
+        }
+
+        .tanker-box.available strong {
+            color: #199956;
+        }
+
+        .message {
+            margin-top: 20px;
+            padding: 14px 16px;
+            border-radius: 10px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .message.success {
+            background: #e8f8ef;
+            color: #16834d;
+            border: 1px solid #d2f0df;
+        }
+
+        .message.fail {
+            background: #fff0f0;
+            color: #d63d3d;
+            border: 1px solid #ffdada;
+        }
+
+        .actions {
+            margin-top: 24px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .back-btn {
+            width: 100%;
+            padding: 12px 18px;
+            border: none;
+            border-radius: 8px;
+            background: #1976f3;
+            color: white;
+            font-family: 'Inter', sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            transition: .2s;
+        }
+
+        .back-btn:hover {
+            background: #125fc5;
+        }
+
+        .redirect-note {
+            margin: 13px 0 0;
+            text-align: center;
+            color: #8a96a8;
+            font-size: 10px;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 15px;
+                align-items: flex-start;
+            }
+
+            .page {
+                margin-top: 20px;
+            }
+
+            .header {
+                padding: 22px 20px;
+            }
+
+            .content {
+                padding: 22px 20px 24px;
+            }
+
+            .header h1 {
+                font-size: 18px;
+            }
+
+            .details,
+            .tanker-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .detail strong {
+                font-size: 12px;
+            }
+
+            .icon {
+                width: 46px;
+                height: 46px;
+                font-size: 22px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="page">
+
+    <div class="header">
+        <div class="header-top">
+            <div class="icon">🚛</div>
+            <div>
+                <h1>Tanker Assignment Summary</h1>
+                <p>Wastewater delivery assignment overview</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="content">
+
+        {% if info.sufficient %}
+        <div class="status">
+            <div class="status-dot"></div>
+            Tanker assignment can proceed
+        </div>
+        {% else %}
+        <div class="status" style="background:#fff0f0;color:#d63d3d;">
+            <div class="status-dot" style="background:#ef4444;"></div>
+            Tanker availability is insufficient
+        </div>
+        {% endif %}
+
+        <h2 class="details-title">Order Information</h2>
+
+        <div class="details">
+
+            <div class="detail">
+                <label>Order ID</label>
+                <strong>{{ info.order_id }}</strong>
+            </div>
+
+            <div class="detail">
+                <label>Total Water</label>
+                <strong>{{ info.quantity }} KLD</strong>
+            </div>
+
+            <div class="detail">
+                <label>Buyer</label>
+                <strong>{{ info.buyer_name }}</strong>
+            </div>
+
+            <div class="detail">
+                <label>Phone</label>
+                <strong>{{ info.buyer_phone }}</strong>
+            </div>
+
+        </div>
+
+        <div class="tanker-section">
+
+            <h2 class="details-title">Tanker Availability</h2>
+
+            <div class="tanker-grid">
+
+                <div class="tanker-box">
+                    <span>Tankers Required</span>
+                    <strong>{{ info.tankers_required }}</strong>
+                </div>
+
+                <div class="tanker-box available">
+                    <span>Available Tankers</span>
+                    <strong>{{ info.available_tankers }}</strong>
+                </div>
+
+            </div>
+
+            {% if info.sufficient %}
+            <div class="message success">
+                ✔ Sufficient tankers available for this assignment.
+            </div>
+            {% else %}
+            <div class="message fail">
+                ❌ Not enough tankers are currently available.
+            </div>
+            {% endif %}
+
+        <div class="actions">
+            <a class="back-btn" href="/tanker">
+                Back to Dashboard
+            </a>
+        </div>
+
+        <p class="redirect-note">
+            Returning to the supply dashboard automatically...
+        </p>
+
+    </div>
+
+</div>
+
+<script>
+    setTimeout(() => {
+        window.location.href = "/tanker";
+    }, 60000);
+</script>
+
+
+
+<!-- =========================================================
+     GLOBAL PROFILE / AVATAR / LOGOUT MENU
+========================================================= -->
+<style>
+#wwGlobalAccountButton{
+    position:fixed;top:14px;right:18px;width:43px;height:43px;
+    border-radius:50%;border:2px solid #fff;
+    background:linear-gradient(135deg,#1683ff,#20c997);
+    color:#fff;display:flex;align-items:center;justify-content:center;
+    font-family:Arial,sans-serif;font-size:13px;font-weight:700;
+    cursor:pointer;z-index:2147483000;
+    box-shadow:0 5px 18px rgba(0,0,0,.18);
+    user-select:none;transition:transform .18s ease,box-shadow .18s ease;
+}
+#wwGlobalAccountButton:hover{
+    transform:scale(1.05);box-shadow:0 7px 22px rgba(0,0,0,.23);
+}
+#wwGlobalAccountMenu{
+    position:fixed;top:66px;right:18px;width:235px;
+    background:#fff;border:1px solid #e6ebf2;border-radius:13px;
+    padding:10px;z-index:2147483001;
+    box-shadow:0 14px 38px rgba(15,23,42,.18);
+    font-family:Arial,sans-serif;display:none;
+}
+#wwGlobalAccountMenu.ww-open{display:block}
+.ww-account-header{
+    padding:8px 9px 12px;margin-bottom:5px;
+    border-bottom:1px solid #edf1f5;
+}
+.ww-account-name{
+    color:#172033;font-size:14px;font-weight:700;
+    line-height:1.35;word-break:break-word;
+}
+.ww-account-role{
+    margin-top:3px;color:#7b8799;font-size:11px;
+    text-transform:capitalize;
+}
+.ww-account-item{
+    display:block;width:100%;padding:10px 9px;border-radius:8px;
+    color:#263449;background:transparent;text-decoration:none;
+    font-size:12px;font-weight:600;text-align:left;
+    box-sizing:border-box;cursor:pointer;
+}
+.ww-account-item:hover{background:#f4f7fb}
+.ww-account-login{color:#1976f3}
+.ww-account-logout{color:#d13b3b}
+@media(max-width:600px){
+    #wwGlobalAccountButton{
+        top:10px;right:10px;width:39px;height:39px;font-size:11px;
+    }
+    #wwGlobalAccountMenu{top:58px;right:10px;width:210px}
+}
+</style>
+
+<div id="wwGlobalAccountButton" title="Account"
+     aria-label="Open account menu" role="button" tabindex="0">👤</div>
+
+<div id="wwGlobalAccountMenu" aria-hidden="true">
+    <div class="ww-account-header">
+        <div id="wwAccountName" class="ww-account-name">Guest</div>
+        <div id="wwAccountRole" class="ww-account-role">Account</div>
+    </div>
+
+    <a id="wwAccountProfile" class="ww-account-item"
+       href="/profile" style="display:none;">👤 My Profile</a>
+
+    <a id="wwAccountLogin" class="ww-account-item ww-account-login"
+       href="/login" style="display:none;">🔐 Login</a>
+
+    <a id="wwAccountLogout" class="ww-account-item ww-account-logout"
+       href="/logout" style="display:none;">↪ Logout</a>
+</div>
+
+<script>
+(function(){
+    "use strict";
+
+    const avatar=document.getElementById("wwGlobalAccountButton");
+    const menu=document.getElementById("wwGlobalAccountMenu");
+
+    if(!avatar || !menu) return;
+
+    const nameEl=document.getElementById("wwAccountName");
+    const roleEl=document.getElementById("wwAccountRole");
+    const profileEl=document.getElementById("wwAccountProfile");
+    const loginEl=document.getElementById("wwAccountLogin");
+    const logoutEl=document.getElementById("wwAccountLogout");
+
+    function loggedOut(){
+        avatar.textContent="👤";
+        avatar.title="Login";
+        if(nameEl) nameEl.textContent="Guest";
+        if(roleEl) roleEl.textContent="Not logged in";
+        if(profileEl) profileEl.style.display="none";
+        if(loginEl) loginEl.style.display="block";
+        if(logoutEl) logoutEl.style.display="none";
+    }
+
+    function loggedIn(user){
+        avatar.textContent=user.initials || "👤";
+        avatar.title=user.name || "My Profile";
+
+        if(nameEl) nameEl.textContent=user.name || "User";
+
+        if(roleEl){
+            const role=user.role || "Account";
+            roleEl.textContent=role.charAt(0).toUpperCase()+role.slice(1);
+        }
+
+        if(profileEl) profileEl.style.display="block";
+        if(loginEl) loginEl.style.display="none";
+        if(logoutEl) logoutEl.style.display="block";
+    }
+
+    fetch("/api/current_user",{
+        method:"GET",
+        credentials:"same-origin",
+        cache:"no-store"
+    })
+    .then(function(response){
+        if(!response.ok) throw new Error("Account API unavailable");
+        return response.json();
+    })
+    .then(function(user){
+        if(user && user.logged_in) loggedIn(user);
+        else loggedOut();
+    })
+    .catch(function(){
+        loggedOut();
+    });
+
+    function toggle(event){
+        if(event) event.stopPropagation();
+        const open=menu.classList.toggle("ww-open");
+        menu.setAttribute("aria-hidden",open ? "false" : "true");
+    }
+
+    avatar.addEventListener("click",toggle);
+
+    avatar.addEventListener("keydown",function(event){
+        if(event.key==="Enter" || event.key===" "){
+            event.preventDefault();
+            toggle(event);
+        }
+    });
+
+    menu.addEventListener("click",function(event){
+        event.stopPropagation();
+    });
+
+    document.addEventListener("click",function(){
+        menu.classList.remove("ww-open");
+        menu.setAttribute("aria-hidden","true");
+    });
+})();
+</script>
+<!-- END GLOBAL PROFILE / AVATAR / LOGOUT MENU -->
+
+</body>
+</html>

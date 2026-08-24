@@ -1,0 +1,15 @@
+__pycache__/
+*.pyc
+
+.venv/
+venv/
+env/
+
+.env
+
+database/app.db
+database/users.xlsx
+
+mlruns/
+
+*.log

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Wastewater Routing Optimization System</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+*{box-sizing:border-box;font-family:'Inter',sans-serif}
+html{scroll-behavior:smooth}
+body{margin:0;background:#f4f7fb;color:#1f2937;overflow-x:hidden}
+.app-shell{display:flex;min-height:100vh}
+.sidebar{position:fixed;left:0;top:0;width:220px;height:100vh;background:linear-gradient(180deg,#0b1b32 0%,#0f2745 100%);color:#fff;padding:22px 16px;display:flex;flex-direction:column;z-index:1000}
+.brand{display:flex;align-items:center;gap:10px;padding:0 8px 28px}.brand img{width:34px;height:34px;object-fit:contain}.brand-title{font-size:16px;font-weight:700;line-height:1.1}.brand-subtitle{font-size:11px;color:#b9c7d9;margin-top:3px}
+.menu-label{font-size:10px;letter-spacing:1.2px;color:#8093ad;padding:0 12px 10px}.side-nav{display:flex;flex-direction:column;gap:5px}.side-link{display:flex;align-items:center;gap:12px;color:#dce6f3;text-decoration:none;padding:11px 12px;border-radius:8px;font-size:13px;font-weight:500;transition:.2s}.side-link:hover{background:rgba(37,99,235,.18);color:#fff}.side-link.active{background:#1769e0;color:#fff;box-shadow:0 6px 16px rgba(23,105,224,.25)}.side-icon{width:20px;text-align:center;font-size:16px}
+.main-content{margin-left:220px;width:calc(100% - 220px);min-width:0}.topbar{height:56px;background:#fff;display:flex;align-items:center;justify-content:flex-end;padding:0 28px;border-bottom:1px solid #e7edf5;position:sticky;top:0;z-index:900}.top-nav{display:flex;gap:24px}.top-link{color:#334155;text-decoration:none;font-size:12px;font-weight:500}.top-link.active{background:#16a34a;color:#fff;padding:5px 12px;border-radius:5px}.mobile-brand{display:none}
+.hero{margin:10px 28px 0;border-radius:12px;min-height:270px;background:url("/static/assets/ocean.png") center/cover no-repeat;position:relative;overflow:hidden}.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(4,34,66,.88),rgba(4,72,112,.35),rgba(4,34,66,.08))}.hero-overlay{position:relative;z-index:1;color:#fff;padding:55px 42px;max-width:730px}.hero h1{font-size:38px;line-height:1.12;margin:0 0 12px;font-weight:700;letter-spacing:-.7px}.hero p{font-size:15px;line-height:1.6;margin:0;max-width:570px;color:#eaf7ff}.hero-btn{display:inline-flex;align-items:center;gap:15px;margin-top:24px;padding:12px 21px;background:#16a34a;color:#fff;font-size:14px;font-weight:600;border-radius:7px;text-decoration:none;box-shadow:0 8px 18px rgba(22,163,74,.3);transition:.2s}.hero-btn:hover{background:#15803d;transform:translateY(-2px)}.hero-btn.secondary {background: #ffffff;color: #16a34a;border: 1px solid #ffffff;box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);}.hero-btn.secondary:hover {background: #f0fdf4;color: #15803d;}
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:-2px 28px 0;padding-top:16px;position:relative;z-index:3}.card{background:#fff;border-radius:10px;min-height:112px;box-shadow:0 8px 24px rgba(15,23,42,.07);border:1px solid #edf1f6}.card-inner{display:flex;align-items:center;gap:16px;padding:18px}.feature-icon-box{width:58px;height:58px;border-radius:9px;display:flex;align-items:center;justify-content:center;flex:0 0 auto}.feature-icon-box.blue{background:#e7f0ff}.feature-icon-box.green{background:#e5f8ed}.feature-icon-box.purple{background:#f0eaff}.analyze-icon{width:52px;height:52px;object-fit:contain}.card h4{margin:0 0 5px;font-size:15px;color:#111827}.card p{margin:0;font-size:12px;line-height:1.5;color:#64748b}
+.map-section{margin:18px 28px 0;background:#fff;border-radius:11px;padding:20px;box-shadow:0 8px 26px rgba(15,23,42,.06);border:1px solid #e9eef5}.section-heading{display:flex;align-items:center;justify-content:space-between;margin-bottom:13px}.section-kicker{font-size:9px;letter-spacing:1.1px;color:#2563eb;font-weight:700}.section-heading h2{margin:4px 0 0;font-size:20px;color:#17233a}.map-box{width:100%;height:330px;border-radius:9px;overflow:hidden;background:#e5e7eb}.map-box img{width:100%;height:100%;object-fit:cover;display:block}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:18px}.stat-item{display:flex;align-items:center;gap:13px;min-width:0}.stat-item img{width:52px;height:52px;object-fit:contain;flex-shrink:0}.stat-text h3{margin:0;font-size:14px;font-weight:600;color:#1f2937}.stat-text p{margin:4px 0 0;font-size:11px;line-height:1.4;color:#64748b}.stat-number{color:#2563eb;font-weight:700}.stat-number.green{color:#16a34a}
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:18px 28px 0}.info-section{background:#fff;border:1px solid #e9eef5;border-radius:11px;padding:22px;box-shadow:0 7px 22px rgba(15,23,42,.04)}.info-title{display:flex;align-items:center;gap:10px;margin-bottom:12px}.info-title h2{margin:0;font-size:18px;color:#17233a}.info-icon{width:30px;height:30px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700}.blue-bg{background:#e7f0ff;color:#2563eb}.green-bg{background:#e5f8ed;color:#16a34a}.purple-bg{background:#f0eaff;color:#7c3aed}.info-section p,.info-section li{font-size:12px;color:#64748b;line-height:1.7}.info-section p{margin:0 0 10px}.info-section ul{margin:0;padding-left:18px}.info-section li::marker{color:#16a34a}.contact-section{margin:18px 28px}.contact-section p:last-child{margin-bottom:0}
+footer{margin:24px 0 0;background:#0b1b32;color:#9fb0c5;text-align:center;padding:16px;font-size:11px}
+#splash{position:fixed;width:100%;height:100vh;background:#0f172a;display:flex;justify-content:center;align-items:center;z-index:9999;transition:opacity .6s ease}.splash-content{text-align:center}.logo-img{width:320px;max-width:80vw;height:auto;opacity:0;transform:translateX(-60px);animation:slideLogo 1.2s ease forwards}.underline{width:0;height:3px;background:#2563eb;margin:12px auto 0;animation:lineGrow 1s ease forwards;animation-delay:1.2s}@keyframes slideLogo{0%{opacity:0;transform:translateX(-60px)}100%{opacity:1;transform:translateX(0)}}@keyframes lineGrow{0%{width:0}100%{width:180px}}
+@media(max-width:1024px){.sidebar{width:190px}.main-content{margin-left:190px;width:calc(100% - 190px)}.hero{margin-left:18px;margin-right:18px}.features,.map-section,.info-grid,.contact-section{margin-left:18px;margin-right:18px}.hero h1{font-size:32px}.map-box{height:300px}}
+@media(max-width:760px){.sidebar{position:relative;width:100%;height:auto;min-height:auto;padding:14px}.app-shell{display:block}.main-content{margin-left:0;width:100%}.brand{padding-bottom:12px}.menu-label{display:none}.side-nav{display:flex;flex-direction:row;flex-wrap:wrap}.side-link{padding:8px 10px}.topbar{display:none}.mobile-brand{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:600;color:#17233a}.mobile-brand img{width:27px;height:27px}.hero{margin:10px 14px 0;min-height:300px}.hero-overlay{padding:45px 25px}.hero h1{font-size:27px}.features{grid-template-columns:1fr;margin:0 14px;padding-top:14px}.map-section{margin:14px 14px 0;padding:14px}.map-box{height:270px}.stats{grid-template-columns:1fr;gap:13px}.info-grid{grid-template-columns:1fr;margin:14px}.contact-section{margin:14px}.top-nav{display:none}}
+@media(max-width:480px){.hero h1{font-size:23px}.hero p{font-size:13px}.hero-btn{font-size:13px}.side-link{font-size:11px}.map-box{height:230px}.card-inner{padding:14px}.feature-icon-box{width:50px;height:50px}.analyze-icon{width:45px;height:45px}.hero-buttons {flex-direction: column;align-items: center;}}
+</style>
+
+</head>
+
+<body>
+<!-- SPLASH SCREEN -->
+<div id="splash">
+  <div class="splash-content">
+    <img src="{{ url_for('static', filename='assets/logo.png') }}" class="logo-img">
+    <div class="underline"></div>
+  </div>
+</div>
+
+<div class="app-shell">
+  <aside class="sidebar">
+    <div class="brand">
+      <img src="{{ url_for('static', filename='assets/title-icon.png') }}" alt="System Icon">
+      <div>
+        <div class="brand-title">Wastewater Routing Optimization System</div>
+      </div>
+    </div>
+
+    <div class="menu-label">MAIN MENU</div>
+    <nav class="side-nav">
+      <a href="{{ url_for('home') }}" class="side-link active"><span class="side-icon">⌂</span>Home</a>
+      <a href="#about" class="side-link"><span class="side-icon">ⓘ</span>About Project</a>
+      <a href="#how-it-works" class="side-link"><span class="side-icon">⚙</span>How It Works</a>
+      <a href="#contact" class="side-link"><span class="side-icon">♧</span>Contact</a>
+    </nav>
+
+  </aside>
+
+  <main class="main-content">
+    <header class="topbar">
+      <div class="mobile-brand">
+        <img src="{{ url_for('static', filename='assets/title-icon.png') }}" alt="System Icon">
+        <span>Wastewater Routing Optimization System</span>
+      </div>
+      <nav class="top-nav">
+        <a href="{{ url_for('home') }}" class="top-link active">Home</a>
+        <a href="#about" class="top-link">About</a>
+        <a href="#how-it-works" class="top-link">How It Works</a>
+        <a href="#contact" class="top-link">Contact</a>
+      </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-overlay">
+        <h1>Treated Wastewater Routing Optimization System</h1>
+        <p>Optimizing Treated wastewater distribution to demand sites using machine learning.</p>
+        <div class="hero-buttons">
+
+          <a href="{{ url_for('login') }}" class="hero-btn">
+            Get Started <span>→</span>
+          </a>
+
+          <a href="{{ url_for('tanker_register') }}" class="hero-btn secondary">
+            Become a Tanker Partner 
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="features">
+      <div class="card">
+        <div class="card-inner">
+          <div class="feature-icon-box blue"><img src="{{ url_for('static', filename='assets/analyze.png') }}" class="analyze-icon"></div>
+          <div><h4>Analyze</h4><p>Identify wastewater sources and their capacities.</p></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-inner">
+          <div class="feature-icon-box green"><img src="{{ url_for('static', filename='assets/predict.png') }}" class="analyze-icon"></div>
+          <div><h4>Predict</h4><p>Use machine learning to forecast wastewater generation.</p></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-inner">
+          <div class="feature-icon-box purple"><img src="{{ url_for('static', filename='assets/optimize.png') }}" class="analyze-icon"></div>
+          <div><h4>Optimize</h4><p>Find the best treatment plants based on distance and capacity.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MAP -->
+    <section class="map-section">
+      <div class="section-heading">
+        <div><span class="section-kicker">NETWORK OVERVIEW</span><h2>Wastewater Routing Map</h2></div>
+      </div>
+
+      <div class="map-box">
+        <img src="{{ url_for('static', filename='assets/wastewater-map.png') }}" alt="Wastewater Routing Map">
+      </div>
+
+      <div class="stats">
+        <div class="stat-item">
+          <img src="{{ url_for('static', filename='assets/wastewater-sources.png') }}" alt="Wastewater Sources">
+          <div class="stat-text"><h3><span class="stat-number">24</span> Wastewater Sources</h3><p>Industry, apartments, and commercial buildings</p></div>
+        </div>
+        <div class="stat-item">
+          <img src="{{ url_for('static', filename='assets/stp.png') }}" alt="Sewage Treatment Plants">
+          <div class="stat-text"><h3><span class="stat-number">8</span> Sewage Treatment Plants</h3><p>Multiple STPs across the city</p></div>
+        </div>
+        <div class="stat-item">
+          <img src="{{ url_for('static', filename='assets/efficiency.png') }}" alt="Efficient Allocation">
+          <div class="stat-text"><h3><span class="stat-number green">78%</span> Efficient Allocation</h3><p>Efficient allocation and matching</p></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="info-grid">
+      <section id="about" class="info-section">
+        <div class="info-title"><span class="info-icon blue-bg">▦</span><h2>About the Project</h2></div>
+        <p>This project focuses on intelligently routing wastewater from urban sources such as industries, apartments, and commercial buildings to nearby sewage treatment plants based on distance, treatment capacity, and demand.</p>
+        <p>By using machine learning and geospatial analysis, the system reduces transportation costs, improves treatment efficiency, and supports sustainable smart city development.</p>
+      </section>
+
+      <section id="how-it-works" class="info-section">
+        <div class="info-title"><span class="info-icon green-bg">⚙</span><h2>How It Works</h2></div>
+        <ul>
+          <li>Collects wastewater generation data from multiple sources</li>
+          <li>Predicts wastewater volume using machine learning models</li>
+          <li>Calculates distance between sources and nearby STPs</li>
+          <li>Checks treatment plant capacity and availability</li>
+          <li>Optimally routes wastewater to the most suitable STP</li>
+          <li>Displays routing results on a city map</li>
+        </ul>
+      </section>
+    </div>
+
+    <section id="contact" class="info-section contact-section">
+      <div class="info-title"><span class="info-icon purple-bg">✉</span><h2>Contact</h2></div>
+      <p>For project-related queries, collaboration, or technical discussions, please contact the project team through your institution or academic supervisor.</p>
+      <p>📧 Email: eng23am0045@dsu.edu.in<br>📍 Location: Dayananda Sagar University</p>
+    </section>
+
+    <footer>© 2026 Wastewater Routing Optimization System</footer>
+  </main>
+</div>
+
+<script>
+    window.addEventListener("load", function () {
+      setTimeout(() => {
+        const splash = document.getElementById("splash");
+        splash.style.opacity = "0";
+        splash.style.transition = "opacity 0.8s ease";
+    
+        setTimeout(() => {
+          splash.style.display = "none";
+        }, 800);
+    
+      }, 2600); // increased duration
+    });
+    </script>
+
+
+
+
+
+
+
+</body>
+</html>

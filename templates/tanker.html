@@ -1,0 +1,2590 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <title>Tanker Operator Dashboard</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Google Font -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Leaflet -->
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet/dist/leaflet.css"
+    >
+
+    <script
+        src="https://unpkg.com/leaflet/dist/leaflet.js">
+    </script>
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        body {
+            margin: 0;
+
+            font-family: 'Poppins', sans-serif;
+
+            background: #f5f7fb;
+
+            color: #172033;
+
+            overflow-x: hidden;
+        }
+
+
+        /* =====================================================
+           MAIN LAYOUT
+        ===================================================== */
+
+        .dashboard {
+            display: flex;
+
+            min-height: 100vh;
+        }
+
+
+        /* =====================================================
+           SIDEBAR
+        ===================================================== */
+
+        .sidebar {
+
+            width: 245px;
+
+            min-height: 100vh;
+
+            position: fixed;
+
+            left: 0;
+            top: 0;
+            bottom: 0;
+
+            background: #0d1b2e;
+
+            color: white;
+
+            padding: 22px 14px;
+
+            z-index: 1000;
+        }
+
+
+        /* BRAND */
+
+        .brand {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            padding: 5px 10px 30px;
+        }
+
+
+        .brand-icon {
+
+            width: 42px;
+            height: 42px;
+
+            border-radius: 12px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #1683ff,
+                    #20c997
+                );
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            font-size: 22px;
+        }
+
+
+        .brand-text h2 {
+
+            margin: 0;
+
+            font-size: 17px;
+
+            font-weight: 600;
+        }
+
+
+        .brand-text p {
+
+            margin: 2px 0 0;
+
+            color: #9caec5;
+
+            font-size: 10px;
+        }
+
+
+        /* MENU TITLE */
+
+        .menu-title {
+
+            margin: 8px 0 10px;
+
+            padding: 0 14px;
+
+            color: #71839b;
+
+            font-size: 10px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1px;
+        }
+
+
+        /* NAVIGATION */
+
+        .nav-links {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 5px;
+        }
+
+
+        .nav-links a {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            padding: 12px 14px;
+
+            border-radius: 9px;
+
+            color: #c6d0df;
+
+            text-decoration: none;
+
+            font-size: 13px;
+
+            transition: .25s ease;
+        }
+
+
+        .nav-links a:hover {
+
+            background: #172d49;
+
+            color: white;
+        }
+
+
+        .nav-links a.active {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #1877f2,
+                    #1466d8
+                );
+
+            color: white;
+
+            box-shadow:
+                0 5px 15px
+                rgba(24,119,242,.25);
+        }
+
+
+        .nav-icon {
+
+            width: 21px;
+
+            text-align: center;
+
+            font-size: 16px;
+        }
+
+
+        /* SYSTEM STATUS */
+
+        .system-status {
+
+            position: absolute;
+
+            left: 14px;
+            right: 14px;
+
+            bottom: 20px;
+
+            background: #152a43;
+
+            border: 1px solid #203955;
+
+            border-radius: 12px;
+
+            padding: 15px;
+        }
+
+
+        .system-status h4 {
+
+            margin: 0 0 10px;
+
+            font-size: 12px;
+        }
+
+
+        .status-line {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            color: #6ee7a5;
+
+            font-size: 11px;
+        }
+
+
+        .status-dot {
+
+            width: 8px;
+            height: 8px;
+
+            border-radius: 50%;
+
+            background: #35d07f;
+
+            box-shadow:
+                0 0 7px
+                rgba(53,208,127,.6);
+        }
+
+
+        /* =====================================================
+           MAIN CONTENT
+        ===================================================== */
+
+        .main-content {
+
+            width: calc(100% - 245px);
+
+            margin-left: 245px;
+
+            min-width: 0;
+        }
+
+
+        /* =====================================================
+           TOP BAR
+        ===================================================== */
+
+        .topbar {
+
+            height: 78px;
+
+            padding: 0 30px;
+
+            background: white;
+
+            border-bottom: 1px solid #e8edf4;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+        }
+
+
+        .welcome h1 {
+
+            margin: 0;
+
+            font-size: 20px;
+
+            font-weight: 600;
+        }
+
+
+        .welcome p {
+
+            margin: 4px 0 0;
+
+            color: #7b8799;
+
+            font-size: 12px;
+        }
+
+
+        .topbar-right {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 20px;
+        }
+
+
+        .notification {
+
+            position: relative;
+
+            font-size: 20px;
+        }
+
+
+        .notification-badge {
+
+            position: absolute;
+
+            top: -6px;
+
+            right: -8px;
+
+            width: 16px;
+            height: 16px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 50%;
+
+            background: #ef4444;
+
+            color: white;
+
+            font-size: 9px;
+        }
+
+
+        .operator-profile {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 9px;
+
+            font-size: 12px;
+
+            font-weight: 500;
+        }
+
+
+        .profile-circle {
+
+            width: 34px;
+            height: 34px;
+
+            border-radius: 50%;
+
+            background: #e5f0ff;
+
+            color: #176fd9;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            font-size: 11px;
+
+            font-weight: 600;
+        }
+
+
+        /* =====================================================
+           PAGE CONTAINER
+        ===================================================== */
+
+        .container {
+
+            padding: 26px 30px 35px;
+        }
+
+
+        /* =====================================================
+           KPI CARDS
+        ===================================================== */
+
+        .stats-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 16px;
+
+            margin-bottom: 18px;
+        }
+
+
+        .stat-card {
+
+            background: white;
+
+            border: 1px solid #edf0f5;
+
+            border-radius: 12px;
+
+            padding: 18px;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 14px;
+
+            box-shadow:
+                0 3px 12px
+                rgba(25,40,70,.04);
+        }
+
+
+        .stat-icon {
+
+            width: 48px;
+            height: 48px;
+
+            border-radius: 50%;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            font-size: 21px;
+
+            flex-shrink: 0;
+        }
+
+
+        .blue {
+
+            background: #e9f2ff;
+
+            color: #1976f3;
+        }
+
+
+        .green {
+
+            background: #e8f8ef;
+
+            color: #28ae69;
+        }
+
+
+        .purple {
+
+            background: #f0eaff;
+
+            color: #7b55d8;
+        }
+
+
+        .orange {
+
+            background: #fff3df;
+
+            color: #ed9a1b;
+        }
+
+
+        .stat-info p {
+
+            margin: 0;
+
+            color: #748197;
+
+            font-size: 11px;
+        }
+
+
+        .stat-info h2 {
+
+            margin: 3px 0 0;
+
+            font-size: 20px;
+
+            font-weight: 600;
+        }
+
+
+        .stat-info small {
+
+            font-size: 10px;
+
+            color: #65738a;
+        }
+
+
+        /* =====================================================
+           MAIN GRID
+        ===================================================== */
+
+        .main-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                minmax(330px, .9fr)
+                minmax(500px, 1.8fr);
+
+            gap: 18px;
+
+            align-items: start;
+        }
+
+
+        /* =====================================================
+           CARD
+        ===================================================== */
+
+        .card {
+
+            background: white;
+
+            border: 1px solid #edf0f5;
+
+            border-radius: 12px;
+
+            padding: 20px;
+
+            box-shadow:
+                0 3px 12px
+                rgba(25,40,70,.04);
+        }
+
+
+        .card-header {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            margin-bottom: 16px;
+        }
+
+
+        .card-header h2 {
+
+            margin: 0;
+
+            font-size: 15px;
+
+            font-weight: 600;
+        }
+
+
+        .card-header span {
+
+            color: #1976f3;
+
+            font-size: 11px;
+        }
+
+
+        /* =====================================================
+           ORDERS PANEL
+        ===================================================== */
+
+        .orders-list {
+
+            height: 540px;
+
+            overflow-y: auto;
+
+            padding-right: 5px;
+        }
+
+
+        .orders-list::-webkit-scrollbar {
+
+            width: 5px;
+        }
+
+
+        .orders-list::-webkit-scrollbar-track {
+
+            background: #f1f4f8;
+
+            border-radius: 10px;
+        }
+
+
+        .orders-list::-webkit-scrollbar-thumb {
+
+            background: #c8d1de;
+
+            border-radius: 10px;
+        }
+
+
+        /* ORDER CARD */
+
+        .order-card {
+
+            background: #ffffff;
+
+            border: 1px solid #e7edf4;
+
+            border-radius: 10px;
+
+            padding: 14px;
+
+            margin-bottom: 10px;
+
+            transition: .2s ease;
+        }
+
+
+        .order-card:hover {
+
+            background: #fafcff;
+
+            border-color: #d5e2f1;
+
+            transform: translateY(-1px);
+        }
+
+
+        .order-top {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 10px;
+
+            margin-bottom: 9px;
+        }
+
+
+        .order-id {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            font-size: 11px;
+
+            font-weight: 600;
+
+            color: #172033;
+        }
+
+
+        .order-dot {
+
+            width: 8px;
+            height: 8px;
+
+            border-radius: 50%;
+
+            background: #22c55e;
+        }
+
+
+        .new-badge {
+
+            padding: 4px 8px;
+
+            border-radius: 15px;
+
+            background: #e8f1ff;
+
+            color: #2772d9;
+
+            font-size: 8px;
+
+            font-weight: 500;
+        }
+
+
+        .priority-badge {
+
+            padding: 4px 8px;
+
+            border-radius: 15px;
+
+            background: #fff3df;
+
+            color: #d88910;
+
+            font-size: 8px;
+
+            font-weight: 500;
+        }
+
+
+        .order-details {
+
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 7px 10px;
+        }
+
+
+        .order-detail {
+
+            font-size: 9px;
+
+            color: #7b8799;
+
+            line-height: 1.5;
+        }
+
+
+        .order-detail strong {
+
+            display: block;
+
+            color: #29374d;
+
+            font-size: 10px;
+
+            font-weight: 500;
+        }
+
+
+        .location-detail {
+
+            grid-column: 1 / -1;
+        }
+
+
+        .route-button {
+
+            width: 100%;
+
+            margin-top: 11px;
+
+            padding: 8px 12px;
+
+            border: 1px solid #cfe0f5;
+
+            border-radius: 7px;
+
+            background: #f5f9ff;
+
+            color: #1976f3;
+
+            font-family: 'Poppins', sans-serif;
+
+            font-size: 9px;
+
+            font-weight: 500;
+
+            cursor: pointer;
+
+            transition: .2s;
+        }
+
+
+        .route-button:hover {
+
+            background: #1976f3;
+
+            color: white;
+        }
+
+
+        .tanker-request-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 7px;
+            margin-top: 7px;
+        }
+
+        .tanker-request-button {
+            width: 100%;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 7px;
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            font-size: 9px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .tanker-request-accept {
+            background: #16834d;
+        }
+
+        .tanker-request-reject {
+            background: #dc4141;
+        }
+
+        .pickup-form {
+
+            margin: 0;
+        }
+
+
+        .pickup-button {
+
+            width: 100%;
+
+            margin-top: 7px;
+
+            padding: 8px 12px;
+
+            border: none;
+
+            border-radius: 7px;
+
+            background: #1976f3;
+
+            color: white;
+
+            font-family: 'Poppins', sans-serif;
+
+            font-size: 9px;
+
+            font-weight: 500;
+
+            cursor: pointer;
+
+            transition: .2s;
+        }
+
+
+        .pickup-button:hover {
+
+            background: #125fc5;
+        }
+
+
+        /* =====================================================
+           MAP
+        ===================================================== */
+
+        .map-card {
+
+            min-width: 0;
+        }
+
+
+        .map-actions {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+        }
+
+
+        .map-link {
+
+            color: #1976f3;
+
+            font-size: 10px;
+
+            text-decoration: none;
+        }
+
+
+        .map-container {
+
+            width: 100%;
+
+            height: 540px;
+
+            border-radius: 10px;
+
+            overflow: hidden;
+
+            border: 1px solid #e1e7ef;
+
+            background: #eef2f7;
+        }
+
+
+        #map {
+
+            width: 100%;
+
+            height: 100%;
+        }
+
+
+        .leaflet-container {
+
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* =====================================================
+           MAP RECENTER CONTROL
+        ===================================================== */
+
+        .recenter-control {
+            background: white;
+            border: 2px solid rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.35);
+            overflow: hidden;
+        }
+
+        .recenter-control button {
+            display: block;
+            width: 34px;
+            height: 34px;
+            border: none;
+            background: white;
+            color: #172033;
+            font-size: 20px;
+            line-height: 34px;
+            text-align: center;
+            padding: 0;
+            margin: 0;
+            cursor: pointer;
+            font-family: Arial, sans-serif;
+        }
+
+        .recenter-control button:hover {
+            background: #f1f5f9;
+            color: #1976f3;
+        }
+
+
+        /* =====================================================
+           ROUTE INFO
+        ===================================================== */
+
+        .route-info {
+
+            background: white;
+
+            padding: 13px 16px;
+
+            margin-bottom: 10px;
+
+            border-radius: 9px;
+
+            border: 1px solid #e4eaf2;
+
+            box-shadow:
+                0 3px 10px
+                rgba(25,40,70,.04);
+
+            display: none;
+
+            font-size: 10px;
+
+            color: #66748a;
+        }
+
+
+        .route-info strong {
+
+            color: #172033;
+
+            font-size: 12px;
+
+            margin-right: 10px;
+        }
+
+
+        .route-stat {
+
+            display: inline-block;
+
+            margin-left: 15px;
+        }
+
+
+        .route-stat strong {
+
+            font-size: 10px;
+
+            color: #1976f3;
+        }
+
+
+        /* =====================================================
+           BOTTOM OPERATIONS
+        ===================================================== */
+
+        .operations-card {
+
+            margin-top: 18px;
+        }
+
+
+        .operation-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 12px;
+        }
+
+
+        .operation-item {
+
+            padding: 14px;
+
+            border: 1px solid #e8edf3;
+
+            border-radius: 10px;
+
+            background: #fafbfd;
+        }
+
+
+        .operation-item p {
+
+            margin: 0;
+
+            color: #7b8799;
+
+            font-size: 10px;
+        }
+
+
+        .operation-item h3 {
+
+            margin: 4px 0 0;
+
+            font-size: 16px;
+
+            font-weight: 600;
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
+        @media (max-width: 1200px) {
+
+            .stats-grid {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+
+            .main-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .orders-list {
+
+                height: 450px;
+            }
+
+
+            .map-container {
+
+                height: 450px;
+            }
+
+        }
+
+
+        @media (max-width: 768px) {
+
+            .sidebar {
+
+                width: 70px;
+
+                padding: 15px 8px;
+            }
+
+
+            .brand {
+
+                justify-content: center;
+
+                padding:
+                    5px 0 25px;
+            }
+
+
+            .brand-text,
+            .menu-title,
+            .nav-links a span,
+            .system-status {
+
+                display: none;
+            }
+
+
+            .nav-links a {
+
+                justify-content: center;
+
+                padding: 12px 5px;
+            }
+
+
+            .main-content {
+
+                margin-left: 70px;
+
+                width:
+                    calc(100% - 70px);
+            }
+
+
+            .topbar {
+
+                padding: 0 15px;
+            }
+
+
+            .welcome h1 {
+
+                font-size: 16px;
+            }
+
+
+            .welcome p {
+
+                display: none;
+            }
+
+
+            .container {
+
+                padding: 18px 15px;
+            }
+
+
+            .stats-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .operation-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .map-container {
+
+                height: 350px;
+            }
+
+
+            .orders-list {
+
+                height: 400px;
+            }
+
+        }
+
+
+        @media (max-width: 480px) {
+
+            .topbar {
+
+                height: 65px;
+            }
+
+
+            .operator-profile span {
+
+                display: none;
+            }
+
+
+            .topbar-right {
+
+                gap: 10px;
+            }
+
+
+            .card {
+
+                padding: 15px;
+            }
+
+
+            .order-details {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .location-detail {
+
+                grid-column: auto;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="dashboard">
+
+
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
+
+    <aside class="sidebar">
+
+
+        <div class="brand">
+
+            <div class="brand-icon">
+                💧
+            </div>
+
+
+            <div class="brand-text">
+
+                <h2>
+                    WasteWater
+                </h2>
+
+                <p>
+                    Management System
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="menu-title">
+            Main Menu
+        </div>
+
+
+        <div class="nav-links">
+
+
+            <a
+                href="#"
+                class="active"
+            >
+
+                <div class="nav-icon">
+                    ⌂
+                </div>
+
+                <span>
+                    Dashboard
+                </span>
+
+            </a>
+
+
+            <a href="#orders">
+
+                <div class="nav-icon">
+                    ▣
+                </div>
+
+                <span>
+                    Available Orders
+                </span>
+
+            </a>
+
+
+            <a href="#orders">
+
+                <div class="nav-icon">
+                    🚚
+                </div>
+
+                <span>
+                    My Trips
+                </span>
+
+            </a>
+
+
+            <a href="#orders">
+
+                <div class="nav-icon">
+                    ▤
+                </div>
+
+                <span>
+                    Assignments
+                </span>
+
+            </a>
+
+
+            <a href="#map-section">
+
+                <div class="nav-icon">
+                    ◉
+                </div>
+
+                <span>
+                    Tracking
+                </span>
+
+            </a>
+
+
+            <a href="#operations">
+
+                <div class="nav-icon">
+                    ▥
+                </div>
+
+                <span>
+                    Reports
+                </span>
+
+            </a>
+
+
+        </div>
+
+
+        <div
+            class="menu-title"
+            style="margin-top:25px;"
+        >
+            Account
+        </div>
+
+
+        <div class="nav-links">
+
+
+            <a href="#">
+
+                <div class="nav-icon">
+                    ♙
+                </div>
+
+                <span>
+                    Profile
+                </span>
+
+            </a>
+
+
+            <a href="#">
+
+                <div class="nav-icon">
+                    ⚙
+                </div>
+
+                <span>
+                    Settings
+                </span>
+
+            </a>
+
+
+            <a href="{{ url_for('login') }}">
+
+                <div class="nav-icon">
+                    ↪
+                </div>
+
+                <span>
+                    Logout
+                </span>
+
+            </a>
+
+
+        </div>
+
+
+        <div class="system-status">
+
+            <h4>
+                System Status
+            </h4>
+
+
+            <div class="status-line">
+
+                <div class="status-dot"></div>
+
+                All systems operational
+
+            </div>
+
+        </div>
+
+
+    </aside>
+
+
+
+    <!-- =====================================================
+         MAIN CONTENT
+    ====================================================== -->
+
+    <main class="main-content">
+
+
+        <!-- TOP BAR -->
+
+        <header class="topbar">
+
+
+            <div class="welcome">
+
+                <h1>
+                    Welcome back, Tanker Operator 👋
+                </h1>
+
+                <p>
+                    Here's your overview of today's tanker operations.
+                </p>
+
+            </div>
+
+
+            <div class="topbar-right">
+
+
+                <div class="notification">
+
+                    🔔
+
+                    <div class="notification-badge">
+                        {{ orders|length }}
+                    </div>
+
+                </div>
+
+
+                <div class="operator-profile">
+
+                    <div class="profile-circle">
+                        TO
+                    </div>
+
+                    <span>
+                        Tanker Operator
+                    </span>
+
+                    <span>
+                        ⌄
+                    </span>
+
+                </div>
+
+
+            </div>
+
+
+        </header>
+
+
+
+        <!-- =====================================================
+             PAGE CONTENT
+        ====================================================== -->
+
+        <div class="container">
+
+
+            <!-- =================================================
+                 KPI CARDS
+            ================================================== -->
+
+            <div class="stats-grid">
+
+
+                <!-- AVAILABLE ORDERS -->
+
+                <div class="stat-card">
+
+                    <div class="stat-icon blue">
+                        📋
+                    </div>
+
+
+                    <div class="stat-info">
+
+                        <p>
+                            Available Orders
+                        </p>
+
+                        <h2>
+                            {{ orders|length }}
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- TOTAL VOLUME -->
+
+                <div class="stat-card">
+
+                    <div class="stat-icon green">
+                        💧
+                    </div>
+
+
+                    <div class="stat-info">
+
+                        <p>
+                            Available Volume
+                        </p>
+
+                        <h2>
+
+                            {% set total_quantity =
+                                namespace(value=0)
+                            %}
+
+
+                            {% for order in orders %}
+
+                                {% set total_quantity.value =
+                                    total_quantity.value
+                                    + (order.quantity_kld|float)
+                                %}
+
+                            {% endfor %}
+
+
+                            {{ "%.0f"|format(
+                                total_quantity.value
+                            ) }}
+
+                            <small>
+                                KLD
+                            </small>
+
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- ROUTE PLANNING -->
+
+                <div class="stat-card">
+
+                    <div class="stat-icon purple">
+                        📍
+                    </div>
+
+
+                    <div class="stat-info">
+
+                        <p>
+                            Route Planning
+                        </p>
+
+                        <h2 style="font-size:16px;">
+                            Active
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- SYSTEM STATUS -->
+
+                <div class="stat-card">
+
+                    <div class="stat-icon orange">
+                        🚚
+                    </div>
+
+
+                    <div class="stat-info">
+
+                        <p>
+                            Operator Status
+                        </p>
+
+                        <h2
+                            style="
+                                font-size:16px;
+                                color:#199956;
+                            "
+                        >
+                            Online
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- =================================================
+                 ORDERS + MAP
+            ================================================== -->
+
+            <div class="main-grid">
+
+
+                <!-- =================================================
+                     AVAILABLE ORDERS
+                ================================================== -->
+
+                <div
+                    class="card"
+                    id="orders"
+                >
+
+
+                    <div class="card-header">
+
+
+                        <h2>
+                            Available Orders
+                        </h2>
+
+
+                        <span>
+                            {{ orders|length }} Orders
+                        </span>
+
+
+                    </div>
+
+
+                    <div class="orders-list">
+
+
+                        {% for order in orders %}
+
+
+                        <div class="order-card">
+
+
+                            <div class="order-top">
+
+
+                                <div class="order-id">
+
+                                    <div class="order-dot"></div>
+
+                                    {{ order.order_id }}
+
+                                </div>
+
+
+                                <div class="new-badge">
+                                    Available
+                                </div>
+
+
+                            </div>
+
+
+                            <div class="order-details">
+
+
+                                <div class="order-detail">
+
+                                    STP
+
+                                    <strong>
+                                        {{ order.stp_name }}
+                                    </strong>
+
+                                </div>
+
+
+                                <div class="order-detail">
+
+                                    Quantity
+
+                                    <strong>
+                                        {{ order.quantity_kld }}
+                                        KLD
+                                    </strong>
+
+                                </div>
+
+
+                                <div
+                                    class="order-detail location-detail"
+                                >
+
+                                    Delivery Location
+
+                                    <strong>
+                                        📍 {{ order.location }}
+                                    </strong>
+
+                                </div>
+
+
+                                <div class="order-detail">
+
+                                    Buyer
+
+                                    <strong>
+                                        {{ order.buyer_name }}
+                                    </strong>
+
+                                </div>
+
+
+                                <div class="order-detail">
+
+                                    Phone
+
+                                    <strong>
+                                        {{ order.buyer_phone }}
+                                    </strong>
+
+                                </div>
+
+
+                                <div class="order-detail">
+
+                                    Distance
+
+                                    <strong>
+                                        {{ order.distance_km }}
+                                        km
+                                    </strong>
+
+                                </div>
+
+
+                            </div>
+
+
+
+                            <!-- VIEW ROUTE -->
+
+                            <button
+                                type="button"
+                                class="route-button"
+                                onclick="showRoute(
+                                    {{ order.stp_lat }},
+                                    {{ order.stp_lon }},
+                                    '{{ order.location }}',
+                                    {{ order.distance_km }}
+                                )"
+                            >
+
+                                🗺 View Route
+
+                            </button>
+
+
+
+                            {% if order.status == "Accepted" %}
+
+                            <!-- MANUAL ACCEPT PICKUP -->
+
+                            <form
+                                method="POST"
+                                action="{{ url_for('accept_pickup') }}"
+                                class="pickup-form"
+                            >
+
+                                <input
+                                    type="hidden"
+                                    name="order_id"
+                                    value="{{ order.order_id }}"
+                                >
+
+                                <button
+                                    type="submit"
+                                    class="pickup-button"
+                                >
+                                    ✓ Accept Pickup
+                                </button>
+
+                            </form>
+
+                            {% endif %}
+
+
+                        </div>
+
+
+                        {% endfor %}
+
+
+                        {% if not orders %}
+
+
+                        <div
+                            style="
+                                padding:50px 15px;
+                                text-align:center;
+                                color:#8793a5;
+                            "
+                        >
+
+                            <div
+                                style="
+                                    font-size:30px;
+                                    margin-bottom:10px;
+                                "
+                            >
+                                📋
+                            </div>
+
+
+                            <strong
+                                style="
+                                    display:block;
+                                    color:#526075;
+                                    font-size:13px;
+                                "
+                            >
+                                No Available Orders
+                            </strong>
+
+
+                            <span
+                                style="
+                                    display:block;
+                                    margin-top:5px;
+                                    font-size:10px;
+                                "
+                            >
+                                New pickup requests will appear here.
+                            </span>
+
+                        </div>
+
+
+                        {% endif %}
+
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- =================================================
+                     MAP
+                ================================================== -->
+
+                <div
+                    class="card map-card"
+                    id="map-section"
+                >
+
+
+                    <div class="card-header">
+
+
+                        <h2>
+                            Live Orders on Map
+                        </h2>
+
+
+                        <div class="map-actions">
+
+                            <span>
+                                Bengaluru
+                            </span>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <!-- ROUTE INFORMATION -->
+
+                    <div
+                        id="routeInfo"
+                        class="route-info"
+                    >
+
+                        <strong>
+                            Route Information
+                        </strong>
+
+
+                        <span class="route-stat">
+
+                            Road Distance:
+
+                            <strong id="routeDistance">
+                                --
+                            </strong>
+
+                        </span>
+
+
+                        <span class="route-stat">
+
+                            ETA:
+
+                            <strong id="routeTime">
+                                --
+                            </strong>
+
+                        </span>
+
+
+                    </div>
+
+
+                    <!-- MAP -->
+
+                    <div class="map-container">
+
+                        <div id="map"></div>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- =================================================
+                 OPERATIONS
+            ================================================== -->
+
+            <div
+                class="card operations-card"
+                id="operations"
+            >
+
+
+                <div class="card-header">
+
+                    <h2>
+                        Tanker Operations
+                    </h2>
+
+                    <span>
+                        Current Overview
+                    </span>
+
+                </div>
+
+
+                <div class="operation-grid">
+
+
+                    <div class="operation-item">
+
+                        <p>
+                            Available Orders
+                        </p>
+
+                        <h3>
+                            {{ orders|length }}
+                        </h3>
+
+                    </div>
+
+
+                    <div class="operation-item">
+
+                        <p>
+                            Total Water Volume
+                        </p>
+
+                        <h3>
+
+                            {{ "%.0f"|format(
+                                total_quantity.value
+                            ) }}
+
+                            <span
+                                style="
+                                    font-size:10px;
+                                    color:#718096;
+                                "
+                            >
+                                KLD
+                            </span>
+
+                        </h3>
+
+                    </div>
+
+
+                    <div class="operation-item">
+
+                        <p>
+                            Route Service
+                        </p>
+
+                        <h3
+                            style="
+                                color:#199956;
+                            "
+                        >
+                            Active
+                        </h3>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+    </main>
+
+
+</div>
+
+
+
+<!-- =========================================================
+     MAP JAVASCRIPT
+========================================================= -->
+
+<script>
+
+
+    /* =========================================================
+       MAP INITIALIZATION
+    ========================================================= */
+
+
+    var map =
+        L.map('map')
+        .setView(
+            [12.9716, 77.5946],
+            11
+        );
+
+
+    setTimeout(
+        () => {
+
+            map.invalidateSize();
+
+        },
+        200
+    );
+
+
+    L.tileLayer(
+
+        'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+
+        {
+            attribution:
+                '© OpenStreetMap contributors'
+        }
+
+    ).addTo(map);
+
+    /* =========================================================
+       RECENTER MAP BUTTON
+    ========================================================= */
+
+    const RecenterControl = L.Control.extend({
+
+        options: {
+            position: 'topleft'
+        },
+
+        onAdd: function () {
+
+            const container = L.DomUtil.create(
+                'div',
+                'recenter-control leaflet-bar'
+            );
+
+            const button = L.DomUtil.create(
+                'button',
+                '',
+                container
+            );
+
+            button.type = 'button';
+            button.title = 'Recenter map';
+            button.setAttribute('aria-label', 'Recenter map');
+            button.innerHTML = '⌖';
+
+            L.DomEvent.disableClickPropagation(container);
+            L.DomEvent.disableScrollPropagation(container);
+
+            L.DomEvent.on(button, 'click', function (event) {
+
+                L.DomEvent.stopPropagation(event);
+
+                map.flyTo(
+                    [12.9716, 77.5946],
+                    11,
+                    {
+                        animate: true,
+                        duration: 0.8
+                    }
+                );
+
+            });
+
+            return container;
+        }
+    });
+
+    map.addControl(new RecenterControl());
+
+
+
+    var routeLayer = null;
+
+    var startMarker = null;
+
+    var endMarker = null;
+
+
+
+    /* =========================================================
+       ROUTE FUNCTION
+    ========================================================= */
+
+
+    function showRoute(
+        stpLat,
+        stpLon,
+        demandLocation,
+        distanceKm
+    ) {
+
+
+        if (
+            !stpLat ||
+            !stpLon ||
+            stpLat === 0 ||
+            stpLon === 0
+        ) {
+
+            alert(
+                "STP location not available"
+            );
+
+            return;
+        }
+
+
+        fetch(
+            `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(demandLocation)}`
+        )
+
+        .then(
+            res => res.json()
+        )
+
+        .then(
+            demandData => {
+
+
+                if (
+                    !demandData ||
+                    demandData.length === 0
+                ) {
+
+                    alert(
+                        "Demand location not found"
+                    );
+
+                    return;
+                }
+
+
+                const demLat =
+                    parseFloat(
+                        demandData[0].lat
+                    );
+
+
+                const demLon =
+                    parseFloat(
+                        demandData[0].lon
+                    );
+
+
+
+                if (routeLayer) {
+
+                    map.removeLayer(
+                        routeLayer
+                    );
+
+                    routeLayer = null;
+                }
+
+
+                if (startMarker) {
+
+                    map.removeLayer(
+                        startMarker
+                    );
+                }
+
+
+                if (endMarker) {
+
+                    map.removeLayer(
+                        endMarker
+                    );
+                }
+
+
+
+                /* STP MARKER */
+
+                startMarker =
+
+                    L.marker(
+                        [
+                            stpLat,
+                            stpLon
+                        ]
+                    )
+
+                    .addTo(map)
+
+                    .bindPopup(
+                        "<b>STP Location</b>"
+                    )
+
+                    .openPopup();
+
+
+
+                /* DEMAND MARKER */
+
+                endMarker =
+
+                    L.marker(
+                        [
+                            demLat,
+                            demLon
+                        ]
+                    )
+
+                    .addTo(map)
+
+                    .bindPopup(
+                        "<b>Demand Location</b>"
+                    );
+
+
+
+                /* OSRM ROUTE */
+
+                fetch(
+
+                    `https://router.project-osrm.org/route/v1/driving/${stpLon},${stpLat};${demLon},${demLat}?overview=full&geometries=geojson`
+
+                )
+
+                .then(
+                    res => res.json()
+                )
+
+                .then(
+                    routeData => {
+
+
+                        if (
+                            !routeData ||
+                            !routeData.routes ||
+                            routeData.routes.length === 0
+                        ) {
+
+                            alert(
+                                "Route not found"
+                            );
+
+                            return;
+                        }
+
+
+                        const route =
+                            routeData.routes[0];
+
+
+                        const routeDistance =
+                            (
+                                route.distance / 1000
+                            ).toFixed(2);
+
+
+                        const timeMin =
+                            (
+                                route.duration / 60
+                            ).toFixed(1);
+
+
+
+                        document
+                            .getElementById(
+                                "routeDistance"
+                            )
+                            .innerText =
+                            routeDistance +
+                            " km";
+
+
+                        document
+                            .getElementById(
+                                "routeTime"
+                            )
+                            .innerText =
+                            timeMin +
+                            " mins";
+
+
+                        document
+                            .getElementById(
+                                "routeInfo"
+                            )
+                            .style.display =
+                            "block";
+
+
+
+                        routeLayer =
+
+                            L.geoJSON(
+                                route.geometry,
+                                {
+
+                                    style: {
+
+                                        color:
+                                            "#2563eb",
+
+                                        weight:
+                                            5
+
+                                    }
+
+                                }
+
+                            )
+
+                            .addTo(map);
+
+
+
+                        map.fitBounds(
+                            routeLayer.getBounds(),
+                            {
+                                padding:
+                                    [50, 50]
+                            }
+                        );
+
+                    }
+
+                );
+
+            }
+
+        );
+
+    }
+
+
+</script>
+
+
+<script>
+async function respondToTankerRequest(orderId, action) {
+    try {
+        const response = await fetch("/tanker/respond_request", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
+            },
+            body: new URLSearchParams({
+                order_id: orderId,
+                action: action
+            })
+        });
+
+        const data = await response.json();
+
+        if (!data.success) {
+            alert(data.message || "Unable to update the delivery request.");
+            return;
+        }
+
+        window.location.reload();
+    } catch (error) {
+        console.error(error);
+        alert("Unable to connect to the delivery request service.");
+    }
+}
+</script>
+
+<!-- FIREBASE PUSH NOTIFICATIONS - TANKER OPERATOR -->
+<script type="module">
+
+    import { initializeApp }
+        from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
+    import { getMessaging, getToken, onMessage }
+        from "https://www.gstatic.com/firebasejs/10.13.2/firebase-messaging.js";
+
+    const firebaseConfig = {
+        apiKey: "YOUR_API_KEY",
+        authDomain: "YOUR_PROJECT.firebaseapp.com",
+        projectId: "YOUR_PROJECT_ID",
+        storageBucket: "YOUR_PROJECT.appspot.com",
+        messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+        appId: "YOUR_APP_ID"
+    };
+
+    const firebaseVapidKey = "YOUR_PUBLIC_VAPID_KEY";
+
+    function firebaseConfigReady() {
+        return Object.values(firebaseConfig).every(
+            value => value && !String(value).startsWith("YOUR_")
+        ) && firebaseVapidKey && !firebaseVapidKey.startsWith("YOUR_");
+    }
+
+    async function registerTankerPushNotifications() {
+        if (!firebaseConfigReady()) {
+            console.warn("FCM is not configured yet. Add the Firebase web config and VAPID key in tanker.html.");
+            return;
+        }
+        if (!("Notification" in window) || !("serviceWorker" in navigator)) return;
+
+        try {
+            const permission = await Notification.requestPermission();
+            if (permission !== "granted") return;
+
+            const app = initializeApp(firebaseConfig);
+            const messaging = getMessaging(app);
+            const registration = await navigator.serviceWorker.register(
+                "/static/firebase-messaging-sw.js"
+            );
+
+            const token = await getToken(messaging, {
+                vapidKey: firebaseVapidKey,
+                serviceWorkerRegistration: registration
+            });
+
+            if (!token) return;
+
+            await fetch("/api/save_tanker_push_token", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ token: token })
+            });
+
+            onMessage(messaging, function(payload) {
+                const title = payload.notification?.title || "🚨 New Water Delivery Request";
+                const body = payload.notification?.body || "A new tanker delivery request is waiting for approval.";
+                alert(title + "\n\n" + body);
+                refreshTankerNotifications();
+            });
+        } catch (error) {
+            console.error("Tanker push notification setup failed:", error);
+        }
+    }
+
+    async function refreshTankerNotifications() {
+        try {
+            const response = await fetch("/api/tanker_notifications", { cache: "no-store" });
+            if (!response.ok) return;
+            const data = await response.json();
+            const badge = document.querySelector(".notification-badge");
+            if (badge) {
+                badge.textContent = String(data.count || 0);
+                badge.style.display = data.count ? "flex" : "none";
+            }
+        } catch (error) {
+            console.warn("Unable to refresh tanker notifications:", error);
+        }
+    }
+
+    const existingNotification = document.querySelector(".notification");
+    if (existingNotification) {
+        existingNotification.style.cursor = "pointer";
+        existingNotification.title = "Enable delivery notifications";
+        existingNotification.addEventListener("click", function() {
+            registerTankerPushNotifications();
+            refreshTankerNotifications();
+        });
+    }
+
+    registerTankerPushNotifications();
+    refreshTankerNotifications();
+    setInterval(refreshTankerNotifications, 3000);
+
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,1001 @@
+order_id,stp_id,stp_name,quantity_kld,quality,water_type,distance_km,location,latitude,longitude,buyer_name,buyer_phone,status,created_at
+ORD100001,PSTP007,Purva Skywood Phase 2,198,Bronze,Industrial,2.98,Hosur Road,12.892717,77.633446,Synthetic Buyer 1,9000055087,Pending,2026-07-14 14:08:57
+ORD100002,PSTP003,Starworth - Harmony,38,Silver,Construction,10.53,Banashankari,12.90254,77.557139,Synthetic Buyer 2,9000095265,Pending,2026-08-02 14:50:57
+ORD100003,PSTP003,Starworth - Harmony,14,Bronze,Gardening,6.02,Koramangala,12.923347,77.603035,Synthetic Buyer 3,9000082846,Rejected,2026-07-31 09:36:57
+ORD100004,PSTP007,Purva Skywood Phase 2,15,Gold,Industrial,5.29,Hosur Road,12.888495,77.612415,Synthetic Buyer 4,9000088091,Accepted,2026-07-14 11:37:57
+ORD100005,PSTP007,Purva Skywood Phase 2,77,Bronze,Domestic,3.38,Electronic City,12.86568,77.647949,Synthetic Buyer 5,9000061772,Accepted,2026-08-04 13:49:57
+ORD100006,PSTP003,Starworth - Harmony,22,Bronze,Domestic,6.0,Jayanagar,12.927336,77.593832,Synthetic Buyer 6,9000025537,Rejected,2026-07-19 18:08:57
+ORD100007,PSTP007,Purva Skywood Phase 2,21,Bronze,Construction,5.09,Hosur Road,12.874664,77.618108,Synthetic Buyer 7,9000061290,Out for Delivery,2026-08-03 19:05:57
+ORD100008,PSTP007,Purva Skywood Phase 2,29,Bronze,Gardening,5.34,BTM Layout,12.914551,77.616761,Synthetic Buyer 8,9000045247,Pending,2026-07-12 05:07:57
+ORD100009,PSTP007,Purva Skywood Phase 2,26,Silver,Gardening,7.32,Marathahalli,12.952604,77.69029,Synthetic Buyer 9,9000079336,Pending,2026-07-24 05:36:57
+ORD100010,PSTP003,Starworth - Harmony,55,Gold,Gardening,4.67,Koramangala,12.937579,77.600061,Synthetic Buyer 10,9000069003,Accepted,2026-08-05 14:37:57
+ORD100011,PSTP007,Purva Skywood Phase 2,55,Bronze,Gardening,3.7,Electronic City,12.866895,77.681754,Synthetic Buyer 11,9000047034,Out for Delivery,2026-08-07 06:45:57
+ORD100012,PSTP007,Purva Skywood Phase 2,40,Bronze,Domestic,8.53,Electronic City,12.816723,77.665511,Synthetic Buyer 12,9000054558,Accepted,2026-07-23 03:55:57
+ORD100013,PSTP007,Purva Skywood Phase 2,23,Gold,Gardening,2.97,HSR Layout,12.907515,77.637762,Synthetic Buyer 13,9000053144,Pending,2026-07-15 01:39:57
+ORD100014,PSTP007,Purva Skywood Phase 2,27,Silver,Domestic,3.76,Electronic City,12.862242,77.647136,Synthetic Buyer 14,9000048228,Pending,2026-08-01 11:32:57
+ORD100015,PSTP003,Starworth - Harmony,43,Gold,Construction,7.82,Marathahalli,12.962714,77.690925,Synthetic Buyer 15,9000073647,Out for Delivery,2026-07-27 15:36:57
+ORD100016,PSTP007,Purva Skywood Phase 2,14,Bronze,Industrial,12.86,Whitefield,12.962738,77.755853,Synthetic Buyer 16,9000047318,Out for Delivery,2026-08-09 00:21:57
+ORD100017,PSTP007,Purva Skywood Phase 2,58,Gold,Industrial,5.48,Electronic City,12.846419,77.676417,Synthetic Buyer 17,9000091059,Rejected,2026-07-13 14:34:57
+ORD100018,PSTP005,Purva Palm Beach - Labour Colony,149,Bronze,Domestic,8.32,KR Puram,13.013082,77.719763,Synthetic Buyer 18,9000081732,Accepted,2026-07-16 10:46:57
+ORD100019,PSTP007,Purva Skywood Phase 2,31,Silver,Domestic,5.66,Electronic City,12.842679,77.655645,Synthetic Buyer 19,9000085206,Pending,2026-07-23 09:41:57
+ORD100020,PSTP007,Purva Skywood Phase 2,18,Silver,Domestic,4.63,BTM Layout,12.910451,77.622003,Synthetic Buyer 20,9000020828,Pending,2026-07-26 14:27:57
+ORD100021,PSTP003,Starworth - Harmony,26,Bronze,Industrial,4.67,Chickpete,12.959754,77.579669,Synthetic Buyer 21,9000028519,Out for Delivery,2026-07-14 04:24:57
+ORD100022,PSTP007,Purva Skywood Phase 2,25,Silver,Gardening,12.39,Whitefield,12.969991,77.743924,Synthetic Buyer 22,9000043743,Accepted,2026-07-31 19:54:57
+ORD100023,PSTP007,Purva Skywood Phase 2,28,Bronze,Gardening,8.65,Marathahalli,12.958585,77.704338,Synthetic Buyer 23,9000039276,Rejected,2026-07-28 02:33:57
+ORD100024,PSTP005,Purva Palm Beach - Labour Colony,27,Silver,Industrial,5.75,KR Puram,13.017958,77.689486,Synthetic Buyer 24,9000010712,Accepted,2026-07-30 12:38:57
+ORD100025,PSTP003,Starworth - Harmony,51,Gold,Industrial,9.44,Banashankari,12.946209,77.53783,Synthetic Buyer 25,9000088035,Accepted,2026-07-23 21:30:57
+ORD100026,PSTP007,Purva Skywood Phase 2,56,Silver,Industrial,3.66,Electronic City,12.861254,77.653263,Synthetic Buyer 26,9000032436,Out for Delivery,2026-07-30 01:35:57
+ORD100027,PSTP007,Purva Skywood Phase 2,185,Silver,Gardening,3.29,HSR Layout,12.908197,77.634744,Synthetic Buyer 27,9000030076,Pending,2026-07-23 12:33:57
+ORD100028,PSTP003,Starworth - Harmony,31,Gold,Gardening,4.44,Koramangala,12.935576,77.626911,Synthetic Buyer 28,9000042560,Accepted,2026-07-23 19:42:57
+ORD100029,PSTP002,Purva Atria,11,Silver,Domestic,3.05,Hebbal,13.032756,77.60435,Synthetic Buyer 29,9000097532,Out for Delivery,2026-08-01 07:05:57
+ORD100030,PSTP007,Purva Skywood Phase 2,11,Silver,Industrial,8.76,Marathahalli,12.958293,77.706587,Synthetic Buyer 30,9000033186,Pending,2026-07-13 14:17:57
+ORD100031,PSTP007,Purva Skywood Phase 2,41,Gold,Domestic,1.09,HSR Layout,12.901843,77.655991,Synthetic Buyer 31,9000023322,Out for Delivery,2026-07-12 18:49:57
+ORD100032,PSTP003,Starworth - Harmony,16,Silver,Domestic,9.98,Banashankari,12.935394,77.537125,Synthetic Buyer 32,9000037127,Pending,2026-07-22 14:30:57
+ORD100033,PSTP007,Purva Skywood Phase 2,102,Bronze,Construction,1.87,Electronic City,12.876858,77.657199,Synthetic Buyer 33,9000052023,Accepted,2026-08-06 15:45:57
+ORD100034,PSTP007,Purva Skywood Phase 2,85,Silver,Construction,11.42,Whitefield,12.965461,77.735926,Synthetic Buyer 34,9000071811,Accepted,2026-07-28 10:17:57
+ORD100035,PSTP003,Starworth - Harmony,13,Silver,Domestic,5.28,Koramangala,12.929175,77.606855,Synthetic Buyer 35,9000016457,Accepted,2026-08-05 15:23:57
+ORD100036,PSTP007,Purva Skywood Phase 2,53,Bronze,Gardening,11.74,Whitefield,12.971205,77.734102,Synthetic Buyer 36,9000079206,Accepted,2026-08-05 09:53:57
+ORD100037,PSTP002,Purva Atria,16,Gold,Construction,2.02,Hebbal,13.031463,77.594761,Synthetic Buyer 37,9000027036,Out for Delivery,2026-08-10 03:39:57
+ORD100038,PSTP002,Purva Atria,24,Bronze,Construction,0.98,Hebbal,13.030314,77.584538,Synthetic Buyer 38,9000042065,Out for Delivery,2026-08-09 21:01:57
+ORD100039,PSTP002,Purva Atria,28,Bronze,Gardening,2.64,Malleshwaram,13.014026,77.555719,Synthetic Buyer 39,9000054889,Accepted,2026-07-18 11:13:57
+ORD100040,PSTP003,Starworth - Harmony,11,Bronze,Construction,5.68,BTM Layout,12.924889,77.609233,Synthetic Buyer 40,9000058221,Out for Delivery,2026-08-10 07:06:57
+ORD100041,PSTP007,Purva Skywood Phase 2,58,Silver,Gardening,5.13,BTM Layout,12.904374,77.615007,Synthetic Buyer 41,9000029854,Out for Delivery,2026-07-23 21:32:57
+ORD100042,PSTP011,Provident Neora,48,Silver,Domestic,3.05,Yelahanka,13.103329,77.600279,Synthetic Buyer 42,9000069019,Pending,2026-07-20 21:27:57
+ORD100043,PSTP005,Purva Palm Beach - Labour Colony,104,Gold,Domestic,13.56,Whitefield,12.985874,77.759497,Synthetic Buyer 43,9000081332,Pending,2026-07-29 20:47:57
+ORD100044,PSTP007,Purva Skywood Phase 2,41,Gold,Gardening,6.1,Electronic City,12.838519,77.663756,Synthetic Buyer 44,9000067118,Accepted,2026-08-04 23:00:57
+ORD100045,PSTP003,Starworth - Harmony,78,Gold,Industrial,5.01,Chickpete,12.976817,77.573626,Synthetic Buyer 45,9000044392,Out for Delivery,2026-08-09 07:15:57
+ORD100046,PSTP003,Starworth - Harmony,28,Bronze,Industrial,5.7,Chickpete,12.961036,77.569175,Synthetic Buyer 46,9000092211,Accepted,2026-08-01 20:28:57
+ORD100047,PSTP002,Purva Atria,33,Gold,Domestic,3.95,Malleshwaram,12.989891,77.572308,Synthetic Buyer 47,9000043085,Pending,2026-07-29 07:22:57
+ORD100048,PSTP007,Purva Skywood Phase 2,25,Silver,Domestic,11.52,Whitefield,12.946383,77.7522,Synthetic Buyer 48,9000056917,Pending,2026-08-01 07:12:57
+ORD100049,PSTP007,Purva Skywood Phase 2,11,Bronze,Construction,5.52,Electronic City,12.849927,77.636162,Synthetic Buyer 49,9000055121,Rejected,2026-07-16 07:53:57
+ORD100050,PSTP011,Provident Neora,93,Gold,Construction,0.47,Yelahanka,13.07921,77.619582,Synthetic Buyer 50,9000050888,Out for Delivery,2026-07-23 12:41:57
+ORD100051,PSTP007,Purva Skywood Phase 2,60,Bronze,Gardening,4.65,Hosur Road,12.871959,77.624084,Synthetic Buyer 51,9000089365,Accepted,2026-07-16 15:28:57
+ORD100052,PSTP007,Purva Skywood Phase 2,15,Bronze,Domestic,4.97,Koramangala,12.928822,77.63305,Synthetic Buyer 52,9000065256,Out for Delivery,2026-08-02 06:49:57
+ORD100053,PSTP007,Purva Skywood Phase 2,25,Silver,Gardening,4.32,HSR Layout,12.92396,77.636496,Synthetic Buyer 53,9000040921,Accepted,2026-08-04 16:32:57
+ORD100054,PSTP002,Purva Atria,30,Silver,Construction,2.77,Malleshwaram,13.000426,77.573403,Synthetic Buyer 54,9000047566,Rejected,2026-08-08 05:02:57
+ORD100055,PSTP003,Starworth - Harmony,42,Gold,Gardening,5.15,BTM Layout,12.929241,77.612001,Synthetic Buyer 55,9000031449,Pending,2026-07-12 10:21:57
+ORD100056,PSTP007,Purva Skywood Phase 2,34,Silver,Gardening,5.0,Electronic City,12.848618,77.666089,Synthetic Buyer 56,9000023807,Rejected,2026-07-21 22:54:57
+ORD100057,PSTP007,Purva Skywood Phase 2,27,Gold,Industrial,4.73,HSR Layout,12.933283,77.646046,Synthetic Buyer 57,9000064306,Pending,2026-07-16 10:20:57
+ORD100058,PSTP007,Purva Skywood Phase 2,12,Bronze,Domestic,5.37,BTM Layout,12.910714,77.614757,Synthetic Buyer 58,9000041507,Out for Delivery,2026-07-21 13:35:57
+ORD100059,PSTP005,Purva Palm Beach - Labour Colony,35,Bronze,Industrial,12.08,Whitefield,12.990579,77.745677,Synthetic Buyer 59,9000031127,Out for Delivery,2026-07-15 10:49:57
+ORD100060,PSTP003,Starworth - Harmony,18,Silver,Gardening,5.49,Jayanagar,12.933262,77.592663,Synthetic Buyer 60,9000097368,Accepted,2026-07-14 23:28:57
+ORD100061,PSTP003,Starworth - Harmony,10,Gold,Industrial,3.64,Koramangala,12.942326,77.622614,Synthetic Buyer 61,9000059456,Pending,2026-07-16 00:35:57
+ORD100062,PSTP005,Purva Palm Beach - Labour Colony,55,Silver,Construction,13.69,Whitefield,12.979501,77.755428,Synthetic Buyer 62,9000013124,Pending,2026-07-27 14:08:57
+ORD100063,PSTP003,Starworth - Harmony,16,Bronze,Domestic,5.11,Chickpete,12.948361,77.581358,Synthetic Buyer 63,9000065838,Pending,2026-08-06 18:15:57
+ORD100064,PSTP003,Starworth - Harmony,36,Silver,Industrial,8.68,Banashankari,12.921525,77.561401,Synthetic Buyer 64,9000070087,Out for Delivery,2026-07-12 04:06:57
+ORD100065,PSTP007,Purva Skywood Phase 2,63,Bronze,Construction,5.23,Jayanagar,12.922349,77.62296,Synthetic Buyer 65,9000019149,Accepted,2026-07-28 19:27:57
+ORD100066,PSTP003,Starworth - Harmony,27,Silver,Industrial,9.71,Marathahalli,12.987084,77.708529,Synthetic Buyer 66,9000061267,Accepted,2026-08-04 00:31:57
+ORD100067,PSTP007,Purva Skywood Phase 2,58,Gold,Industrial,6.65,BTM Layout,12.914303,77.603499,Synthetic Buyer 67,9000099199,Accepted,2026-08-05 19:51:57
+ORD100068,PSTP002,Purva Atria,55,Bronze,Industrial,0.71,Hebbal,13.031415,77.577274,Synthetic Buyer 68,9000064088,Out for Delivery,2026-07-23 03:23:57
+ORD100069,PSTP007,Purva Skywood Phase 2,29,Silver,Construction,5.37,BTM Layout,12.909313,77.614246,Synthetic Buyer 69,9000061788,Out for Delivery,2026-08-06 21:55:57
+ORD100070,PSTP007,Purva Skywood Phase 2,38,Gold,Construction,13.29,Whitefield,12.966575,77.75778,Synthetic Buyer 70,9000081660,Pending,2026-07-24 14:31:57
+ORD100071,PSTP007,Purva Skywood Phase 2,50,Silver,Gardening,4.1,Koramangala,12.917097,77.632004,Synthetic Buyer 71,9000041917,Pending,2026-07-20 01:11:57
+ORD100072,PSTP003,Starworth - Harmony,11,Silver,Domestic,3.0,Koramangala,12.948782,77.613226,Synthetic Buyer 72,9000080676,Pending,2026-07-13 09:09:57
+ORD100073,PSTP003,Starworth - Harmony,30,Silver,Industrial,5.1,Koramangala,12.929364,77.624994,Synthetic Buyer 73,9000074809,Accepted,2026-07-12 17:57:57
+ORD100074,PSTP007,Purva Skywood Phase 2,103,Gold,Industrial,3.72,Electronic City,12.865349,77.679814,Synthetic Buyer 74,9000030665,Rejected,2026-08-10 07:16:57
+ORD100075,PSTP011,Provident Neora,29,Bronze,Domestic,3.82,Hebbal,13.056373,77.59797,Synthetic Buyer 75,9000092166,Pending,2026-07-24 02:38:57
+ORD100076,PSTP007,Purva Skywood Phase 2,52,Silver,Gardening,3.72,HSR Layout,12.925615,77.651959,Synthetic Buyer 76,9000099903,Accepted,2026-08-10 11:08:57
+ORD100077,PSTP007,Purva Skywood Phase 2,38,Silver,Industrial,3.94,HSR Layout,12.927847,77.652933,Synthetic Buyer 77,9000072509,Accepted,2026-07-29 06:44:57
+ORD100078,PSTP003,Starworth - Harmony,19,Gold,Domestic,7.12,Marathahalli,12.961891,77.684127,Synthetic Buyer 78,9000045505,Pending,2026-07-30 11:14:57
+ORD100079,PSTP003,Starworth - Harmony,15,Bronze,Construction,4.46,Koramangala,12.936493,77.608069,Synthetic Buyer 79,9000037868,Out for Delivery,2026-07-12 16:14:57
+ORD100080,PSTP003,Starworth - Harmony,25,Bronze,Construction,6.1,BTM Layout,12.920673,77.611823,Synthetic Buyer 80,9000017645,Out for Delivery,2026-07-26 18:11:57
+ORD100081,PSTP007,Purva Skywood Phase 2,109,Bronze,Construction,6.64,Electronic City,12.836163,77.678634,Synthetic Buyer 81,9000012371,Pending,2026-07-31 13:48:57
+ORD100082,PSTP003,Starworth - Harmony,14,Gold,Gardening,3.25,Koramangala,12.945783,77.621437,Synthetic Buyer 82,9000075268,Pending,2026-07-30 05:45:57
+ORD100083,PSTP002,Purva Atria,76,Silver,Industrial,2.73,Malleshwaram,13.007356,77.55979,Synthetic Buyer 83,9000060958,Rejected,2026-07-12 09:22:57
+ORD100084,PSTP007,Purva Skywood Phase 2,51,Silver,Gardening,8.24,Electronic City,12.819982,77.671872,Synthetic Buyer 84,9000022949,Accepted,2026-07-18 09:23:57
+ORD100085,PSTP005,Purva Palm Beach - Labour Colony,42,Silver,Gardening,14.31,Whitefield,12.989858,77.771065,Synthetic Buyer 85,9000011879,Rejected,2026-07-12 05:01:57
+ORD100086,PSTP007,Purva Skywood Phase 2,25,Bronze,Domestic,3.35,HSR Layout,12.905401,77.632622,Synthetic Buyer 86,9000010854,Out for Delivery,2026-07-23 15:18:57
+ORD100087,PSTP007,Purva Skywood Phase 2,11,Bronze,Industrial,11.95,Whitefield,12.973925,77.733869,Synthetic Buyer 87,9000048106,Pending,2026-07-26 12:10:57
+ORD100088,PSTP002,Purva Atria,25,Gold,Domestic,5.09,Rajajinagar,13.011763,77.532308,Synthetic Buyer 88,9000082481,Accepted,2026-07-24 02:32:57
+ORD100089,PSTP007,Purva Skywood Phase 2,25,Bronze,Construction,2.37,Hosur Road,12.883477,77.64159,Synthetic Buyer 89,9000050275,Pending,2026-08-02 22:25:57
+ORD100090,PSTP003,Starworth - Harmony,52,Bronze,Domestic,5.88,Jayanagar,12.92731,77.596358,Synthetic Buyer 90,9000052782,Out for Delivery,2026-07-22 22:09:57
+ORD100091,PSTP009,Purva Atmosphere,13,Gold,Construction,3.8,Hebbal,13.041368,77.60936,Synthetic Buyer 91,9000070174,Out for Delivery,2026-07-14 06:51:57
+ORD100092,PSTP003,Starworth - Harmony,110,Silver,Domestic,4.19,Chickpete,12.964688,77.582644,Synthetic Buyer 92,9000051677,Out for Delivery,2026-07-19 08:00:57
+ORD100093,PSTP007,Purva Skywood Phase 2,11,Bronze,Domestic,5.9,BTM Layout,12.918304,77.612891,Synthetic Buyer 93,9000058512,Accepted,2026-07-29 18:56:57
+ORD100094,PSTP007,Purva Skywood Phase 2,46,Bronze,Construction,3.2,HSR Layout,12.909311,77.63636,Synthetic Buyer 94,9000056228,Out for Delivery,2026-07-11 21:51:57
+ORD100095,PSTP003,Starworth - Harmony,53,Bronze,Construction,6.16,BTM Layout,12.922672,77.600882,Synthetic Buyer 95,9000080445,Out for Delivery,2026-08-05 13:33:57
+ORD100096,PSTP007,Purva Skywood Phase 2,14,Bronze,Industrial,5.95,Hosur Road,12.871675,77.610703,Synthetic Buyer 96,9000044038,Out for Delivery,2026-07-19 17:03:57
+ORD100097,PSTP011,Provident Neora,46,Bronze,Domestic,1.3,Yelahanka,13.089624,77.609467,Synthetic Buyer 97,9000014942,Out for Delivery,2026-07-18 20:11:57
+ORD100098,PSTP003,Starworth - Harmony,11,Silver,Industrial,5.22,BTM Layout,12.92848,77.613076,Synthetic Buyer 98,9000034159,Pending,2026-07-22 23:21:57
+ORD100099,PSTP007,Purva Skywood Phase 2,30,Bronze,Domestic,4.68,Koramangala,12.917831,77.625908,Synthetic Buyer 99,9000087783,Out for Delivery,2026-07-28 22:35:57
+ORD100100,PSTP003,Starworth - Harmony,10,Bronze,Industrial,8.22,Marathahalli,12.961168,77.694389,Synthetic Buyer 100,9000072420,Accepted,2026-07-16 07:36:57
+ORD100101,PSTP001,Purva Venezia,37,Silver,Gardening,1.87,Yelahanka,13.104562,77.584868,Synthetic Buyer 101,9000016319,Accepted,2026-08-01 22:51:57
+ORD100102,PSTP007,Purva Skywood Phase 2,99,Bronze,Construction,4.1,HSR Layout,12.924129,77.640203,Synthetic Buyer 102,9000012005,Pending,2026-07-24 17:44:57
+ORD100103,PSTP002,Purva Atria,10,Silver,Domestic,4.87,Rajajinagar,13.000365,77.540138,Synthetic Buyer 103,9000069442,Pending,2026-07-28 06:24:57
+ORD100104,PSTP007,Purva Skywood Phase 2,242,Gold,Industrial,5.78,Electronic City,12.844237,77.643364,Synthetic Buyer 104,9000080876,Rejected,2026-07-17 15:56:57
+ORD100105,PSTP002,Purva Atria,51,Bronze,Domestic,3.91,Rajajinagar,12.9988,77.553332,Synthetic Buyer 105,9000069834,Pending,2026-07-28 09:26:57
+ORD100106,PSTP003,Starworth - Harmony,16,Gold,Domestic,9.16,Marathahalli,12.981685,77.704088,Synthetic Buyer 106,9000018094,Pending,2026-07-20 03:12:57
+ORD100107,PSTP001,Purva Venezia,20,Silver,Domestic,2.2,Yelahanka,13.096263,77.590686,Synthetic Buyer 107,9000074183,Pending,2026-07-17 02:30:57
+ORD100108,PSTP003,Starworth - Harmony,37,Gold,Industrial,4.81,Koramangala,12.932706,77.62948,Synthetic Buyer 108,9000068154,Rejected,2026-08-03 23:19:57
+ORD100109,PSTP007,Purva Skywood Phase 2,21,Silver,Construction,11.56,Whitefield,12.961462,77.741504,Synthetic Buyer 109,9000092628,Pending,2026-07-31 21:07:57
+ORD100110,PSTP003,Starworth - Harmony,213,Silver,Construction,5.3,Koramangala,12.927322,77.617387,Synthetic Buyer 110,9000098789,Rejected,2026-07-27 02:28:57
+ORD100111,PSTP003,Starworth - Harmony,14,Silver,Industrial,9.65,Banashankari,12.942277,77.537356,Synthetic Buyer 111,9000021766,Rejected,2026-07-17 12:12:57
+ORD100112,PSTP007,Purva Skywood Phase 2,55,Silver,Gardening,4.95,HSR Layout,12.929757,77.634693,Synthetic Buyer 112,9000095446,Out for Delivery,2026-08-03 19:58:57
+ORD100113,PSTP007,Purva Skywood Phase 2,92,Gold,Construction,6.5,Electronic City,12.835748,77.671263,Synthetic Buyer 113,9000034961,Rejected,2026-07-24 09:01:57
+ORD100114,PSTP003,Starworth - Harmony,40,Gold,Gardening,6.46,BTM Layout,12.918905,77.60422,Synthetic Buyer 114,9000056536,Out for Delivery,2026-07-29 18:09:57
+ORD100115,PSTP011,Provident Neora,86,Gold,Industrial,2.77,Yelahanka,13.096162,77.59769,Synthetic Buyer 115,9000066399,Pending,2026-08-03 21:50:57
+ORD100116,PSTP007,Purva Skywood Phase 2,26,Gold,Domestic,5.65,Electronic City,12.8425,77.662372,Synthetic Buyer 116,9000025248,Pending,2026-07-27 22:17:57
+ORD100117,PSTP007,Purva Skywood Phase 2,75,Silver,Gardening,5.21,Electronic City,12.846479,77.659037,Synthetic Buyer 117,9000055992,Accepted,2026-07-13 09:52:57
+ORD100118,PSTP011,Provident Neora,83,Gold,Gardening,2.14,Yelahanka,13.101076,77.611893,Synthetic Buyer 118,9000018215,Accepted,2026-07-16 21:40:57
+ORD100119,PSTP007,Purva Skywood Phase 2,46,Silver,Industrial,4.73,Hosur Road,12.916738,77.624512,Synthetic Buyer 119,9000022119,Pending,2026-08-08 21:10:57
+ORD100120,PSTP007,Purva Skywood Phase 2,33,Silver,Construction,6.4,Marathahalli,12.947655,77.68039,Synthetic Buyer 120,9000013267,Accepted,2026-07-17 11:07:57
+ORD100121,PSTP007,Purva Skywood Phase 2,20,Silver,Industrial,7.91,Marathahalli,12.946652,77.709202,Synthetic Buyer 121,9000080988,Accepted,2026-07-31 12:50:57
+ORD100122,PSTP007,Purva Skywood Phase 2,11,Silver,Construction,4.89,BTM Layout,12.896249,77.615969,Synthetic Buyer 122,9000047135,Pending,2026-07-13 09:06:57
+ORD100123,PSTP007,Purva Skywood Phase 2,46,Bronze,Construction,9.02,Marathahalli,12.949785,77.720652,Synthetic Buyer 123,9000093955,Pending,2026-07-20 21:46:57
+ORD100124,PSTP003,Starworth - Harmony,29,Bronze,Gardening,10.06,Banashankari,12.934358,77.53689,Synthetic Buyer 124,9000094674,Accepted,2026-07-22 01:57:57
+ORD100125,PSTP003,Starworth - Harmony,124,Silver,Construction,6.77,BTM Layout,12.919204,77.594668,Synthetic Buyer 125,9000069535,Pending,2026-07-28 04:48:57
+ORD100126,PSTP003,Starworth - Harmony,35,Silver,Industrial,6.29,Marathahalli,12.963423,77.676667,Synthetic Buyer 126,9000031279,Accepted,2026-07-13 08:54:57
+ORD100127,PSTP003,Starworth - Harmony,26,Bronze,Construction,3.56,Koramangala,12.94317,77.615667,Synthetic Buyer 127,9000016937,Pending,2026-07-26 06:05:57
+ORD100128,PSTP002,Purva Atria,57,Bronze,Construction,0.92,Malleshwaram,13.017514,77.573902,Synthetic Buyer 128,9000029038,Pending,2026-07-14 18:18:57
+ORD100129,PSTP002,Purva Atria,22,Gold,Industrial,2.75,Rajajinagar,13.006708,77.56025,Synthetic Buyer 129,9000050894,Accepted,2026-07-31 16:19:57
+ORD100130,PSTP007,Purva Skywood Phase 2,50,Gold,Industrial,4.95,Electronic City,12.862855,77.694228,Synthetic Buyer 130,9000095731,Pending,2026-07-13 14:01:57
+ORD100131,PSTP007,Purva Skywood Phase 2,53,Gold,Construction,3.56,Hosur Road,12.894049,77.628069,Synthetic Buyer 131,9000083846,Accepted,2026-08-08 08:18:57
+ORD100132,PSTP009,Purva Atmosphere,18,Gold,Domestic,2.75,Hebbal,13.046789,77.617363,Synthetic Buyer 132,9000072429,Out for Delivery,2026-07-23 22:13:57
+ORD100133,PSTP007,Purva Skywood Phase 2,46,Silver,Domestic,1.75,Electronic City,12.877679,77.658916,Synthetic Buyer 133,9000082607,Rejected,2026-07-30 11:42:57
+ORD100134,PSTP005,Purva Palm Beach - Labour Colony,107,Bronze,Industrial,12.24,Whitefield,12.995746,77.751847,Synthetic Buyer 134,9000015131,Pending,2026-07-15 08:14:57
+ORD100135,PSTP007,Purva Skywood Phase 2,11,Gold,Construction,15.32,Whitefield,12.963551,77.78255,Synthetic Buyer 135,9000094497,Out for Delivery,2026-07-17 14:24:57
+ORD100136,PSTP001,Purva Venezia,16,Gold,Domestic,1.58,Yelahanka,13.106789,77.579014,Synthetic Buyer 136,9000031574,Pending,2026-07-21 08:09:57
+ORD100137,PSTP005,Purva Palm Beach - Labour Colony,18,Gold,Industrial,6.29,KR Puram,13.011322,77.687486,Synthetic Buyer 137,9000068930,Out for Delivery,2026-08-04 19:03:57
+ORD100138,PSTP007,Purva Skywood Phase 2,11,Gold,Construction,4.2,Electronic City,12.856842,77.650973,Synthetic Buyer 138,9000076027,Pending,2026-08-05 20:29:57
+ORD100139,PSTP003,Starworth - Harmony,20,Silver,Domestic,8.35,KR Puram,12.992174,77.694809,Synthetic Buyer 139,9000017231,Accepted,2026-08-06 13:49:57
+ORD100140,PSTP003,Starworth - Harmony,36,Bronze,Domestic,8.41,Marathahalli,12.971766,77.697409,Synthetic Buyer 140,9000017944,Out for Delivery,2026-07-13 15:03:57
+ORD100141,PSTP003,Starworth - Harmony,72,Bronze,Construction,3.14,Koramangala,12.953317,77.638456,Synthetic Buyer 141,9000066676,Pending,2026-08-03 05:40:57
+ORD100142,PSTP003,Starworth - Harmony,216,Silver,Domestic,8.81,Marathahalli,12.976707,77.701141,Synthetic Buyer 142,9000050524,Out for Delivery,2026-08-07 04:41:57
+ORD100143,PSTP007,Purva Skywood Phase 2,211,Silver,Gardening,4.52,Electronic City,12.858941,77.638631,Synthetic Buyer 143,9000048409,Pending,2026-07-15 06:11:57
+ORD100144,PSTP003,Starworth - Harmony,42,Gold,Industrial,9.02,Marathahalli,12.975183,77.703057,Synthetic Buyer 144,9000021133,Out for Delivery,2026-07-29 08:19:57
+ORD100145,PSTP007,Purva Skywood Phase 2,28,Silver,Gardening,4.68,HSR Layout,12.915583,77.624266,Synthetic Buyer 145,9000082963,Accepted,2026-08-08 20:18:57
+ORD100146,PSTP007,Purva Skywood Phase 2,41,Silver,Industrial,4.24,HSR Layout,12.925345,77.639742,Synthetic Buyer 146,9000072631,Out for Delivery,2026-07-20 14:11:57
+ORD100147,PSTP007,Purva Skywood Phase 2,19,Silver,Domestic,11.38,Whitefield,12.944285,77.751971,Synthetic Buyer 147,9000020632,Accepted,2026-08-02 00:08:57
+ORD100148,PSTP007,Purva Skywood Phase 2,36,Gold,Domestic,4.41,Electronic City,12.854185,77.654178,Synthetic Buyer 148,9000047153,Accepted,2026-07-11 17:05:57
+ORD100149,PSTP007,Purva Skywood Phase 2,27,Silver,Industrial,4.35,Koramangala,12.906232,77.623057,Synthetic Buyer 149,9000043435,Out for Delivery,2026-07-16 00:02:57
+ORD100150,PSTP007,Purva Skywood Phase 2,36,Bronze,Domestic,12.12,Whitefield,12.952994,77.75454,Synthetic Buyer 150,9000085712,Pending,2026-07-16 22:18:57
+ORD100151,PSTP007,Purva Skywood Phase 2,18,Gold,Domestic,4.3,BTM Layout,12.905587,77.623361,Synthetic Buyer 151,9000018254,Out for Delivery,2026-07-20 09:51:57
+ORD100152,PSTP003,Starworth - Harmony,37,Gold,Industrial,12.51,Banashankari,12.895959,77.537577,Synthetic Buyer 152,9000026596,Out for Delivery,2026-07-24 23:18:57
+ORD100153,PSTP007,Purva Skywood Phase 2,28,Silver,Construction,5.67,Hosur Road,12.902216,77.609465,Synthetic Buyer 153,9000020214,Accepted,2026-07-15 15:08:57
+ORD100154,PSTP007,Purva Skywood Phase 2,53,Bronze,Domestic,2.61,HSR Layout,12.904131,77.639552,Synthetic Buyer 154,9000077594,Accepted,2026-08-03 08:44:57
+ORD100155,PSTP007,Purva Skywood Phase 2,41,Bronze,Gardening,6.84,BTM Layout,12.911031,77.600499,Synthetic Buyer 155,9000028995,Pending,2026-07-24 01:24:57
+ORD100156,PSTP007,Purva Skywood Phase 2,24,Bronze,Gardening,2.42,Electronic City,12.874191,77.6503,Synthetic Buyer 156,9000032345,Rejected,2026-07-27 06:50:57
+ORD100157,PSTP003,Starworth - Harmony,11,Silver,Industrial,6.56,Jayanagar,12.923774,77.589606,Synthetic Buyer 157,9000036357,Out for Delivery,2026-07-29 22:42:57
+ORD100158,PSTP007,Purva Skywood Phase 2,66,Silver,Domestic,5.78,Electronic City,12.84854,77.633907,Synthetic Buyer 158,9000089011,Out for Delivery,2026-07-12 14:22:57
+ORD100159,PSTP002,Purva Atria,22,Bronze,Domestic,3.0,Hebbal,13.042176,77.598658,Synthetic Buyer 159,9000080464,Out for Delivery,2026-07-23 04:23:57
+ORD100160,PSTP003,Starworth - Harmony,22,Silver,Construction,8.04,Marathahalli,12.959895,77.692441,Synthetic Buyer 160,9000083497,Out for Delivery,2026-07-18 07:09:57
+ORD100161,PSTP002,Purva Atria,214,Bronze,Construction,4.68,Rajajinagar,12.98655,77.559832,Synthetic Buyer 161,9000081959,Pending,2026-07-30 03:59:57
+ORD100162,PSTP007,Purva Skywood Phase 2,11,Gold,Industrial,5.95,BTM Layout,12.912799,77.609824,Synthetic Buyer 162,9000017773,Accepted,2026-07-14 13:45:57
+ORD100163,PSTP003,Starworth - Harmony,83,Gold,Industrial,3.76,Chickpete,12.970054,77.585512,Synthetic Buyer 163,9000074697,Pending,2026-07-26 16:28:57
+ORD100164,PSTP003,Starworth - Harmony,32,Bronze,Construction,7.88,Banashankari,12.932132,77.561891,Synthetic Buyer 164,9000094525,Pending,2026-07-21 20:47:57
+ORD100165,PSTP005,Purva Palm Beach - Labour Colony,52,Bronze,Domestic,11.72,Whitefield,12.998573,77.748112,Synthetic Buyer 165,9000039809,Out for Delivery,2026-07-27 11:54:57
+ORD100166,PSTP007,Purva Skywood Phase 2,95,Silver,Industrial,4.36,Hosur Road,12.894543,77.620782,Synthetic Buyer 166,9000050689,Rejected,2026-07-24 03:16:57
+ORD100167,PSTP003,Starworth - Harmony,86,Gold,Construction,4.78,Koramangala,12.932478,77.612684,Synthetic Buyer 167,9000013641,Accepted,2026-08-10 01:34:57
+ORD100168,PSTP003,Starworth - Harmony,89,Gold,Industrial,3.67,Koramangala,12.945661,77.604289,Synthetic Buyer 168,9000030801,Accepted,2026-07-11 18:34:57
+ORD100169,PSTP007,Purva Skywood Phase 2,75,Gold,Industrial,5.09,Hosur Road,12.886254,77.614521,Synthetic Buyer 169,9000083522,Accepted,2026-07-31 04:15:57
+ORD100170,PSTP003,Starworth - Harmony,46,Gold,Construction,8.37,Marathahalli,12.963651,77.696182,Synthetic Buyer 170,9000017359,Accepted,2026-07-31 10:10:57
+ORD100171,PSTP007,Purva Skywood Phase 2,27,Bronze,Domestic,14.06,Whitefield,12.961812,77.769965,Synthetic Buyer 171,9000086193,Pending,2026-08-03 02:19:57
+ORD100172,PSTP001,Purva Venezia,46,Silver,Gardening,2.16,Yelahanka,13.076528,77.565488,Synthetic Buyer 172,9000099260,Out for Delivery,2026-08-01 19:13:57
+ORD100173,PSTP007,Purva Skywood Phase 2,35,Gold,Domestic,4.53,Koramangala,12.924502,77.634108,Synthetic Buyer 173,9000096166,Out for Delivery,2026-07-24 09:31:57
+ORD100174,PSTP007,Purva Skywood Phase 2,37,Silver,Gardening,12.45,Whitefield,12.97511,77.739441,Synthetic Buyer 174,9000065866,Rejected,2026-07-19 20:11:57
+ORD100175,PSTP001,Purva Venezia,40,Bronze,Domestic,1.73,Yelahanka,13.089182,77.585131,Synthetic Buyer 175,9000021110,Pending,2026-07-23 09:25:57
+ORD100176,PSTP005,Purva Palm Beach - Labour Colony,111,Gold,Domestic,9.48,Whitefield,13.013183,77.733357,Synthetic Buyer 176,9000085878,Pending,2026-07-26 23:46:57
+ORD100177,PSTP002,Purva Atria,111,Gold,Domestic,6.42,Rajajinagar,12.976901,77.544621,Synthetic Buyer 177,9000014317,Pending,2026-07-18 02:54:57
+ORD100178,PSTP003,Starworth - Harmony,29,Gold,Domestic,10.74,Marathahalli,12.979045,77.718811,Synthetic Buyer 178,9000098034,Rejected,2026-07-26 23:26:57
+ORD100179,PSTP007,Purva Skywood Phase 2,23,Silver,Industrial,12.18,Whitefield,12.96964,77.741528,Synthetic Buyer 179,9000043921,Out for Delivery,2026-07-12 21:13:57
+ORD100180,PSTP007,Purva Skywood Phase 2,10,Gold,Gardening,7.15,Electronic City,12.829789,77.671354,Synthetic Buyer 180,9000069738,Out for Delivery,2026-08-04 17:47:57
+ORD100181,PSTP002,Purva Atria,76,Gold,Domestic,5.51,Rajajinagar,12.979009,77.55854,Synthetic Buyer 181,9000015034,Pending,2026-07-24 06:40:57
+ORD100182,PSTP003,Starworth - Harmony,33,Bronze,Construction,4.63,Chickpete,12.969849,77.577452,Synthetic Buyer 182,9000057699,Accepted,2026-08-02 08:14:57
+ORD100183,PSTP002,Purva Atria,54,Bronze,Industrial,3.57,Rajajinagar,12.998899,77.558243,Synthetic Buyer 183,9000010691,Pending,2026-07-23 06:08:57
+ORD100184,PSTP007,Purva Skywood Phase 2,36,Bronze,Industrial,6.74,Marathahalli,12.945121,77.693202,Synthetic Buyer 184,9000046367,Pending,2026-08-03 17:02:57
+ORD100185,PSTP003,Starworth - Harmony,44,Silver,Gardening,9.84,Marathahalli,12.972121,77.710608,Synthetic Buyer 185,9000029997,Out for Delivery,2026-08-06 18:19:57
+ORD100186,PSTP002,Purva Atria,23,Gold,Construction,5.98,Chickpete,12.973508,77.561541,Synthetic Buyer 186,9000023789,Pending,2026-08-08 11:55:57
+ORD100187,PSTP007,Purva Skywood Phase 2,30,Gold,Gardening,13.02,Whitefield,12.957995,77.761045,Synthetic Buyer 187,9000043837,Pending,2026-07-27 19:28:57
+ORD100188,PSTP002,Purva Atria,48,Gold,Gardening,2.23,Malleshwaram,13.008939,77.565094,Synthetic Buyer 188,9000066160,Rejected,2026-07-13 07:41:57
+ORD100189,PSTP001,Purva Venezia,20,Gold,Industrial,3.17,Yelahanka,13.11619,77.59031,Synthetic Buyer 189,9000099586,Pending,2026-08-03 07:34:57
+ORD100190,PSTP005,Purva Palm Beach - Labour Colony,57,Silver,Construction,13.05,Whitefield,12.980971,77.748848,Synthetic Buyer 190,9000087669,Pending,2026-07-24 01:16:57
+ORD100191,PSTP003,Starworth - Harmony,17,Bronze,Industrial,5.93,Jayanagar,12.927379,77.595138,Synthetic Buyer 191,9000072229,Accepted,2026-07-18 18:20:57
+ORD100192,PSTP007,Purva Skywood Phase 2,248,Gold,Industrial,12.33,Whitefield,12.961994,77.750294,Synthetic Buyer 192,9000093727,Out for Delivery,2026-07-30 15:22:57
+ORD100193,PSTP003,Starworth - Harmony,18,Bronze,Industrial,7.85,Banashankari,12.952854,77.550987,Synthetic Buyer 193,9000049053,Pending,2026-07-12 13:36:57
+ORD100194,PSTP002,Purva Atria,14,Gold,Industrial,5.02,Chickpete,12.981094,77.566694,Synthetic Buyer 194,9000062346,Rejected,2026-07-21 13:17:57
+ORD100195,PSTP007,Purva Skywood Phase 2,51,Gold,Industrial,3.82,HSR Layout,12.902419,77.626927,Synthetic Buyer 195,9000062939,Accepted,2026-07-28 09:51:57
+ORD100196,PSTP007,Purva Skywood Phase 2,54,Bronze,Industrial,3.76,HSR Layout,12.917722,77.636995,Synthetic Buyer 196,9000073115,Accepted,2026-08-08 08:02:57
+ORD100197,PSTP003,Starworth - Harmony,42,Silver,Industrial,5.36,Jayanagar,12.930916,77.599646,Synthetic Buyer 197,9000093445,Pending,2026-07-29 17:38:57
+ORD100198,PSTP002,Purva Atria,19,Gold,Industrial,7.29,Rajajinagar,12.983514,77.525217,Synthetic Buyer 198,9000023725,Out for Delivery,2026-08-10 01:56:57
+ORD100199,PSTP007,Purva Skywood Phase 2,11,Silver,Domestic,6.97,Hosur Road,12.882825,77.597582,Synthetic Buyer 199,9000026975,Pending,2026-07-14 14:39:57
+ORD100200,PSTP002,Purva Atria,48,Bronze,Domestic,5.18,Chickpete,12.980656,77.562813,Synthetic Buyer 200,9000012605,Accepted,2026-08-04 17:44:57
+ORD100201,PSTP007,Purva Skywood Phase 2,20,Silver,Domestic,6.69,Electronic City,12.833223,77.656949,Synthetic Buyer 201,9000031887,Pending,2026-07-20 14:06:57
+ORD100202,PSTP007,Purva Skywood Phase 2,23,Silver,Domestic,5.9,BTM Layout,12.914783,77.6112,Synthetic Buyer 202,9000060030,Accepted,2026-07-23 00:32:57
+ORD100203,PSTP007,Purva Skywood Phase 2,14,Bronze,Gardening,6.18,Electronic City,12.837913,77.666091,Synthetic Buyer 203,9000057630,Out for Delivery,2026-08-07 01:39:57
+ORD100204,PSTP007,Purva Skywood Phase 2,24,Silver,Construction,3.32,HSR Layout,12.908042,77.634317,Synthetic Buyer 204,9000017697,Out for Delivery,2026-07-30 20:13:57
+ORD100205,PSTP003,Starworth - Harmony,58,Silver,Industrial,5.1,Chickpete,12.970998,77.572914,Synthetic Buyer 205,9000038399,Out for Delivery,2026-08-01 02:50:57
+ORD100206,PSTP007,Purva Skywood Phase 2,57,Gold,Industrial,4.43,HSR Layout,12.902597,77.62121,Synthetic Buyer 206,9000043678,Accepted,2026-07-14 04:24:57
+ORD100207,PSTP005,Purva Palm Beach - Labour Colony,29,Silver,Construction,8.25,KR Puram,12.997518,77.69932,Synthetic Buyer 207,9000055217,Pending,2026-07-30 22:13:57
+ORD100208,PSTP002,Purva Atria,34,Gold,Construction,2.37,Malleshwaram,13.005908,77.567686,Synthetic Buyer 208,9000083302,Pending,2026-07-18 05:57:57
+ORD100209,PSTP003,Starworth - Harmony,25,Silver,Industrial,2.9,Koramangala,12.9489,77.621646,Synthetic Buyer 209,9000016893,Out for Delivery,2026-07-18 06:50:57
+ORD100210,PSTP003,Starworth - Harmony,36,Bronze,Construction,5.89,Jayanagar,12.925521,77.600243,Synthetic Buyer 210,9000078213,Pending,2026-07-29 13:24:57
+ORD100211,PSTP003,Starworth - Harmony,16,Silver,Gardening,5.39,Koramangala,12.926742,77.624856,Synthetic Buyer 211,9000086224,Accepted,2026-07-23 08:40:57
+ORD100212,PSTP007,Purva Skywood Phase 2,14,Gold,Industrial,7.47,Electronic City,12.828097,77.644463,Synthetic Buyer 212,9000089925,Accepted,2026-07-19 05:13:57
+ORD100213,PSTP007,Purva Skywood Phase 2,14,Bronze,Domestic,9.24,Marathahalli,12.959641,77.712223,Synthetic Buyer 213,9000054482,Out for Delivery,2026-07-19 13:10:57
+ORD100214,PSTP007,Purva Skywood Phase 2,51,Bronze,Industrial,5.45,Electronic City,12.844273,77.659516,Synthetic Buyer 214,9000017534,Accepted,2026-07-30 19:09:57
+ORD100215,PSTP007,Purva Skywood Phase 2,29,Bronze,Gardening,8.13,Marathahalli,12.953079,77.70408,Synthetic Buyer 215,9000074906,Out for Delivery,2026-07-18 03:56:57
+ORD100216,PSTP002,Purva Atria,27,Gold,Construction,2.33,Hebbal,13.045868,77.580152,Synthetic Buyer 216,9000049150,Accepted,2026-07-22 17:18:57
+ORD100217,PSTP005,Purva Palm Beach - Labour Colony,117,Bronze,Industrial,14.44,Whitefield,12.982868,77.767355,Synthetic Buyer 217,9000056014,Pending,2026-08-04 09:02:57
+ORD100218,PSTP007,Purva Skywood Phase 2,42,Silver,Domestic,5.5,Electronic City,12.843827,77.660023,Synthetic Buyer 218,9000023274,Out for Delivery,2026-07-18 11:48:57
+ORD100219,PSTP007,Purva Skywood Phase 2,40,Gold,Gardening,11.95,Whitefield,12.974264,77.733413,Synthetic Buyer 219,9000078686,Accepted,2026-07-27 02:11:57
+ORD100220,PSTP002,Purva Atria,12,Silver,Gardening,5.5,Rajajinagar,12.984037,77.548932,Synthetic Buyer 220,9000030578,Out for Delivery,2026-07-27 10:55:57
+ORD100221,PSTP003,Starworth - Harmony,174,Bronze,Gardening,5.36,Marathahalli,12.959139,77.666523,Synthetic Buyer 221,9000045254,Out for Delivery,2026-07-19 16:26:57
+ORD100222,PSTP001,Purva Venezia,54,Silver,Gardening,0.7,Yelahanka,13.096045,77.576827,Synthetic Buyer 222,9000039490,Accepted,2026-07-12 21:17:57
+ORD100223,PSTP003,Starworth - Harmony,49,Bronze,Gardening,5.5,Jayanagar,12.934343,77.590819,Synthetic Buyer 223,9000011126,Pending,2026-07-29 10:41:57
+ORD100224,PSTP002,Purva Atria,75,Silver,Gardening,1.59,Hebbal,13.028471,77.591497,Synthetic Buyer 224,9000065226,Accepted,2026-08-05 03:44:57
+ORD100225,PSTP003,Starworth - Harmony,16,Gold,Gardening,9.17,Banashankari,12.928532,77.549865,Synthetic Buyer 225,9000069575,Accepted,2026-07-25 17:47:57
+ORD100226,PSTP007,Purva Skywood Phase 2,22,Gold,Industrial,3.74,Electronic City,12.859751,77.658101,Synthetic Buyer 226,9000045237,Out for Delivery,2026-07-24 18:42:57
+ORD100227,PSTP002,Purva Atria,12,Silver,Gardening,4.28,Malleshwaram,12.989667,77.561675,Synthetic Buyer 227,9000032874,Pending,2026-07-23 23:52:57
+ORD100228,PSTP007,Purva Skywood Phase 2,99,Gold,Gardening,4.17,Electronic City,12.858344,77.646913,Synthetic Buyer 228,9000077617,Out for Delivery,2026-07-27 17:17:57
+ORD100229,PSTP007,Purva Skywood Phase 2,30,Silver,Construction,6.26,Marathahalli,12.944941,77.684031,Synthetic Buyer 229,9000014772,Pending,2026-08-06 14:48:57
+ORD100230,PSTP007,Purva Skywood Phase 2,11,Gold,Construction,2.68,HSR Layout,12.906936,77.640526,Synthetic Buyer 230,9000027119,Pending,2026-07-29 00:50:57
+ORD100231,PSTP003,Starworth - Harmony,37,Silver,Industrial,4.51,Koramangala,12.934711,77.62499,Synthetic Buyer 231,9000022545,Accepted,2026-07-20 01:17:57
+ORD100232,PSTP007,Purva Skywood Phase 2,35,Silver,Industrial,5.58,Marathahalli,12.940032,77.679599,Synthetic Buyer 232,9000049798,Out for Delivery,2026-07-23 10:41:57
+ORD100233,PSTP001,Purva Venezia,236,Bronze,Domestic,1.2,Yelahanka,13.09394,77.581459,Synthetic Buyer 233,9000048163,Pending,2026-08-08 09:27:57
+ORD100234,PSTP003,Starworth - Harmony,27,Silver,Domestic,10.63,Banashankari,12.911558,77.54639,Synthetic Buyer 234,9000038233,Accepted,2026-08-06 02:16:57
+ORD100235,PSTP007,Purva Skywood Phase 2,95,Silver,Gardening,12.81,Whitefield,12.968106,77.750828,Synthetic Buyer 235,9000089271,Out for Delivery,2026-08-04 04:25:57
+ORD100236,PSTP007,Purva Skywood Phase 2,39,Silver,Gardening,4.7,Koramangala,12.927339,77.635298,Synthetic Buyer 236,9000040550,Out for Delivery,2026-07-23 04:31:57
+ORD100237,PSTP007,Purva Skywood Phase 2,47,Gold,Industrial,4.71,Hosur Road,12.867787,77.626235,Synthetic Buyer 237,9000096722,Accepted,2026-08-09 13:08:57
+ORD100238,PSTP003,Starworth - Harmony,37,Bronze,Domestic,8.18,Marathahalli,12.98111,77.695027,Synthetic Buyer 238,9000010514,Accepted,2026-08-07 02:27:57
+ORD100239,PSTP007,Purva Skywood Phase 2,24,Silver,Domestic,8.11,Marathahalli,12.953722,77.70284,Synthetic Buyer 239,9000025306,Pending,2026-08-09 00:53:57
+ORD100240,PSTP003,Starworth - Harmony,37,Gold,Domestic,6.89,BTM Layout,12.917463,77.596156,Synthetic Buyer 240,9000051905,Accepted,2026-07-20 20:19:57
+ORD100241,PSTP007,Purva Skywood Phase 2,89,Gold,Gardening,5.89,Hosur Road,12.872543,77.610946,Synthetic Buyer 241,9000094549,Out for Delivery,2026-07-25 11:21:57
+ORD100242,PSTP003,Starworth - Harmony,60,Bronze,Domestic,8.44,Jayanagar,12.907541,77.584005,Synthetic Buyer 242,9000060907,Out for Delivery,2026-07-19 18:29:57
+ORD100243,PSTP007,Purva Skywood Phase 2,56,Gold,Industrial,6.26,Marathahalli,12.933579,77.701272,Synthetic Buyer 243,9000031837,Accepted,2026-08-05 06:52:57
+ORD100244,PSTP007,Purva Skywood Phase 2,60,Silver,Gardening,4.92,Hosur Road,12.885655,77.61621,Synthetic Buyer 244,9000093503,Accepted,2026-08-05 06:53:57
+ORD100245,PSTP003,Starworth - Harmony,17,Silver,Construction,5.38,Chickpete,12.96351,77.571597,Synthetic Buyer 245,9000025790,Pending,2026-08-02 20:20:57
+ORD100246,PSTP003,Starworth - Harmony,25,Silver,Industrial,2.89,Chickpete,12.962533,77.596384,Synthetic Buyer 246,9000097615,Out for Delivery,2026-08-09 22:00:57
+ORD100247,PSTP007,Purva Skywood Phase 2,140,Gold,Gardening,11.1,Whitefield,12.955453,77.741108,Synthetic Buyer 247,9000049681,Pending,2026-07-22 14:52:57
+ORD100248,PSTP007,Purva Skywood Phase 2,21,Silver,Domestic,5.08,HSR Layout,12.925923,77.628132,Synthetic Buyer 248,9000060484,Out for Delivery,2026-08-06 00:51:57
+ORD100249,PSTP002,Purva Atria,38,Silver,Gardening,3.71,Malleshwaram,12.996337,77.559926,Synthetic Buyer 249,9000075162,Pending,2026-08-03 05:38:57
+ORD100250,PSTP002,Purva Atria,54,Bronze,Domestic,2.65,Hebbal,13.043555,77.592752,Synthetic Buyer 250,9000010162,Pending,2026-08-09 17:17:57
+ORD100251,PSTP005,Purva Palm Beach - Labour Colony,45,Silver,Gardening,7.49,KR Puram,13.001021,77.690965,Synthetic Buyer 251,9000058842,Accepted,2026-07-19 05:10:57
+ORD100252,PSTP007,Purva Skywood Phase 2,12,Silver,Gardening,13.11,Whitefield,12.969271,77.753472,Synthetic Buyer 252,9000019690,Accepted,2026-08-02 18:54:57
+ORD100253,PSTP003,Starworth - Harmony,36,Silver,Industrial,7.98,Marathahalli,12.967324,77.693028,Synthetic Buyer 253,9000060526,Accepted,2026-07-14 13:37:57
+ORD100254,PSTP007,Purva Skywood Phase 2,17,Bronze,Industrial,13.14,Whitefield,12.961283,77.760094,Synthetic Buyer 254,9000097440,Accepted,2026-07-13 01:44:57
+ORD100255,PSTP003,Starworth - Harmony,43,Silver,Domestic,4.72,Koramangala,12.933311,77.628416,Synthetic Buyer 255,9000051768,Pending,2026-08-06 07:05:57
+ORD100256,PSTP007,Purva Skywood Phase 2,47,Gold,Construction,4.32,Hosur Road,12.891869,77.621088,Synthetic Buyer 256,9000042859,Accepted,2026-08-01 01:24:57
+ORD100257,PSTP003,Starworth - Harmony,21,Gold,Gardening,3.41,Jayanagar,12.947644,77.605496,Synthetic Buyer 257,9000087248,Pending,2026-08-07 14:55:57
+ORD100258,PSTP007,Purva Skywood Phase 2,14,Silver,Gardening,4.54,Hosur Road,12.896023,77.619173,Synthetic Buyer 258,9000053352,Out for Delivery,2026-07-29 20:30:57
+ORD100259,PSTP007,Purva Skywood Phase 2,28,Silver,Industrial,6.51,Electronic City,12.834828,77.663766,Synthetic Buyer 259,9000082351,Out for Delivery,2026-07-22 01:59:57
+ORD100260,PSTP002,Purva Atria,104,Silver,Construction,5.51,Rajajinagar,12.979049,77.558289,Synthetic Buyer 260,9000065698,Out for Delivery,2026-08-01 22:02:57
+ORD100261,PSTP005,Purva Palm Beach - Labour Colony,25,Silver,Domestic,7.18,KR Puram,13.003944,77.690746,Synthetic Buyer 261,9000079937,Out for Delivery,2026-07-23 06:03:57
+ORD100262,PSTP003,Starworth - Harmony,13,Gold,Industrial,4.22,Koramangala,12.937019,77.619175,Synthetic Buyer 262,9000019302,Accepted,2026-08-07 13:22:57
+ORD100263,PSTP007,Purva Skywood Phase 2,64,Bronze,Gardening,2.44,HSR Layout,12.91097,77.647618,Synthetic Buyer 263,9000070164,Accepted,2026-07-13 02:45:57
+ORD100264,PSTP007,Purva Skywood Phase 2,21,Gold,Construction,13.87,Whitefield,12.944523,77.777662,Synthetic Buyer 264,9000082848,Pending,2026-07-11 21:31:57
+ORD100265,PSTP003,Starworth - Harmony,27,Bronze,Construction,1.83,Koramangala,12.959029,77.624134,Synthetic Buyer 265,9000084240,Accepted,2026-07-29 14:40:57
+ORD100266,PSTP002,Purva Atria,120,Silver,Industrial,3.08,Hebbal,13.030822,77.605064,Synthetic Buyer 266,9000086500,Out for Delivery,2026-08-09 01:53:57
+ORD100267,PSTP003,Starworth - Harmony,20,Silver,Gardening,5.09,Jayanagar,12.931818,77.603945,Synthetic Buyer 267,9000092956,Pending,2026-08-05 06:48:57
+ORD100268,PSTP001,Purva Venezia,14,Bronze,Construction,2.71,Yelahanka,13.099136,77.595126,Synthetic Buyer 268,9000030933,Accepted,2026-07-15 02:10:57
+ORD100269,PSTP005,Purva Palm Beach - Labour Colony,17,Silver,Gardening,13.76,Whitefield,12.978625,77.755516,Synthetic Buyer 269,9000067124,Pending,2026-08-10 02:21:57
+ORD100270,PSTP007,Purva Skywood Phase 2,64,Silver,Industrial,5.03,Koramangala,12.9247,77.627529,Synthetic Buyer 270,9000078857,Pending,2026-08-05 00:39:57
+ORD100271,PSTP007,Purva Skywood Phase 2,73,Gold,Industrial,12.36,Whitefield,12.951736,77.757929,Synthetic Buyer 271,9000021279,Pending,2026-07-26 06:16:57
+ORD100272,PSTP005,Purva Palm Beach - Labour Colony,111,Silver,Domestic,6.91,KR Puram,13.01333,77.701281,Synthetic Buyer 272,9000067554,Accepted,2026-07-18 08:00:57
+ORD100273,PSTP003,Starworth - Harmony,76,Gold,Construction,6.8,Jayanagar,12.920862,77.590433,Synthetic Buyer 273,9000041507,Pending,2026-08-07 19:31:57
+ORD100274,PSTP007,Purva Skywood Phase 2,16,Gold,Gardening,12.52,Whitefield,12.962969,77.751742,Synthetic Buyer 274,9000050428,Accepted,2026-07-13 07:08:57
+ORD100275,PSTP007,Purva Skywood Phase 2,12,Silver,Gardening,12.91,Whitefield,12.977303,77.743178,Synthetic Buyer 275,9000068005,Out for Delivery,2026-07-12 04:31:57
+ORD100276,PSTP007,Purva Skywood Phase 2,80,Bronze,Industrial,2.36,HSR Layout,12.90531,77.643009,Synthetic Buyer 276,9000038665,Accepted,2026-07-24 22:43:57
+ORD100277,PSTP007,Purva Skywood Phase 2,33,Bronze,Industrial,1.58,HSR Layout,12.900805,77.648559,Synthetic Buyer 277,9000094404,Out for Delivery,2026-07-24 02:41:57
+ORD100278,PSTP003,Starworth - Harmony,22,Silver,Construction,5.79,BTM Layout,12.924021,77.608767,Synthetic Buyer 278,9000020749,Pending,2026-07-13 17:29:57
+ORD100279,PSTP007,Purva Skywood Phase 2,13,Gold,Gardening,7.44,Marathahalli,12.941215,77.708878,Synthetic Buyer 279,9000010347,Accepted,2026-07-20 12:54:57
+ORD100280,PSTP007,Purva Skywood Phase 2,49,Gold,Domestic,3.72,HSR Layout,12.918676,77.638529,Synthetic Buyer 280,9000045780,Accepted,2026-08-07 01:39:57
+ORD100281,PSTP007,Purva Skywood Phase 2,12,Bronze,Construction,7.36,Electronic City,12.827662,77.669737,Synthetic Buyer 281,9000093000,Rejected,2026-07-15 23:56:57
+ORD100282,PSTP007,Purva Skywood Phase 2,47,Bronze,Industrial,4.63,Hosur Road,12.908431,77.621153,Synthetic Buyer 282,9000091085,Accepted,2026-08-08 15:23:57
+ORD100283,PSTP003,Starworth - Harmony,70,Gold,Gardening,3.31,Koramangala,12.945175,77.620645,Synthetic Buyer 283,9000063725,Accepted,2026-07-12 09:43:57
+ORD100284,PSTP003,Starworth - Harmony,41,Gold,Domestic,7.32,Marathahalli,12.978052,77.687306,Synthetic Buyer 284,9000045358,Out for Delivery,2026-07-18 22:50:57
+ORD100285,PSTP007,Purva Skywood Phase 2,46,Silver,Domestic,12.48,Whitefield,12.970629,77.744436,Synthetic Buyer 285,9000032108,Accepted,2026-07-27 09:59:57
+ORD100286,PSTP003,Starworth - Harmony,13,Gold,Domestic,8.5,Marathahalli,12.968992,77.697988,Synthetic Buyer 286,9000021544,Pending,2026-07-21 12:56:57
+ORD100287,PSTP011,Provident Neora,37,Bronze,Gardening,2.73,Yelahanka,13.090377,77.59551,Synthetic Buyer 287,9000093042,Accepted,2026-07-21 06:46:57
+ORD100288,PSTP003,Starworth - Harmony,40,Silver,Industrial,3.16,Koramangala,12.947301,77.612873,Synthetic Buyer 288,9000064708,Accepted,2026-08-01 12:29:57
+ORD100289,PSTP003,Starworth - Harmony,83,Silver,Industrial,6.62,Marathahalli,12.958411,77.678486,Synthetic Buyer 289,9000069849,Accepted,2026-07-13 00:56:57
+ORD100290,PSTP007,Purva Skywood Phase 2,18,Bronze,Gardening,12.84,Whitefield,12.973649,77.746106,Synthetic Buyer 290,9000062600,Out for Delivery,2026-07-30 16:24:57
+ORD100291,PSTP007,Purva Skywood Phase 2,37,Gold,Industrial,6.31,BTM Layout,12.899864,77.603139,Synthetic Buyer 291,9000039969,Accepted,2026-07-20 04:57:57
+ORD100292,PSTP007,Purva Skywood Phase 2,30,Bronze,Domestic,5.01,HSR Layout,12.916156,77.621136,Synthetic Buyer 292,9000025291,Pending,2026-08-05 00:22:57
+ORD100293,PSTP007,Purva Skywood Phase 2,87,Silver,Domestic,5.29,BTM Layout,12.905537,77.613761,Synthetic Buyer 293,9000042423,Rejected,2026-07-19 09:16:57
+ORD100294,PSTP007,Purva Skywood Phase 2,23,Silver,Construction,14.19,Whitefield,12.970213,77.765394,Synthetic Buyer 294,9000066403,Accepted,2026-07-29 04:19:57
+ORD100295,PSTP007,Purva Skywood Phase 2,28,Gold,Construction,4.74,Electronic City,12.854513,77.64275,Synthetic Buyer 295,9000032027,Pending,2026-08-05 23:59:57
+ORD100296,PSTP003,Starworth - Harmony,97,Bronze,Gardening,11.22,Banashankari,12.911526,77.539309,Synthetic Buyer 296,9000037306,Accepted,2026-07-19 16:29:57
+ORD100297,PSTP002,Purva Atria,44,Gold,Gardening,2.61,Rajajinagar,13.011368,77.557771,Synthetic Buyer 297,9000062683,Rejected,2026-07-26 11:43:57
+ORD100298,PSTP001,Purva Venezia,30,Silver,Domestic,0.92,Yelahanka,13.103612,77.570069,Synthetic Buyer 298,9000096544,Accepted,2026-07-16 00:21:57
+ORD100299,PSTP002,Purva Atria,25,Bronze,Domestic,3.42,Malleshwaram,13.001514,77.556969,Synthetic Buyer 299,9000088304,Pending,2026-07-28 18:04:57
+ORD100300,PSTP003,Starworth - Harmony,25,Gold,Industrial,6.04,Chickpete,12.946112,77.572569,Synthetic Buyer 300,9000062574,Accepted,2026-08-10 06:24:57
+ORD100301,PSTP002,Purva Atria,17,Bronze,Domestic,5.32,Rajajinagar,12.9824,77.554991,Synthetic Buyer 301,9000025876,Out for Delivery,2026-07-28 15:39:57
+ORD100302,PSTP007,Purva Skywood Phase 2,54,Bronze,Industrial,3.94,HSR Layout,12.897083,77.624784,Synthetic Buyer 302,9000052914,Accepted,2026-07-23 04:06:57
+ORD100303,PSTP007,Purva Skywood Phase 2,77,Silver,Domestic,6.56,Electronic City,12.835689,77.647785,Synthetic Buyer 303,9000076208,Accepted,2026-08-02 11:27:57
+ORD100304,PSTP003,Starworth - Harmony,53,Silver,Domestic,4.5,Koramangala,12.937599,77.635749,Synthetic Buyer 304,9000055462,Rejected,2026-07-11 14:26:57
+ORD100305,PSTP003,Starworth - Harmony,28,Bronze,Construction,5.06,Koramangala,12.930544,77.609406,Synthetic Buyer 305,9000012688,Pending,2026-07-12 11:30:57
+ORD100306,PSTP002,Purva Atria,42,Gold,Construction,3.86,Malleshwaram,12.991781,77.567141,Synthetic Buyer 306,9000098144,Rejected,2026-08-02 09:16:57
+ORD100307,PSTP007,Purva Skywood Phase 2,25,Gold,Domestic,5.13,BTM Layout,12.913867,77.618626,Synthetic Buyer 307,9000040773,Accepted,2026-07-11 20:11:57
+ORD100308,PSTP005,Purva Palm Beach - Labour Colony,60,Gold,Construction,6.03,KR Puram,13.013012,77.685458,Synthetic Buyer 308,9000062385,Out for Delivery,2026-07-29 19:35:57
+ORD100309,PSTP003,Starworth - Harmony,46,Silver,Construction,7.47,Banashankari,12.942243,77.559652,Synthetic Buyer 309,9000085975,Accepted,2026-08-05 22:18:57
+ORD100310,PSTP007,Purva Skywood Phase 2,125,Silver,Industrial,11.67,Whitefield,12.970311,77.734052,Synthetic Buyer 310,9000088136,Out for Delivery,2026-07-24 09:53:57
+ORD100311,PSTP005,Purva Palm Beach - Labour Colony,28,Bronze,Domestic,9.5,KR Puram,12.988994,77.707272,Synthetic Buyer 311,9000093461,Out for Delivery,2026-07-26 20:15:57
+ORD100312,PSTP007,Purva Skywood Phase 2,27,Silver,Domestic,5.22,Koramangala,12.92742,77.627903,Synthetic Buyer 312,9000034796,Pending,2026-07-17 22:02:57
+ORD100313,PSTP003,Starworth - Harmony,46,Bronze,Construction,5.21,Koramangala,12.928088,77.621736,Synthetic Buyer 313,9000020037,Accepted,2026-07-18 04:08:57
+ORD100314,PSTP005,Purva Palm Beach - Labour Colony,239,Gold,Domestic,13.51,Whitefield,12.978973,77.752659,Synthetic Buyer 314,9000035748,Pending,2026-07-12 01:20:57
+ORD100315,PSTP003,Starworth - Harmony,101,Silver,Domestic,4.98,Koramangala,12.930255,77.622769,Synthetic Buyer 315,9000070599,Accepted,2026-07-16 13:17:57
+ORD100316,PSTP007,Purva Skywood Phase 2,23,Silver,Construction,2.71,HSR Layout,12.899337,77.636682,Synthetic Buyer 316,9000065482,Accepted,2026-07-12 11:04:57
+ORD100317,PSTP005,Purva Palm Beach - Labour Colony,39,Silver,Domestic,6.72,KR Puram,13.01541,77.701157,Synthetic Buyer 317,9000024807,Rejected,2026-08-04 02:11:57
+ORD100318,PSTP002,Purva Atria,17,Silver,Gardening,6.11,Rajajinagar,12.978729,77.546918,Synthetic Buyer 318,9000035729,Pending,2026-07-16 22:50:57
+ORD100319,PSTP007,Purva Skywood Phase 2,41,Silver,Gardening,4.24,Electronic City,12.855386,77.665026,Synthetic Buyer 319,9000038549,Out for Delivery,2026-08-05 00:13:57
+ORD100320,PSTP003,Starworth - Harmony,12,Silver,Gardening,6.96,Marathahalli,12.972837,77.684063,Synthetic Buyer 320,9000097468,Accepted,2026-07-18 02:30:57
+ORD100321,PSTP011,Provident Neora,68,Silver,Domestic,2.14,Yelahanka,13.102659,77.618127,Synthetic Buyer 321,9000022475,Out for Delivery,2026-07-22 05:09:57
+ORD100322,PSTP003,Starworth - Harmony,53,Gold,Construction,7.74,Banashankari,12.936656,77.560212,Synthetic Buyer 322,9000064902,Pending,2026-08-05 18:34:57
+ORD100323,PSTP007,Purva Skywood Phase 2,17,Silver,Industrial,4.62,Electronic City,12.857591,77.682731,Synthetic Buyer 323,9000069885,Pending,2026-07-31 20:45:57
+ORD100324,PSTP011,Provident Neora,52,Gold,Domestic,2.41,Yelahanka,13.096245,77.601756,Synthetic Buyer 324,9000054407,Out for Delivery,2026-07-16 14:04:57
+ORD100325,PSTP007,Purva Skywood Phase 2,20,Silver,Domestic,6.41,Marathahalli,12.936547,77.700079,Synthetic Buyer 325,9000013849,Accepted,2026-07-23 07:14:57
+ORD100326,PSTP009,Purva Atmosphere,103,Gold,Industrial,3.84,Hebbal,13.037497,77.612862,Synthetic Buyer 326,9000077720,Accepted,2026-08-09 18:04:57
+ORD100327,PSTP003,Starworth - Harmony,38,Gold,Construction,8.54,Banashankari,12.932235,77.55437,Synthetic Buyer 327,9000078397,Accepted,2026-08-03 22:08:57
+ORD100328,PSTP003,Starworth - Harmony,63,Bronze,Industrial,9.19,Banashankari,12.941826,77.542164,Synthetic Buyer 328,9000098665,Pending,2026-08-09 17:14:57
+ORD100329,PSTP007,Purva Skywood Phase 2,12,Silver,Gardening,8.23,Marathahalli,12.958505,77.696908,Synthetic Buyer 329,9000079471,Rejected,2026-07-30 01:21:57
+ORD100330,PSTP002,Purva Atria,149,Gold,Gardening,3.89,Rajajinagar,13.001531,77.550722,Synthetic Buyer 330,9000032669,Accepted,2026-08-01 02:38:57
+ORD100331,PSTP007,Purva Skywood Phase 2,21,Gold,Domestic,5.03,Electronic City,12.848033,77.660469,Synthetic Buyer 331,9000083600,Out for Delivery,2026-07-29 11:44:57
+ORD100332,PSTP003,Starworth - Harmony,107,Gold,Gardening,5.33,Chickpete,12.9692,77.570974,Synthetic Buyer 332,9000092810,Rejected,2026-08-03 06:10:57
+ORD100333,PSTP007,Purva Skywood Phase 2,28,Silver,Construction,4.83,HSR Layout,12.931131,77.639073,Synthetic Buyer 333,9000074082,Out for Delivery,2026-07-28 11:21:57
+ORD100334,PSTP007,Purva Skywood Phase 2,19,Silver,Gardening,7.97,Marathahalli,12.947067,77.70955,Synthetic Buyer 334,9000047837,Pending,2026-08-03 03:47:57
+ORD100335,PSTP002,Purva Atria,48,Bronze,Construction,5.17,Rajajinagar,12.991623,77.544177,Synthetic Buyer 335,9000072118,Out for Delivery,2026-07-31 15:44:57
+ORD100336,PSTP002,Purva Atria,35,Bronze,Construction,4.54,Rajajinagar,12.996621,77.5472,Synthetic Buyer 336,9000029995,Pending,2026-07-22 21:13:57
+ORD100337,PSTP007,Purva Skywood Phase 2,12,Bronze,Construction,10.14,Whitefield,12.954833,77.729992,Synthetic Buyer 337,9000050443,Pending,2026-08-05 21:06:57
+ORD100338,PSTP002,Purva Atria,33,Gold,Industrial,2.73,Hebbal,13.024104,77.602419,Synthetic Buyer 338,9000015593,Pending,2026-08-08 00:11:57
+ORD100339,PSTP007,Purva Skywood Phase 2,43,Silver,Industrial,4.25,Hosur Road,12.882761,77.62323,Synthetic Buyer 339,9000025614,Pending,2026-07-22 22:58:57
+ORD100340,PSTP003,Starworth - Harmony,95,Bronze,Gardening,9.16,Banashankari,12.927335,77.550787,Synthetic Buyer 340,9000065866,Pending,2026-08-04 20:19:57
+ORD100341,PSTP007,Purva Skywood Phase 2,26,Bronze,Gardening,8.93,Electronic City,12.814567,77.677338,Synthetic Buyer 341,9000066294,Out for Delivery,2026-07-26 07:08:57
+ORD100342,PSTP002,Purva Atria,58,Silver,Gardening,6.98,Rajajinagar,12.968996,77.548349,Synthetic Buyer 342,9000080508,Accepted,2026-07-19 13:05:57
+ORD100343,PSTP002,Purva Atria,107,Gold,Construction,1.04,Hebbal,13.02276,77.586574,Synthetic Buyer 343,9000094054,Out for Delivery,2026-08-01 07:31:57
+ORD100344,PSTP003,Starworth - Harmony,31,Silver,Construction,3.81,Chickpete,12.969005,77.58517,Synthetic Buyer 344,9000050562,Out for Delivery,2026-07-17 00:17:57
+ORD100345,PSTP003,Starworth - Harmony,60,Bronze,Industrial,7.38,Marathahalli,12.960964,77.686394,Synthetic Buyer 345,9000022694,Out for Delivery,2026-08-04 15:27:57
+ORD100346,PSTP007,Purva Skywood Phase 2,106,Silver,Industrial,10.84,Whitefield,12.961955,77.731931,Synthetic Buyer 346,9000020596,Pending,2026-07-13 00:54:57
+ORD100347,PSTP005,Purva Palm Beach - Labour Colony,98,Silver,Gardening,8.64,KR Puram,12.999499,77.708978,Synthetic Buyer 347,9000080191,Pending,2026-07-18 03:51:57
+ORD100348,PSTP007,Purva Skywood Phase 2,104,Bronze,Gardening,1.24,HSR Layout,12.902415,77.654392,Synthetic Buyer 348,9000055560,Pending,2026-07-30 20:40:57
+ORD100349,PSTP003,Starworth - Harmony,27,Gold,Gardening,7.23,Jayanagar,12.915869,77.591858,Synthetic Buyer 349,9000041859,Pending,2026-07-30 11:05:57
+ORD100350,PSTP003,Starworth - Harmony,101,Gold,Gardening,9.3,Banashankari,12.934242,77.544822,Synthetic Buyer 350,9000023723,Out for Delivery,2026-07-12 09:38:57
+ORD100351,PSTP007,Purva Skywood Phase 2,49,Silver,Industrial,4.26,HSR Layout,12.928549,77.645514,Synthetic Buyer 351,9000092840,Pending,2026-07-14 07:26:57
+ORD100352,PSTP007,Purva Skywood Phase 2,11,Gold,Gardening,5.0,Koramangala,12.92557,77.628862,Synthetic Buyer 352,9000070966,Out for Delivery,2026-08-03 11:21:57
+ORD100353,PSTP007,Purva Skywood Phase 2,48,Gold,Industrial,4.02,Electronic City,12.857233,77.657981,Synthetic Buyer 353,9000047920,Pending,2026-07-23 04:03:57
+ORD100354,PSTP007,Purva Skywood Phase 2,51,Gold,Gardening,6.73,BTM Layout,12.899044,77.599105,Synthetic Buyer 354,9000013008,Accepted,2026-08-02 03:16:57
+ORD100355,PSTP003,Starworth - Harmony,48,Silver,Industrial,5.19,BTM Layout,12.928665,77.613291,Synthetic Buyer 355,9000063507,Accepted,2026-08-05 07:39:57
+ORD100356,PSTP007,Purva Skywood Phase 2,115,Gold,Construction,11.26,Whitefield,12.939195,77.75351,Synthetic Buyer 356,9000073995,Out for Delivery,2026-07-19 12:38:57
+ORD100357,PSTP002,Purva Atria,16,Gold,Domestic,0.6,Malleshwaram,13.021887,77.572767,Synthetic Buyer 357,9000052623,Out for Delivery,2026-07-17 22:55:57
+ORD100358,PSTP007,Purva Skywood Phase 2,48,Bronze,Construction,15.04,Whitefield,12.970586,77.774865,Synthetic Buyer 358,9000020501,Accepted,2026-07-18 01:32:57
+ORD100359,PSTP003,Starworth - Harmony,39,Gold,Gardening,7.96,Jayanagar,12.915001,77.579723,Synthetic Buyer 359,9000083329,Out for Delivery,2026-07-17 13:03:57
+ORD100360,PSTP007,Purva Skywood Phase 2,13,Bronze,Domestic,7.39,Marathahalli,12.947693,77.700135,Synthetic Buyer 360,9000086247,Rejected,2026-07-29 02:25:57
+ORD100361,PSTP003,Starworth - Harmony,59,Silver,Industrial,11.81,Banashankari,12.908641,77.534685,Synthetic Buyer 361,9000067850,Pending,2026-07-26 02:35:57
+ORD100362,PSTP007,Purva Skywood Phase 2,56,Bronze,Construction,3.73,Electronic City,12.859855,77.65803,Synthetic Buyer 362,9000040498,Rejected,2026-07-14 21:26:57
+ORD100363,PSTP003,Starworth - Harmony,57,Bronze,Industrial,10.72,Banashankari,12.922155,77.536992,Synthetic Buyer 363,9000064046,Out for Delivery,2026-07-19 22:23:57
+ORD100364,PSTP005,Purva Palm Beach - Labour Colony,55,Bronze,Industrial,13.48,Whitefield,12.97957,77.75288,Synthetic Buyer 364,9000019528,Rejected,2026-07-12 02:00:57
+ORD100365,PSTP003,Starworth - Harmony,34,Bronze,Domestic,3.84,Chickpete,12.953885,77.591727,Synthetic Buyer 365,9000075272,Out for Delivery,2026-07-30 00:32:57
+ORD100366,PSTP007,Purva Skywood Phase 2,45,Gold,Domestic,2.68,Hosur Road,12.87591,77.643843,Synthetic Buyer 366,9000011192,Accepted,2026-07-27 13:42:57
+ORD100367,PSTP007,Purva Skywood Phase 2,194,Bronze,Gardening,13.5,Whitefield,12.963708,77.762472,Synthetic Buyer 367,9000028309,Pending,2026-07-23 17:12:57
+ORD100368,PSTP003,Starworth - Harmony,38,Silver,Domestic,5.93,Koramangala,12.922322,77.61084,Synthetic Buyer 368,9000040538,Accepted,2026-07-22 21:46:57
+ORD100369,PSTP007,Purva Skywood Phase 2,51,Bronze,Industrial,2.68,HSR Layout,12.907286,77.640756,Synthetic Buyer 369,9000053303,Rejected,2026-07-18 12:48:57
+ORD100370,PSTP007,Purva Skywood Phase 2,31,Silver,Construction,6.68,Electronic City,12.833507,77.655039,Synthetic Buyer 370,9000065105,Pending,2026-07-31 03:23:57
+ORD100371,PSTP003,Starworth - Harmony,35,Bronze,Industrial,5.39,Jayanagar,12.93697,77.588931,Synthetic Buyer 371,9000018123,Accepted,2026-07-25 15:56:57
+ORD100372,PSTP007,Purva Skywood Phase 2,98,Bronze,Domestic,12.31,Whitefield,12.968249,77.744606,Synthetic Buyer 372,9000030819,Accepted,2026-07-18 16:04:57
+ORD100373,PSTP003,Starworth - Harmony,53,Bronze,Gardening,3.77,Koramangala,12.943125,77.631808,Synthetic Buyer 373,9000030464,Rejected,2026-08-08 22:56:57
+ORD100374,PSTP007,Purva Skywood Phase 2,40,Silver,Gardening,4.7,Hosur Road,12.906475,77.619783,Synthetic Buyer 374,9000032621,Out for Delivery,2026-07-15 18:36:57
+ORD100375,PSTP003,Starworth - Harmony,41,Silver,Construction,7.6,Jayanagar,12.914932,77.586325,Synthetic Buyer 375,9000034416,Accepted,2026-07-15 23:13:57
+ORD100376,PSTP007,Purva Skywood Phase 2,12,Bronze,Domestic,5.23,Electronic City,12.846314,77.660163,Synthetic Buyer 376,9000096015,Out for Delivery,2026-08-09 08:56:57
+ORD100377,PSTP005,Purva Palm Beach - Labour Colony,60,Gold,Construction,4.76,KR Puram,13.031607,77.692581,Synthetic Buyer 377,9000082747,Rejected,2026-07-15 10:32:57
+ORD100378,PSTP007,Purva Skywood Phase 2,14,Silver,Construction,5.69,Koramangala,12.923367,77.618476,Synthetic Buyer 378,9000065270,Out for Delivery,2026-08-09 19:04:57
+ORD100379,PSTP007,Purva Skywood Phase 2,107,Silver,Construction,14.06,Whitefield,12.972347,77.762252,Synthetic Buyer 379,9000015893,Out for Delivery,2026-07-13 03:21:57
+ORD100380,PSTP005,Purva Palm Beach - Labour Colony,62,Gold,Gardening,4.27,KR Puram,13.031075,77.685063,Synthetic Buyer 380,9000058087,Accepted,2026-07-29 23:47:57
+ORD100381,PSTP007,Purva Skywood Phase 2,13,Silver,Gardening,4.81,Electronic City,12.850197,77.657107,Synthetic Buyer 381,9000030361,Accepted,2026-07-27 01:57:57
+ORD100382,PSTP002,Purva Atria,59,Silver,Industrial,5.08,Rajajinagar,12.99629,77.540905,Synthetic Buyer 382,9000092275,Pending,2026-08-06 23:54:57
+ORD100383,PSTP002,Purva Atria,34,Bronze,Gardening,3.98,Rajajinagar,12.994058,77.558858,Synthetic Buyer 383,9000013936,Pending,2026-07-31 01:34:57
+ORD100384,PSTP003,Starworth - Harmony,15,Gold,Gardening,10.48,Banashankari,12.927541,77.536198,Synthetic Buyer 384,9000048288,Rejected,2026-07-14 01:32:57
+ORD100385,PSTP007,Purva Skywood Phase 2,117,Gold,Domestic,3.21,Hosur Road,12.89531,77.631415,Synthetic Buyer 385,9000056762,Out for Delivery,2026-08-09 19:32:57
+ORD100386,PSTP007,Purva Skywood Phase 2,53,Silver,Gardening,12.22,Whitefield,12.940273,77.762928,Synthetic Buyer 386,9000023950,Pending,2026-07-31 07:52:57
+ORD100387,PSTP003,Starworth - Harmony,28,Gold,Domestic,8.5,Banashankari,12.939265,77.550488,Synthetic Buyer 387,9000054578,Pending,2026-07-12 17:44:57
+ORD100388,PSTP005,Purva Palm Beach - Labour Colony,56,Silver,Construction,10.17,Whitefield,13.004817,77.734946,Synthetic Buyer 388,9000020811,Out for Delivery,2026-07-25 22:34:57
+ORD100389,PSTP003,Starworth - Harmony,154,Silver,Gardening,6.36,Jayanagar,12.918885,77.608127,Synthetic Buyer 389,9000069234,Out for Delivery,2026-07-17 18:24:57
+ORD100390,PSTP007,Purva Skywood Phase 2,237,Bronze,Domestic,3.41,Hosur Road,12.894675,77.629492,Synthetic Buyer 390,9000054663,Pending,2026-08-10 04:32:57
+ORD100391,PSTP002,Purva Atria,58,Silver,Construction,3.31,Hebbal,13.046475,77.598491,Synthetic Buyer 391,9000035973,Out for Delivery,2026-08-02 06:18:57
+ORD100392,PSTP003,Starworth - Harmony,43,Silver,Industrial,9.45,Banashankari,12.921832,77.551704,Synthetic Buyer 392,9000021618,Rejected,2026-07-24 17:51:57
+ORD100393,PSTP005,Purva Palm Beach - Labour Colony,30,Gold,Construction,6.5,KR Puram,13.006946,77.681718,Synthetic Buyer 393,9000066946,Out for Delivery,2026-07-12 22:52:57
+ORD100394,PSTP003,Starworth - Harmony,23,Bronze,Industrial,4.53,Chickpete,12.95453,77.583656,Synthetic Buyer 394,9000055557,Pending,2026-07-27 17:42:57
+ORD100395,PSTP002,Purva Atria,16,Gold,Gardening,1.47,Hebbal,13.023501,77.59072,Synthetic Buyer 395,9000033111,Pending,2026-08-06 16:26:57
+ORD100396,PSTP003,Starworth - Harmony,23,Silver,Gardening,4.68,Koramangala,12.933022,77.61588,Synthetic Buyer 396,9000050079,Pending,2026-07-12 16:12:57
+ORD100397,PSTP003,Starworth - Harmony,55,Gold,Domestic,4.85,Koramangala,12.931593,77.624601,Synthetic Buyer 397,9000085931,Pending,2026-07-19 21:52:57
+ORD100398,PSTP001,Purva Venezia,68,Silver,Domestic,2.16,Yelahanka,13.090126,77.589684,Synthetic Buyer 398,9000035483,Out for Delivery,2026-07-29 06:37:57
+ORD100399,PSTP007,Purva Skywood Phase 2,14,Silver,Domestic,4.1,Hosur Road,12.8978,77.62338,Synthetic Buyer 399,9000040748,Pending,2026-08-05 14:37:57
+ORD100400,PSTP003,Starworth - Harmony,65,Bronze,Industrial,4.17,Koramangala,12.941952,77.638074,Synthetic Buyer 400,9000096886,Out for Delivery,2026-07-19 20:50:57
+ORD100401,PSTP007,Purva Skywood Phase 2,22,Gold,Gardening,5.55,Hosur Road,12.868346,77.616573,Synthetic Buyer 401,9000014425,Pending,2026-07-16 17:32:57
+ORD100402,PSTP003,Starworth - Harmony,21,Bronze,Construction,3.83,Koramangala,12.940512,77.617993,Synthetic Buyer 402,9000090776,Accepted,2026-08-08 11:28:57
+ORD100403,PSTP003,Starworth - Harmony,23,Silver,Construction,8.09,Banashankari,12.944327,77.552073,Synthetic Buyer 403,9000096633,Pending,2026-08-01 00:35:57
+ORD100404,PSTP007,Purva Skywood Phase 2,15,Silver,Domestic,8.43,Marathahalli,12.960703,77.696462,Synthetic Buyer 404,9000020436,Accepted,2026-07-28 17:04:57
+ORD100405,PSTP007,Purva Skywood Phase 2,120,Silver,Gardening,5.19,Hosur Road,12.890602,77.613106,Synthetic Buyer 405,9000082441,Out for Delivery,2026-07-13 13:18:57
+ORD100406,PSTP007,Purva Skywood Phase 2,30,Gold,Domestic,12.79,Whitefield,12.965563,77.752794,Synthetic Buyer 406,9000038334,Rejected,2026-07-18 05:16:57
+ORD100407,PSTP007,Purva Skywood Phase 2,12,Bronze,Domestic,4.83,Hosur Road,12.891997,77.616408,Synthetic Buyer 407,9000066142,Accepted,2026-07-13 15:33:57
+ORD100408,PSTP003,Starworth - Harmony,189,Silver,Domestic,11.79,Whitefield,12.977314,77.72858,Synthetic Buyer 408,9000033171,Out for Delivery,2026-07-23 08:33:57
+ORD100409,PSTP003,Starworth - Harmony,20,Silver,Industrial,10.87,Whitefield,12.975533,77.720115,Synthetic Buyer 409,9000038668,Pending,2026-07-30 05:50:57
+ORD100410,PSTP002,Purva Atria,27,Silver,Construction,1.44,Malleshwaram,13.012173,77.576595,Synthetic Buyer 410,9000037465,Accepted,2026-08-09 00:05:57
+ORD100411,PSTP007,Purva Skywood Phase 2,151,Gold,Construction,2.69,HSR Layout,12.913124,77.6467,Synthetic Buyer 411,9000059334,Rejected,2026-08-07 19:29:57
+ORD100412,PSTP003,Starworth - Harmony,65,Gold,Gardening,4.38,Koramangala,12.936209,77.627409,Synthetic Buyer 412,9000047531,Pending,2026-07-14 21:50:57
+ORD100413,PSTP003,Starworth - Harmony,47,Bronze,Industrial,3.99,Koramangala,12.939592,77.613532,Synthetic Buyer 413,9000040094,Rejected,2026-07-30 14:05:57
+ORD100414,PSTP005,Purva Palm Beach - Labour Colony,53,Silver,Industrial,11.84,Whitefield,12.994641,77.746286,Synthetic Buyer 414,9000064789,Pending,2026-07-21 05:16:57
+ORD100415,PSTP007,Purva Skywood Phase 2,42,Silver,Domestic,5.42,Electronic City,12.848575,77.641192,Synthetic Buyer 415,9000094157,Out for Delivery,2026-07-31 08:11:57
+ORD100416,PSTP007,Purva Skywood Phase 2,46,Gold,Construction,5.0,Electronic City,12.849461,77.650634,Synthetic Buyer 416,9000058337,Accepted,2026-07-17 19:11:57
+ORD100417,PSTP007,Purva Skywood Phase 2,57,Bronze,Domestic,5.35,Hosur Road,12.893198,77.611618,Synthetic Buyer 417,9000027626,Pending,2026-07-21 13:52:57
+ORD100418,PSTP005,Purva Palm Beach - Labour Colony,56,Gold,Gardening,4.2,KR Puram,13.043853,77.695674,Synthetic Buyer 418,9000043996,Pending,2026-08-09 02:22:57
+ORD100419,PSTP007,Purva Skywood Phase 2,25,Gold,Industrial,5.64,Electronic City,12.842599,77.660804,Synthetic Buyer 419,9000034987,Accepted,2026-07-12 22:51:57
+ORD100420,PSTP007,Purva Skywood Phase 2,15,Silver,Gardening,9.99,Whitefield,12.958917,77.72386,Synthetic Buyer 420,9000085024,Out for Delivery,2026-07-17 19:41:57
+ORD100421,PSTP002,Purva Atria,28,Bronze,Construction,2.48,Hebbal,13.047366,77.578688,Synthetic Buyer 421,9000025928,Out for Delivery,2026-08-01 07:48:57
+ORD100422,PSTP005,Purva Palm Beach - Labour Colony,30,Silver,Domestic,12.21,Whitefield,12.985695,77.742731,Synthetic Buyer 422,9000044811,Accepted,2026-07-15 18:23:57
+ORD100423,PSTP005,Purva Palm Beach - Labour Colony,35,Gold,Domestic,7.44,KR Puram,13.005066,77.697801,Synthetic Buyer 423,9000094535,Pending,2026-07-23 14:45:57
+ORD100424,PSTP007,Purva Skywood Phase 2,68,Silver,Industrial,13.46,Whitefield,12.96569,77.760538,Synthetic Buyer 424,9000018080,Out for Delivery,2026-07-31 20:23:57
+ORD100425,PSTP003,Starworth - Harmony,19,Silver,Industrial,7.1,Chickpete,12.942363,77.563485,Synthetic Buyer 425,9000085566,Pending,2026-07-18 19:15:57
+ORD100426,PSTP007,Purva Skywood Phase 2,20,Gold,Gardening,6.69,Electronic City,12.838026,77.685231,Synthetic Buyer 426,9000041688,Pending,2026-07-25 22:58:57
+ORD100427,PSTP002,Purva Atria,33,Silver,Industrial,2.91,Malleshwaram,13.000654,77.586955,Synthetic Buyer 427,9000083091,Pending,2026-08-01 14:36:57
+ORD100428,PSTP001,Purva Venezia,40,Gold,Gardening,0.7,Yelahanka,13.099088,77.575564,Synthetic Buyer 428,9000097306,Rejected,2026-08-08 15:12:57
+ORD100429,PSTP007,Purva Skywood Phase 2,27,Bronze,Construction,3.39,HSR Layout,12.900952,77.630696,Synthetic Buyer 429,9000067240,Pending,2026-07-31 00:30:57
+ORD100430,PSTP007,Purva Skywood Phase 2,26,Silver,Construction,7.82,Electronic City,12.822941,77.661396,Synthetic Buyer 430,9000056560,Rejected,2026-07-13 19:56:57
+ORD100431,PSTP007,Purva Skywood Phase 2,64,Silver,Domestic,4.62,Hosur Road,12.880985,77.620287,Synthetic Buyer 431,9000078918,Accepted,2026-07-23 22:24:57
+ORD100432,PSTP003,Starworth - Harmony,26,Gold,Construction,2.92,Koramangala,12.949251,77.614166,Synthetic Buyer 432,9000090904,Pending,2026-08-07 10:08:57
+ORD100433,PSTP003,Starworth - Harmony,82,Silver,Construction,11.25,Banashankari,12.90699,77.542941,Synthetic Buyer 433,9000093190,Rejected,2026-08-01 05:19:57
+ORD100434,PSTP007,Purva Skywood Phase 2,56,Bronze,Industrial,3.6,Electronic City,12.862969,77.64935,Synthetic Buyer 434,9000088310,Pending,2026-07-28 01:19:57
+ORD100435,PSTP003,Starworth - Harmony,11,Silver,Construction,4.17,Chickpete,12.976434,77.581333,Synthetic Buyer 435,9000070895,Pending,2026-07-17 21:52:57
+ORD100436,PSTP011,Provident Neora,47,Bronze,Industrial,3.88,Hebbal,13.05621,77.597322,Synthetic Buyer 436,9000037463,Accepted,2026-07-22 09:37:57
+ORD100437,PSTP003,Starworth - Harmony,12,Silver,Industrial,11.62,Banashankari,12.927568,77.524246,Synthetic Buyer 437,9000093069,Out for Delivery,2026-07-30 06:34:57
+ORD100438,PSTP003,Starworth - Harmony,25,Gold,Domestic,5.06,Koramangala,12.929497,77.622032,Synthetic Buyer 438,9000035819,Accepted,2026-07-28 15:52:57
+ORD100439,PSTP007,Purva Skywood Phase 2,21,Silver,Gardening,6.04,Hosur Road,12.890794,77.605259,Synthetic Buyer 439,9000057964,Accepted,2026-07-13 18:00:57
+ORD100440,PSTP001,Purva Venezia,178,Bronze,Gardening,2.09,Yelahanka,13.109778,77.582812,Synthetic Buyer 440,9000072729,Pending,2026-08-03 02:06:57
+ORD100441,PSTP005,Purva Palm Beach - Labour Colony,23,Silver,Industrial,7.14,KR Puram,13.006779,77.695345,Synthetic Buyer 441,9000088274,Rejected,2026-07-15 11:12:57
+ORD100442,PSTP007,Purva Skywood Phase 2,111,Silver,Domestic,6.17,Electronic City,12.83829,77.65377,Synthetic Buyer 442,9000052524,Out for Delivery,2026-07-23 19:06:57
+ORD100443,PSTP007,Purva Skywood Phase 2,32,Silver,Gardening,11.7,Whitefield,12.96753,77.737438,Synthetic Buyer 443,9000015006,Accepted,2026-07-17 08:46:57
+ORD100444,PSTP007,Purva Skywood Phase 2,26,Gold,Construction,6.44,BTM Layout,12.915983,77.606236,Synthetic Buyer 444,9000077923,Accepted,2026-07-25 17:00:57
+ORD100445,PSTP011,Provident Neora,94,Silver,Gardening,4.05,Yelahanka,13.115502,77.6019,Synthetic Buyer 445,9000033895,Out for Delivery,2026-08-05 02:39:57
+ORD100446,PSTP007,Purva Skywood Phase 2,54,Silver,Construction,3.68,Electronic City,12.86708,77.640206,Synthetic Buyer 446,9000070093,Out for Delivery,2026-07-22 03:58:57
+ORD100447,PSTP007,Purva Skywood Phase 2,119,Bronze,Construction,5.61,Hosur Road,12.867364,77.616557,Synthetic Buyer 447,9000027280,Pending,2026-07-26 23:44:57
+ORD100448,PSTP002,Purva Atria,224,Gold,Construction,2.84,Hebbal,13.033604,77.601957,Synthetic Buyer 448,9000073904,Accepted,2026-07-28 11:49:57
+ORD100449,PSTP003,Starworth - Harmony,105,Gold,Gardening,8.73,Marathahalli,12.983541,77.699918,Synthetic Buyer 449,9000040883,Pending,2026-07-31 06:59:57
+ORD100450,PSTP007,Purva Skywood Phase 2,12,Gold,Gardening,4.48,Koramangala,12.923707,77.63385,Synthetic Buyer 450,9000054403,Out for Delivery,2026-07-24 11:14:57
+ORD100451,PSTP005,Purva Palm Beach - Labour Colony,24,Gold,Domestic,10.71,Whitefield,12.993012,77.730658,Synthetic Buyer 451,9000019158,Out for Delivery,2026-07-15 11:18:57
+ORD100452,PSTP007,Purva Skywood Phase 2,116,Silver,Construction,3.06,HSR Layout,12.917451,77.647387,Synthetic Buyer 452,9000076502,Accepted,2026-08-08 20:53:57
+ORD100453,PSTP003,Starworth - Harmony,52,Gold,Construction,9.53,Banashankari,12.904225,77.570197,Synthetic Buyer 453,9000072318,Accepted,2026-07-22 12:57:57
+ORD100454,PSTP002,Purva Atria,57,Silver,Industrial,3.53,Rajajinagar,12.996184,77.563712,Synthetic Buyer 454,9000084095,Rejected,2026-07-31 14:14:57
+ORD100455,PSTP007,Purva Skywood Phase 2,60,Gold,Gardening,7.35,Electronic City,12.827247,77.658589,Synthetic Buyer 455,9000028875,Pending,2026-07-12 15:24:57
+ORD100456,PSTP007,Purva Skywood Phase 2,94,Silver,Construction,2.94,Hosur Road,12.89557,77.633911,Synthetic Buyer 456,9000081109,Accepted,2026-07-22 15:52:57
+ORD100457,PSTP007,Purva Skywood Phase 2,180,Gold,Industrial,6.86,BTM Layout,12.899683,77.598025,Synthetic Buyer 457,9000019142,Accepted,2026-07-25 21:36:57
+ORD100458,PSTP007,Purva Skywood Phase 2,199,Bronze,Construction,12.54,Whitefield,12.974479,77.741215,Synthetic Buyer 458,9000019844,Pending,2026-07-12 20:51:57
+ORD100459,PSTP007,Purva Skywood Phase 2,47,Silver,Construction,5.13,BTM Layout,12.92275,77.624521,Synthetic Buyer 459,9000028506,Accepted,2026-07-31 09:11:57
+ORD100460,PSTP001,Purva Venezia,37,Silver,Gardening,3.49,Yelahanka,13.124503,77.582219,Synthetic Buyer 460,9000040160,Accepted,2026-07-14 08:30:57
+ORD100461,PSTP007,Purva Skywood Phase 2,17,Silver,Domestic,13.72,Whitefield,12.961289,77.766606,Synthetic Buyer 461,9000035224,Pending,2026-07-31 17:03:57
+ORD100462,PSTP003,Starworth - Harmony,19,Bronze,Construction,4.87,Chickpete,12.960478,77.577405,Synthetic Buyer 462,9000065900,Pending,2026-08-05 13:40:57
+ORD100463,PSTP003,Starworth - Harmony,51,Gold,Domestic,4.72,Jayanagar,12.934434,77.606806,Synthetic Buyer 463,9000096077,Pending,2026-07-14 18:50:57
+ORD100464,PSTP007,Purva Skywood Phase 2,104,Bronze,Gardening,4.54,Koramangala,12.924356,77.633687,Synthetic Buyer 464,9000058276,Pending,2026-07-19 22:25:57
+ORD100465,PSTP007,Purva Skywood Phase 2,41,Gold,Gardening,8.79,Marathahalli,12.956027,77.710242,Synthetic Buyer 465,9000050025,Accepted,2026-07-26 16:44:57
+ORD100466,PSTP003,Starworth - Harmony,15,Bronze,Industrial,4.53,Chickpete,12.954013,77.583995,Synthetic Buyer 466,9000032272,Pending,2026-07-18 22:46:57
+ORD100467,PSTP003,Starworth - Harmony,51,Silver,Industrial,4.84,BTM Layout,12.944139,77.588202,Synthetic Buyer 467,9000079122,Pending,2026-08-05 04:48:57
+ORD100468,PSTP002,Purva Atria,14,Bronze,Construction,0.79,Malleshwaram,13.018576,77.574374,Synthetic Buyer 468,9000037213,Pending,2026-07-30 15:04:57
+ORD100469,PSTP007,Purva Skywood Phase 2,48,Bronze,Construction,6.48,Hosur Road,12.83919,77.638684,Synthetic Buyer 469,9000052578,Out for Delivery,2026-07-24 10:51:57
+ORD100470,PSTP011,Provident Neora,10,Silver,Domestic,4.08,Yelahanka,13.120052,77.616859,Synthetic Buyer 470,9000073971,Out for Delivery,2026-07-18 14:11:57
+ORD100471,PSTP003,Starworth - Harmony,56,Bronze,Construction,9.06,Marathahalli,12.968332,77.703196,Synthetic Buyer 471,9000046170,Pending,2026-08-09 21:45:57
+ORD100472,PSTP005,Purva Palm Beach - Labour Colony,50,Gold,Construction,12.82,Whitefield,12.980053,77.744947,Synthetic Buyer 472,9000043166,Pending,2026-07-20 19:56:57
+ORD100473,PSTP003,Starworth - Harmony,18,Bronze,Domestic,7.17,Jayanagar,12.917919,77.588989,Synthetic Buyer 473,9000050410,Out for Delivery,2026-08-07 20:41:57
+ORD100474,PSTP002,Purva Atria,33,Gold,Domestic,3.56,Hebbal,13.04744,77.600726,Synthetic Buyer 474,9000051323,Out for Delivery,2026-07-16 13:58:57
+ORD100475,PSTP003,Starworth - Harmony,13,Bronze,Domestic,6.48,KR Puram,13.002014,77.672826,Synthetic Buyer 475,9000061293,Pending,2026-07-28 15:19:57
+ORD100476,PSTP001,Purva Venezia,50,Gold,Industrial,2.17,Yelahanka,13.112164,77.580515,Synthetic Buyer 476,9000074153,Out for Delivery,2026-08-08 16:29:57
+ORD100477,PSTP007,Purva Skywood Phase 2,43,Gold,Domestic,4.89,Koramangala,12.926503,77.63143,Synthetic Buyer 477,9000095162,Out for Delivery,2026-08-01 12:20:57
+ORD100478,PSTP007,Purva Skywood Phase 2,17,Silver,Construction,4.91,Koramangala,12.935588,77.647963,Synthetic Buyer 478,9000084102,Out for Delivery,2026-07-15 13:37:57
+ORD100479,PSTP007,Purva Skywood Phase 2,71,Silver,Domestic,13.68,Whitefield,12.961564,77.765982,Synthetic Buyer 479,9000063717,Pending,2026-07-12 16:56:57
+ORD100480,PSTP007,Purva Skywood Phase 2,107,Bronze,Construction,4.91,Electronic City,12.849225,77.663215,Synthetic Buyer 480,9000034445,Accepted,2026-08-07 15:59:57
+ORD100481,PSTP007,Purva Skywood Phase 2,20,Silver,Industrial,13.01,Whitefield,12.962811,77.757495,Synthetic Buyer 481,9000015122,Pending,2026-08-04 06:38:57
+ORD100482,PSTP007,Purva Skywood Phase 2,15,Gold,Construction,4.16,HSR Layout,12.913527,77.628683,Synthetic Buyer 482,9000029603,Pending,2026-07-17 09:49:57
+ORD100483,PSTP003,Starworth - Harmony,19,Gold,Domestic,1.99,Koramangala,12.961269,77.631738,Synthetic Buyer 483,9000099884,Accepted,2026-07-31 21:22:57
+ORD100484,PSTP007,Purva Skywood Phase 2,29,Silver,Industrial,4.73,Hosur Road,12.855952,77.640136,Synthetic Buyer 484,9000072055,Accepted,2026-07-17 07:08:57
+ORD100485,PSTP007,Purva Skywood Phase 2,28,Gold,Gardening,4.76,Electronic City,12.85386,77.677956,Synthetic Buyer 485,9000088929,Pending,2026-08-05 14:02:57
+ORD100486,PSTP007,Purva Skywood Phase 2,45,Bronze,Domestic,7.63,Marathahalli,12.954306,77.693127,Synthetic Buyer 486,9000092736,Pending,2026-07-22 00:22:57
+ORD100487,PSTP005,Purva Palm Beach - Labour Colony,32,Gold,Domestic,11.95,Whitefield,12.980028,77.733052,Synthetic Buyer 487,9000093733,Out for Delivery,2026-08-03 17:59:57
+ORD100488,PSTP007,Purva Skywood Phase 2,100,Silver,Domestic,6.45,Electronic City,12.839025,77.681939,Synthetic Buyer 488,9000030757,Pending,2026-07-24 13:18:57
+ORD100489,PSTP007,Purva Skywood Phase 2,75,Gold,Gardening,7.55,Hosur Road,12.899501,77.591572,Synthetic Buyer 489,9000061215,Out for Delivery,2026-08-03 10:00:57
+ORD100490,PSTP007,Purva Skywood Phase 2,30,Bronze,Industrial,3.88,Hosur Road,12.872785,77.632048,Synthetic Buyer 490,9000023362,Accepted,2026-08-07 21:07:57
+ORD100491,PSTP003,Starworth - Harmony,36,Silver,Domestic,9.25,Marathahalli,12.972855,77.705147,Synthetic Buyer 491,9000069419,Pending,2026-07-20 19:27:57
+ORD100492,PSTP007,Purva Skywood Phase 2,46,Gold,Construction,8.36,Marathahalli,12.953332,77.707395,Synthetic Buyer 492,9000038379,Pending,2026-07-16 04:49:57
+ORD100493,PSTP011,Provident Neora,17,Gold,Industrial,2.5,Yelahanka,13.105471,77.614981,Synthetic Buyer 493,9000012081,Accepted,2026-07-15 19:38:57
+ORD100494,PSTP007,Purva Skywood Phase 2,108,Bronze,Domestic,8.38,Marathahalli,12.959267,77.698337,Synthetic Buyer 494,9000032103,Pending,2026-08-06 02:00:57
+ORD100495,PSTP003,Starworth - Harmony,60,Gold,Construction,4.65,Koramangala,12.934251,77.62991,Synthetic Buyer 495,9000040300,Rejected,2026-07-14 17:01:57
+ORD100496,PSTP002,Purva Atria,65,Silver,Industrial,1.54,Hebbal,13.031725,77.589785,Synthetic Buyer 496,9000021779,Out for Delivery,2026-07-12 13:24:57
+ORD100497,PSTP007,Purva Skywood Phase 2,48,Gold,Domestic,4.38,Koramangala,12.920778,77.631941,Synthetic Buyer 497,9000059980,Pending,2026-07-26 11:20:57
+ORD100498,PSTP002,Purva Atria,10,Bronze,Gardening,1.81,Hebbal,13.027729,77.593779,Synthetic Buyer 498,9000033148,Accepted,2026-08-05 12:02:57
+ORD100499,PSTP007,Purva Skywood Phase 2,13,Silver,Construction,10.47,Whitefield,12.951875,77.736553,Synthetic Buyer 499,9000094644,Accepted,2026-08-01 18:01:57
+ORD100500,PSTP003,Starworth - Harmony,20,Bronze,Construction,5.85,Chickpete,12.963074,77.567223,Synthetic Buyer 500,9000079668,Out for Delivery,2026-08-06 23:48:57
+ORD100501,PSTP003,Starworth - Harmony,114,Bronze,Domestic,7.19,Marathahalli,12.974698,77.686154,Synthetic Buyer 501,9000088103,Out for Delivery,2026-07-28 20:17:57
+ORD100502,PSTP011,Provident Neora,24,Silver,Construction,1.72,Yelahanka,13.095445,77.609689,Synthetic Buyer 502,9000099219,Pending,2026-07-20 18:39:57
+ORD100503,PSTP007,Purva Skywood Phase 2,45,Gold,Gardening,5.64,Hosur Road,12.88115,77.610426,Synthetic Buyer 503,9000032006,Pending,2026-07-23 20:34:57
+ORD100504,PSTP003,Starworth - Harmony,60,Gold,Industrial,7.98,Jayanagar,12.918533,77.574303,Synthetic Buyer 504,9000047151,Pending,2026-07-18 14:24:57
+ORD100505,PSTP007,Purva Skywood Phase 2,17,Gold,Gardening,15.07,Whitefield,12.971021,77.774826,Synthetic Buyer 505,9000025942,Accepted,2026-07-22 15:26:57
+ORD100506,PSTP003,Starworth - Harmony,24,Bronze,Industrial,4.27,Koramangala,12.936775,77.624214,Synthetic Buyer 506,9000067509,Accepted,2026-07-17 18:47:57
+ORD100507,PSTP007,Purva Skywood Phase 2,32,Silver,Gardening,5.26,Electronic City,12.846459,77.654336,Synthetic Buyer 507,9000016274,Accepted,2026-07-12 21:26:57
+ORD100508,PSTP001,Purva Venezia,21,Silver,Gardening,3.45,Yelahanka,13.114373,77.595564,Synthetic Buyer 508,9000081253,Accepted,2026-07-30 20:19:57
+ORD100509,PSTP003,Starworth - Harmony,18,Gold,Gardening,9.26,Marathahalli,12.966371,77.704835,Synthetic Buyer 509,9000065380,Pending,2026-07-30 02:18:57
+ORD100510,PSTP007,Purva Skywood Phase 2,106,Gold,Construction,5.9,BTM Layout,12.899779,77.606885,Synthetic Buyer 510,9000034019,Rejected,2026-07-25 07:01:57
+ORD100511,PSTP003,Starworth - Harmony,21,Silver,Construction,4.99,Chickpete,12.977181,77.573836,Synthetic Buyer 511,9000085989,Pending,2026-08-03 12:20:57
+ORD100512,PSTP007,Purva Skywood Phase 2,53,Bronze,Domestic,14.34,Whitefield,12.965209,77.770742,Synthetic Buyer 512,9000089335,Accepted,2026-07-17 11:15:57
+ORD100513,PSTP007,Purva Skywood Phase 2,22,Gold,Domestic,5.73,BTM Layout,12.923094,77.617785,Synthetic Buyer 513,9000089984,Rejected,2026-08-10 12:11:57
+ORD100514,PSTP007,Purva Skywood Phase 2,79,Silver,Industrial,12.18,Whitefield,12.953012,77.755197,Synthetic Buyer 514,9000015178,Out for Delivery,2026-07-12 21:19:57
+ORD100515,PSTP003,Starworth - Harmony,15,Gold,Construction,5.62,Jayanagar,12.939278,77.583041,Synthetic Buyer 515,9000022238,Out for Delivery,2026-07-18 01:53:57
+ORD100516,PSTP005,Purva Palm Beach - Labour Colony,13,Gold,Gardening,12.51,Whitefield,12.988156,77.748791,Synthetic Buyer 516,9000059507,Out for Delivery,2026-07-23 09:02:57
+ORD100517,PSTP003,Starworth - Harmony,23,Silver,Domestic,6.24,BTM Layout,12.919745,77.609482,Synthetic Buyer 517,9000058702,Pending,2026-07-19 14:35:57
+ORD100518,PSTP007,Purva Skywood Phase 2,31,Bronze,Gardening,4.64,Electronic City,12.852202,77.668263,Synthetic Buyer 518,9000041914,Out for Delivery,2026-07-29 20:44:57
+ORD100519,PSTP007,Purva Skywood Phase 2,20,Gold,Gardening,8.87,Marathahalli,12.957465,77.709539,Synthetic Buyer 519,9000017406,Rejected,2026-07-14 13:48:57
+ORD100520,PSTP002,Purva Atria,43,Silver,Domestic,3.33,Malleshwaram,12.995324,77.580462,Synthetic Buyer 520,9000099050,Out for Delivery,2026-07-19 02:38:57
+ORD100521,PSTP002,Purva Atria,19,Silver,Domestic,4.39,Rajajinagar,12.990044,77.558627,Synthetic Buyer 521,9000095329,Pending,2026-07-14 05:54:57
+ORD100522,PSTP003,Starworth - Harmony,46,Gold,Gardening,9.12,Banashankari,12.927527,77.551124,Synthetic Buyer 522,9000029382,Rejected,2026-07-25 05:03:57
+ORD100523,PSTP003,Starworth - Harmony,33,Bronze,Industrial,4.49,Koramangala,12.935414,77.611535,Synthetic Buyer 523,9000094056,Accepted,2026-08-05 09:02:57
+ORD100524,PSTP007,Purva Skywood Phase 2,54,Gold,Industrial,2.55,HSR Layout,12.913925,77.650569,Synthetic Buyer 524,9000050186,Pending,2026-08-03 18:08:57
+ORD100525,PSTP005,Purva Palm Beach - Labour Colony,33,Gold,Domestic,9.05,Whitefield,12.991882,77.704011,Synthetic Buyer 525,9000088794,Accepted,2026-08-04 06:24:57
+ORD100526,PSTP002,Purva Atria,51,Gold,Gardening,1.7,Hebbal,13.020117,77.592172,Synthetic Buyer 526,9000019008,Pending,2026-08-03 01:22:57
+ORD100527,PSTP003,Starworth - Harmony,30,Gold,Domestic,6.22,Marathahalli,12.979208,77.677105,Synthetic Buyer 527,9000074485,Pending,2026-08-04 16:22:57
+ORD100528,PSTP007,Purva Skywood Phase 2,12,Bronze,Industrial,11.15,Whitefield,12.973251,77.723113,Synthetic Buyer 528,9000042875,Pending,2026-07-11 20:33:57
+ORD100529,PSTP007,Purva Skywood Phase 2,18,Silver,Gardening,4.26,Hosur Road,12.882029,77.623361,Synthetic Buyer 529,9000052632,Rejected,2026-08-08 02:57:57
+ORD100530,PSTP005,Purva Palm Beach - Labour Colony,96,Silver,Gardening,12.54,Whitefield,12.981611,77.742824,Synthetic Buyer 530,9000027250,Out for Delivery,2026-07-21 07:02:57
+ORD100531,PSTP007,Purva Skywood Phase 2,27,Gold,Industrial,13.26,Whitefield,12.975097,77.749934,Synthetic Buyer 531,9000031563,Accepted,2026-07-24 04:21:57
+ORD100532,PSTP001,Purva Venezia,66,Silver,Industrial,1.24,Yelahanka,13.085441,77.575755,Synthetic Buyer 532,9000097841,Rejected,2026-07-24 10:41:57
+ORD100533,PSTP003,Starworth - Harmony,48,Silver,Industrial,4.47,Koramangala,12.934883,77.62312,Synthetic Buyer 533,9000062345,Rejected,2026-07-17 01:31:57
+ORD100534,PSTP003,Starworth - Harmony,35,Bronze,Industrial,4.71,Koramangala,12.933456,77.628391,Synthetic Buyer 534,9000092980,Accepted,2026-07-21 19:41:57
+ORD100535,PSTP007,Purva Skywood Phase 2,17,Bronze,Industrial,6.8,Electronic City,12.833358,77.673307,Synthetic Buyer 535,9000066022,Pending,2026-08-02 09:35:57
+ORD100536,PSTP003,Starworth - Harmony,28,Gold,Domestic,5.87,BTM Layout,12.923894,77.606176,Synthetic Buyer 536,9000047862,Out for Delivery,2026-07-24 15:54:57
+ORD100537,PSTP003,Starworth - Harmony,41,Silver,Domestic,5.34,Jayanagar,12.9448,77.581418,Synthetic Buyer 537,9000057660,Accepted,2026-07-27 17:43:57
+ORD100538,PSTP007,Purva Skywood Phase 2,16,Silver,Gardening,5.81,Electronic City,12.841124,77.658766,Synthetic Buyer 538,9000080940,Out for Delivery,2026-08-08 17:54:57
+ORD100539,PSTP002,Purva Atria,59,Silver,Industrial,0.29,Hebbal,13.027636,77.577222,Synthetic Buyer 539,9000026103,Out for Delivery,2026-08-07 01:35:57
+ORD100540,PSTP002,Purva Atria,16,Gold,Industrial,2.72,Hebbal,13.047975,77.5861,Synthetic Buyer 540,9000066177,Accepted,2026-07-13 08:38:57
+ORD100541,PSTP003,Starworth - Harmony,20,Silver,Construction,5.34,Koramangala,12.926972,77.62096,Synthetic Buyer 541,9000023376,Out for Delivery,2026-07-23 03:49:57
+ORD100542,PSTP005,Purva Palm Beach - Labour Colony,23,Silver,Gardening,14.74,Whitefield,12.987983,77.77458,Synthetic Buyer 542,9000092062,Pending,2026-07-28 06:47:57
+ORD100543,PSTP001,Purva Venezia,37,Gold,Industrial,2.95,Yelahanka,13.107346,77.59472,Synthetic Buyer 543,9000034448,Pending,2026-08-09 02:30:57
+ORD100544,PSTP007,Purva Skywood Phase 2,19,Silver,Gardening,12.71,Whitefield,12.948429,77.763632,Synthetic Buyer 544,9000024669,Pending,2026-08-02 01:39:57
+ORD100545,PSTP005,Purva Palm Beach - Labour Colony,27,Bronze,Industrial,11.54,Whitefield,12.983079,77.730792,Synthetic Buyer 545,9000012129,Out for Delivery,2026-07-13 23:06:57
+ORD100546,PSTP007,Purva Skywood Phase 2,31,Silver,Domestic,2.95,Electronic City,12.867996,77.652776,Synthetic Buyer 546,9000093442,Pending,2026-07-17 03:57:57
+ORD100547,PSTP003,Starworth - Harmony,42,Gold,Gardening,2.8,Koramangala,12.949885,77.617106,Synthetic Buyer 547,9000037193,Accepted,2026-07-18 06:40:57
+ORD100548,PSTP003,Starworth - Harmony,33,Gold,Industrial,4.8,Koramangala,12.931816,77.620962,Synthetic Buyer 548,9000097269,Pending,2026-08-10 09:40:57
+ORD100549,PSTP007,Purva Skywood Phase 2,29,Bronze,Industrial,4.92,Hosur Road,12.879717,77.617743,Synthetic Buyer 549,9000028065,Out for Delivery,2026-07-27 03:41:57
+ORD100550,PSTP002,Purva Atria,31,Bronze,Domestic,5.99,Rajajinagar,12.976238,77.553931,Synthetic Buyer 550,9000016549,Pending,2026-08-04 05:59:57
+ORD100551,PSTP007,Purva Skywood Phase 2,87,Bronze,Construction,3.3,Electronic City,12.86365,77.660455,Synthetic Buyer 551,9000091986,Out for Delivery,2026-07-12 05:28:57
+ORD100552,PSTP007,Purva Skywood Phase 2,11,Gold,Industrial,2.88,HSR Layout,12.91306,77.643737,Synthetic Buyer 552,9000089063,Rejected,2026-08-03 05:39:57
+ORD100553,PSTP002,Purva Atria,14,Silver,Construction,3.72,Malleshwaram,12.991658,77.576379,Synthetic Buyer 553,9000025585,Pending,2026-07-14 21:10:57
+ORD100554,PSTP002,Purva Atria,87,Silver,Domestic,5.37,Rajajinagar,12.978088,77.565708,Synthetic Buyer 554,9000061647,Accepted,2026-08-07 03:10:57
+ORD100555,PSTP007,Purva Skywood Phase 2,19,Bronze,Industrial,4.31,Hosur Road,12.911742,77.626017,Synthetic Buyer 555,9000031924,Pending,2026-07-27 11:17:57
+ORD100556,PSTP007,Purva Skywood Phase 2,49,Bronze,Domestic,11.55,Whitefield,12.953957,77.747425,Synthetic Buyer 556,9000055483,Out for Delivery,2026-08-08 17:06:57
+ORD100557,PSTP007,Purva Skywood Phase 2,30,Silver,Gardening,4.38,Electronic City,12.854408,77.654841,Synthetic Buyer 557,9000045322,Out for Delivery,2026-07-13 17:56:57
+ORD100558,PSTP002,Purva Atria,10,Bronze,Domestic,3.35,Hebbal,13.047637,77.597723,Synthetic Buyer 558,9000032493,Pending,2026-08-09 06:39:57
+ORD100559,PSTP003,Starworth - Harmony,30,Gold,Industrial,3.37,Koramangala,12.948441,77.634842,Synthetic Buyer 559,9000069615,Accepted,2026-07-19 11:13:57
+ORD100560,PSTP007,Purva Skywood Phase 2,43,Silver,Construction,3.65,Hosur Road,12.885825,77.628202,Synthetic Buyer 560,9000068230,Accepted,2026-07-16 23:30:57
+ORD100561,PSTP002,Purva Atria,104,Gold,Gardening,3.4,Hebbal,13.034634,77.607059,Synthetic Buyer 561,9000036062,Out for Delivery,2026-07-21 11:25:57
+ORD100562,PSTP007,Purva Skywood Phase 2,93,Gold,Industrial,4.48,Electronic City,12.863124,77.633609,Synthetic Buyer 562,9000054324,Out for Delivery,2026-08-07 12:30:57
+ORD100563,PSTP003,Starworth - Harmony,62,Silver,Domestic,5.04,Koramangala,12.932184,77.635257,Synthetic Buyer 563,9000071566,Accepted,2026-07-15 22:35:57
+ORD100564,PSTP007,Purva Skywood Phase 2,20,Bronze,Gardening,11.47,Whitefield,12.959537,77.742128,Synthetic Buyer 564,9000066288,Out for Delivery,2026-07-26 04:54:57
+ORD100565,PSTP007,Purva Skywood Phase 2,53,Silver,Industrial,4.23,Electronic City,12.860574,77.641128,Synthetic Buyer 565,9000082676,Out for Delivery,2026-08-09 06:50:57
+ORD100566,PSTP007,Purva Skywood Phase 2,43,Bronze,Construction,14.85,Whitefield,12.957296,77.78125,Synthetic Buyer 566,9000052869,Accepted,2026-07-16 12:54:57
+ORD100567,PSTP007,Purva Skywood Phase 2,80,Gold,Domestic,5.42,Electronic City,12.84691,77.67619,Synthetic Buyer 567,9000062917,Accepted,2026-07-16 06:03:57
+ORD100568,PSTP005,Purva Palm Beach - Labour Colony,58,Silver,Construction,6.22,KR Puram,13.009073,77.68023,Synthetic Buyer 568,9000073733,Pending,2026-07-14 13:41:57
+ORD100569,PSTP007,Purva Skywood Phase 2,66,Silver,Domestic,5.36,Koramangala,12.926143,77.624723,Synthetic Buyer 569,9000092855,Out for Delivery,2026-08-08 18:01:57
+ORD100570,PSTP003,Starworth - Harmony,24,Silver,Gardening,5.03,Chickpete,12.95888,77.576412,Synthetic Buyer 570,9000025506,Accepted,2026-08-02 00:41:57
+ORD100571,PSTP005,Purva Palm Beach - Labour Colony,21,Gold,Construction,13.74,Whitefield,12.97813,77.7548,Synthetic Buyer 571,9000010705,Pending,2026-07-13 02:00:57
+ORD100572,PSTP001,Purva Venezia,14,Bronze,Industrial,1.36,Yelahanka,13.084986,77.577175,Synthetic Buyer 572,9000050260,Accepted,2026-08-02 13:02:57
+ORD100573,PSTP003,Starworth - Harmony,18,Silver,Industrial,4.77,Koramangala,12.937201,77.640834,Synthetic Buyer 573,9000033718,Pending,2026-07-31 12:38:57
+ORD100574,PSTP007,Purva Skywood Phase 2,22,Gold,Domestic,8.19,Marathahalli,12.958239,77.696541,Synthetic Buyer 574,9000061054,Rejected,2026-08-09 10:03:57
+ORD100575,PSTP007,Purva Skywood Phase 2,47,Gold,Industrial,6.18,Jayanagar,12.913239,77.607682,Synthetic Buyer 575,9000089789,Pending,2026-07-26 07:29:57
+ORD100576,PSTP003,Starworth - Harmony,78,Gold,Construction,6.1,Koramangala,12.921,77.609659,Synthetic Buyer 576,9000093076,Out for Delivery,2026-07-23 15:35:57
+ORD100577,PSTP011,Provident Neora,31,Silver,Gardening,1.81,Yelahanka,13.09867,77.613822,Synthetic Buyer 577,9000087921,Pending,2026-08-10 04:41:57
+ORD100578,PSTP003,Starworth - Harmony,55,Gold,Industrial,8.04,Banashankari,12.932176,77.560054,Synthetic Buyer 578,9000081466,Out for Delivery,2026-07-15 07:44:57
+ORD100579,PSTP007,Purva Skywood Phase 2,114,Silver,Industrial,8.84,Marathahalli,12.957447,77.709196,Synthetic Buyer 579,9000033241,Accepted,2026-08-05 03:17:57
+ORD100580,PSTP007,Purva Skywood Phase 2,29,Gold,Construction,3.4,HSR Layout,12.92188,77.649905,Synthetic Buyer 580,9000033785,Pending,2026-07-13 04:54:57
+ORD100581,PSTP007,Purva Skywood Phase 2,22,Gold,Domestic,10.64,Whitefield,12.952344,77.738189,Synthetic Buyer 581,9000021809,Pending,2026-07-31 10:12:57
+ORD100582,PSTP003,Starworth - Harmony,28,Silver,Gardening,4.12,Koramangala,12.938239,77.625245,Synthetic Buyer 582,9000034597,Out for Delivery,2026-07-19 18:47:57
+ORD100583,PSTP007,Purva Skywood Phase 2,11,Bronze,Gardening,3.92,Koramangala,12.92012,77.637531,Synthetic Buyer 583,9000058884,Pending,2026-07-13 11:19:57
+ORD100584,PSTP007,Purva Skywood Phase 2,40,Silver,Industrial,4.14,HSR Layout,12.918021,77.632441,Synthetic Buyer 584,9000084673,Out for Delivery,2026-07-12 14:36:57
+ORD100585,PSTP003,Starworth - Harmony,46,Bronze,Industrial,6.36,Chickpete,12.957714,77.56381,Synthetic Buyer 585,9000085381,Out for Delivery,2026-07-16 00:30:57
+ORD100586,PSTP007,Purva Skywood Phase 2,14,Silver,Industrial,5.03,Electronic City,12.850307,77.646519,Synthetic Buyer 586,9000076083,Out for Delivery,2026-07-28 01:12:57
+ORD100587,PSTP007,Purva Skywood Phase 2,45,Silver,Gardening,4.68,BTM Layout,12.92413,77.63159,Synthetic Buyer 587,9000043564,Accepted,2026-07-14 17:12:57
+ORD100588,PSTP003,Starworth - Harmony,51,Gold,Domestic,5.23,Chickpete,12.967437,77.57216,Synthetic Buyer 588,9000090258,Pending,2026-08-03 02:33:57
+ORD100589,PSTP003,Starworth - Harmony,13,Gold,Construction,7.03,BTM Layout,12.925764,77.579036,Synthetic Buyer 589,9000066104,Accepted,2026-08-06 23:46:57
+ORD100590,PSTP005,Purva Palm Beach - Labour Colony,30,Gold,Domestic,6.39,KR Puram,13.006994,77.678685,Synthetic Buyer 590,9000074588,Pending,2026-08-09 05:04:57
+ORD100591,PSTP003,Starworth - Harmony,10,Bronze,Industrial,5.34,Koramangala,12.927181,77.614841,Synthetic Buyer 591,9000021141,Pending,2026-08-09 02:30:57
+ORD100592,PSTP003,Starworth - Harmony,25,Gold,Industrial,7.1,Marathahalli,12.977694,77.685282,Synthetic Buyer 592,9000080465,Accepted,2026-07-12 23:57:57
+ORD100593,PSTP005,Purva Palm Beach - Labour Colony,25,Silver,Domestic,7.8,KR Puram,13.001503,77.698136,Synthetic Buyer 593,9000066811,Pending,2026-07-29 03:33:57
+ORD100594,PSTP007,Purva Skywood Phase 2,75,Bronze,Construction,11.74,Whitefield,12.947506,77.753888,Synthetic Buyer 594,9000024187,Pending,2026-08-04 05:32:57
+ORD100595,PSTP002,Purva Atria,32,Gold,Industrial,1.22,Hebbal,13.03347,77.58459,Synthetic Buyer 595,9000034192,Pending,2026-07-23 05:34:57
+ORD100596,PSTP003,Starworth - Harmony,14,Silver,Construction,5.35,Koramangala,12.926925,77.622513,Synthetic Buyer 596,9000096974,Pending,2026-07-29 23:26:57
+ORD100597,PSTP002,Purva Atria,30,Silver,Construction,5.59,Rajajinagar,12.989335,77.54103,Synthetic Buyer 597,9000044741,Accepted,2026-07-27 05:04:57
+ORD100598,PSTP003,Starworth - Harmony,36,Bronze,Construction,4.88,Koramangala,12.931426,77.625956,Synthetic Buyer 598,9000066360,Pending,2026-08-08 18:09:57
+ORD100599,PSTP003,Starworth - Harmony,22,Silver,Construction,4.68,Jayanagar,12.935103,77.605806,Synthetic Buyer 599,9000027068,Accepted,2026-07-18 19:11:57
+ORD100600,PSTP001,Purva Venezia,10,Silver,Construction,3.28,Yelahanka,13.112284,77.595238,Synthetic Buyer 600,9000053567,Accepted,2026-07-16 08:44:57
+ORD100601,PSTP007,Purva Skywood Phase 2,18,Gold,Gardening,4.17,Electronic City,12.856536,77.653367,Synthetic Buyer 601,9000037190,Accepted,2026-07-14 20:18:57
+ORD100602,PSTP007,Purva Skywood Phase 2,14,Gold,Construction,4.77,Hosur Road,12.894028,77.616937,Synthetic Buyer 602,9000079351,Rejected,2026-07-11 17:08:57
+ORD100603,PSTP007,Purva Skywood Phase 2,23,Gold,Industrial,4.7,BTM Layout,12.918872,77.626438,Synthetic Buyer 603,9000056017,Rejected,2026-08-09 08:49:57
+ORD100604,PSTP007,Purva Skywood Phase 2,24,Silver,Domestic,3.78,Electronic City,12.865553,77.640882,Synthetic Buyer 604,9000072789,Out for Delivery,2026-07-12 07:34:57
+ORD100605,PSTP001,Purva Venezia,27,Bronze,Industrial,2.46,Yelahanka,13.083359,77.589597,Synthetic Buyer 605,9000074957,Accepted,2026-08-01 00:57:57
+ORD100606,PSTP003,Starworth - Harmony,27,Gold,Industrial,7.04,BTM Layout,12.916279,77.595384,Synthetic Buyer 606,9000017581,Accepted,2026-08-08 09:54:57
+ORD100607,PSTP007,Purva Skywood Phase 2,249,Gold,Gardening,5.76,BTM Layout,12.916382,77.613343,Synthetic Buyer 607,9000077803,Rejected,2026-07-24 17:12:57
+ORD100608,PSTP002,Purva Atria,36,Silver,Domestic,3.78,Hebbal,13.046129,77.604689,Synthetic Buyer 608,9000035272,Accepted,2026-07-15 14:25:57
+ORD100609,PSTP003,Starworth - Harmony,17,Gold,Gardening,4.49,Chickpete,12.958449,77.581971,Synthetic Buyer 609,9000072315,Accepted,2026-07-12 13:26:57
+ORD100610,PSTP003,Starworth - Harmony,36,Bronze,Construction,9.13,Banashankari,12.932843,77.547467,Synthetic Buyer 610,9000075624,Pending,2026-07-27 13:11:57
+ORD100611,PSTP007,Purva Skywood Phase 2,32,Bronze,Construction,2.36,HSR Layout,12.903715,77.641937,Synthetic Buyer 611,9000088341,Out for Delivery,2026-08-03 03:14:57
+ORD100612,PSTP001,Purva Venezia,101,Gold,Construction,2.89,Yelahanka,13.121248,77.568406,Synthetic Buyer 612,9000088480,Out for Delivery,2026-07-29 17:34:57
+ORD100613,PSTP003,Starworth - Harmony,91,Silver,Gardening,5.07,Koramangala,12.93349,77.600412,Synthetic Buyer 613,9000022702,Pending,2026-08-03 14:55:57
+ORD100614,PSTP007,Purva Skywood Phase 2,17,Silver,Industrial,3.87,HSR Layout,12.918255,77.636081,Synthetic Buyer 614,9000067430,Pending,2026-08-05 08:36:57
+ORD100615,PSTP005,Purva Palm Beach - Labour Colony,68,Bronze,Domestic,9.13,Whitefield,13.002078,77.719229,Synthetic Buyer 615,9000021572,Accepted,2026-07-31 19:21:57
+ORD100616,PSTP003,Starworth - Harmony,49,Bronze,Gardening,9.34,Banashankari,12.923848,77.551415,Synthetic Buyer 616,9000088716,Pending,2026-08-01 09:12:57
+ORD100617,PSTP007,Purva Skywood Phase 2,33,Silver,Domestic,13.06,Whitefield,12.973174,77.749356,Synthetic Buyer 617,9000071079,Accepted,2026-07-21 22:54:57
+ORD100618,PSTP007,Purva Skywood Phase 2,11,Gold,Gardening,2.84,HSR Layout,12.903931,77.637102,Synthetic Buyer 618,9000069353,Out for Delivery,2026-08-05 23:46:57
+ORD100619,PSTP007,Purva Skywood Phase 2,16,Bronze,Domestic,4.94,Koramangala,12.927312,77.631614,Synthetic Buyer 619,9000083228,Out for Delivery,2026-07-21 15:04:57
+ORD100620,PSTP007,Purva Skywood Phase 2,23,Silver,Gardening,5.83,Electronic City,12.841986,77.650123,Synthetic Buyer 620,9000043403,Accepted,2026-07-19 03:42:57
+ORD100621,PSTP003,Starworth - Harmony,47,Gold,Gardening,5.64,Jayanagar,12.930556,77.594587,Synthetic Buyer 621,9000069191,Accepted,2026-07-16 15:36:57
+ORD100622,PSTP002,Purva Atria,24,Silver,Construction,4.28,Rajajinagar,12.988872,77.563749,Synthetic Buyer 622,9000093184,Out for Delivery,2026-08-10 04:50:57
+ORD100623,PSTP005,Purva Palm Beach - Labour Colony,19,Bronze,Domestic,6.55,KR Puram,13.009118,77.68825,Synthetic Buyer 623,9000010723,Pending,2026-08-02 02:40:57
+ORD100624,PSTP003,Starworth - Harmony,49,Silver,Industrial,9.65,Marathahalli,12.987575,77.707948,Synthetic Buyer 624,9000095420,Accepted,2026-07-31 12:19:57
+ORD100625,PSTP007,Purva Skywood Phase 2,20,Gold,Construction,5.58,Electronic City,12.845303,77.645813,Synthetic Buyer 625,9000084784,Accepted,2026-08-04 01:11:57
+ORD100626,PSTP007,Purva Skywood Phase 2,195,Bronze,Gardening,4.23,Hosur Road,12.879184,77.624675,Synthetic Buyer 626,9000041367,Accepted,2026-07-19 07:29:57
+ORD100627,PSTP005,Purva Palm Beach - Labour Colony,32,Gold,Construction,12.24,Whitefield,12.985665,77.743063,Synthetic Buyer 627,9000014824,Accepted,2026-07-16 23:24:57
+ORD100628,PSTP007,Purva Skywood Phase 2,26,Bronze,Domestic,3.64,HSR Layout,12.914322,77.635218,Synthetic Buyer 628,9000055785,Out for Delivery,2026-07-12 22:37:57
+ORD100629,PSTP003,Starworth - Harmony,22,Gold,Construction,5.82,Jayanagar,12.928382,77.595322,Synthetic Buyer 629,9000019646,Pending,2026-07-30 19:37:57
+ORD100630,PSTP003,Starworth - Harmony,11,Bronze,Industrial,9.74,Banashankari,12.938267,77.538153,Synthetic Buyer 630,9000084270,Accepted,2026-07-12 14:06:57
+ORD100631,PSTP002,Purva Atria,144,Silver,Domestic,2.53,Hebbal,13.040271,77.594618,Synthetic Buyer 631,9000052717,Pending,2026-08-03 18:42:57
+ORD100632,PSTP001,Purva Venezia,13,Gold,Gardening,2.47,Yelahanka,13.089899,77.592564,Synthetic Buyer 632,9000016106,Out for Delivery,2026-07-26 00:30:57
+ORD100633,PSTP001,Purva Venezia,28,Gold,Industrial,3.28,Yelahanka,13.110029,77.59666,Synthetic Buyer 633,9000069928,Out for Delivery,2026-08-09 02:05:57
+ORD100634,PSTP003,Starworth - Harmony,57,Gold,Industrial,4.48,Koramangala,12.934663,77.621733,Synthetic Buyer 634,9000071432,Out for Delivery,2026-07-17 13:03:57
+ORD100635,PSTP007,Purva Skywood Phase 2,69,Gold,Gardening,3.72,Koramangala,12.924562,77.648823,Synthetic Buyer 635,9000023569,Pending,2026-08-05 04:52:57
+ORD100636,PSTP003,Starworth - Harmony,52,Gold,Industrial,5.04,Rajajinagar,12.978957,77.573451,Synthetic Buyer 636,9000041526,Pending,2026-07-22 21:58:57
+ORD100637,PSTP007,Purva Skywood Phase 2,28,Gold,Industrial,12.78,Whitefield,12.947216,77.765073,Synthetic Buyer 637,9000038901,Rejected,2026-07-24 16:46:57
+ORD100638,PSTP003,Starworth - Harmony,95,Gold,Domestic,8.01,Marathahalli,12.984161,77.693138,Synthetic Buyer 638,9000050049,Out for Delivery,2026-07-15 07:21:57
+ORD100639,PSTP007,Purva Skywood Phase 2,14,Gold,Construction,12.28,Whitefield,12.962957,77.748859,Synthetic Buyer 639,9000049981,Pending,2026-07-28 17:18:57
+ORD100640,PSTP003,Starworth - Harmony,54,Bronze,Domestic,4.47,Chickpete,12.965357,77.579798,Synthetic Buyer 640,9000089437,Pending,2026-08-07 00:46:57
+ORD100641,PSTP003,Starworth - Harmony,85,Gold,Industrial,4.52,Koramangala,12.935249,77.628684,Synthetic Buyer 641,9000084245,Out for Delivery,2026-07-21 18:09:57
+ORD100642,PSTP007,Purva Skywood Phase 2,12,Bronze,Construction,11.39,Whitefield,12.962581,77.738306,Synthetic Buyer 642,9000090225,Out for Delivery,2026-07-31 05:30:57
+ORD100643,PSTP005,Purva Palm Beach - Labour Colony,11,Silver,Construction,6.81,KR Puram,13.036416,77.718821,Synthetic Buyer 643,9000073749,Out for Delivery,2026-07-14 02:02:57
+ORD100644,PSTP003,Starworth - Harmony,94,Bronze,Industrial,7.27,Marathahalli,12.96754,77.686486,Synthetic Buyer 644,9000039125,Accepted,2026-07-13 02:12:57
+ORD100645,PSTP005,Purva Palm Beach - Labour Colony,45,Bronze,Domestic,6.58,KR Puram,13.016694,77.700746,Synthetic Buyer 645,9000056614,Accepted,2026-07-22 11:09:57
+ORD100646,PSTP007,Purva Skywood Phase 2,26,Silver,Domestic,14.13,Whitefield,12.977073,77.759,Synthetic Buyer 646,9000062537,Accepted,2026-07-17 17:01:57
+ORD100647,PSTP007,Purva Skywood Phase 2,41,Silver,Domestic,12.31,Whitefield,12.955763,77.754694,Synthetic Buyer 647,9000023085,Pending,2026-07-30 05:53:57
+ORD100648,PSTP003,Starworth - Harmony,88,Bronze,Construction,8.68,Marathahalli,12.9687,77.699645,Synthetic Buyer 648,9000034939,Accepted,2026-07-20 02:45:57
+ORD100649,PSTP007,Purva Skywood Phase 2,83,Gold,Gardening,6.28,Electronic City,12.837143,77.654537,Synthetic Buyer 649,9000093007,Pending,2026-07-22 12:58:57
+ORD100650,PSTP007,Purva Skywood Phase 2,19,Gold,Domestic,4.93,BTM Layout,12.914093,77.620729,Synthetic Buyer 650,9000081666,Pending,2026-07-30 05:01:57
+ORD100651,PSTP007,Purva Skywood Phase 2,27,Gold,Domestic,4.95,Hosur Road,12.879252,77.617599,Synthetic Buyer 651,9000088366,Rejected,2026-07-27 15:21:57
+ORD100652,PSTP003,Starworth - Harmony,20,Gold,Construction,5.46,BTM Layout,12.925871,77.618325,Synthetic Buyer 652,9000027888,Rejected,2026-08-09 10:02:57
+ORD100653,PSTP002,Purva Atria,97,Silver,Domestic,1.7,Hebbal,13.039013,77.570942,Synthetic Buyer 653,9000061759,Pending,2026-08-04 16:56:57
+ORD100654,PSTP003,Starworth - Harmony,15,Silver,Gardening,4.68,Koramangala,12.932853,77.619877,Synthetic Buyer 654,9000015913,Out for Delivery,2026-07-17 17:14:57
+ORD100655,PSTP002,Purva Atria,22,Gold,Gardening,3.01,Malleshwaram,12.998126,77.579691,Synthetic Buyer 655,9000077161,Accepted,2026-07-24 08:22:57
+ORD100656,PSTP001,Purva Venezia,20,Bronze,Construction,2.56,Yelahanka,13.098183,77.593861,Synthetic Buyer 656,9000044019,Pending,2026-07-23 10:17:57
+ORD100657,PSTP007,Purva Skywood Phase 2,56,Bronze,Construction,5.98,BTM Layout,12.916019,77.610949,Synthetic Buyer 657,9000028511,Pending,2026-08-08 07:15:57
+ORD100658,PSTP011,Provident Neora,17,Bronze,Construction,3.75,Yelahanka,13.113007,77.603092,Synthetic Buyer 658,9000032617,Out for Delivery,2026-08-04 16:36:57
+ORD100659,PSTP002,Purva Atria,22,Bronze,Domestic,1.48,Hebbal,13.03395,77.587427,Synthetic Buyer 659,9000076098,Pending,2026-07-25 03:06:57
+ORD100660,PSTP007,Purva Skywood Phase 2,45,Gold,Construction,7.51,Marathahalli,12.937142,77.713704,Synthetic Buyer 660,9000015193,Pending,2026-07-25 03:36:57
+ORD100661,PSTP007,Purva Skywood Phase 2,17,Bronze,Industrial,13.5,Whitefield,12.952137,77.769889,Synthetic Buyer 661,9000036772,Pending,2026-08-03 04:27:57
+ORD100662,PSTP002,Purva Atria,61,Gold,Construction,3.87,Rajajinagar,13.001683,77.550816,Synthetic Buyer 662,9000079520,Accepted,2026-07-31 13:28:57
+ORD100663,PSTP003,Starworth - Harmony,19,Bronze,Gardening,8.6,Marathahalli,12.964831,77.698518,Synthetic Buyer 663,9000069166,Pending,2026-07-24 20:06:57
+ORD100664,PSTP005,Purva Palm Beach - Labour Colony,25,Bronze,Domestic,9.07,KR Puram,12.995862,77.710674,Synthetic Buyer 664,9000027077,Accepted,2026-08-03 21:23:57
+ORD100665,PSTP005,Purva Palm Beach - Labour Colony,135,Silver,Construction,11.82,Whitefield,12.984393,77.736188,Synthetic Buyer 665,9000089778,Out for Delivery,2026-07-31 22:05:57
+ORD100666,PSTP007,Purva Skywood Phase 2,10,Silver,Construction,13.53,Whitefield,12.966131,77.760946,Synthetic Buyer 666,9000078078,Out for Delivery,2026-08-09 08:51:57
+ORD100667,PSTP007,Purva Skywood Phase 2,12,Gold,Gardening,6.04,Jayanagar,12.910311,77.608013,Synthetic Buyer 667,9000060736,Accepted,2026-08-02 16:40:57
+ORD100668,PSTP007,Purva Skywood Phase 2,30,Silver,Construction,5.3,BTM Layout,12.911262,77.615674,Synthetic Buyer 668,9000010592,Accepted,2026-07-24 12:42:57
+ORD100669,PSTP007,Purva Skywood Phase 2,13,Bronze,Gardening,1.82,HSR Layout,12.899767,77.645553,Synthetic Buyer 669,9000095446,Pending,2026-07-13 12:40:57
+ORD100670,PSTP002,Purva Atria,32,Gold,Construction,1.85,Hebbal,13.034707,77.591244,Synthetic Buyer 670,9000021464,Pending,2026-07-18 01:45:57
+ORD100671,PSTP003,Starworth - Harmony,24,Bronze,Construction,6.38,KR Puram,13.001732,77.671903,Synthetic Buyer 671,9000044441,Out for Delivery,2026-07-12 07:49:57
+ORD100672,PSTP003,Starworth - Harmony,13,Silver,Construction,5.16,Koramangala,12.928992,77.626548,Synthetic Buyer 672,9000038676,Pending,2026-07-12 05:23:57
+ORD100673,PSTP005,Purva Palm Beach - Labour Colony,108,Silver,Gardening,5.23,KR Puram,13.020563,77.68454,Synthetic Buyer 673,9000016730,Out for Delivery,2026-07-15 08:35:57
+ORD100674,PSTP007,Purva Skywood Phase 2,24,Bronze,Gardening,5.32,Electronic City,12.845535,77.663596,Synthetic Buyer 674,9000060397,Accepted,2026-07-13 17:02:57
+ORD100675,PSTP003,Starworth - Harmony,46,Silver,Domestic,5.77,Chickpete,12.959258,77.569033,Synthetic Buyer 675,9000094289,Pending,2026-08-06 16:08:57
+ORD100676,PSTP003,Starworth - Harmony,29,Bronze,Domestic,5.17,Koramangala,12.928602,77.616253,Synthetic Buyer 676,9000021337,Out for Delivery,2026-07-18 06:39:57
+ORD100677,PSTP007,Purva Skywood Phase 2,153,Silver,Gardening,11.8,Whitefield,12.9683,77.738042,Synthetic Buyer 677,9000030711,Accepted,2026-07-29 05:37:57
+ORD100678,PSTP003,Starworth - Harmony,52,Silver,Gardening,10.02,Banashankari,12.915616,77.550241,Synthetic Buyer 678,9000054763,Pending,2026-07-19 21:40:57
+ORD100679,PSTP003,Starworth - Harmony,28,Gold,Construction,9.63,Banashankari,12.933996,77.541481,Synthetic Buyer 679,9000090431,Out for Delivery,2026-07-16 10:07:57
+ORD100680,PSTP003,Starworth - Harmony,26,Bronze,Construction,7.54,Banashankari,12.943144,77.55833,Synthetic Buyer 680,9000035842,Pending,2026-08-01 04:51:57
+ORD100681,PSTP003,Starworth - Harmony,59,Gold,Industrial,5.01,Koramangala,12.931504,77.632276,Synthetic Buyer 681,9000081556,Pending,2026-07-31 00:53:57
+ORD100682,PSTP005,Purva Palm Beach - Labour Colony,25,Bronze,Construction,13.01,Whitefield,12.980653,77.748002,Synthetic Buyer 682,9000068878,Pending,2026-08-05 23:28:57
+ORD100683,PSTP007,Purva Skywood Phase 2,50,Gold,Construction,5.78,Electronic City,12.841326,77.661583,Synthetic Buyer 683,9000041486,Out for Delivery,2026-08-08 12:19:57
+ORD100684,PSTP007,Purva Skywood Phase 2,27,Silver,Construction,6.38,Marathahalli,12.941627,77.692676,Synthetic Buyer 684,9000061773,Out for Delivery,2026-07-23 15:46:57
+ORD100685,PSTP007,Purva Skywood Phase 2,27,Bronze,Gardening,6.15,Electronic City,12.838131,77.65689,Synthetic Buyer 685,9000086679,Pending,2026-07-27 13:02:57
+ORD100686,PSTP001,Purva Venezia,45,Bronze,Industrial,1.17,Yelahanka,13.086937,77.57695,Synthetic Buyer 686,9000019303,Out for Delivery,2026-08-06 17:39:57
+ORD100687,PSTP007,Purva Skywood Phase 2,15,Bronze,Construction,6.71,Electronic City,12.833539,77.669205,Synthetic Buyer 687,9000011850,Rejected,2026-07-23 14:23:57
+ORD100688,PSTP003,Starworth - Harmony,47,Gold,Industrial,6.24,Jayanagar,12.929428,77.586146,Synthetic Buyer 688,9000080843,Rejected,2026-07-31 12:58:57
+ORD100689,PSTP007,Purva Skywood Phase 2,118,Bronze,Construction,3.59,Electronic City,12.861973,77.653096,Synthetic Buyer 689,9000023753,Accepted,2026-07-22 19:50:57
+ORD100690,PSTP003,Starworth - Harmony,28,Bronze,Domestic,6.41,Jayanagar,12.928698,77.584444,Synthetic Buyer 690,9000063700,Pending,2026-07-28 08:53:57
+ORD100691,PSTP005,Purva Palm Beach - Labour Colony,18,Bronze,Domestic,10.46,Whitefield,12.987986,77.721284,Synthetic Buyer 691,9000094820,Out for Delivery,2026-08-04 20:40:57
+ORD100692,PSTP007,Purva Skywood Phase 2,54,Bronze,Construction,4.34,Hosur Road,12.898147,77.6212,Synthetic Buyer 692,9000084414,Out for Delivery,2026-08-03 03:54:57
+ORD100693,PSTP005,Purva Palm Beach - Labour Colony,54,Gold,Construction,7.11,KR Puram,13.003827,77.689014,Synthetic Buyer 693,9000045294,Accepted,2026-07-18 00:51:57
+ORD100694,PSTP003,Starworth - Harmony,43,Gold,Construction,5.26,Chickpete,12.961716,77.573204,Synthetic Buyer 694,9000025236,Pending,2026-07-25 15:23:57
+ORD100695,PSTP007,Purva Skywood Phase 2,55,Bronze,Gardening,12.7,Whitefield,12.973625,77.744299,Synthetic Buyer 695,9000064476,Accepted,2026-07-20 08:59:57
+ORD100696,PSTP007,Purva Skywood Phase 2,65,Silver,Construction,6.42,BTM Layout,12.917687,77.607248,Synthetic Buyer 696,9000050082,Out for Delivery,2026-08-09 09:37:57
+ORD100697,PSTP009,Purva Atmosphere,24,Silver,Industrial,3.02,Hebbal,13.050373,77.611572,Synthetic Buyer 697,9000061301,Pending,2026-07-11 22:06:57
+ORD100698,PSTP007,Purva Skywood Phase 2,27,Gold,Construction,4.44,HSR Layout,12.904113,77.621519,Synthetic Buyer 698,9000073851,Accepted,2026-07-29 13:32:57
+ORD100699,PSTP003,Starworth - Harmony,22,Bronze,Gardening,5.42,Chickpete,12.972907,77.569852,Synthetic Buyer 699,9000049957,Out for Delivery,2026-07-21 03:02:57
+ORD100700,PSTP007,Purva Skywood Phase 2,57,Bronze,Gardening,3.9,HSR Layout,12.901543,77.626012,Synthetic Buyer 700,9000056954,Out for Delivery,2026-07-25 08:52:57
+ORD100701,PSTP002,Purva Atria,21,Bronze,Domestic,2.77,Hebbal,13.037564,77.599449,Synthetic Buyer 701,9000080532,Out for Delivery,2026-07-28 13:25:57
+ORD100702,PSTP002,Purva Atria,28,Gold,Construction,2.03,Hebbal,13.027124,77.595883,Synthetic Buyer 702,9000022772,Accepted,2026-07-28 02:43:57
+ORD100703,PSTP007,Purva Skywood Phase 2,54,Gold,Construction,12.32,Whitefield,12.966168,77.746596,Synthetic Buyer 703,9000075362,Pending,2026-07-24 15:12:57
+ORD100704,PSTP007,Purva Skywood Phase 2,31,Gold,Industrial,3.66,Electronic City,12.872153,77.635133,Synthetic Buyer 704,9000062672,Pending,2026-07-26 07:40:57
+ORD100705,PSTP001,Purva Venezia,31,Silver,Domestic,4.81,Yelahanka,13.1345,77.589196,Synthetic Buyer 705,9000058779,Pending,2026-08-09 05:58:57
+ORD100706,PSTP003,Starworth - Harmony,19,Silver,Domestic,7.08,Hosur Road,12.914833,77.598249,Synthetic Buyer 706,9000076560,Accepted,2026-07-16 08:22:57
+ORD100707,PSTP002,Purva Atria,13,Gold,Industrial,9.91,Banashankari,12.950702,77.526901,Synthetic Buyer 707,9000078834,Accepted,2026-07-16 15:31:57
+ORD100708,PSTP001,Purva Venezia,12,Silver,Gardening,2.77,Yelahanka,13.08116,77.591431,Synthetic Buyer 708,9000065508,Pending,2026-07-26 14:21:57
+ORD100709,PSTP002,Purva Atria,10,Gold,Industrial,3.88,Hebbal,13.032726,77.612244,Synthetic Buyer 709,9000025488,Pending,2026-08-07 08:41:57
+ORD100710,PSTP003,Starworth - Harmony,59,Gold,Domestic,5.09,Chickpete,12.967243,77.573496,Synthetic Buyer 710,9000047288,Out for Delivery,2026-08-04 14:34:57
+ORD100711,PSTP007,Purva Skywood Phase 2,194,Gold,Gardening,11.83,Whitefield,12.94752,77.754891,Synthetic Buyer 711,9000016090,Accepted,2026-07-26 19:05:57
+ORD100712,PSTP007,Purva Skywood Phase 2,40,Silver,Industrial,7.55,Marathahalli,12.947837,77.702497,Synthetic Buyer 712,9000035076,Pending,2026-07-30 03:43:57
+ORD100713,PSTP007,Purva Skywood Phase 2,92,Silver,Gardening,13.79,Whitefield,12.962571,77.766447,Synthetic Buyer 713,9000045813,Accepted,2026-07-16 11:41:57
+ORD100714,PSTP003,Starworth - Harmony,44,Bronze,Construction,5.64,BTM Layout,12.926679,77.603897,Synthetic Buyer 714,9000045100,Accepted,2026-07-30 11:13:57
+ORD100715,PSTP003,Starworth - Harmony,14,Gold,Domestic,4.38,Koramangala,12.935603,77.618195,Synthetic Buyer 715,9000040803,Pending,2026-07-19 08:40:57
+ORD100716,PSTP003,Starworth - Harmony,17,Bronze,Industrial,5.29,BTM Layout,12.927821,77.613212,Synthetic Buyer 716,9000051011,Rejected,2026-07-13 09:43:57
+ORD100717,PSTP003,Starworth - Harmony,43,Gold,Industrial,5.75,BTM Layout,12.924144,77.609801,Synthetic Buyer 717,9000036734,Accepted,2026-07-19 04:51:57
+ORD100718,PSTP003,Starworth - Harmony,13,Gold,Domestic,2.74,Koramangala,12.950263,77.619973,Synthetic Buyer 718,9000068438,Out for Delivery,2026-07-12 02:27:57
+ORD100719,PSTP007,Purva Skywood Phase 2,33,Bronze,Gardening,4.73,BTM Layout,12.903429,77.618538,Synthetic Buyer 719,9000027032,Accepted,2026-07-16 23:12:57
+ORD100720,PSTP002,Purva Atria,27,Bronze,Construction,4.26,Malleshwaram,12.986752,77.576683,Synthetic Buyer 720,9000086452,Out for Delivery,2026-07-21 20:09:57
+ORD100721,PSTP007,Purva Skywood Phase 2,33,Gold,Construction,6.91,Hosur Road,12.867093,77.603136,Synthetic Buyer 721,9000044492,Out for Delivery,2026-08-08 03:31:57
+ORD100722,PSTP005,Purva Palm Beach - Labour Colony,24,Gold,Industrial,5.85,KR Puram,13.01428,77.684473,Synthetic Buyer 722,9000066215,Pending,2026-07-14 08:03:57
+ORD100723,PSTP007,Purva Skywood Phase 2,19,Bronze,Gardening,4.5,Electronic City,12.853106,77.666054,Synthetic Buyer 723,9000011340,Pending,2026-07-23 09:30:57
+ORD100724,PSTP005,Purva Palm Beach - Labour Colony,27,Bronze,Gardening,7.68,KR Puram,13.015934,77.714469,Synthetic Buyer 724,9000030802,Accepted,2026-08-05 16:38:57
+ORD100725,PSTP002,Purva Atria,18,Silver,Gardening,2.22,Malleshwaram,13.005785,77.582723,Synthetic Buyer 725,9000080432,Rejected,2026-07-14 17:47:57
+ORD100726,PSTP003,Starworth - Harmony,14,Gold,Domestic,3.6,Jayanagar,12.944385,77.608741,Synthetic Buyer 726,9000013878,Out for Delivery,2026-07-27 00:55:57
+ORD100727,PSTP003,Starworth - Harmony,145,Gold,Industrial,11.07,Banashankari,12.927211,77.530165,Synthetic Buyer 727,9000026400,Pending,2026-07-20 18:29:57
+ORD100728,PSTP007,Purva Skywood Phase 2,197,Silver,Industrial,6.71,BTM Layout,12.913098,77.602477,Synthetic Buyer 728,9000054225,Pending,2026-08-06 20:45:57
+ORD100729,PSTP003,Starworth - Harmony,35,Gold,Industrial,3.99,Koramangala,12.94036,77.610087,Synthetic Buyer 729,9000042771,Pending,2026-08-04 13:40:57
+ORD100730,PSTP003,Starworth - Harmony,46,Bronze,Gardening,7.41,Marathahalli,12.973812,77.688188,Synthetic Buyer 730,9000091574,Pending,2026-07-13 13:59:57
+ORD100731,PSTP002,Purva Atria,87,Bronze,Gardening,2.61,Malleshwaram,13.020326,77.553651,Synthetic Buyer 731,9000015293,Pending,2026-07-12 10:59:57
+ORD100732,PSTP007,Purva Skywood Phase 2,15,Silver,Construction,5.74,Electronic City,12.842452,77.670103,Synthetic Buyer 732,9000027875,Out for Delivery,2026-07-15 09:12:57
+ORD100733,PSTP002,Purva Atria,21,Gold,Domestic,5.3,Rajajinagar,12.992599,77.541444,Synthetic Buyer 733,9000036925,Pending,2026-07-16 04:46:57
+ORD100734,PSTP007,Purva Skywood Phase 2,57,Gold,Gardening,12.85,Whitefield,12.973544,77.746307,Synthetic Buyer 734,9000012643,Rejected,2026-07-27 11:56:57
+ORD100735,PSTP003,Starworth - Harmony,25,Silver,Domestic,11.27,Banashankari,12.918131,77.533718,Synthetic Buyer 735,9000034486,Out for Delivery,2026-08-07 14:53:57
+ORD100736,PSTP007,Purva Skywood Phase 2,14,Bronze,Gardening,2.42,HSR Layout,12.897274,77.63899,Synthetic Buyer 736,9000010993,Out for Delivery,2026-08-08 02:51:57
+ORD100737,PSTP007,Purva Skywood Phase 2,224,Gold,Construction,5.83,Electronic City,12.846949,77.635885,Synthetic Buyer 737,9000042771,Pending,2026-07-19 23:14:57
+ORD100738,PSTP007,Purva Skywood Phase 2,120,Bronze,Gardening,7.0,Marathahalli,12.94259,77.701182,Synthetic Buyer 738,9000098359,Pending,2026-07-29 11:32:57
+ORD100739,PSTP007,Purva Skywood Phase 2,12,Gold,Construction,3.99,Electronic City,12.858701,77.67074,Synthetic Buyer 739,9000036540,Pending,2026-07-26 12:24:57
+ORD100740,PSTP005,Purva Palm Beach - Labour Colony,38,Bronze,Gardening,14.22,Whitefield,12.984041,77.765747,Synthetic Buyer 740,9000059779,Accepted,2026-07-12 11:31:57
+ORD100741,PSTP007,Purva Skywood Phase 2,60,Bronze,Industrial,7.43,Electronic City,12.826961,77.669201,Synthetic Buyer 741,9000018216,Pending,2026-07-14 03:32:57
+ORD100742,PSTP007,Purva Skywood Phase 2,22,Bronze,Industrial,8.41,Jayanagar,12.904162,77.584132,Synthetic Buyer 742,9000033528,Accepted,2026-07-13 12:18:57
+ORD100743,PSTP007,Purva Skywood Phase 2,28,Bronze,Gardening,13.05,Whitefield,12.959837,77.760131,Synthetic Buyer 743,9000059876,Out for Delivery,2026-07-20 00:18:57
+ORD100744,PSTP007,Purva Skywood Phase 2,70,Silver,Gardening,2.45,Hosur Road,12.903515,77.640927,Synthetic Buyer 744,9000067462,Pending,2026-07-15 10:00:57
+ORD100745,PSTP007,Purva Skywood Phase 2,14,Silver,Domestic,7.98,Electronic City,12.821512,77.661806,Synthetic Buyer 745,9000090212,Accepted,2026-07-18 14:35:57
+ORD100746,PSTP002,Purva Atria,22,Silver,Industrial,4.47,Malleshwaram,12.986176,77.566942,Synthetic Buyer 746,9000064481,Out for Delivery,2026-07-25 16:38:57
+ORD100747,PSTP007,Purva Skywood Phase 2,29,Bronze,Industrial,12.76,Whitefield,12.951176,77.762632,Synthetic Buyer 747,9000073021,Accepted,2026-07-29 16:25:57
+ORD100748,PSTP011,Provident Neora,44,Bronze,Domestic,0.97,Yelahanka,13.089348,77.613082,Synthetic Buyer 748,9000037188,Rejected,2026-08-04 02:16:57
+ORD100749,PSTP003,Starworth - Harmony,20,Bronze,Domestic,3.98,Koramangala,12.940348,77.610504,Synthetic Buyer 749,9000060386,Pending,2026-07-16 06:11:57
+ORD100750,PSTP005,Purva Palm Beach - Labour Colony,34,Silver,Domestic,13.55,Whitefield,13.000371,77.769561,Synthetic Buyer 750,9000044919,Out for Delivery,2026-07-15 08:10:57
+ORD100751,PSTP011,Provident Neora,26,Gold,Gardening,2.29,Yelahanka,13.078712,77.599065,Synthetic Buyer 751,9000089858,Pending,2026-08-05 07:19:57
+ORD100752,PSTP003,Starworth - Harmony,225,Gold,Construction,5.96,Chickpete,12.962137,77.566389,Synthetic Buyer 752,9000077024,Pending,2026-07-12 21:39:57
+ORD100753,PSTP007,Purva Skywood Phase 2,28,Bronze,Construction,4.76,Koramangala,12.920713,77.627165,Synthetic Buyer 753,9000084000,Pending,2026-07-30 02:27:57
+ORD100754,PSTP007,Purva Skywood Phase 2,60,Gold,Domestic,5.37,Electronic City,12.847056,77.646771,Synthetic Buyer 754,9000046151,Out for Delivery,2026-07-21 03:46:57
+ORD100755,PSTP002,Purva Atria,22,Silver,Construction,3.42,Rajajinagar,13.007339,77.551476,Synthetic Buyer 755,9000099550,Accepted,2026-08-02 13:15:57
+ORD100756,PSTP003,Starworth - Harmony,33,Gold,Industrial,10.86,Banashankari,12.906991,77.547888,Synthetic Buyer 756,9000092616,Accepted,2026-07-15 08:53:57
+ORD100757,PSTP003,Starworth - Harmony,14,Silver,Domestic,9.62,Banashankari,12.914046,77.556764,Synthetic Buyer 757,9000017914,Rejected,2026-08-03 19:10:57
+ORD100758,PSTP007,Purva Skywood Phase 2,87,Gold,Construction,2.62,HSR Layout,12.909642,77.64347,Synthetic Buyer 758,9000051770,Pending,2026-08-05 03:07:57
+ORD100759,PSTP007,Purva Skywood Phase 2,105,Gold,Industrial,6.49,BTM Layout,12.904631,77.6022,Synthetic Buyer 759,9000016424,Out for Delivery,2026-08-02 11:35:57
+ORD100760,PSTP003,Starworth - Harmony,23,Gold,Construction,9.29,Marathahalli,12.976295,77.705556,Synthetic Buyer 760,9000041744,Pending,2026-07-21 14:26:57
+ORD100761,PSTP003,Starworth - Harmony,38,Silver,Domestic,8.53,KR Puram,12.984431,77.697983,Synthetic Buyer 761,9000018932,Pending,2026-07-12 23:59:57
+ORD100762,PSTP007,Purva Skywood Phase 2,11,Gold,Construction,5.56,Electronic City,12.848451,77.68358,Synthetic Buyer 762,9000042421,Out for Delivery,2026-07-22 11:30:57
+ORD100763,PSTP003,Starworth - Harmony,112,Silver,Construction,5.48,Chickpete,12.964615,77.570385,Synthetic Buyer 763,9000036227,Accepted,2026-07-31 10:54:57
+ORD100764,PSTP007,Purva Skywood Phase 2,12,Silver,Domestic,3.51,HSR Layout,12.899612,77.629204,Synthetic Buyer 764,9000093036,Pending,2026-07-22 09:20:57
+ORD100765,PSTP005,Purva Palm Beach - Labour Colony,22,Bronze,Construction,13.35,Whitefield,12.981225,77.752787,Synthetic Buyer 765,9000028957,Pending,2026-07-28 02:00:57
+ORD100766,PSTP007,Purva Skywood Phase 2,52,Bronze,Gardening,1.98,HSR Layout,12.910935,77.663461,Synthetic Buyer 766,9000083666,Accepted,2026-07-24 17:32:57
+ORD100767,PSTP003,Starworth - Harmony,91,Gold,Industrial,4.59,Chickpete,12.966804,77.578251,Synthetic Buyer 767,9000030598,Accepted,2026-08-09 16:25:57
+ORD100768,PSTP003,Starworth - Harmony,19,Gold,Gardening,9.85,Banashankari,12.926447,77.543803,Synthetic Buyer 768,9000014946,Pending,2026-08-02 02:22:57
+ORD100769,PSTP005,Purva Palm Beach - Labour Colony,103,Silver,Industrial,12.49,Whitefield,12.97844,77.738659,Synthetic Buyer 769,9000017002,Pending,2026-07-18 10:07:57
+ORD100770,PSTP003,Starworth - Harmony,222,Silver,Domestic,5.2,Koramangala,12.929226,77.629899,Synthetic Buyer 770,9000020464,Out for Delivery,2026-07-11 20:17:57
+ORD100771,PSTP002,Purva Atria,31,Bronze,Construction,3.32,Rajajinagar,13.007292,77.552649,Synthetic Buyer 771,9000062089,Pending,2026-07-27 19:31:57
+ORD100772,PSTP002,Purva Atria,27,Gold,Industrial,3.25,Hebbal,13.049746,77.593282,Synthetic Buyer 772,9000031351,Accepted,2026-08-08 17:46:57
+ORD100773,PSTP003,Starworth - Harmony,74,Silver,Gardening,4.28,BTM Layout,12.936637,77.623917,Synthetic Buyer 773,9000098665,Out for Delivery,2026-08-06 10:52:57
+ORD100774,PSTP007,Purva Skywood Phase 2,31,Silver,Construction,7.87,Electronic City,12.823073,77.669893,Synthetic Buyer 774,9000024302,Pending,2026-08-10 01:31:57
+ORD100775,PSTP007,Purva Skywood Phase 2,26,Bronze,Gardening,4.65,Koramangala,12.931413,77.643355,Synthetic Buyer 775,9000050159,Pending,2026-08-02 10:25:57
+ORD100776,PSTP005,Purva Palm Beach - Labour Colony,22,Silver,Domestic,6.16,KR Puram,13.012256,77.686717,Synthetic Buyer 776,9000041373,Pending,2026-07-31 06:41:57
+ORD100777,PSTP007,Purva Skywood Phase 2,20,Gold,Industrial,6.82,Jayanagar,12.902497,77.59874,Synthetic Buyer 777,9000049149,Accepted,2026-08-05 10:04:57
+ORD100778,PSTP005,Purva Palm Beach - Labour Colony,47,Bronze,Industrial,5.91,KR Puram,13.033781,77.70789,Synthetic Buyer 778,9000013430,Pending,2026-07-27 17:14:57
+ORD100779,PSTP011,Provident Neora,42,Bronze,Domestic,3.23,Yelahanka,13.107634,77.603245,Synthetic Buyer 779,9000072007,Accepted,2026-08-08 13:06:57
+ORD100780,PSTP001,Purva Venezia,16,Silver,Construction,2.29,Yelahanka,13.087261,77.589924,Synthetic Buyer 780,9000039637,Pending,2026-08-02 14:25:57
+ORD100781,PSTP003,Starworth - Harmony,46,Silver,Domestic,3.33,Koramangala,12.945743,77.626562,Synthetic Buyer 781,9000010507,Out for Delivery,2026-07-30 11:14:57
+ORD100782,PSTP003,Starworth - Harmony,17,Silver,Construction,5.35,BTM Layout,12.931105,77.599442,Synthetic Buyer 782,9000081278,Pending,2026-07-16 06:24:57
+ORD100783,PSTP003,Starworth - Harmony,25,Silver,Construction,4.57,Koramangala,12.934077,77.615692,Synthetic Buyer 783,9000049473,Accepted,2026-07-15 17:52:57
+ORD100784,PSTP007,Purva Skywood Phase 2,79,Gold,Construction,3.69,HSR Layout,12.919443,77.639963,Synthetic Buyer 784,9000026639,Pending,2026-07-19 22:39:57
+ORD100785,PSTP007,Purva Skywood Phase 2,40,Silver,Industrial,15.05,Whitefield,12.973972,77.772475,Synthetic Buyer 785,9000027342,Out for Delivery,2026-08-04 13:12:57
+ORD100786,PSTP003,Starworth - Harmony,45,Gold,Domestic,10.39,Banashankari,12.920039,77.542215,Synthetic Buyer 786,9000027651,Rejected,2026-07-22 05:45:57
+ORD100787,PSTP007,Purva Skywood Phase 2,44,Bronze,Construction,4.3,Hosur Road,12.895363,77.621292,Synthetic Buyer 787,9000054430,Pending,2026-07-21 19:57:57
+ORD100788,PSTP001,Purva Venezia,56,Silver,Industrial,4.89,Yelahanka,13.125603,77.603181,Synthetic Buyer 788,9000079227,Pending,2026-08-04 11:10:57
+ORD100789,PSTP002,Purva Atria,159,Gold,Industrial,5.5,Rajajinagar,12.978738,77.559609,Synthetic Buyer 789,9000040485,Pending,2026-08-01 13:16:57
+ORD100790,PSTP003,Starworth - Harmony,40,Bronze,Gardening,5.58,BTM Layout,12.928137,77.601321,Synthetic Buyer 790,9000024560,Accepted,2026-07-30 19:49:57
+ORD100791,PSTP002,Purva Atria,37,Bronze,Industrial,2.06,Hebbal,13.032526,77.594699,Synthetic Buyer 791,9000085914,Pending,2026-07-27 08:00:57
+ORD100792,PSTP003,Starworth - Harmony,18,Bronze,Domestic,7.45,BTM Layout,12.91435,77.590513,Synthetic Buyer 792,9000015296,Accepted,2026-07-11 20:17:57
+ORD100793,PSTP002,Purva Atria,26,Silver,Gardening,5.97,Rajajinagar,12.97932,77.548472,Synthetic Buyer 793,9000015785,Out for Delivery,2026-07-23 19:13:57
+ORD100794,PSTP003,Starworth - Harmony,15,Silver,Domestic,5.93,Chickpete,12.961027,77.567014,Synthetic Buyer 794,9000077617,Pending,2026-07-30 06:12:57
+ORD100795,PSTP011,Provident Neora,82,Gold,Domestic,2.4,Yelahanka,13.098898,77.604268,Synthetic Buyer 795,9000042330,Pending,2026-08-05 06:34:57
+ORD100796,PSTP007,Purva Skywood Phase 2,223,Bronze,Construction,12.96,Whitefield,12.968335,77.752421,Synthetic Buyer 796,9000076108,Accepted,2026-07-22 05:25:57
+ORD100797,PSTP005,Purva Palm Beach - Labour Colony,31,Gold,Gardening,6.29,KR Puram,13.011189,77.687164,Synthetic Buyer 797,9000087910,Accepted,2026-07-16 00:39:57
+ORD100798,PSTP003,Starworth - Harmony,57,Bronze,Construction,3.99,Koramangala,12.939124,77.621777,Synthetic Buyer 798,9000049870,Rejected,2026-07-16 04:04:57
+ORD100799,PSTP007,Purva Skywood Phase 2,26,Silver,Gardening,13.95,Whitefield,12.965148,77.766477,Synthetic Buyer 799,9000025933,Out for Delivery,2026-07-21 21:02:57
+ORD100800,PSTP007,Purva Skywood Phase 2,53,Bronze,Gardening,8.63,Marathahalli,12.955932,77.707994,Synthetic Buyer 800,9000096958,Pending,2026-07-21 09:32:57
+ORD100801,PSTP005,Purva Palm Beach - Labour Colony,16,Gold,Construction,5.43,KR Puram,13.017639,77.682683,Synthetic Buyer 801,9000011035,Accepted,2026-07-25 03:18:57
+ORD100802,PSTP007,Purva Skywood Phase 2,17,Bronze,Domestic,4.08,HSR Layout,12.917164,77.632395,Synthetic Buyer 802,9000083475,Accepted,2026-08-07 14:28:57
+ORD100803,PSTP005,Purva Palm Beach - Labour Colony,208,Bronze,Industrial,14.04,Whitefield,12.987396,77.766259,Synthetic Buyer 803,9000036572,Rejected,2026-07-26 03:02:57
+ORD100804,PSTP005,Purva Palm Beach - Labour Colony,97,Silver,Construction,11.36,Whitefield,13.004264,77.748138,Synthetic Buyer 804,9000028522,Accepted,2026-08-07 18:45:57
+ORD100805,PSTP007,Purva Skywood Phase 2,85,Bronze,Domestic,5.43,BTM Layout,12.908193,77.61323,Synthetic Buyer 805,9000012191,Accepted,2026-07-13 18:50:57
+ORD100806,PSTP005,Purva Palm Beach - Labour Colony,44,Silver,Industrial,5.74,KR Puram,13.024405,77.698037,Synthetic Buyer 806,9000046929,Pending,2026-07-21 01:41:57
+ORD100807,PSTP007,Purva Skywood Phase 2,24,Bronze,Gardening,7.06,Hosur Road,12.894124,77.595778,Synthetic Buyer 807,9000088884,Out for Delivery,2026-07-17 03:35:57
+ORD100808,PSTP007,Purva Skywood Phase 2,27,Gold,Gardening,3.76,HSR Layout,12.903866,77.62795,Synthetic Buyer 808,9000065093,Accepted,2026-07-24 03:08:57
+ORD100809,PSTP007,Purva Skywood Phase 2,28,Bronze,Construction,4.18,Electronic City,12.855822,77.664301,Synthetic Buyer 809,9000052976,Pending,2026-07-16 13:07:57
+ORD100810,PSTP007,Purva Skywood Phase 2,13,Bronze,Domestic,8.18,Marathahalli,12.956881,77.698842,Synthetic Buyer 810,9000090280,Out for Delivery,2026-07-16 16:34:57
+ORD100811,PSTP007,Purva Skywood Phase 2,21,Bronze,Construction,13.48,Whitefield,12.968605,77.758369,Synthetic Buyer 811,9000091504,Rejected,2026-07-19 18:46:57
+ORD100812,PSTP003,Starworth - Harmony,117,Gold,Gardening,4.93,Koramangala,12.930786,77.623684,Synthetic Buyer 812,9000018887,Pending,2026-07-30 13:19:57
+ORD100813,PSTP007,Purva Skywood Phase 2,33,Gold,Industrial,5.73,Electronic City,12.84231,77.653083,Synthetic Buyer 813,9000083019,Accepted,2026-08-01 10:38:57
+ORD100814,PSTP007,Purva Skywood Phase 2,50,Gold,Domestic,7.54,Marathahalli,12.955736,77.688073,Synthetic Buyer 814,9000090752,Out for Delivery,2026-07-12 07:12:57
+ORD100815,PSTP002,Purva Atria,48,Gold,Construction,3.48,Hebbal,13.0564,77.576844,Synthetic Buyer 815,9000080363,Accepted,2026-07-23 07:41:57
+ORD100816,PSTP007,Purva Skywood Phase 2,49,Bronze,Domestic,6.8,Marathahalli,12.933238,77.708459,Synthetic Buyer 816,9000027700,Accepted,2026-07-23 20:42:57
+ORD100817,PSTP002,Purva Atria,175,Silver,Construction,2.93,Malleshwaram,12.99898,77.573779,Synthetic Buyer 817,9000045766,Pending,2026-08-09 04:13:57
+ORD100818,PSTP003,Starworth - Harmony,19,Gold,Industrial,5.33,Chickpete,12.969413,77.570964,Synthetic Buyer 818,9000096540,Accepted,2026-07-17 07:57:57
+ORD100819,PSTP003,Starworth - Harmony,59,Gold,Domestic,5.67,Chickpete,12.966111,77.56832,Synthetic Buyer 819,9000068346,Out for Delivery,2026-07-18 20:12:57
+ORD100820,PSTP001,Purva Venezia,14,Gold,Industrial,1.01,Yelahanka,13.095369,77.57975,Synthetic Buyer 820,9000054832,Out for Delivery,2026-07-15 16:32:57
+ORD100821,PSTP007,Purva Skywood Phase 2,18,Silver,Construction,5.14,Hosur Road,12.879267,77.615756,Synthetic Buyer 821,9000050257,Pending,2026-07-15 02:56:57
+ORD100822,PSTP003,Starworth - Harmony,107,Gold,Gardening,4.03,Koramangala,12.938804,77.622193,Synthetic Buyer 822,9000021447,Pending,2026-08-03 11:37:57
+ORD100823,PSTP003,Starworth - Harmony,28,Silver,Construction,8.8,Marathahalli,12.982167,77.700731,Synthetic Buyer 823,9000038658,Pending,2026-07-30 17:46:57
+ORD100824,PSTP002,Purva Atria,24,Bronze,Industrial,3.48,Rajajinagar,12.99883,77.559844,Synthetic Buyer 824,9000067411,Out for Delivery,2026-07-23 16:29:57
+ORD100825,PSTP003,Starworth - Harmony,60,Gold,Industrial,5.25,Chickpete,12.961051,77.573549,Synthetic Buyer 825,9000089542,Accepted,2026-07-17 03:23:57
+ORD100826,PSTP003,Starworth - Harmony,21,Gold,Construction,3.42,Koramangala,12.946269,77.631233,Synthetic Buyer 826,9000095999,Accepted,2026-07-17 23:33:57
+ORD100827,PSTP005,Purva Palm Beach - Labour Colony,43,Gold,Domestic,12.05,Whitefield,12.987696,77.742685,Synthetic Buyer 827,9000031824,Pending,2026-08-06 21:17:57
+ORD100828,PSTP003,Starworth - Harmony,126,Silver,Domestic,4.97,Koramangala,12.935084,77.640646,Synthetic Buyer 828,9000077005,Pending,2026-07-24 04:24:57
+ORD100829,PSTP002,Purva Atria,47,Gold,Construction,4.33,Chickpete,12.987976,77.565138,Synthetic Buyer 829,9000045110,Accepted,2026-08-07 09:08:57
+ORD100830,PSTP007,Purva Skywood Phase 2,206,Gold,Industrial,6.6,Whitefield,12.93603,77.703166,Synthetic Buyer 830,9000022420,Pending,2026-08-04 05:22:57
+ORD100831,PSTP005,Purva Palm Beach - Labour Colony,106,Gold,Industrial,11.43,Whitefield,12.98451,77.730973,Synthetic Buyer 831,9000049845,Accepted,2026-07-14 15:13:57
+ORD100832,PSTP001,Purva Venezia,21,Gold,Domestic,2.65,Yelahanka,13.073682,77.580769,Synthetic Buyer 832,9000097574,Accepted,2026-08-05 00:29:57
+ORD100833,PSTP007,Purva Skywood Phase 2,13,Silver,Construction,2.34,HSR Layout,12.906323,77.644032,Synthetic Buyer 833,9000020276,Rejected,2026-07-31 01:21:57
+ORD100834,PSTP005,Purva Palm Beach - Labour Colony,13,Gold,Construction,5.68,KR Puram,13.016469,77.685422,Synthetic Buyer 834,9000070277,Accepted,2026-07-14 21:14:57
+ORD100835,PSTP007,Purva Skywood Phase 2,12,Bronze,Industrial,9.46,Marathahalli,12.961963,77.712529,Synthetic Buyer 835,9000078929,Pending,2026-07-21 06:09:57
+ORD100836,PSTP011,Provident Neora,70,Bronze,Industrial,2.47,Yelahanka,13.095405,77.60043,Synthetic Buyer 836,9000029930,Accepted,2026-07-20 10:35:57
+ORD100837,PSTP003,Starworth - Harmony,14,Silver,Gardening,3.77,Koramangala,12.944798,77.635727,Synthetic Buyer 837,9000068087,Out for Delivery,2026-08-03 21:38:57
+ORD100838,PSTP007,Purva Skywood Phase 2,12,Gold,Gardening,7.27,Electronic City,12.828057,77.657026,Synthetic Buyer 838,9000019130,Accepted,2026-07-12 22:49:57
+ORD100839,PSTP007,Purva Skywood Phase 2,19,Bronze,Construction,11.83,Whitefield,12.944065,77.756837,Synthetic Buyer 839,9000024049,Out for Delivery,2026-07-21 16:06:57
+ORD100840,PSTP003,Starworth - Harmony,24,Silver,Gardening,12.78,Banashankari,12.904468,77.526641,Synthetic Buyer 840,9000051919,Rejected,2026-07-27 02:25:57
+ORD100841,PSTP007,Purva Skywood Phase 2,39,Gold,Industrial,12.48,Whitefield,12.973897,77.741043,Synthetic Buyer 841,9000065653,Out for Delivery,2026-07-20 03:55:57
+ORD100842,PSTP007,Purva Skywood Phase 2,86,Silver,Domestic,9.65,Marathahalli,12.958036,77.720289,Synthetic Buyer 842,9000063447,Out for Delivery,2026-07-26 19:07:57
+ORD100843,PSTP003,Starworth - Harmony,17,Gold,Gardening,4.38,Koramangala,12.936399,77.627978,Synthetic Buyer 843,9000024669,Rejected,2026-07-17 23:29:57
+ORD100844,PSTP003,Starworth - Harmony,32,Silver,Domestic,8.35,Marathahalli,12.978655,77.69679,Synthetic Buyer 844,9000017339,Accepted,2026-07-20 17:18:57
+ORD100845,PSTP007,Purva Skywood Phase 2,15,Bronze,Construction,5.67,Electronic City,12.842566,77.655394,Synthetic Buyer 845,9000087263,Accepted,2026-08-02 05:35:57
+ORD100846,PSTP001,Purva Venezia,21,Gold,Construction,1.94,Yelahanka,13.10059,77.587496,Synthetic Buyer 846,9000024699,Out for Delivery,2026-07-16 12:55:57
+ORD100847,PSTP005,Purva Palm Beach - Labour Colony,27,Gold,Domestic,13.08,Whitefield,12.983467,77.751517,Synthetic Buyer 847,9000047357,Accepted,2026-07-26 02:08:57
+ORD100848,PSTP007,Purva Skywood Phase 2,34,Bronze,Industrial,5.03,Electronic City,12.848147,77.664362,Synthetic Buyer 848,9000056273,Pending,2026-08-02 14:34:57
+ORD100849,PSTP007,Purva Skywood Phase 2,52,Gold,Gardening,11.85,Whitefield,12.963141,77.74352,Synthetic Buyer 849,9000096218,Out for Delivery,2026-07-26 23:16:57
+ORD100850,PSTP007,Purva Skywood Phase 2,46,Silver,Industrial,4.07,Hosur Road,12.888837,77.623662,Synthetic Buyer 850,9000061943,Out for Delivery,2026-08-07 08:23:57
+ORD100851,PSTP003,Starworth - Harmony,12,Bronze,Gardening,5.67,Koramangala,12.924495,77.612236,Synthetic Buyer 851,9000076955,Rejected,2026-07-13 04:49:57
+ORD100852,PSTP007,Purva Skywood Phase 2,97,Gold,Domestic,10.16,Marathahalli,12.961264,77.723629,Synthetic Buyer 852,9000071726,Accepted,2026-07-15 08:09:57
+ORD100853,PSTP003,Starworth - Harmony,11,Bronze,Construction,7.75,Jayanagar,12.919781,77.576126,Synthetic Buyer 853,9000081522,Rejected,2026-07-17 19:23:57
+ORD100854,PSTP003,Starworth - Harmony,29,Silver,Construction,4.89,Chickpete,12.959547,77.577507,Synthetic Buyer 854,9000014594,Accepted,2026-07-18 14:50:57
+ORD100855,PSTP007,Purva Skywood Phase 2,28,Silver,Domestic,5.23,Electronic City,12.848575,77.675827,Synthetic Buyer 855,9000039791,Rejected,2026-07-30 16:02:57
+ORD100856,PSTP007,Purva Skywood Phase 2,71,Bronze,Construction,7.17,Electronic City,12.830078,77.648136,Synthetic Buyer 856,9000054858,Rejected,2026-07-24 11:03:57
+ORD100857,PSTP007,Purva Skywood Phase 2,29,Gold,Industrial,3.93,Electronic City,12.860377,77.647767,Synthetic Buyer 857,9000015098,Out for Delivery,2026-08-08 17:24:57
+ORD100858,PSTP003,Starworth - Harmony,80,Gold,Gardening,3.87,Koramangala,12.940791,77.613062,Synthetic Buyer 858,9000074142,Pending,2026-07-24 09:10:57
+ORD100859,PSTP007,Purva Skywood Phase 2,106,Silver,Construction,6.42,Electronic City,12.835834,77.666517,Synthetic Buyer 859,9000081008,Pending,2026-08-07 18:30:57
+ORD100860,PSTP007,Purva Skywood Phase 2,174,Bronze,Industrial,3.56,HSR Layout,12.885104,77.629226,Synthetic Buyer 860,9000014322,Pending,2026-07-12 00:40:57
+ORD100861,PSTP007,Purva Skywood Phase 2,31,Bronze,Gardening,2.8,Hosur Road,12.89587,77.635216,Synthetic Buyer 861,9000024491,Out for Delivery,2026-08-04 01:29:57
+ORD100862,PSTP007,Purva Skywood Phase 2,15,Silver,Industrial,4.02,Hosur Road,12.878823,77.626928,Synthetic Buyer 862,9000052393,Accepted,2026-07-17 01:47:57
+ORD100863,PSTP007,Purva Skywood Phase 2,19,Gold,Domestic,7.17,Electronic City,12.82902,77.66651,Synthetic Buyer 863,9000013488,Accepted,2026-07-29 03:05:57
+ORD100864,PSTP003,Starworth - Harmony,48,Bronze,Gardening,11.53,Whitefield,12.977972,77.726149,Synthetic Buyer 864,9000089894,Pending,2026-08-07 20:39:57
+ORD100865,PSTP003,Starworth - Harmony,18,Bronze,Domestic,8.77,Banashankari,12.9376,77.548563,Synthetic Buyer 865,9000024804,Out for Delivery,2026-08-02 12:34:57
+ORD100866,PSTP003,Starworth - Harmony,61,Gold,Industrial,4.03,Koramangala,12.939977,77.629481,Synthetic Buyer 866,9000021257,Out for Delivery,2026-08-06 02:44:57
+ORD100867,PSTP003,Starworth - Harmony,18,Gold,Industrial,7.91,Marathahalli,12.966985,77.692377,Synthetic Buyer 867,9000053172,Pending,2026-07-17 06:50:57
+ORD100868,PSTP003,Starworth - Harmony,10,Bronze,Construction,6.14,Jayanagar,12.923192,77.600092,Synthetic Buyer 868,9000038248,Accepted,2026-07-26 09:35:57
+ORD100869,PSTP005,Purva Palm Beach - Labour Colony,58,Silver,Construction,7.34,KR Puram,13.008003,77.700693,Synthetic Buyer 869,9000021347,Accepted,2026-08-10 01:38:57
+ORD100870,PSTP007,Purva Skywood Phase 2,37,Silver,Domestic,3.21,Electronic City,12.865551,77.668983,Synthetic Buyer 870,9000048873,Out for Delivery,2026-07-15 11:19:57
+ORD100871,PSTP003,Starworth - Harmony,32,Gold,Domestic,3.25,Koramangala,12.947085,77.628924,Synthetic Buyer 871,9000089875,Accepted,2026-07-20 08:46:57
+ORD100872,PSTP007,Purva Skywood Phase 2,33,Silver,Industrial,4.41,Hosur Road,12.901991,77.621237,Synthetic Buyer 872,9000050576,Accepted,2026-08-09 09:51:57
+ORD100873,PSTP007,Purva Skywood Phase 2,29,Bronze,Construction,8.97,Marathahalli,12.957799,77.710616,Synthetic Buyer 873,9000082473,Accepted,2026-07-22 17:13:57
+ORD100874,PSTP005,Purva Palm Beach - Labour Colony,40,Silver,Domestic,12.91,Whitefield,12.990619,77.755617,Synthetic Buyer 874,9000054635,Rejected,2026-07-22 13:21:57
+ORD100875,PSTP007,Purva Skywood Phase 2,21,Gold,Industrial,14.08,Whitefield,12.97148,77.763174,Synthetic Buyer 875,9000082559,Accepted,2026-07-24 22:00:57
+ORD100876,PSTP003,Starworth - Harmony,65,Gold,Gardening,6.13,Jayanagar,12.929449,77.587895,Synthetic Buyer 876,9000098708,Rejected,2026-08-09 05:41:57
+ORD100877,PSTP007,Purva Skywood Phase 2,55,Bronze,Gardening,12.26,Whitefield,12.94661,77.760005,Synthetic Buyer 877,9000099409,Pending,2026-08-08 20:27:57
+ORD100878,PSTP002,Purva Atria,58,Bronze,Industrial,2.26,Malleshwaram,13.005605,77.571296,Synthetic Buyer 878,9000013866,Pending,2026-07-23 14:24:57
+ORD100879,PSTP003,Starworth - Harmony,13,Gold,Domestic,4.75,Koramangala,12.934238,77.633261,Synthetic Buyer 879,9000079462,Accepted,2026-07-25 23:51:57
+ORD100880,PSTP003,Starworth - Harmony,41,Silver,Industrial,5.52,BTM Layout,12.927653,77.604354,Synthetic Buyer 880,9000098193,Accepted,2026-08-02 01:36:57
+ORD100881,PSTP002,Purva Atria,23,Gold,Construction,3.35,Rajajinagar,13.000702,77.559096,Synthetic Buyer 881,9000099838,Accepted,2026-07-31 14:20:57
+ORD100882,PSTP007,Purva Skywood Phase 2,114,Bronze,Construction,5.6,BTM Layout,12.908912,77.611821,Synthetic Buyer 882,9000025842,Accepted,2026-08-04 23:23:57
+ORD100883,PSTP007,Purva Skywood Phase 2,30,Bronze,Gardening,5.22,BTM Layout,12.911395,77.616538,Synthetic Buyer 883,9000038586,Accepted,2026-08-03 07:23:57
+ORD100884,PSTP003,Starworth - Harmony,70,Silver,Gardening,7.88,KR Puram,12.994485,77.68972,Synthetic Buyer 884,9000099600,Accepted,2026-07-31 13:06:57
+ORD100885,PSTP003,Starworth - Harmony,44,Bronze,Construction,4.97,Chickpete,12.966344,77.574799,Synthetic Buyer 885,9000077976,Pending,2026-08-02 11:14:57
+ORD100886,PSTP003,Starworth - Harmony,17,Gold,Gardening,5.51,Chickpete,12.951184,77.575203,Synthetic Buyer 886,9000038399,Out for Delivery,2026-07-25 12:41:57
+ORD100887,PSTP007,Purva Skywood Phase 2,22,Bronze,Gardening,4.69,Electronic City,12.852893,77.648591,Synthetic Buyer 887,9000099291,Out for Delivery,2026-08-02 19:17:57
+ORD100888,PSTP007,Purva Skywood Phase 2,45,Bronze,Industrial,11.64,Whitefield,12.965207,77.739002,Synthetic Buyer 888,9000056829,Rejected,2026-07-25 21:14:57
+ORD100889,PSTP002,Purva Atria,36,Silver,Domestic,4.39,Rajajinagar,12.991183,77.556541,Synthetic Buyer 889,9000054700,Out for Delivery,2026-07-23 12:56:57
+ORD100890,PSTP007,Purva Skywood Phase 2,54,Gold,Construction,6.3,Marathahalli,12.937351,77.697507,Synthetic Buyer 890,9000088704,Pending,2026-08-05 16:18:57
+ORD100891,PSTP007,Purva Skywood Phase 2,51,Silver,Gardening,11.35,Whitefield,12.966264,77.734151,Synthetic Buyer 891,9000040366,Pending,2026-07-19 00:46:57
+ORD100892,PSTP003,Starworth - Harmony,49,Silver,Domestic,5.78,Chickpete,12.95358,77.571232,Synthetic Buyer 892,9000060169,Pending,2026-07-15 02:43:57
+ORD100893,PSTP003,Starworth - Harmony,20,Silver,Industrial,3.14,Koramangala,12.94668,77.620287,Synthetic Buyer 893,9000092995,Pending,2026-07-22 00:40:57
+ORD100894,PSTP003,Starworth - Harmony,44,Silver,Industrial,3.63,Koramangala,12.94309,77.627113,Synthetic Buyer 894,9000021327,Pending,2026-08-06 17:00:57
+ORD100895,PSTP001,Purva Venezia,47,Bronze,Domestic,1.99,Yelahanka,13.108748,77.582572,Synthetic Buyer 895,9000012957,Pending,2026-08-03 07:11:57
+ORD100896,PSTP007,Purva Skywood Phase 2,12,Bronze,Industrial,6.84,Jayanagar,12.909877,77.60015,Synthetic Buyer 896,9000073612,Pending,2026-07-22 04:32:57
+ORD100897,PSTP007,Purva Skywood Phase 2,13,Silver,Gardening,7.57,Electronic City,12.825229,77.659412,Synthetic Buyer 897,9000055738,Out for Delivery,2026-07-29 09:58:57
+ORD100898,PSTP007,Purva Skywood Phase 2,24,Bronze,Gardening,4.47,Electronic City,12.853185,77.658422,Synthetic Buyer 898,9000031634,Pending,2026-07-27 11:33:57
+ORD100899,PSTP002,Purva Atria,136,Silver,Domestic,1.5,Malleshwaram,13.012115,77.581229,Synthetic Buyer 899,9000099087,Out for Delivery,2026-07-24 06:37:57
+ORD100900,PSTP003,Starworth - Harmony,46,Bronze,Industrial,6.01,Koramangala,12.921661,77.610703,Synthetic Buyer 900,9000067375,Accepted,2026-07-14 22:30:57
+ORD100901,PSTP011,Provident Neora,16,Silver,Industrial,2.09,Yelahanka,13.099267,77.609211,Synthetic Buyer 901,9000098490,Rejected,2026-08-06 08:08:57
+ORD100902,PSTP007,Purva Skywood Phase 2,42,Gold,Domestic,4.33,HSR Layout,12.927135,77.641152,Synthetic Buyer 902,9000050652,Pending,2026-08-10 07:01:57
+ORD100903,PSTP002,Purva Atria,62,Gold,Industrial,2.67,Rajajinagar,13.006733,77.561404,Synthetic Buyer 903,9000088430,Out for Delivery,2026-07-17 02:26:57
+ORD100904,PSTP007,Purva Skywood Phase 2,30,Gold,Construction,12.41,Whitefield,12.969262,77.744819,Synthetic Buyer 904,9000017431,Accepted,2026-07-20 22:21:57
+ORD100905,PSTP005,Purva Palm Beach - Labour Colony,56,Silver,Industrial,5.68,KR Puram,13.020196,77.691801,Synthetic Buyer 905,9000034025,Pending,2026-07-16 11:44:57
+ORD100906,PSTP011,Provident Neora,16,Bronze,Industrial,3.02,Yelahanka,13.067611,77.59707,Synthetic Buyer 906,9000098935,Out for Delivery,2026-07-11 15:41:57
+ORD100907,PSTP005,Purva Palm Beach - Labour Colony,51,Bronze,Construction,13.57,Whitefield,12.979551,77.753961,Synthetic Buyer 907,9000038429,Out for Delivery,2026-07-23 15:11:57
+ORD100908,PSTP003,Starworth - Harmony,34,Silver,Construction,9.72,Marathahalli,12.967645,77.709183,Synthetic Buyer 908,9000078576,Pending,2026-08-01 11:25:57
+ORD100909,PSTP003,Starworth - Harmony,14,Silver,Industrial,1.19,Koramangala,12.96426,77.619188,Synthetic Buyer 909,9000097511,Pending,2026-07-26 11:00:57
+ORD100910,PSTP007,Purva Skywood Phase 2,179,Gold,Industrial,4.89,Koramangala,12.925311,77.629982,Synthetic Buyer 910,9000020702,Pending,2026-08-02 01:32:57
+ORD100911,PSTP003,Starworth - Harmony,29,Silver,Construction,4.28,Koramangala,12.937712,77.629858,Synthetic Buyer 911,9000015289,Accepted,2026-08-06 10:59:57
+ORD100912,PSTP007,Purva Skywood Phase 2,41,Silver,Industrial,2.26,HSR Layout,12.906868,77.645474,Synthetic Buyer 912,9000024784,Accepted,2026-07-24 11:18:57
+ORD100913,PSTP003,Starworth - Harmony,46,Gold,Domestic,4.4,Chickpete,12.963915,77.580816,Synthetic Buyer 913,9000038578,Pending,2026-08-07 12:46:57
+ORD100914,PSTP005,Purva Palm Beach - Labour Colony,23,Gold,Industrial,13.11,Whitefield,12.981837,77.750424,Synthetic Buyer 914,9000042548,Rejected,2026-08-04 08:28:57
+ORD100915,PSTP007,Purva Skywood Phase 2,37,Gold,Industrial,4.22,Electronic City,12.856632,77.670829,Synthetic Buyer 915,9000074610,Accepted,2026-08-02 07:23:57
+ORD100916,PSTP007,Purva Skywood Phase 2,215,Gold,Domestic,8.69,Marathahalli,12.958004,77.705977,Synthetic Buyer 916,9000034953,Out for Delivery,2026-07-28 00:39:57
+ORD100917,PSTP003,Starworth - Harmony,21,Bronze,Gardening,4.06,Koramangala,12.93915,77.627129,Synthetic Buyer 917,9000060790,Out for Delivery,2026-07-12 23:39:57
+ORD100918,PSTP007,Purva Skywood Phase 2,248,Gold,Gardening,6.01,BTM Layout,12.920214,77.612817,Synthetic Buyer 918,9000099013,Out for Delivery,2026-07-29 20:12:57
+ORD100919,PSTP003,Starworth - Harmony,20,Gold,Gardening,5.23,Koramangala,12.927895,77.620828,Synthetic Buyer 919,9000027068,Accepted,2026-08-09 06:35:57
+ORD100920,PSTP007,Purva Skywood Phase 2,85,Bronze,Industrial,3.66,Hosur Road,12.874627,77.63309,Synthetic Buyer 920,9000088363,Out for Delivery,2026-07-27 18:14:57
+ORD100921,PSTP003,Starworth - Harmony,13,Gold,Industrial,11.2,Banashankari,12.918252,77.534401,Synthetic Buyer 921,9000091105,Accepted,2026-07-12 21:58:57
+ORD100922,PSTP007,Purva Skywood Phase 2,107,Silver,Domestic,7.41,Marathahalli,12.952822,77.691801,Synthetic Buyer 922,9000093491,Pending,2026-07-17 20:24:57
+ORD100923,PSTP007,Purva Skywood Phase 2,39,Silver,Construction,8.72,Electronic City,12.814845,77.661258,Synthetic Buyer 923,9000017882,Out for Delivery,2026-07-16 10:58:57
+ORD100924,PSTP002,Purva Atria,19,Gold,Domestic,3.23,Malleshwaram,12.997592,77.567544,Synthetic Buyer 924,9000075414,Accepted,2026-07-20 00:12:57
+ORD100925,PSTP003,Starworth - Harmony,28,Silver,Industrial,3.94,Koramangala,12.941489,77.631896,Synthetic Buyer 925,9000069438,Accepted,2026-08-07 12:38:57
+ORD100926,PSTP007,Purva Skywood Phase 2,28,Gold,Industrial,10.08,Whitefield,12.966316,77.716095,Synthetic Buyer 926,9000045426,Pending,2026-08-01 07:07:57
+ORD100927,PSTP007,Purva Skywood Phase 2,22,Bronze,Construction,5.09,Electronic City,12.847567,77.65907,Synthetic Buyer 927,9000052100,Pending,2026-07-29 21:05:57
+ORD100928,PSTP001,Purva Venezia,13,Silver,Construction,4.57,Yelahanka,13.131918,77.589602,Synthetic Buyer 928,9000069008,Pending,2026-08-03 17:46:57
+ORD100929,PSTP007,Purva Skywood Phase 2,63,Silver,Gardening,4.39,Hosur Road,12.902705,77.621653,Synthetic Buyer 929,9000094840,Pending,2026-08-08 01:29:57
+ORD100930,PSTP003,Starworth - Harmony,11,Silver,Domestic,6.84,Marathahalli,12.971394,77.682831,Synthetic Buyer 930,9000043344,Accepted,2026-07-20 23:49:57
+ORD100931,PSTP002,Purva Atria,25,Gold,Gardening,2.54,Hebbal,13.038388,77.596362,Synthetic Buyer 931,9000040556,Rejected,2026-08-02 21:26:57
+ORD100932,PSTP007,Purva Skywood Phase 2,36,Silver,Construction,11.64,Whitefield,12.95003,77.751214,Synthetic Buyer 932,9000027617,Rejected,2026-07-15 12:50:57
+ORD100933,PSTP007,Purva Skywood Phase 2,40,Silver,Industrial,5.12,BTM Layout,12.916814,77.620363,Synthetic Buyer 933,9000030894,Out for Delivery,2026-07-29 17:32:57
+ORD100934,PSTP005,Purva Palm Beach - Labour Colony,23,Gold,Domestic,7.12,KR Puram,13.014476,77.705698,Synthetic Buyer 934,9000060789,Pending,2026-08-08 00:11:57
+ORD100935,PSTP005,Purva Palm Beach - Labour Colony,40,Bronze,Industrial,6.45,KR Puram,13.00725,77.681237,Synthetic Buyer 935,9000035323,Out for Delivery,2026-07-17 12:58:57
+ORD100936,PSTP011,Provident Neora,44,Gold,Gardening,2.02,Yelahanka,13.075959,77.602735,Synthetic Buyer 936,9000035183,Accepted,2026-07-31 18:45:57
+ORD100937,PSTP007,Purva Skywood Phase 2,43,Silver,Domestic,5.94,Hosur Road,12.85455,77.623266,Synthetic Buyer 937,9000062934,Out for Delivery,2026-08-05 01:15:57
+ORD100938,PSTP003,Starworth - Harmony,101,Bronze,Construction,4.66,BTM Layout,12.933422,77.613685,Synthetic Buyer 938,9000048924,Pending,2026-07-18 15:41:57
+ORD100939,PSTP003,Starworth - Harmony,11,Silver,Industrial,5.68,Koramangala,12.923866,77.618648,Synthetic Buyer 939,9000082143,Pending,2026-07-28 00:58:57
+ORD100940,PSTP007,Purva Skywood Phase 2,57,Bronze,Domestic,5.93,Marathahalli,12.945218,77.673434,Synthetic Buyer 940,9000015677,Pending,2026-07-27 02:14:57
+ORD100941,PSTP007,Purva Skywood Phase 2,97,Bronze,Gardening,6.82,Electronic City,12.834172,77.644245,Synthetic Buyer 941,9000073910,Pending,2026-08-03 20:26:57
+ORD100942,PSTP003,Starworth - Harmony,54,Silver,Industrial,5.72,BTM Layout,12.92798,77.598237,Synthetic Buyer 942,9000025432,Rejected,2026-07-17 20:50:57
+ORD100943,PSTP011,Provident Neora,28,Silver,Industrial,2.64,Yelahanka,13.106805,77.615469,Synthetic Buyer 943,9000053912,Accepted,2026-07-31 04:42:57
+ORD100944,PSTP003,Starworth - Harmony,79,Silver,Gardening,3.84,Koramangala,12.942305,77.608269,Synthetic Buyer 944,9000021570,Out for Delivery,2026-08-02 03:58:57
+ORD100945,PSTP007,Purva Skywood Phase 2,13,Gold,Construction,13.6,Whitefield,12.97472,77.754651,Synthetic Buyer 945,9000097147,Accepted,2026-08-05 05:26:57
+ORD100946,PSTP003,Starworth - Harmony,77,Silver,Domestic,3.98,BTM Layout,12.939317,77.616452,Synthetic Buyer 946,9000074548,Accepted,2026-08-07 17:48:57
+ORD100947,PSTP003,Starworth - Harmony,19,Silver,Construction,11.13,Banashankari,12.910465,77.541232,Synthetic Buyer 947,9000012529,Pending,2026-07-28 03:13:57
+ORD100948,PSTP003,Starworth - Harmony,17,Silver,Construction,5.11,Chickpete,12.978433,77.572817,Synthetic Buyer 948,9000041795,Pending,2026-07-25 19:58:57
+ORD100949,PSTP005,Purva Palm Beach - Labour Colony,28,Silver,Gardening,13.14,Whitefield,12.984266,77.753007,Synthetic Buyer 949,9000036770,Out for Delivery,2026-07-30 08:51:57
+ORD100950,PSTP007,Purva Skywood Phase 2,26,Gold,Industrial,3.44,HSR Layout,12.922312,77.649844,Synthetic Buyer 950,9000058434,Pending,2026-08-03 08:53:57
+ORD100951,PSTP007,Purva Skywood Phase 2,57,Silver,Industrial,4.95,Electronic City,12.853663,77.64016,Synthetic Buyer 951,9000076131,Rejected,2026-07-18 17:36:57
+ORD100952,PSTP007,Purva Skywood Phase 2,244,Gold,Construction,5.55,Electronic City,12.843488,77.658173,Synthetic Buyer 952,9000091831,Accepted,2026-07-27 13:22:57
+ORD100953,PSTP003,Starworth - Harmony,10,Silver,Industrial,2.5,Koramangala,12.953991,77.628217,Synthetic Buyer 953,9000039296,Accepted,2026-07-15 08:03:57
+ORD100954,PSTP002,Purva Atria,39,Gold,Industrial,4.42,Malleshwaram,12.985497,77.57337,Synthetic Buyer 954,9000033619,Out for Delivery,2026-07-31 05:43:57
+ORD100955,PSTP002,Purva Atria,22,Silver,Gardening,4.08,Rajajinagar,12.989131,77.569698,Synthetic Buyer 955,9000053213,Pending,2026-07-28 07:40:57
+ORD100956,PSTP007,Purva Skywood Phase 2,120,Silver,Industrial,3.21,HSR Layout,12.908225,77.635618,Synthetic Buyer 956,9000075569,Accepted,2026-08-01 10:20:57
+ORD100957,PSTP001,Purva Venezia,18,Bronze,Gardening,3.54,Yelahanka,13.117458,77.593889,Synthetic Buyer 957,9000076397,Out for Delivery,2026-08-03 00:34:57
+ORD100958,PSTP003,Starworth - Harmony,54,Bronze,Gardening,11.09,Banashankari,12.913162,77.5395,Synthetic Buyer 958,9000051641,Accepted,2026-08-06 00:15:57
+ORD100959,PSTP007,Purva Skywood Phase 2,36,Bronze,Gardening,11.46,Whitefield,12.962628,77.739139,Synthetic Buyer 959,9000052212,Out for Delivery,2026-07-22 09:51:57
+ORD100960,PSTP005,Purva Palm Beach - Labour Colony,18,Bronze,Domestic,12.26,Whitefield,12.97862,77.735689,Synthetic Buyer 960,9000081020,Pending,2026-07-24 20:33:57
+ORD100961,PSTP001,Purva Venezia,24,Bronze,Industrial,2.18,Yelahanka,13.114722,77.572968,Synthetic Buyer 961,9000038971,Pending,2026-07-16 05:09:57
+ORD100962,PSTP007,Purva Skywood Phase 2,12,Bronze,Construction,15.56,Whitefield,12.975419,77.777159,Synthetic Buyer 962,9000051949,Pending,2026-08-03 04:15:57
+ORD100963,PSTP007,Purva Skywood Phase 2,16,Silver,Domestic,5.5,Hosur Road,12.857949,77.625486,Synthetic Buyer 963,9000022898,Pending,2026-07-23 06:19:57
+ORD100964,PSTP007,Purva Skywood Phase 2,218,Bronze,Industrial,13.01,Whitefield,12.967709,77.75363,Synthetic Buyer 964,9000094680,Accepted,2026-07-27 16:42:57
+ORD100965,PSTP007,Purva Skywood Phase 2,10,Gold,Gardening,4.26,BTM Layout,12.910638,77.625932,Synthetic Buyer 965,9000066743,Accepted,2026-07-15 02:28:57
+ORD100966,PSTP007,Purva Skywood Phase 2,44,Bronze,Domestic,2.86,HSR Layout,12.911874,77.642731,Synthetic Buyer 966,9000016002,Pending,2026-08-08 06:52:57
+ORD100967,PSTP007,Purva Skywood Phase 2,47,Silver,Industrial,6.34,Marathahalli,12.945065,77.685407,Synthetic Buyer 967,9000041055,Accepted,2026-08-01 08:14:57
+ORD100968,PSTP007,Purva Skywood Phase 2,24,Bronze,Construction,11.28,Whitefield,12.967914,77.731427,Synthetic Buyer 968,9000078443,Accepted,2026-08-05 02:52:57
+ORD100969,PSTP003,Starworth - Harmony,19,Bronze,Construction,4.92,BTM Layout,12.930705,77.62186,Synthetic Buyer 969,9000044082,Pending,2026-07-28 01:25:57
+ORD100970,PSTP007,Purva Skywood Phase 2,55,Silver,Gardening,11.15,Whitefield,12.951127,77.744996,Synthetic Buyer 970,9000065922,Accepted,2026-07-14 17:48:57
+ORD100971,PSTP003,Starworth - Harmony,29,Gold,Construction,6.88,KR Puram,13.001742,77.677081,Synthetic Buyer 971,9000098652,Out for Delivery,2026-07-13 15:35:57
+ORD100972,PSTP001,Purva Venezia,50,Silver,Gardening,2.46,Yelahanka,13.11169,77.585701,Synthetic Buyer 972,9000042785,Accepted,2026-07-19 03:42:57
+ORD100973,PSTP003,Starworth - Harmony,219,Gold,Gardening,6.29,Marathahalli,12.959682,77.675719,Synthetic Buyer 973,9000082587,Pending,2026-08-09 05:47:57
+ORD100974,PSTP007,Purva Skywood Phase 2,19,Silver,Domestic,5.06,HSR Layout,12.937422,77.649332,Synthetic Buyer 974,9000035414,Out for Delivery,2026-08-09 23:57:57
+ORD100975,PSTP003,Starworth - Harmony,10,Gold,Domestic,3.36,Koramangala,12.945273,77.625847,Synthetic Buyer 975,9000053643,Pending,2026-08-09 18:39:57
+ORD100976,PSTP007,Purva Skywood Phase 2,26,Gold,Industrial,14.64,Whitefield,12.975642,77.766353,Synthetic Buyer 976,9000066990,Pending,2026-07-23 18:55:57
+ORD100977,PSTP003,Starworth - Harmony,16,Gold,Industrial,5.64,Jayanagar,12.930667,77.594485,Synthetic Buyer 977,9000045646,Out for Delivery,2026-07-13 16:22:57
+ORD100978,PSTP003,Starworth - Harmony,58,Silver,Domestic,3.67,Koramangala,12.942128,77.615922,Synthetic Buyer 978,9000069009,Out for Delivery,2026-08-08 15:43:57
+ORD100979,PSTP007,Purva Skywood Phase 2,45,Bronze,Construction,5.9,Electronic City,12.857405,77.700985,Synthetic Buyer 979,9000076107,Pending,2026-08-05 03:21:57
+ORD100980,PSTP007,Purva Skywood Phase 2,50,Bronze,Domestic,2.59,HSR Layout,12.896616,77.637274,Synthetic Buyer 980,9000078750,Accepted,2026-07-27 10:51:57
+ORD100981,PSTP007,Purva Skywood Phase 2,24,Bronze,Gardening,5.87,Electronic City,12.854944,77.623717,Synthetic Buyer 981,9000031400,Pending,2026-07-27 14:46:57
+ORD100982,PSTP003,Starworth - Harmony,13,Gold,Domestic,4.45,Koramangala,12.935316,77.625328,Synthetic Buyer 982,9000015478,Pending,2026-08-06 13:56:57
+ORD100983,PSTP003,Starworth - Harmony,226,Gold,Construction,3.68,Koramangala,12.943444,77.63029,Synthetic Buyer 983,9000019078,Rejected,2026-07-27 11:25:57
+ORD100984,PSTP005,Purva Palm Beach - Labour Colony,35,Bronze,Industrial,12.31,Whitefield,12.980932,77.739106,Synthetic Buyer 984,9000014553,Pending,2026-08-02 09:10:57
+ORD100985,PSTP005,Purva Palm Beach - Labour Colony,17,Bronze,Gardening,7.33,KR Puram,13.013264,77.70724,Synthetic Buyer 985,9000022887,Pending,2026-07-21 20:25:57
+ORD100986,PSTP007,Purva Skywood Phase 2,22,Silver,Domestic,4.44,BTM Layout,12.896178,77.620061,Synthetic Buyer 986,9000084625,Out for Delivery,2026-07-27 00:58:57
+ORD100987,PSTP003,Starworth - Harmony,48,Gold,Industrial,4.09,Koramangala,12.938261,77.622164,Synthetic Buyer 987,9000038755,Pending,2026-07-31 14:04:57
+ORD100988,PSTP007,Purva Skywood Phase 2,43,Silver,Gardening,11.19,Whitefield,12.953579,77.743659,Synthetic Buyer 988,9000037008,Rejected,2026-07-21 00:04:57
+ORD100989,PSTP007,Purva Skywood Phase 2,12,Silver,Domestic,5.22,BTM Layout,12.924351,77.62483,Synthetic Buyer 989,9000025657,Out for Delivery,2026-07-25 15:27:57
+ORD100990,PSTP007,Purva Skywood Phase 2,23,Bronze,Gardening,3.81,Hosur Road,12.889945,77.625972,Synthetic Buyer 990,9000059514,Accepted,2026-08-06 05:41:57
+ORD100991,PSTP011,Provident Neora,34,Gold,Gardening,2.59,Hebbal,13.063479,77.607296,Synthetic Buyer 991,9000059629,Accepted,2026-08-01 21:12:57
+ORD100992,PSTP002,Purva Atria,30,Gold,Gardening,2.82,Malleshwaram,12.999818,77.574676,Synthetic Buyer 992,9000057282,Rejected,2026-07-21 17:52:57
+ORD100993,PSTP003,Starworth - Harmony,52,Bronze,Industrial,9.73,Banashankari,12.916253,77.553262,Synthetic Buyer 993,9000086739,Accepted,2026-07-17 06:04:57
+ORD100994,PSTP007,Purva Skywood Phase 2,181,Gold,Gardening,5.88,Marathahalli,12.9355,77.693708,Synthetic Buyer 994,9000011763,Accepted,2026-07-24 08:08:57
+ORD100995,PSTP003,Starworth - Harmony,52,Bronze,Gardening,4.94,Koramangala,12.93275,77.633983,Synthetic Buyer 995,9000062438,Out for Delivery,2026-07-27 11:39:57
+ORD100996,PSTP003,Starworth - Harmony,24,Bronze,Construction,6.29,Jayanagar,12.929231,77.585643,Synthetic Buyer 996,9000035271,Out for Delivery,2026-08-05 10:38:57
+ORD100997,PSTP007,Purva Skywood Phase 2,106,Bronze,Gardening,2.13,Electronic City,12.874492,77.664631,Synthetic Buyer 997,9000035909,Out for Delivery,2026-07-29 20:32:57
+ORD100998,PSTP007,Purva Skywood Phase 2,14,Gold,Domestic,13.71,Whitefield,12.961551,77.766269,Synthetic Buyer 998,9000041628,Pending,2026-07-30 21:56:57
+ORD100999,PSTP003,Starworth - Harmony,54,Silver,Domestic,7.37,KR Puram,12.987334,77.686667,Synthetic Buyer 999,9000089223,Rejected,2026-08-04 18:40:57
+ORD101000,PSTP005,Purva Palm Beach - Labour Colony,204,Gold,Industrial,8.76,KR Puram,12.997664,77.708343,Synthetic Buyer 1000,9000075673,Pending,2026-07-28 10:17:57

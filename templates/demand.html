@@ -1,0 +1,2725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Demand Dashboard | WasteWater</title>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+>
+
+<link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet/dist/leaflet.css"
+/>
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+
+<style>
+
+/* =========================================================
+   GLOBAL
+========================================================= */
+
+* {
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+}
+
+body {
+    background: #f5f7fb;
+    color: #172033;
+    overflow-x: hidden;
+}
+
+
+/* =========================================================
+   DASHBOARD
+========================================================= */
+
+.dashboard {
+    display: flex;
+    min-height: 100vh;
+}
+
+
+/* =========================================================
+   SIDEBAR
+========================================================= */
+
+.sidebar {
+
+    width: 245px;
+
+    position: fixed;
+
+    top: 0;
+    bottom: 0;
+    left: 0;
+
+    min-height: 100vh;
+
+    padding: 22px 14px;
+
+    background: #0d1b2e;
+
+    color: white;
+
+    z-index: 1000;
+}
+
+
+/* BRAND */
+
+.brand {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 5px 10px 30px;
+}
+
+
+.brand-icon {
+
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #1683ff,
+            #20c997
+        );
+
+    font-size: 22px;
+}
+
+
+.brand-text h2 {
+
+    margin: 0;
+
+    font-size: 17px;
+
+    font-weight: 600;
+}
+
+
+.brand-text p {
+
+    margin: 2px 0 0;
+
+    color: #9caec5;
+
+    font-size: 10px;
+}
+
+
+/* MENU */
+
+.menu-title {
+
+    margin: 8px 0 10px;
+
+    padding: 0 14px;
+
+    color: #71839b;
+
+    font-size: 10px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1px;
+}
+
+
+.nav-links {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+}
+
+
+.nav-links a {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 12px 14px;
+
+    color: #c6d0df;
+
+    text-decoration: none;
+
+    border-radius: 9px;
+
+    font-size: 13px;
+
+    transition: .25s ease;
+}
+
+
+.nav-links a:hover {
+
+    background: #172d49;
+
+    color: white;
+}
+
+
+.nav-links a.active {
+
+    background:
+        linear-gradient(
+            135deg,
+            #1877f2,
+            #1466d8
+        );
+
+    color: white;
+
+    box-shadow:
+        0 5px 15px
+        rgba(24,119,242,.25);
+}
+
+
+.nav-icon {
+
+    width: 21px;
+
+    text-align: center;
+
+    font-size: 16px;
+}
+
+
+/* SYSTEM STATUS */
+
+.system-status {
+
+    position: absolute;
+
+    left: 14px;
+    right: 14px;
+    bottom: 20px;
+
+    padding: 15px;
+
+    background: #152a43;
+
+    border: 1px solid #203955;
+
+    border-radius: 12px;
+}
+
+
+.system-status h4 {
+
+    margin: 0 0 10px;
+
+    font-size: 12px;
+}
+
+
+.status-line {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    color: #6ee7a5;
+
+    font-size: 11px;
+}
+
+
+.status-dot {
+
+    width: 8px;
+    height: 8px;
+
+    border-radius: 50%;
+
+    background: #35d07f;
+
+    box-shadow:
+        0 0 7px
+        rgba(53,208,127,.6);
+}
+
+
+/* =========================================================
+   MAIN CONTENT
+========================================================= */
+
+.main-content {
+
+    width: calc(100% - 245px);
+
+    margin-left: 245px;
+
+    min-width: 0;
+}
+
+
+/* =========================================================
+   TOPBAR
+========================================================= */
+
+.topbar {
+
+    height: 78px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 0 30px;
+
+    background: white;
+
+    border-bottom: 1px solid #e8edf4;
+}
+
+
+.welcome h1 {
+
+    margin: 0;
+
+    font-size: 20px;
+
+    font-weight: 600;
+}
+
+
+.welcome p {
+
+    margin: 4px 0 0;
+
+    color: #7b8799;
+
+    font-size: 12px;
+}
+
+
+.topbar-right {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 20px;
+}
+
+
+.notification {
+
+    position: relative;
+
+    font-size: 20px;
+}
+
+
+.notification-badge {
+
+    position: absolute;
+
+    top: -6px;
+    right: -8px;
+
+    width: 16px;
+    height: 16px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: #ef4444;
+
+    color: white;
+
+    border-radius: 50%;
+
+    font-size: 9px;
+}
+
+
+.profile {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    font-size: 12px;
+
+    font-weight: 500;
+}
+
+
+.profile-circle {
+
+    width: 34px;
+    height: 34px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #e5f0ff;
+
+    color: #176fd9;
+
+    font-size: 12px;
+
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   PAGE
+========================================================= */
+
+.container {
+
+    padding: 26px 30px 40px;
+}
+
+
+/* =========================================================
+   KPI CARDS
+========================================================= */
+
+.stats-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 16px;
+
+    margin-bottom: 18px;
+}
+
+
+.stat-card {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    padding: 18px;
+
+    background: white;
+
+    border: 1px solid #edf0f5;
+
+    border-radius: 12px;
+
+    box-shadow:
+        0 3px 12px
+        rgba(25,40,70,.04);
+}
+
+
+.stat-icon {
+
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    font-size: 21px;
+}
+
+
+.blue {
+    background: #e9f2ff;
+    color: #1976f3;
+}
+
+
+.green {
+    background: #e8f8ef;
+    color: #28ae69;
+}
+
+
+.purple {
+    background: #f0eaff;
+    color: #7b55d8;
+}
+
+
+.orange {
+    background: #fff3df;
+    color: #ed9a1b;
+}
+
+
+.stat-info p {
+
+    margin: 0;
+
+    color: #748197;
+
+    font-size: 11px;
+}
+
+
+.stat-info h2 {
+
+    margin: 3px 0 0;
+
+    font-size: 19px;
+
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   SEARCH CARD
+========================================================= */
+
+.search-card {
+
+    margin-bottom: 18px;
+
+    padding: 20px;
+
+    background: white;
+
+    border: 1px solid #edf0f5;
+
+    border-radius: 12px;
+
+    box-shadow:
+        0 3px 12px
+        rgba(25,40,70,.04);
+}
+
+
+.card-header {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 16px;
+}
+
+
+.card-header h2 {
+
+    margin: 0;
+
+    font-size: 15px;
+
+    font-weight: 600;
+}
+
+
+.card-header span {
+
+    color: #1976f3;
+
+    font-size: 11px;
+}
+
+
+.search-box {
+
+    display: grid;
+
+    grid-template-columns:
+        1.6fr
+        .8fr
+        1fr
+        1fr
+        auto
+        auto;
+
+    gap: 10px;
+
+    align-items: center;
+}
+
+
+.search-box input,
+.search-box select {
+
+    width: 100%;
+
+    height: 42px;
+
+    padding: 9px 12px;
+
+    background: #fafbfd;
+
+    border: 1px solid #dce3ec;
+
+    border-radius: 8px;
+
+    outline: none;
+
+    color: #263449;
+
+    font-size: 11px;
+}
+
+
+.search-box input:focus,
+.search-box select:focus {
+
+    border-color: #1976f3;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(25,118,243,.08);
+}
+
+
+.search-box button {
+
+    height: 42px;
+
+    padding: 0 18px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    color: white;
+
+    font-family: 'Poppins', sans-serif;
+
+    font-size: 10px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    white-space: nowrap;
+
+    transition: .2s;
+}
+
+
+.search-btn {
+
+    background: #1976f3;
+}
+
+
+.search-btn:hover {
+
+    background: #125fc5;
+}
+
+
+.live-btn {
+
+    background: #28ae69;
+}
+
+
+.live-btn:hover {
+
+    background: #199956;
+}
+
+
+/* =========================================================
+   MAIN GRID
+========================================================= */
+
+.main-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(320px, .85fr)
+        minmax(500px, 1.6fr);
+
+    gap: 18px;
+
+    align-items: start;
+}
+
+
+/* =========================================================
+   RESULT CARD
+========================================================= */
+
+.result-card {
+
+    padding: 20px;
+
+    background: white;
+
+    border: 1px solid #edf0f5;
+
+    border-radius: 12px;
+
+    box-shadow:
+        0 3px 12px
+        rgba(25,40,70,.04);
+}
+
+
+.result-title {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 8px;
+}
+
+
+.result-title h2 {
+
+    margin: 0;
+
+    font-size: 15px;
+}
+
+
+.result-title span {
+
+    color: #1976f3;
+
+    font-size: 10px;
+}
+
+
+.result-item {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    min-height: 49px;
+
+    padding: 10px 0;
+
+    border-bottom: 1px solid #e8edf3;
+
+    font-size: 10px;
+
+    color: #6f7d91;
+}
+
+
+.result-item:last-child {
+
+    border-bottom: none;
+}
+
+
+.result-icon {
+
+    width: 32px;
+    height: 32px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    background: #eef5ff;
+
+    border-radius: 9px;
+
+    font-size: 15px;
+}
+
+
+.result-content {
+
+    min-width: 0;
+}
+
+
+.result-content label {
+
+    display: block;
+
+    color: #8490a2;
+
+    font-size: 9px;
+}
+
+
+.result-content span {
+
+    display: block;
+
+    margin-top: 2px;
+
+    color: #26344a;
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+    word-break: break-word;
+}
+
+
+/* BOOK BUTTON */
+
+.book-btn {
+
+    width: 100%;
+
+    margin-top: 15px;
+
+    padding: 11px 20px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #1976f3;
+
+    color: white;
+
+    font-family: 'Poppins', sans-serif;
+
+    font-size: 10px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+
+.book-btn:hover {
+
+    background: #125fc5;
+}
+
+
+/* =========================================================
+   MAP CARD
+========================================================= */
+
+.map-card {
+
+    padding: 20px;
+
+    background: white;
+
+    border: 1px solid #edf0f5;
+
+    border-radius: 12px;
+
+    box-shadow:
+        0 3px 12px
+        rgba(25,40,70,.04);
+}
+
+
+.map-header {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 14px;
+}
+
+
+.map-header h2 {
+
+    margin: 0;
+
+    font-size: 15px;
+}
+
+
+.map-status {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    color: #199956;
+
+    font-size: 10px;
+}
+
+
+.map-status-dot {
+
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: #28ae69;
+}
+
+
+.map-box {
+
+    height: 490px;
+
+    overflow: hidden;
+
+    border: 1px solid #e2e8f0;
+
+    border-radius: 10px;
+}
+
+
+#map {
+
+    width: 100%;
+
+    height: 100%;
+}
+
+
+/* =========================================================
+   HELP
+========================================================= */
+
+#helpBtn {
+
+    position: fixed;
+
+    right: 25px;
+    bottom: 25px;
+
+    z-index: 2000;
+
+    padding: 11px 17px;
+
+    border: none;
+
+    border-radius: 50px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #2563eb,
+            #20b981
+        );
+
+    color: white;
+
+    font-family: 'Poppins', sans-serif;
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 8px 20px
+        rgba(0,0,0,.22);
+}
+
+
+#helpPanel {
+
+    position: fixed;
+
+    right: 20px;
+    bottom: 85px;
+
+    z-index: 2000;
+
+    width: 310px;
+
+    max-height: 430px;
+
+    overflow-y: auto;
+
+    display: none;
+
+    padding: 18px;
+
+    background: rgba(13,27,46,.96);
+
+    border: 1px solid #263c56;
+
+    border-radius: 14px;
+
+    color: white;
+
+    box-shadow:
+        0 20px 40px
+        rgba(0,0,0,.3);
+}
+
+
+.help-header {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+}
+
+
+.help-header h3 {
+
+    margin: 0;
+
+    font-size: 14px;
+}
+
+
+.help-header span {
+
+    cursor: pointer;
+
+    font-size: 17px;
+}
+
+
+.help-section {
+
+    margin-top: 15px;
+}
+
+
+.help-section h4 {
+
+    margin: 0 0 6px;
+
+    font-size: 11px;
+
+    color: #78b5ff;
+}
+
+
+.help-section ul {
+
+    margin: 0;
+
+    padding-left: 18px;
+
+    color: #c7d1df;
+
+    font-size: 10px;
+
+    line-height: 1.7;
+}
+
+
+.help-section p {
+
+    margin: 5px 0;
+
+    color: #c7d1df;
+
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 1250px) {
+
+    .stats-grid {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+
+    .search-box {
+
+        grid-template-columns:
+            1fr 1fr 1fr;
+    }
+
+
+    .main-grid {
+
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+@media (max-width: 768px) {
+
+    .sidebar {
+
+        width: 70px;
+
+        padding: 15px 8px;
+    }
+
+
+    .brand {
+
+        justify-content: center;
+
+        padding:
+            5px 0 25px;
+    }
+
+
+    .brand-text,
+    .menu-title,
+    .nav-links a span,
+    .system-status {
+
+        display: none;
+    }
+
+
+    .nav-links a {
+
+        justify-content: center;
+
+        padding: 12px 5px;
+    }
+
+
+    .main-content {
+
+        margin-left: 70px;
+
+        width:
+            calc(100% - 70px);
+    }
+
+
+    .topbar {
+
+        padding: 0 15px;
+    }
+
+
+    .welcome h1 {
+
+        font-size: 16px;
+    }
+
+
+    .welcome p {
+
+        display: none;
+    }
+
+
+    .container {
+
+        padding: 18px 15px 30px;
+    }
+
+
+    .stats-grid {
+
+        grid-template-columns: 1fr;
+    }
+
+
+    .search-box {
+
+        grid-template-columns: 1fr;
+    }
+
+
+    .search-box button {
+
+        width: 100%;
+    }
+
+
+    .map-box {
+
+        height: 380px;
+    }
+
+}
+
+
+@media (max-width: 480px) {
+
+    .topbar {
+
+        height: 65px;
+    }
+
+
+    .profile span {
+
+        display: none;
+    }
+
+
+    .topbar-right {
+
+        gap: 10px;
+    }
+
+
+    .map-box {
+
+        height: 300px;
+    }
+
+
+    #helpPanel {
+
+        right: 10px;
+
+        width:
+            calc(100% - 20px);
+    }
+
+}
+
+.payment-success-message {
+    position: fixed;
+    top: 25px;
+    right: 25px;
+    z-index: 99999;
+
+    width: 360px;
+    min-height: 80px;
+
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    padding: 15px 18px;
+
+    background: #ffffff;
+    border: 1px solid #d9e8dd;
+    border-radius: 14px;
+
+    color: #176b35;
+
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+
+    animation: paymentNotificationSlideIn 0.4s ease-out;
+}
+
+.payment-success-icon {
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    background: #2e9d55;
+    color: white;
+
+    font-size: 23px;
+    font-weight: bold;
+}
+
+.payment-success-message strong {
+    font-size: 16px;
+}
+
+.payment-success-message p {
+    margin: 5px 0 0;
+    font-size: 13px;
+    color: #666;
+    line-height: 1.4;
+}
+
+.payment-success-message button {
+    margin-left: auto;
+
+    border: none;
+    background: transparent;
+
+    color: #777;
+
+    font-size: 22px;
+    line-height: 1;
+
+    cursor: pointer;
+
+    padding: 2px 5px;
+}
+
+.payment-success-message button:hover {
+    color: #222;
+}
+
+@keyframes paymentNotificationSlideIn {
+    from {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes paymentNotificationSlideOut {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    to {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+}
+
+.payment-success-icon {
+    width: 30px;
+    height: 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #2e9d55;
+    color: white;
+
+    font-size: 18px;
+    font-weight: bold;
+    flex-shrink: 0;
+}
+
+.payment-success-message strong {
+    font-size: 16px;
+}
+
+.payment-success-message p {
+    margin: 5px 0 0;
+    font-size: 13px;
+}
+
+.payment-success-message button {
+    margin-left: auto;
+
+    border: none;
+    background: transparent;
+
+    color: #176b35;
+    font-size: 22px;
+    cursor: pointer;
+
+    line-height: 1;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+    {% if payment_success %}
+<div id="paymentSuccessMessage" class="payment-success-message">
+    <div class="payment-success-icon">✓</div>
+
+    <div>
+        <strong>Payment Successful!</strong>
+        <p>
+            Your order <strong>{{ payment_success }}</strong>
+            has been confirmed successfully.
+        </p>
+        <p>
+            You can view the updated order in <strong>My Orders</strong>.
+        </p>
+    </div>
+
+    <button type="button"
+            onclick="document.getElementById('paymentSuccessMessage').remove()">
+        ×
+    </button>
+</div>
+{% endif %}
+
+
+<div class="dashboard">
+
+
+<!-- =====================================================
+     SIDEBAR
+===================================================== -->
+
+<aside class="sidebar">
+
+
+    <div class="brand">
+
+        <div class="brand-icon">
+            💧
+        </div>
+
+        <div class="brand-text">
+
+            <h2>
+                WasteWater
+            </h2>
+
+            <p>
+                Management System
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="menu-title">
+        Main Menu
+    </div>
+
+
+    <div class="nav-links">
+
+
+        <a href="/demand" class="active">
+
+            <div class="nav-icon">
+                ⌂
+            </div>
+
+            <span>
+                Dashboard
+            </span>
+
+        </a>
+
+
+        <a href="#search">
+
+            <div class="nav-icon">
+                🔍
+            </div>
+
+            <span>
+                Find Water
+            </span>
+
+        </a>
+
+
+        <a href="/track">
+
+            <div class="nav-icon">
+                🚚
+            </div>
+
+            <span>
+                My Orders
+            </span>
+
+        </a>
+
+
+        <a href="#map-section">
+
+            <div class="nav-icon">
+                🗺
+            </div>
+
+            <span>
+                Routing Map
+            </span>
+
+        </a>
+
+
+        <a href="#">
+
+            <div class="nav-icon">
+                ▥
+            </div>
+
+            <span>
+                Reports
+            </span>
+
+        </a>
+
+
+    </div>
+
+
+    <div
+        class="menu-title"
+        style="margin-top:25px;"
+    >
+        Account
+    </div>
+
+
+    <div class="nav-links">
+
+
+        <a href="#">
+
+            <div class="nav-icon">
+                ♙
+            </div>
+
+            <span>
+                Profile
+            </span>
+
+        </a>
+
+
+        <a href="#">
+
+            <div class="nav-icon">
+                ⚙
+            </div>
+
+            <span>
+                Settings
+            </span>
+
+        </a>
+
+
+        <a href="{{ url_for('logout') }}">
+
+            <div class="nav-icon">
+                ↪
+            </div>
+
+            <span>
+                Logout
+            </span>
+
+        </a>
+
+
+    </div>
+
+
+    <div class="system-status">
+
+        <h4>
+            System Status
+        </h4>
+
+        <div class="status-line">
+
+            <div class="status-dot"></div>
+
+            All systems operational
+
+        </div>
+
+    </div>
+
+
+</aside>
+
+
+
+<!-- =====================================================
+     MAIN CONTENT
+===================================================== -->
+
+<main class="main-content">
+
+
+<header class="topbar">
+
+
+    <div class="welcome">
+
+        <h1>
+            Welcome back, Buyer 👋
+        </h1>
+
+        <p>
+            Find and request treated wastewater for your site.
+        </p>
+
+    </div>
+
+
+    <div class="topbar-right">
+
+
+        <div class="notification">
+
+            🔔
+
+            <div class="notification-badge">
+                0
+            </div>
+
+        </div>
+
+
+        <div class="profile" id="wwExistingProfile" role="button" tabindex="0"
+     onclick="window.location.replace('/profile')"
+     onkeydown="if(event.key==='Enter' || event.key===' '){event.preventDefault();window.location.replace('/profile');}">
+
+            <div class="profile-circle">
+                BY
+            </div>
+
+            <span>
+                Buyer
+            </span>
+
+            <span>
+                ⌄
+            </span>
+
+        </div>
+
+
+    </div>
+
+
+</header>
+
+
+
+<div class="container">
+
+
+<!-- =====================================================
+     KPI CARDS
+===================================================== -->
+
+<div class="stats-grid">
+
+
+    <div class="stat-card">
+
+        <div class="stat-icon blue">
+            🏭
+        </div>
+
+        <div class="stat-info">
+
+            <p>
+                STP Network
+            </p>
+
+            <h2>
+                Available
+            </h2>
+
+        </div>
+
+    </div>
+
+
+    <div class="stat-card">
+
+        <div class="stat-icon green">
+            💧
+        </div>
+
+        <div class="stat-info">
+
+            <p>
+                Water Type
+            </p>
+
+            <h2>
+                Treated
+            </h2>
+
+        </div>
+
+    </div>
+
+
+    <div class="stat-card">
+
+        <div class="stat-icon purple">
+            📍
+        </div>
+
+        <div class="stat-info">
+
+            <p>
+                Smart Routing
+            </p>
+
+            <h2>
+                Active
+            </h2>
+
+        </div>
+
+    </div>
+
+
+    <div class="stat-card">
+
+        <div class="stat-icon orange">
+            🚚
+        </div>
+
+        <div class="stat-info">
+
+            <p>
+                Order Tracking
+            </p>
+
+            <h2>
+                Available
+            </h2>
+
+        </div>
+
+    </div>
+
+
+</div>
+
+
+
+<!-- =====================================================
+     SEARCH
+===================================================== -->
+
+<div
+    class="search-card"
+    id="search"
+>
+
+
+    <div class="card-header">
+
+        <h2>
+            Find Treated Wastewater
+        </h2>
+
+        <span>
+            Smart STP Matching
+        </span>
+
+    </div>
+
+
+    <div class="search-box">
+
+
+        <input
+            type="text"
+            id="placeInput"
+            placeholder="Enter Location (Eg: Hebbal)"
+        >
+
+
+        <input
+            type="number"
+            id="kldInput"
+            placeholder="Required KLD"
+        >
+
+
+        <select id="qualityInput">
+
+            <option value="">
+                Any Quality
+            </option>
+
+            <option value="Platinum">
+                Platinum
+            </option>
+
+            <option value="Gold">
+                Gold
+            </option>
+
+            <option value="Silver">
+                Silver
+            </option>
+
+            <option value="General">
+                General
+            </option>
+
+        </select>
+
+
+        <select id="typeInput">
+
+            <option value="">
+                Any Type
+            </option>
+
+            <option value="treated">
+                Treated
+            </option>
+
+            <option value="fresh">
+                Fresh
+            </option>
+
+            <option value="general">
+                General
+            </option>
+
+        </select>
+
+
+        <button
+            class="search-btn"
+            onclick="searchLocation()"
+        >
+            🔍 Search
+        </button>
+
+
+        <button
+            class="live-btn"
+            onclick="useLiveLocation()"
+        >
+            📍 Live Location
+        </button>
+
+
+    </div>
+
+
+</div>
+
+
+
+<!-- =====================================================
+     RESULTS + MAP
+===================================================== -->
+
+<div class="main-grid">
+
+
+<!-- =====================================================
+     RESULT
+===================================================== -->
+
+<div
+    class="result-card"
+    id="resultCard"
+>
+
+
+    <div class="result-title">
+
+        <h2>
+            Matching Result
+        </h2>
+
+        <span>
+            AI Assisted
+        </span>
+
+    </div>
+
+
+    <div class="result-item">
+
+
+        <div class="result-icon">
+            🏭
+        </div>
+
+
+        <div class="result-content">
+
+            <label>
+                Assigned STP
+            </label>
+
+            <span id="assignedStp">
+                --
+            </span>
+
+        </div>
+
+
+    </div>
+
+
+    <div class="result-item">
+
+
+        <div class="result-icon">
+            💧
+        </div>
+
+
+        <div class="result-content">
+
+            <label>
+                Required Quantity
+            </label>
+
+            <span id="predictedKld">
+                --
+            </span>
+
+        </div>
+
+
+    </div>
+
+
+    <div class="result-item">
+
+
+        <div class="result-icon">
+            📍
+        </div>
+
+
+        <div class="result-content">
+
+            <label>
+                Distance
+            </label>
+
+            <span id="distanceStp">
+                --
+            </span>
+
+        </div>
+
+
+    </div>
+
+
+    <div class="result-item">
+
+
+        <div class="result-icon">
+            🛣️
+        </div>
+
+
+        <div class="result-content">
+
+            <label>
+                Available Routes
+            </label>
+
+            <span id="routeSummary">
+                --
+            </span>
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+
+<!-- =====================================================
+     MAP
+===================================================== -->
+
+<div
+    class="map-card"
+    id="map-section"
+>
+
+
+    <div class="map-header">
+
+        <h2>
+            Wastewater Routing Map
+        </h2>
+
+
+        <div class="map-status">
+
+            <div class="map-status-dot"></div>
+
+            Live Map
+
+        </div>
+
+    </div>
+
+
+    <div class="map-box">
+
+        <div id="map"></div>
+
+    </div>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</main>
+
+
+</div>
+
+
+
+<!-- =====================================================
+     JAVASCRIPT
+     
+     EXISTING FUNCTIONALITY PRESERVED
+===================================================== -->
+
+<script>
+
+
+/* 🔥 NEW GLOBAL VARIABLES */
+
+let liveLat = null;
+let liveLon = null;
+let useLive = false;
+
+var map =
+    L.map('map')
+    .setView(
+        [12.9716,77.5946],
+        11
+    );
+
+
+L.tileLayer(
+    'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+    {
+        attribution:
+            '&copy; OpenStreetMap contributors'
+    }
+).addTo(map);
+
+
+var markersLayer =
+    L.layerGroup().addTo(map);
+
+
+let allStpMarkers = [];
+
+
+/* ================= LOAD ALL STPS ================= */
+
+fetch("/api/stps")
+
+.then(res => res.json())
+
+.then(stps => {
+
+    stps.forEach(stp => {
+
+        if(stp.latitude && stp.longitude){
+
+            let marker =
+                L.marker(
+                    [
+                        stp.latitude,
+                        stp.longitude
+                    ]
+                )
+
+                .addTo(markersLayer)
+
+                .bindPopup(
+                    `<b>${stp.stp_name}</b>`
+                );
+
+
+            allStpMarkers.push(marker);
+
+        }
+
+    });
+
+});
+
+
+
+/* ================= LIVE LOCATION ================= */
+
+function useLiveLocation(){
+
+    if(!navigator.geolocation){
+
+        alert(
+            "Geolocation not supported"
+        );
+
+        return;
+    }
+
+
+    navigator.geolocation.getCurrentPosition(
+
+        function(position){
+
+            const lat =
+                position.coords.latitude;
+
+            const lon =
+                position.coords.longitude;
+
+
+            console.log(
+                "Live Location:",
+                lat,
+                lon
+            );
+
+
+            liveLat = lat;
+            liveLon = lon;
+
+            useLive = true;
+
+
+            searchLocation();
+
+        },
+
+        function(){
+
+            alert(
+                "Location permission denied"
+            );
+
+        }
+
+    );
+
+}
+
+
+
+/* ================= SEARCH FUNCTION ================= */
+
+function searchLocation(){
+
+let place=document.getElementById("placeInput").value;
+let requiredKLD=document.getElementById("kldInput").value || 0;
+let quality=document.getElementById("qualityInput").value;
+let type=document.getElementById("typeInput").value;
+
+/* 🔥 FIXED VALIDATION */
+if(!place && !useLive){
+    alert("Enter location or use Live Location");
+    return;
+}
+
+/* 🔥 DYNAMIC URL */
+let url = "";
+
+if(useLive){
+    url = `/api/search_place?lat=${liveLat}&lon=${liveLon}&required_kld=${requiredKLD}&quality=${quality}&type=${type}`;
+}else{
+    url = `/api/search_place?place=${place}&required_kld=${requiredKLD}&quality=${quality}&type=${type}`;
+}
+
+fetch(url)
+.then(res=>res.json())
+.then(data=>{
+
+if(data.error){ alert(data.error); return; }
+
+markersLayer.eachLayer(function(layer){
+    markersLayer.removeLayer(layer);
+});   // ✅ single clean reset
+
+let location=data.searched_location;
+let nearest=data.nearest_stp;
+console.log("Nearest STP:", nearest);
+
+let lat=location.latitude;
+let lon=location.longitude;
+
+L.marker([lat,lon])
+.addTo(markersLayer)
+.bindPopup(`<b>${location.name}</b>`)
+.openPopup();
+
+map.setView([lat,lon],14);
+
+if(nearest){
+
+    L.marker([nearest.latitude, nearest.longitude], {
+    icon: L.icon({
+        iconUrl: "https://maps.google.com/mapfiles/ms/icons/green-dot.png",
+        iconSize: [32,32]
+    })
+})
+.addTo(markersLayer)
+.bindPopup(`<b>${nearest.stp_name}</b><br>Distance: ${nearest.distance_km} km`)
+.openPopup();
+
+fetch(
+`https://router.project-osrm.org/route/v1/driving/${lon},${lat};${nearest.longitude},${nearest.latitude}?overview=full&geometries=geojson&alternatives=true`
+)
+.then(res=>res.json())
+.then(routeData=>{
+
+console.log("Routes found:", routeData.routes.length);
+
+if(!routeData.routes || routeData.routes.length===0) return;
+
+let combinedBounds = null;
+
+routeData.routes.forEach((route, index) => {
+
+    let color;
+
+    if(index === 0){
+        color = "#2563eb";   // Blue - fastest route
+    }
+    else if(index === 1){
+        color = "#60a5fa";   // Light blue - alternate route
+    }
+    else{
+        color = "#93c5fd";   // Even lighter blue for third route
+    }
+
+    const routeLayer = L.geoJSON(route.geometry, {
+        style: {
+            color: color,
+            weight: index === 0 ? 7 : 5,
+            opacity: index === 0 ? 1 : 0.85
+        }
+    }).addTo(markersLayer);
+    const distanceKm = (route.distance / 1000).toFixed(1);
+    const durationMin = ((route.distance / 1000) / 28 * 60).toFixed(1);
+
+    routeLayer.on('click', function(e) {
+
+        markersLayer.eachLayer(function(layer){
+            if(layer.setStyle){
+                layer.setStyle({
+                    weight: 5,
+                    opacity: 0.7
+                });
+            }
+        });
+
+        routeLayer.setStyle({
+            weight: 9,
+            opacity: 1
+        });
+
+        routeLayer.bindPopup(
+            `<b>${index === 0 ? 'Fastest Route' : 'Alternate Route'}</b><br>
+            Distance: ${distanceKm} km<br>
+            ETA: ${durationMin} mins`
+        ).openPopup(e.latlng);
+
+    });
+    if(combinedBounds === null){
+        combinedBounds = routeLayer.getBounds();
+    }
+    else{
+        combinedBounds.extend(routeLayer.getBounds());
+    }
+});
+
+if(combinedBounds){
+    map.fitBounds(combinedBounds, {
+        padding: [50, 50]
+    });
+}
+
+const avgSpeed = 28; // Bangalore city average speed km/h
+const fastestDistance = routeData.routes[0].distance / 1000;
+const travelTime = ((fastestDistance / avgSpeed) * 60).toFixed(1);
+
+document.getElementById("distanceStp").innerText =
+fastestDistance + " km (road)";
+
+document.getElementById("predictedKld").innerText =
+requiredKLD+" KLD | ETA: "+travelTime+" mins";
+let summaryText = "";
+
+routeData.routes.forEach((route, index) => {
+
+    const distanceKm = (route.distance / 1000).toFixed(1);
+    const avgSpeed = 28; // Bangalore average traffic speed
+    const durationMin = ((distanceKm / 28) * 60).toFixed(1);
+
+    if(index === 0){
+        summaryText += `🔵 Fastest: ${distanceKm} km (${durationMin} min)`;
+    }
+    else{
+        const extraTime =
+            ((route.duration - routeData.routes[0].duration) / 60).toFixed(1);
+
+        summaryText += ` | 🔹 Alternate: ${distanceKm} km (${durationMin} min, +${extraTime} min)`;
+    }
+});
+
+document.getElementById("routeSummary").innerText = summaryText;
+});
+
+document.getElementById("assignedStp").innerText=nearest.stp_name;
+
+/* 🔥 FIX BOOKING LOCATION */
+let locationLabel = location.name;
+
+addBookButton(nearest,requiredKLD,quality,type,locationLabel);
+}
+
+/* 🔥 RESET */
+
+
+});
+}
+
+
+function addBookButton(nearest, kld, quality, type, place){
+
+let oldBtn = document.getElementById("finalBookBtn");
+if(oldBtn) oldBtn.remove();
+
+let btn = document.createElement("button");
+btn.id = "finalBookBtn";
+btn.className = "book-btn";
+btn.innerText = "Book Order";
+
+btn.onclick = function(){
+
+    fetch("/create_order",{
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
+        body: JSON.stringify({
+            stp_id: nearest.stp_id,
+            stp_name: nearest.stp_name,
+            quantity_kld: kld,
+            quality: quality,
+            water_type: type,
+            distance_km: nearest.distance_km,
+            location: place
+        })
+    })
+    .then(res=>res.json())
+    .then(data=>{
+
+        if(data.error){
+            alert(data.error);
+            return;
+        }
+
+        if(!data.order_id){
+            alert("Order was created, but Order ID was not returned.");
+            return;
+        }
+
+        window.location.replace(
+            `/invoice?order_id=${encodeURIComponent(data.order_id)}`
+        );
+
+    })
+    .catch(error=>{
+
+        console.error("Order creation error:", error);
+        alert("Unable to create the order. Please try again.");
+
+    });
+};
+
+document.getElementById("resultCard").appendChild(btn);
+}
+
+/* ================= HELP TOGGLE ================= */
+function toggleHelp(){
+    const panel = document.getElementById("helpPanel");
+    panel.style.display = panel.style.display === "block" ? "none" : "block";
+}
+
+function goToTracking(orderId){
+    window.location.href = `/track?order_id=${orderId}`;
+
+}
+
+</script>
+
+<!-- =====================================================
+     HELP BUTTON
+===================================================== -->
+
+<button
+    id="helpBtn"
+    onclick="toggleHelp()"
+>
+    💬 Help
+</button>
+
+
+
+<!-- =====================================================
+     HELP PANEL
+===================================================== -->
+
+<div id="helpPanel">
+
+
+    <div class="help-header">
+
+        <h3>
+            Help Centre
+        </h3>
+
+        <span onclick="toggleHelp()">
+            ✕
+        </span>
+
+    </div>
+
+
+    <div class="help-section">
+
+        <h4>
+            How to Use
+        </h4>
+
+        <ul>
+
+            <li>
+                Enter location or use Live Location
+            </li>
+
+            <li>
+                Enter required KLD
+            </li>
+
+            <li>
+                Select quality & type
+            </li>
+
+            <li>
+                Click Search to find nearest STP
+            </li>
+
+        </ul>
+
+    </div>
+
+
+    <div class="help-section">
+
+        <h4>
+            Order Status
+        </h4>
+
+        <ul>
+
+            <li>
+                ⏳ Pending → Waiting for approval
+            </li>
+
+            <li>
+                ✅ Accepted → STP approved request
+            </li>
+
+            <li>
+                🚛 Out for Delivery → Tanker on the way
+            </li>
+
+        </ul>
+
+    </div>
+
+
+    <div class="help-section">
+
+        <h4>
+            Support
+        </h4>
+
+        <p>
+            📞 +91 9876543210
+        </p>
+
+        <p>
+            📧 support@waterflow.com
+        </p>
+
+    </div>
+
+
+</div>
+
+
+
+
+<!-- =========================================================
+     GLOBAL PROFILE / AVATAR / LOGOUT MENU
+========================================================= -->
+<style>
+#wwGlobalAccountButton{
+    position:fixed;top:14px;right:18px;width:43px;height:43px;
+    border-radius:50%;border:2px solid #fff;
+    background:linear-gradient(135deg,#1683ff,#20c997);
+    color:#fff;display:flex;align-items:center;justify-content:center;
+    font-family:Arial,sans-serif;font-size:13px;font-weight:700;
+    cursor:pointer;z-index:2147483000;
+    box-shadow:0 5px 18px rgba(0,0,0,.18);
+    user-select:none;transition:transform .18s ease,box-shadow .18s ease;
+}
+#wwGlobalAccountButton:hover{
+    transform:scale(1.05);box-shadow:0 7px 22px rgba(0,0,0,.23);
+}
+#wwGlobalAccountMenu{
+    position:fixed;top:66px;right:18px;width:235px;
+    background:#fff;border:1px solid #e6ebf2;border-radius:13px;
+    padding:10px;z-index:2147483001;
+    box-shadow:0 14px 38px rgba(15,23,42,.18);
+    font-family:Arial,sans-serif;display:none;
+}
+#wwGlobalAccountMenu.ww-open{display:block}
+.ww-account-header{
+    padding:8px 9px 12px;margin-bottom:5px;
+    border-bottom:1px solid #edf1f5;
+}
+.ww-account-name{
+    color:#172033;font-size:14px;font-weight:700;
+    line-height:1.35;word-break:break-word;
+}
+.ww-account-role{
+    margin-top:3px;color:#7b8799;font-size:11px;
+    text-transform:capitalize;
+}
+.ww-account-item{
+    display:block;width:100%;padding:10px 9px;border-radius:8px;
+    color:#263449;background:transparent;text-decoration:none;
+    font-size:12px;font-weight:600;text-align:left;
+    box-sizing:border-box;cursor:pointer;
+}
+.ww-account-item:hover{background:#f4f7fb}
+.ww-account-login{color:#1976f3}
+.ww-account-logout{color:#d13b3b}
+@media(max-width:600px){
+    #wwGlobalAccountMenu{top:58px;right:10px;width:210px}
+}
+</style>
+
+<div id="wwGlobalAccountMenu" aria-hidden="true">
+    <div class="ww-account-header">
+        <div id="wwAccountName" class="ww-account-name">Guest</div>
+        <div id="wwAccountRole" class="ww-account-role">Account</div>
+    </div>
+
+    <a id="wwAccountProfile" class="ww-account-item"
+       href="/profile" style="display:none;">👤 My Profile</a>
+
+    <a id="wwAccountLogin" class="ww-account-item ww-account-login"
+       href="/login" style="display:none;">🔐 Login</a>
+
+    <a id="wwAccountLogout" class="ww-account-item ww-account-logout"
+       href="/logout" style="display:none;">↪ Logout</a>
+</div>
+
+<script>
+(function(){
+    "use strict";
+
+    const avatar=document.querySelector(".profile, .operator-profile, .admin-profile");
+    const menu=document.getElementById("wwGlobalAccountMenu");
+
+    if(!avatar || !menu) return;
+
+    const nameEl=document.getElementById("wwAccountName");
+    const roleEl=document.getElementById("wwAccountRole");
+    const profileEl=document.getElementById("wwAccountProfile");
+    const loginEl=document.getElementById("wwAccountLogin");
+    const logoutEl=document.getElementById("wwAccountLogout");
+
+    function loggedOut(){
+        const circle=avatar.querySelector(".profile-circle");
+        const profileName=avatar.querySelector("span:not(:last-child)");
+        if(circle) circle.textContent="👤";
+        if(profileName) profileName.textContent="Guest";
+        avatar.title="Login";
+        if(nameEl) nameEl.textContent="Guest";
+        if(roleEl) roleEl.textContent="Not logged in";
+        if(profileEl) profileEl.style.display="none";
+        if(loginEl) loginEl.style.display="block";
+        if(logoutEl) logoutEl.style.display="none";
+    }
+
+    function loggedIn(user){
+        const circle=avatar.querySelector(".profile-circle");
+        const profileName=avatar.querySelector("span:not(:last-child)");
+        if(circle) circle.textContent=user.initials || "👤";
+        if(profileName) profileName.textContent=user.name || "User";
+        avatar.title=user.name || "My Profile";
+
+        if(nameEl) nameEl.textContent=user.name || "User";
+
+        if(roleEl){
+            const role=user.role || "Account";
+            roleEl.textContent=role.charAt(0).toUpperCase()+role.slice(1);
+        }
+
+        if(profileEl) profileEl.style.display="block";
+        if(loginEl) loginEl.style.display="none";
+        if(logoutEl) logoutEl.style.display="block";
+    }
+
+    fetch("/api/current_user",{
+        method:"GET",
+        credentials:"same-origin",
+        cache:"no-store"
+    })
+    .then(function(response){
+        if(!response.ok) throw new Error("Account API unavailable");
+        return response.json();
+    })
+    .then(function(user){
+        if(user && user.logged_in) loggedIn(user);
+        else loggedOut();
+    })
+    .catch(function(){
+        loggedOut();
+    });
+
+    function toggle(event){
+        if(event) event.stopPropagation();
+        const open=menu.classList.toggle("ww-open");
+        menu.setAttribute("aria-hidden",open ? "false" : "true");
+    }
+
+    avatar.addEventListener("click",toggle);
+
+    avatar.addEventListener("keydown",function(event){
+        if(event.key==="Enter" || event.key===" "){
+            event.preventDefault();
+            toggle(event);
+        }
+    });
+
+    menu.addEventListener("click",function(event){
+        event.stopPropagation();
+    });
+
+    document.addEventListener("click",function(){
+        menu.classList.remove("ww-open");
+        menu.setAttribute("aria-hidden","true");
+    });
+
+    // Keep internal application navigation from creating a long browser
+    // history chain. Same-page anchors and external links are untouched.
+    document.addEventListener("click", function(event){
+        const link = event.target.closest("a");
+        if(!link) return;
+
+        const href = link.getAttribute("href");
+        if(!href || href === "#" || href.startsWith("#") || href.startsWith("javascript:")) return;
+        if(link.target && link.target !== "_self") return;
+
+        try {
+            const url = new URL(href, window.location.href);
+            if(url.origin !== window.location.origin) return;
+
+            event.preventDefault();
+            window.location.replace(url.href);
+        } catch(e) {}
+    }, true);
+
+    // If the browser restores a cached page through Back/Forward,
+    // reload it so the current session state is used.
+    window.addEventListener("pageshow", function(event){
+        if(event.persisted){
+            window.location.reload();
+        }
+    });
+})();
+</script>
+<!-- END GLOBAL PROFILE / AVATAR / LOGOUT MENU -->
+
+</body>
+
+
+</html>

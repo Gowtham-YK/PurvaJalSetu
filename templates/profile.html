@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile | WasteWater</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: 'Poppins', sans-serif;
+            background: #f5f7fb;
+            color: #172033;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 25px;
+        }
+
+        .profile-page {
+            width: 100%;
+            max-width: 700px;
+        }
+
+        .profile-card {
+            background: white;
+            border-radius: 16px;
+            border: 1px solid #e8edf4;
+            box-shadow: 0 15px 40px rgba(25,40,70,.10);
+            overflow: hidden;
+        }
+
+        .profile-header {
+            background: linear-gradient(135deg, #0d1b2e, #17365d);
+            color: white;
+            padding: 30px;
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .profile-avatar {
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #1683ff, #20c997);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        .profile-header h1 {
+            margin: 0;
+            font-size: 22px;
+            font-weight: 600;
+        }
+
+        .profile-header p {
+            margin: 4px 0 0;
+            color: #b8c7da;
+            font-size: 12px;
+        }
+
+        .profile-content {
+            padding: 30px;
+        }
+
+        .section-title {
+            margin: 0 0 18px;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+        }
+
+        .detail {
+            background: #f8fafc;
+            border: 1px solid #edf0f5;
+            border-radius: 10px;
+            padding: 16px;
+        }
+
+        .detail label {
+            display: block;
+            color: #7b8799;
+            font-size: 10px;
+            margin-bottom: 5px;
+        }
+
+        .detail strong {
+            display: block;
+            color: #263449;
+            font-size: 13px;
+            font-weight: 600;
+            word-break: break-word;
+        }
+
+        .role-badge {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 20px;
+            background: #e8f1ff;
+            color: #1976f3;
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: capitalize;
+        }
+
+        .actions {
+            margin-top: 25px;
+            padding-top: 22px;
+            border-top: 1px solid #edf0f5;
+            display: flex;
+            gap: 10px;
+        }
+
+        .back-btn,
+        .logout-btn {
+            flex: 1;
+            padding: 12px 15px;
+            border-radius: 8px;
+            text-align: center;
+            text-decoration: none;
+            font-family: 'Poppins', sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .back-btn {
+            background: #1976f3;
+            color: white;
+        }
+
+        .back-btn:hover {
+            background: #125fc5;
+        }
+
+        .logout-btn {
+            background: white;
+            color: #526075;
+            border: 1px solid #dce2ea;
+        }
+
+        .logout-btn:hover {
+            background: #f5f7fb;
+        }
+
+        .danger-zone {
+            margin-top: 25px;
+            padding: 20px;
+            border-radius: 12px;
+            background: #fff7f7;
+            border: 1px solid #ffdada;
+        }
+
+        .danger-zone h3 {
+            margin: 0 0 5px;
+            color: #c93636;
+            font-size: 14px;
+        }
+
+        .danger-zone p {
+            margin: 0 0 15px;
+            color: #7b8799;
+            font-size: 11px;
+            line-height: 1.5;
+        }
+
+        .delete-btn {
+            width: 100%;
+            padding: 11px;
+            border: none;
+            border-radius: 8px;
+            background: #dc4141;
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .delete-btn:hover {
+            background: #b92f2f;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 15px;
+                align-items: flex-start;
+            }
+
+            .profile-page {
+                margin-top: 20px;
+            }
+
+            .profile-header,
+            .profile-content {
+                padding: 22px;
+            }
+
+            .details {
+                grid-template-columns: 1fr;
+            }
+
+            .actions {
+                flex-direction: column;
+            }
+
+            .profile-header h1 {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+<div class="profile-page">
+    <div class="profile-card">
+
+        <div class="profile-header">
+            <div class="profile-avatar">
+                {% if user.first_name and user.last_name %}
+                    {{ user.first_name[0]|upper }}{{ user.last_name[0]|upper }}
+                {% else %}
+                    US
+                {% endif %}
+            </div>
+
+            <div>
+                <h1>{{ user.first_name }} {{ user.last_name }}</h1>
+                <p>WasteWater Management System</p>
+            </div>
+        </div>
+
+        <div class="profile-content">
+            <h2 class="section-title">Personal Information</h2>
+
+            <div class="details">
+
+                <div class="detail">
+                    <label>First Name</label>
+                    <strong>{{ user.first_name }}</strong>
+                </div>
+
+                <div class="detail">
+                    <label>Last Name</label>
+                    <strong>{{ user.last_name }}</strong>
+                </div>
+
+                <div class="detail">
+                    <label>Username</label>
+                    <strong>{{ user.username }}</strong>
+                </div>
+
+                <div class="detail">
+                    <label>Mobile Number</label>
+                    <strong>{{ user.mobile }}</strong>
+                </div>
+
+                <div class="detail">
+                    <label>Email Address</label>
+                    <strong>{{ user.email }}</strong>
+                </div>
+
+                <div class="detail">
+                    <label>Account Type</label>
+                    <strong>
+                        <span class="role-badge">{{ user.role }}</span>
+                    </strong>
+                </div>
+
+                <div class="detail">
+                    <label>Account Created</label>
+                    <strong>{{ user.created_at }}</strong>
+                </div>
+
+                <div class="detail">
+                    <label>Account Status</label>
+                    <strong>{{ user.account_status|capitalize }}</strong>
+                </div>
+
+            </div>
+
+            <div class="actions">
+                {% if user.role == "demand" %}
+            <a href="{{ url_for('demand') }}" class="back-btn">
+                ← Back to Dashboard
+            </a>
+        {% elif user.role == "stp" %}
+            <a href="{{ url_for('supply') }}" class="back-btn">
+                ← Back to Dashboard
+            </a>
+        {% elif user.role == "tanker" %}
+            <a href="{{ url_for('tanker_dashboard') }}" class="back-btn">
+                ← Back to Dashboard
+            </a>
+        {% elif user.role == "admin" %}
+            <a href="{{ url_for('admin_dashboard') }}" class="back-btn">
+                ← Back to Dashboard
+            </a>
+        {% endif %}
+
+                <a href="{{ url_for('logout') }}" class="logout-btn">
+                    Logout
+                </a>
+            </div>
+
+            <div class="danger-zone">
+                <h3>Delete Account</h3>
+
+                <p>
+                    Permanently delete your WasteWater account and remove
+                    your registered login credentials. This action cannot
+                    be undone.
+                </p>
+
+                <form
+                    method="POST"
+                    action="{{ url_for('delete_account') }}"
+                    onsubmit="return confirmDelete()"
+                >
+                    <button type="submit" class="delete-btn">
+                        Delete My Account
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function confirmDelete() {
+    return confirm(
+        "Are you sure you want to permanently delete your account? This action cannot be undone."
+    );
+}
+</script>
+
+
+
+
+
+</body>
+</html>
