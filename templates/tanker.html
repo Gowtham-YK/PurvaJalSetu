@@ -853,6 +853,18 @@
             background: #dc4141;
         }
 
+        .tanker-request-accepted {
+            width: 100%;
+            margin-top: 7px;
+            padding: 8px 12px;
+            border-radius: 7px;
+            background: #e8f8eb;
+            color: #16834d;
+            font-size: 9px;
+            font-weight: 600;
+            text-align: center;
+        }
+
         .pickup-form {
 
             margin: 0;
@@ -1260,6 +1272,118 @@
 
         }
 
+    
+        /* =====================================================
+           MY TRIPS / ORDER HISTORY
+        ===================================================== */
+        .trips-card {
+            margin-top: 18px;
+        }
+
+        .trip-history-list {
+            display: grid;
+            gap: 10px;
+        }
+
+        .trip-history-item {
+            display: grid;
+            grid-template-columns: minmax(135px, 1.05fr)
+                                 minmax(120px, .9fr)
+                                 minmax(180px, 1.45fr)
+                                 minmax(120px, .8fr)
+                                 auto;
+            gap: 14px;
+            align-items: center;
+            padding: 14px;
+            border: 1px solid #e7edf4;
+            border-radius: 10px;
+            background: #fbfdff;
+        }
+
+        .trip-history-item:hover {
+            background: #f7fbff;
+            border-color: #d5e2f1;
+        }
+
+        .trip-history-order strong,
+        .trip-history-detail strong {
+            display: block;
+            color: #29374d;
+            font-size: 10px;
+            font-weight: 600;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .trip-history-order span,
+        .trip-history-detail span {
+            display: block;
+            margin-bottom: 4px;
+            color: #7b8799;
+            font-size: 8px;
+        }
+
+        .trip-history-status {
+            justify-self: end;
+            padding: 6px 9px;
+            border-radius: 999px;
+            font-size: 8px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .trip-status-accepted {
+            background: #fff4df;
+            color: #bd7800;
+        }
+
+        .trip-status-out {
+            background: #e8f8eb;
+            color: #16834d;
+        }
+
+        .trip-status-delivered {
+            background: #e7f0ff;
+            color: #176bdc;
+        }
+
+        .trip-history-empty {
+            padding: 34px 15px;
+            text-align: center;
+            color: #8793a5;
+            border: 1px dashed #d8e2ef;
+            border-radius: 10px;
+            background: #fbfdff;
+        }
+
+        .trip-history-empty strong {
+            display: block;
+            margin-bottom: 5px;
+            color: #526075;
+            font-size: 12px;
+        }
+
+        .trip-history-empty span {
+            font-size: 9px;
+        }
+
+    
+        @media (max-width: 768px) {
+            .trip-history-item {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .trip-history-status {
+                justify-self: start;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .trip-history-item {
+                grid-template-columns: 1fr;
+            }
+        }
+
     </style>
 
 </head>
@@ -1309,7 +1433,7 @@
 
 
             <a
-                href="#"
+                href="/trip_history"
                 class="active"
             >
 
@@ -1337,7 +1461,7 @@
             </a>
 
 
-            <a href="#orders">
+            <a href="#trips">
 
                 <div class="nav-icon">
                     🚚
@@ -1833,7 +1957,7 @@
 
 
 
-                            {% if order.tanker_request_status|default("")|lower == "pending" %}
+                            {% if order.tanker_request_status == "Pending" %}
 
                             <!-- TANKER APPROVAL -->
 
@@ -1857,7 +1981,12 @@
 
                             </div>
 
-                            {% elif order.tanker_request_status|default("")|lower == "accepted" %}
+                            {% elif order.tanker_request_status == "Accepted" %}
+
+                            <!-- REQUEST ACCEPTED -->
+                            <div class="tanker-request-accepted">
+                                ✓ Request Accepted
+                            </div>
 
                             <!-- ACCEPT PICKUP AFTER APPROVAL -->
 
@@ -1877,7 +2006,7 @@
                                     type="submit"
                                     class="pickup-button"
                                 >
-                                    ✓ Accept Pickup
+                                    🚚 Start Delivery
                                 </button>
 
                             </form>
@@ -2118,6 +2247,152 @@
 
 
         </div>
+
+
+            <!-- =================================================
+                 MY TRIPS / ORDER HISTORY
+            ================================================== -->
+            <div class="card trips-card" id="trips">
+                <div class="card-header">
+                    <h2>My Trips</h2>
+                    <span>
+                        {{ trip_history|length }} Trips
+                    </span>
+                </div>
+
+                <!-- ACTIVE TRIPS -->
+                <div style="margin-bottom:18px;">
+                    <div style="font-size:11px;font-weight:600;color:#172033;margin-bottom:10px;">
+                        Active Trips
+                    </div>
+
+                    <div id="tripHistoryStatusRefresh"
+                     style="font-size:9px;color:#7b8799;margin:-8px 0 12px;">
+                    Status is taken from the current order status.
+                </div>
+
+                <div class="trip-history-list">
+                        {% set active_trip_count = 0 %}
+
+                        {% for trip in trip_history %}
+                            {% if trip.status in ['Accepted', 'Out for Delivery'] %}
+                                {% set active_trip_count = active_trip_count + 1 %}
+
+                                <div class="trip-history-item">
+                                    <div class="trip-history-order">
+                                        <span>Order ID</span>
+                                        <strong>{{ trip.order_id }}</strong>
+                                    </div>
+
+                                    <div class="trip-history-detail">
+                                        <span>STP</span>
+                                        <strong>{{ trip.stp_name or "N/A" }}</strong>
+                                    </div>
+
+                                    <div class="trip-history-detail">
+                                        <span>Delivery</span>
+                                        <strong title="{{ trip.location or '' }}">
+                                            {{ trip.location or "N/A" }}
+                                        </strong>
+                                    </div>
+
+                                    <div class="trip-history-detail">
+                                        <span>Quantity / Date</span>
+                                        <strong>{{ trip.quantity_kld or "0" }} KLD</strong>
+                                        <span>{{ trip.created_at or "N/A" }}</span>
+                                    </div>
+
+                                    <div class="trip-history-status
+                                        {% if trip.status == 'Accepted' %}
+                                            trip-status-accepted
+                                        {% elif trip.status == 'Out for Delivery' %}
+                                            trip-status-out
+                                        {% endif %}
+                                    ">
+                                        {{ trip.status }}
+                                    </div>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+
+                        {% if active_trip_count == 0 %}
+                            <div class="trip-history-empty">
+                                <div style="font-size:26px;margin-bottom:8px;">🚚</div>
+                                <strong>No active trips</strong>
+                                <span>
+                                    Accepted or Out for Delivery orders will appear here.
+                                </span>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <!-- DELIVERED HISTORY -->
+                <div>
+                    <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px;">
+                        <div style="font-size:11px;font-weight:600;color:#172033;">
+                            Delivered History
+                        </div>
+                        <div style="font-size:9px;color:#176bdc;font-weight:600;">
+                            {% set delivered_count = trip_history
+                                | selectattr("status", "equalto", "Delivered")
+                                | list
+                                | length %}
+                            {{ delivered_count }} Completed
+                        </div>
+                    </div>
+
+                    <div class="trip-history-list">
+                        {% set delivered_found = false %}
+
+                        {% for trip in trip_history %}
+                            {% if trip.status == 'Delivered' %}
+                                {% set delivered_found = true %}
+
+                                <div class="trip-history-item">
+                                    <div class="trip-history-order">
+                                        <span>Order ID</span>
+                                        <strong>{{ trip.order_id }}</strong>
+                                    </div>
+
+                                    <div class="trip-history-detail">
+                                        <span>STP</span>
+                                        <strong>{{ trip.stp_name or "N/A" }}</strong>
+                                    </div>
+
+                                    <div class="trip-history-detail">
+                                        <span>Delivered To</span>
+                                        <strong title="{{ trip.location or '' }}">
+                                            {{ trip.location or "N/A" }}
+                                        </strong>
+                                    </div>
+
+                                    <div class="trip-history-detail">
+                                        <span>Quantity / Date</span>
+                                        <strong>{{ trip.quantity_kld or "0" }} KLD</strong>
+                                        <span>{{ trip.created_at or "N/A" }}</span>
+                                    </div>
+
+                                    <div class="trip-history-status trip-status-delivered">
+                                        ✓ Delivered
+                                    </div>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+
+                        {% if delivered_count == 0 %}
+                            <div class="trip-history-empty">
+                                <div style="font-size:26px;margin-bottom:8px;">✓</div>
+                                <strong>No delivered trips yet</strong>
+                                <span>
+                                    Completed tanker deliveries will appear here automatically.
+                                </span>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
 
 
     </main>
@@ -2607,6 +2882,11 @@ async function respondToTankerRequest(orderId, action) {
     refreshTankerNotifications();
     setInterval(refreshTankerNotifications, 3000);
 
+</script>
+
+<script>
+    // Keep My Trips synchronized with the current order status in orders.csv.
+    setTimeout(() => window.location.reload(), 5000);
 </script>
 
 </body>

@@ -1,1 +1,2 @@
-order_id,stp_id,stp_name,quantity_kld,quality,water_type,distance_km,location,buyer_user_id,buyer_name,buyer_phone,status,created_at,payment_status,accepted_at,capacity_release_at,capacity_released
+order_id,stp_id,stp_name,quantity_kld,quality,water_type,distance_km,location,buyer_user_id,buyer_name,buyer_phone,status,created_at,payment_status,accepted_at,capacity_release_at,capacity_released,delivery_lat,delivery_lon,tanker_request_status,delivered_at
+ORD-0823CC8A42,PSTP007,Purva Skywood Phase 2,5,General,,13.83,Thalaghattapura,USR-D00E9515BE,Gowtham Y K,9980144908,Delivered,2026-08-25 14:10:51,Cash on Delivery,2026-08-25T14:11:11.602044,2026-08-26T14:11:11.602044,False,12.8698169,77.5356688,Accepted,
