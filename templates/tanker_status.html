@@ -2,151 +2,177 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>Tanker Registration Status</title>
 
-    <style>
-
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #f4f7fb;
-            color: #1f2937;
-        }
-
-        .status-page {
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 30px 20px;
-        }
-
-        .status-card {
-            width: 100%;
-            max-width: 520px;
-            background: #ffffff;
-            padding: 35px;
-            border-radius: 18px;
-            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.08);
-        }
-
-        .status-header {
-            text-align: center;
-            margin-bottom: 28px;
-        }
-
-        .status-icon {
-            font-size: 42px;
-            margin-bottom: 10px;
-        }
-
-        .status-header h1 {
-            margin: 0;
-            font-size: 25px;
-            color: #111827;
-        }
-
-        .status-header p {
-            margin-top: 8px;
-            color: #6b7280;
-            font-size: 14px;
-            line-height: 1.5;
-        }
-
-        .form-group {
-            margin-bottom: 18px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 7px;
-            font-size: 13px;
-            font-weight: 600;
-            color: #374151;
-        }
-
-        .form-group input {
-            width: 100%;
-            padding: 12px 14px;
-            border: 1px solid #d1d5db;
-            border-radius: 8px;
-            font-size: 14px;
-            outline: none;
-        }
-
-        .form-group input:focus {
-            border-color: #22c55e;
-            box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.1);
-        }
-
-        .check-btn {
-            width: 100%;
-            padding: 13px;
-            border: none;
-            border-radius: 8px;
-            background: #22c55e;
-            color: white;
-            font-size: 15px;
-            font-weight: 600;
-            cursor: pointer;
-        }
-
-        .check-btn:hover {
-            background: #16a34a;
-        }
-
-        .back-link {
-            display: block;
-            text-align: center;
-            margin-top: 20px;
-            color: #2563eb;
-            text-decoration: none;
-            font-size: 13px;
-        }
-
-        .back-link:hover {
-            text-decoration: underline;
-        }
-
-    </style>
+    <!-- MAIN PROJECT CSS -->
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
 
     <link rel="stylesheet"
           href="{{ url_for('static', filename='css/responsive.css') }}">
 
 </head>
 
+
 <body>
 
-    <div class="status-page">
 
-        <div class="status-card">
+<!-- =====================================================
+     NAVBAR
+====================================================== -->
 
-            <div class="status-header">
+<header class="navbar">
 
-                <div class="status-icon">
-                    🚛
-                </div>
+    <div class="logo">
 
-                <h1>Tanker Partner Status</h1>
+        <a
+            href="/"
+            style="text-decoration:none;"
+        >
 
-                <p>
-                    Enter your Operator ID and phone number
-                    to check your registration status.
-                </p>
+            <span class="logo-text">
+                WasteWater Management
+            </span>
 
+        </a>
+
+    </div>
+
+
+    <nav>
+
+        <a href="/">
+            Home
+        </a>
+
+        <a href="/tanker/register">
+            Tanker Partner
+        </a>
+
+        <a
+            href="/tanker/status"
+            class="active"
+        >
+            Check Status
+        </a>
+
+    </nav>
+
+</header>
+
+
+
+<!-- =====================================================
+     STATUS PAGE
+
+
+    <div class="logo">
+
+        <a
+            href="/"
+            style="text-decoration:none;"
+        >
+
+            <span class="logo-text">
+                WasteWater Management
+            </span>
+
+        </a>
+
+    </div>
+
+
+    <nav>
+
+        <a href="/">
+            Home
+        </a>
+
+        <a href="/tanker/register">
+            Tanker Partner
+        </a>
+
+        <a
+            href="/tanker/status"
+            class="active"
+        >
+            Check Status
+        </a>
+
+    </nav>
+
+</header>
+
+
+
+<!-- =====================================================
+     STATUS PAGE
+
+<main class="tanker-status-page">
+
+    <section class="tanker-status-container">
+
+
+        <!-- =================================================
+             HEADER
+        ================================================== -->
+
+        <div class="tanker-status-header">
+
+            <div class="status-icon">
+                🚛
             </div>
 
+            <h1>
+                Tanker Partner Status
+            </h1>
 
-            <form method="POST" action="/tanker/status">
+            <p>
+                Check your tanker registration and verification
+                status using your Operator ID and registered
+                phone number.
+            </p>
 
-                <div class="form-group">
+        </div>
+
+
+
+        <!-- =================================================
+             STATUS CARD
+        ================================================== -->
+
+
+
+        <!-- =================================================
+             STATUS CARD
+        ================================================== -->
+
+        <div class="tanker-status-card">
+
+
+            <!-- =================================================
+                 SEARCH FORM
+            ================================================== -->
+
+            <form
+                method="POST"
+                action="/tanker/status"
+            >
+
+
+                <!-- OPERATOR ID -->
+
+                <div class="tanker-status-form-group">
 
                     <label for="operator_id">
                         Operator ID
@@ -157,13 +183,17 @@
                         id="operator_id"
                         name="operator_id"
                         placeholder="Example: OP-BLR-0001"
+                        autocomplete="off"
                         required
                     >
 
                 </div>
 
 
-                <div class="form-group">
+
+                <!-- PHONE -->
+
+                <div class="tanker-status-form-group">
 
                     <label for="phone">
                         Registered Phone Number
@@ -174,126 +204,379 @@
                         id="phone"
                         name="phone"
                         placeholder="Enter registered phone number"
+                        autocomplete="tel"
                         required
                     >
 
                 </div>
 
 
+
+                <!-- BUTTON -->
+
                 <button
                     type="submit"
-                    class="check-btn"
+                    class="tanker-status-button"
                 >
                     Check Registration Status
                 </button>
 
             </form>
-{% if searched %}
 
-    {% if operator %}
 
-        <div style="
-            margin-top: 25px;
-            padding: 20px;
-            border-radius: 12px;
-            background: #f8fafc;
-            border: 1px solid #e5e7eb;
-        ">
 
-            <h3 style="margin-top:0;">
-                Registration Found
-            </h3>
+            <!-- =================================================
+                 SEARCH RESULT
+            ================================================== -->
 
-            <p>
-                <strong>Operator ID:</strong>
-                {{ operator.operator_id }}
-            </p>
+            {% if searched %}
 
-            <p>
-                <strong>Operator Name:</strong>
-                {{ operator.operator_name }}
-            </p>
 
-            <p>
-                <strong>Operator Type:</strong>
-                {{ operator.operator_type|capitalize }}
-            </p>
+                {% if operator %}
 
-            <p>
-                <strong>Registration Date:</strong>
-                {{ operator.registration_date }}
-            </p>
 
-            <p>
-                <strong>Status:</strong>
+                    <div class="tanker-status-result">
 
-                {% if operator.verification_status|lower == "approved" %}
 
-                    <span style="color:#16a34a;font-weight:700;">
-                        🟢 Approved
-                    </span>
+                        <!-- RESULT HEADER -->
 
-                {% elif operator.verification_status|lower == "pending" %}
+                        <div class="tanker-status-result-title">
 
-                    <span style="color:#d97706;font-weight:700;">
-                        🟠 Pending Verification
-                    </span>
+                            <h2>
+                                Registration Found
+                            </h2>
 
-                {% elif operator.verification_status|lower == "rejected" %}
 
-                    <span style="color:#dc2626;font-weight:700;">
-                        🔴 Rejected
-                    </span>
+                            {% set status =
+                                operator.verification_status|lower
+                            %}
+
+
+                            {% if status == "approved" %}
+
+                                <span
+                                    class="tanker-status-badge tanker-status-approved"
+                                >
+                                    ● Approved
+                                </span>
+
+
+                            {% elif status == "pending" %}
+
+                                <span
+                                    class="tanker-status-badge tanker-status-pending"
+                                >
+                                    ● Pending Verification
+                                </span>
+
+
+                            {% elif status == "rejected" %}
+
+                                <span
+                                    class="tanker-status-badge tanker-status-rejected"
+                                >
+                                    ● Rejected
+                                </span>
+
+
+                            {% else %}
+
+                                <span
+                                    class="tanker-status-badge tanker-status-default"
+                                >
+                                    {{ operator.verification_status }}
+                                </span>
+
+                            {% endif %}
+
+                        </div>
+
+
+
+                        <!-- DETAILS -->
+
+                        <div class="tanker-status-details">
+
+
+                            <!-- Operator ID -->
+
+                            <div class="tanker-status-detail">
+
+                                <span class="tanker-status-detail-label">
+                                    Operator ID
+                                </span>
+
+                                <span class="tanker-status-detail-value">
+                                    {{ operator.operator_id }}
+                                </span>
+
+                            </div>
+
+
+
+                            <!-- Name -->
+
+                            <div class="tanker-status-detail">
+
+                                <span class="tanker-status-detail-label">
+                                    Operator Name
+                                </span>
+
+                                <span class="tanker-status-detail-value">
+                                    {{ operator.operator_name }}
+                                </span>
+
+                            </div>
+
+
+
+                            <!-- Operator Type -->
+
+                            <div class="tanker-status-detail">
+
+                                <span class="tanker-status-detail-label">
+                                    Operator Type
+                                </span>
+
+                                <span class="tanker-status-detail-value">
+                                    {{ operator.operator_type|capitalize }}
+                                </span>
+
+                            </div>
+
+
+
+                            <!-- Registration Date -->
+
+                            <div class="tanker-status-detail">
+
+                                <span class="tanker-status-detail-label">
+                                    Registration Date
+                                </span>
+
+                                <span class="tanker-status-detail-value">
+                                    {{ operator.registration_date }}
+                                </span>
+
+                            </div>
+
+
+
+                            <!-- Phone -->
+
+                            <div class="tanker-status-detail">
+
+                                <span class="tanker-status-detail-label">
+                                    Registered Phone
+                                </span>
+
+                                <span class="tanker-status-detail-value">
+                                    {{ operator.phone }}
+                                </span>
+
+                            </div>
+
+
+
+                            <!-- Tanker Registration -->
+
+                            <div class="tanker-status-detail">
+
+                                <span class="tanker-status-detail-label">
+                                    Tanker Registration
+                                </span>
+
+                                <span class="tanker-status-detail-value">
+                                    {{ operator.tanker_registration_no }}
+                                </span>
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+
+
+                            {% else %}
+
+                                <span
+                                    class="tanker-status-badge tanker-status-default"
+                                >
+                                    {{ operator.verification_status }}
+                                </span>
+
+                            {% endif %}
+
+                        </div>
+
+
+
+                        <!-- DETAILS -->
+
+                        <div class="tanker-status-details">
+
+
+                            <!-- Operator ID -->
+
+                            <div class="tanker-status-detail">
+
+                                <span class="tanker-status-detail-label">
+                                    Operator ID
+                                </span>
+
+                                <span class="tanker-status-detail-value">
+                                    {{ operator.operator_id }}
+                                </span>
+
+                            </div>
+
+
+
+                            <!-- Name -->
+
+                            <div class="tanker-status-detail">
+
+                                <span class="tanker-status-detail-label">
+                                    Operator Name
+                                </span>
+
+                                <span class="tanker-status-detail-value">
+                                    {{ operator.operator_name }}
+                                </span>
+
+                            </div>
+
+
+
+                            <!-- Operator Type -->
+
+                            <div class="tanker-status-detail">
+
+                                <span class="tanker-status-detail-label">
+                                    Operator Type
+                                </span>
+
+                                <span class="tanker-status-detail-value">
+                                    {{ operator.operator_type|capitalize }}
+                                </span>
+
+                            </div>
+
+
+
+                            <!-- Registration Date -->
+
+                            <div class="tanker-status-detail">
+
+                                <span class="tanker-status-detail-label">
+                                    Registration Date
+                                </span>
+
+                                <span class="tanker-status-detail-value">
+                                    {{ operator.registration_date }}
+                                </span>
+
+                            </div>
+
+
+
+                            <!-- Phone -->
+
+                            <div class="tanker-status-detail">
+
+                                <span class="tanker-status-detail-label">
+                                    Registered Phone
+                                </span>
+
+                                <span class="tanker-status-detail-value">
+                                    {{ operator.phone }}
+                                </span>
+
+                            </div>
+
+
+
+                            <!-- Tanker Registration -->
+
+                            <div class="tanker-status-detail">
+
+                                <span class="tanker-status-detail-label">
+                                    Tanker Registration
+                                </span>
+
+                                <span class="tanker-status-detail-value">
+                                    {{ operator.tanker_registration_no }}
+                                </span>
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
 
                 {% else %}
 
-                    <span style="font-weight:700;">
-                        {{ operator.verification_status }}
-                    </span>
+
+                    <!-- =================================================
+                         NOT FOUND
+                    ================================================== -->
+
+                    <div class="tanker-status-not-found">
+
+                        <h3>
+                            Registration Not Found
+                        </h3>
+
+                        <p>
+                            We could not find a registration matching
+                            the Operator ID and registered phone number
+                            you entered. Please check your details and
+                            try again.
+                        </p>
+
+                    </div>
+
 
                 {% endif %}
 
-            </p>
+
+            {% endif %}
+
+
+
+            <!-- =================================================
+                 LINKS
+            ================================================== -->
+
+            <div class="tanker-status-links">
+
+                <a
+                    href="/tanker/register"
+                    class="tanker-status-link"
+                >
+                    ← Back to Tanker Registration
+                </a>
+
+
+                <a
+                    href="/"
+                    class="tanker-status-link"
+                >
+                    Back to Home
+                </a>
+
+            </div>
+
 
         </div>
 
-    {% else %}
+    </section>
 
-        <div style="
-            margin-top: 25px;
-            padding: 18px;
-            border-radius: 12px;
-            background: #fff7ed;
-            border: 1px solid #fed7aa;
-            color: #9a3412;
-        ">
-
-            <strong>Registration not found.</strong>
-
-            <p style="margin-bottom:0;">
-                Please check your Operator ID and registered phone number.
-            </p>
-
-        </div>
-
-    {% endif %}
-
-{% endif %}
-
-
-            <a
-                href="{{ url_for('tanker_register') }}"
-                class="back-link"
-            >
-                ← Back to Tanker Registration
-            </a>
-
-        </div>
-
-    </div>
-
-
-
+</main>
 
 
 </body>

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>PURVA - JalSetu</title>
+  <title>Wastewater Routing Optimization System</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   
@@ -26,9 +26,6 @@ footer{margin:24px 0 0;background:#0b1b32;color:#9fb0c5;text-align:center;paddin
 @media(max-width:480px){.hero h1{font-size:23px}.hero p{font-size:13px}.hero-btn{font-size:13px}.side-link{font-size:11px}.map-box{height:230px}.card-inner{padding:14px}.feature-icon-box{width:50px;height:50px}.analyze-icon{width:45px;height:45px}.hero-buttons {flex-direction: column;align-items: center;}}
 </style>
 
-<link rel="stylesheet"
-          href="{{ url_for('static', filename='css/responsive.css') }}">
-
 </head>
 
 <body>
@@ -45,7 +42,7 @@ footer{margin:24px 0 0;background:#0b1b32;color:#9fb0c5;text-align:center;paddin
     <div class="brand">
       <img src="{{ url_for('static', filename='assets/title-icon.png') }}" alt="System Icon">
       <div>
-        <div class="brand-title">PURVA - JalSetu</div>
+        <div class="brand-title">Wastewater Routing Optimization System</div>
       </div>
     </div>
 
@@ -82,6 +79,11 @@ footer{margin:24px 0 0;background:#0b1b32;color:#9fb0c5;text-align:center;paddin
 
           <a href="{{ url_for('login') }}" class="hero-btn">
             Get Started <span>→</span>
+          </a>
+
+
+          <a href="/stp/register" class="hero-btn secondary">
+            Register an STP
           </a>
 
           <a href="{{ url_for('tanker_register') }}" class="hero-btn secondary">

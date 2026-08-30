@@ -1,168 +1,599 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Tanker Partner Registration</title>
+    <title>Tanker Partner Registration | WasteWater Management</title>
+
+    <!-- Poppins - same font as Admin Dashboard -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
 
     <style>
+
+        /* =========================
+           RESET
+        ========================= */
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+
+        /* =========================
+           BODY
+        ========================= */
+
         body {
-            font-family: Arial, sans-serif;
-            background: #f4f7fb;
             min-height: 100vh;
+            font-family: 'Poppins', sans-serif;
+            background: #f5f7fb;
+            color: #172033;
+            display: flex;
+            flex-direction: column;
+        }
+
+
+        /* =========================
+           TOP BAR
+        ========================= */
+
+        .topbar {
+            height: 78px;
+            background: white;
+            border-bottom: 1px solid #e8edf4;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 35px;
+
+            box-shadow: 0 2px 8px rgba(25, 40, 70, 0.03);
+        }
+
+
+        /* =========================
+           BRAND
+        ========================= */
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .brand-icon {
+            width: 42px;
+            height: 42px;
+
+            border-radius: 12px;
+
+            background: linear-gradient(
+                135deg,
+                #1683ff,
+                #20c997
+            );
+
             display: flex;
             align-items: center;
             justify-content: center;
+
+            font-size: 22px;
+        }
+
+        .brand-text h2 {
+            margin: 0;
+            color: #172033;
+            font-size: 17px;
+            font-weight: 600;
+        }
+
+        .brand-text p {
+            margin-top: 2px;
+            color: #7b8799;
+            font-size: 10px;
+        }
+
+
+        /* =========================
+           TOP RIGHT
+        ========================= */
+
+        .topbar-right {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            color: #52627a;
+            font-size: 12px;
+        }
+
+        .partner-badge {
+            background: #eaf3ff;
+            color: #1976f3;
+
+            padding: 7px 12px;
+
+            border-radius: 20px;
+
+            font-size: 10px;
+            font-weight: 500;
+        }
+
+
+        /* =========================
+           MAIN CONTENT
+        ========================= */
+
+        .page {
+            flex: 1;
+
+            display: flex;
+            justify-content: center;
+
+            padding: 55px 25px 70px;
         }
 
         .container {
-            width: 90%;
-            max-width: 1000px;
-            text-align: center;
+            width: 100%;
+            max-width: 1050px;
         }
 
+
+        /* =========================
+           PAGE HEADER
+        ========================= */
+
         .header {
-            margin-bottom: 40px;
+            text-align: center;
+            margin-bottom: 38px;
+        }
+
+        .header-icon {
+            width: 54px;
+            height: 54px;
+
+            margin: 0 auto 16px;
+
+            border-radius: 15px;
+
+            background: linear-gradient(
+                135deg,
+                #e9f2ff,
+                #e5f9f1
+            );
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 27px;
         }
 
         .header h1 {
-            font-size: 36px;
-            color: #163b65;
-            margin-bottom: 12px;
+            color: #172033;
+            font-size: 27px;
+            font-weight: 600;
+
+            margin-bottom: 7px;
         }
 
         .header p {
-            color: #6b7280;
-            font-size: 16px;
+            color: #7b8799;
+            font-size: 12px;
         }
 
+
+        /* =========================
+           OPTION GRID
+        ========================= */
+
         .options {
-            display: flex;
-            gap: 25px;
-            justify-content: center;
+            display: grid;
+
+            grid-template-columns: repeat(2, 1fr);
+
+            gap: 20px;
+
+            max-width: 900px;
+            margin: 0 auto;
         }
+
+
+        /* =========================
+           OPTION CARD
+        ========================= */
 
         .option-card {
             background: white;
-            width: 420px;
-            padding: 40px 30px;
-            border-radius: 18px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-            transition: 0.2s ease;
+
+            border: 1px solid #edf0f5;
+
+            border-radius: 14px;
+
+            padding: 32px 30px;
+
+            text-align: center;
+
+            box-shadow:
+                0 3px 12px rgba(25, 40, 70, 0.04);
+
+            transition:
+                transform 0.2s ease,
+                box-shadow 0.2s ease,
+                border-color 0.2s ease;
         }
 
         .option-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-3px);
+
+            border-color: #dce8f7;
+
+            box-shadow:
+                0 8px 22px rgba(25, 40, 70, 0.08);
         }
 
-        .icon {
-            font-size: 50px;
-            margin-bottom: 20px;
+
+        /* =========================
+           CARD ICON
+        ========================= */
+
+        .icon-wrapper {
+            width: 58px;
+            height: 58px;
+
+            margin: 0 auto 18px;
+
+            border-radius: 14px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 28px;
         }
+
+        .building-icon {
+            background: #e9f2ff;
+        }
+
+        .tanker-icon {
+            background: #e8f8ef;
+        }
+
+
+        /* =========================
+           CARD TEXT
+        ========================= */
 
         .option-card h2 {
-            color: #163b65;
-            margin-bottom: 12px;
+            color: #172033;
+
+            font-size: 17px;
+            font-weight: 600;
+
+            margin-bottom: 10px;
         }
 
         .option-card p {
-            color: #6b7280;
-            line-height: 1.6;
-            margin-bottom: 25px;
+            color: #748197;
+
+            font-size: 11px;
+
+            line-height: 1.7;
+
+            max-width: 350px;
+
+            margin: 0 auto 23px;
         }
 
+
+        /* =========================
+           BUTTON
+        ========================= */
+
         .btn {
-            display: inline-block;
-            padding: 12px 28px;
+            display: inline-flex;
+
+            align-items: center;
+            justify-content: center;
+
+            min-width: 125px;
+
+            padding: 10px 18px;
+
             border-radius: 8px;
-            background: #1769aa;
+
+            background: #1976f3;
+
             color: white;
+
             text-decoration: none;
-            font-weight: bold;
+
+            font-family: 'Poppins', sans-serif;
+
+            font-size: 11px;
+
+            font-weight: 500;
+
+            transition: 0.2s ease;
         }
 
         .btn:hover {
-            background: #12558a;
+            background: #125dc1;
+
+            transform: translateY(-1px);
+
+            box-shadow:
+                0 5px 12px rgba(25, 118, 243, 0.20);
         }
 
-        @media (max-width: 750px) {
-            .options {
-                flex-direction: column;
-                align-items: center;
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        .footer {
+            text-align: center;
+
+            margin-top: 30px;
+
+            color: #9aa4b3;
+
+            font-size: 9px;
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 768px) {
+
+            .topbar {
+                height: 68px;
+                padding: 0 18px;
             }
 
-            .option-card {
-                width: 100%;
-                max-width: 420px;
+            .brand-text p {
+                display: none;
+            }
+
+            .brand-text h2 {
+                font-size: 15px;
+            }
+
+            .topbar-right span {
+                display: none;
+            }
+
+            .page {
+                padding: 35px 15px 50px;
+            }
+
+            .header {
+                margin-bottom: 28px;
             }
 
             .header h1 {
-                font-size: 28px;
+                font-size: 23px;
+            }
+
+            .options {
+                grid-template-columns: 1fr;
+                max-width: 480px;
+            }
+
+            .option-card {
+                padding: 28px 22px;
             }
         }
+
+
+        @media (max-width: 480px) {
+
+            .header h1 {
+                font-size: 21px;
+            }
+
+            .header p {
+                font-size: 11px;
+            }
+
+            .option-card h2 {
+                font-size: 16px;
+            }
+
+            .option-card p {
+                font-size: 10px;
+            }
+        }
+
     </style>
+
 </head>
+
 
 <body>
 
-    <div class="container">
 
-        <div class="header">
-            <h1>Become a Tanker Partner</h1>
-            <p>
-                Join the Purvankara Tanker Partner Network
-            </p>
-        </div>
+    <!-- =========================
+         TOP BAR
+    ========================== -->
 
-        <div class="options">
+    <header class="topbar">
 
-            <!-- Existing Contracted Operator -->
-            <div class="option-card">
+        <div class="brand">
 
-                <div class="icon">🏢</div>
-
-                <h2>Existing Purvankara Partner</h2>
-
-                <p>
-                    I already have an existing contract with Purvankara
-                    and want to register my tanker on the platform.
-                </p>
-
-                <a href="/tanker/register/contracted" class="btn">
-                Continue
-                </a>
-
+            <div class="brand-icon">
+                💧
             </div>
 
+            <div class="brand-text">
 
-            <!-- Independent Operator -->
-            <div class="option-card">
-
-                <div class="icon">🚛</div>
-
-                <h2>Independent Operator</h2>
+                <h2>
+                    WasteWater
+                </h2>
 
                 <p>
-                    I operate my own tanker and want to find
-                    delivery jobs through the Purvankara platform.
+                    Management System
                 </p>
-
-                <a href="/tanker/register/independent" class="btn">
-                Continue
-                </a>
 
             </div>
 
         </div>
 
-    </div>
+
+        <div class="topbar-right">
+
+            <span>
+                Tanker Partner Registration
+            </span>
+
+            <div class="partner-badge">
+                Partner Portal
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =========================
+         MAIN
+    ========================== -->
+
+    <main class="page">
+
+        <div class="container">
+
+
+            <!-- PAGE HEADER -->
+
+            <div class="header">
+
+                <div class="header-icon">
+                    🚛
+                </div>
+
+                <h1>
+                    Become a Tanker Partner
+                </h1>
+
+                <p>
+                    Join the WasteWater Tanker Partner Network
+                </p>
+
+            </div>
+
+
+
+            <!-- =========================
+                 REGISTRATION OPTIONS
+            ========================== -->
+
+            <div class="options">
+
+
+                <!-- EXISTING PARTNER -->
+
+                <div class="option-card">
+
+                    <div class="icon-wrapper building-icon">
+                        🏢
+                    </div>
+
+                    <h2>
+                        Existing Purvankara Partner
+                    </h2>
+
+                    <p>
+                        I already have an existing contract with
+                        Purvankara and want to register my tanker
+                        on the platform.
+                    </p>
+
+                    <!-- SAME ROUTE AS BEFORE -->
+
+                    <a
+                        href="/tanker/register/contracted"
+                        class="btn"
+                    >
+                        Continue
+                    </a>
+
+                </div>
+
+
+
+                <!-- INDEPENDENT OPERATOR -->
+
+                <div class="option-card">
+
+                    <div class="icon-wrapper tanker-icon">
+                        🚛
+                    </div>
+
+                    <h2>
+                        Independent Operator
+                    </h2>
+
+                    <p>
+                        I operate my own tanker and want to find
+                        delivery jobs through the Purvankara
+                        platform.
+                    </p>
+
+                    <!-- SAME ROUTE AS BEFORE -->
+
+                    <a
+                        href="/tanker/register/independent"
+                        class="btn"
+                    >
+                        Continue
+                    </a>
+
+                </div>
+
+
+            </div>
+
+            <div style="text-align:center; margin-top:25px;">
+                <a href="{{ url_for('tanker_status') }}"
+                style="
+                    display:inline-block;
+                    padding:12px 20px;
+                    background:#2563eb;
+                    color:white;
+                    text-decoration:none;
+                    border-radius:8px;
+                    font-weight:600;
+                    font-size:14px;
+                ">
+                    🔍 Check Registration Status
+                </a>
+            </div>
+
+
+            <div class="footer">
+                WasteWater Management System • Tanker Partner Network
+            </div>
+
+
+        </div>
+
+    </main>
+
 
 </body>
+
 </html>

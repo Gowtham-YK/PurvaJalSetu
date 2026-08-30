@@ -945,145 +945,7 @@ body {
 }
 
 
-/* =========================================================
-   HELP
-========================================================= */
 
-#helpBtn {
-
-    position: fixed;
-
-    right: 25px;
-    bottom: 25px;
-
-    z-index: 2000;
-
-    padding: 11px 17px;
-
-    border: none;
-
-    border-radius: 50px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #2563eb,
-            #20b981
-        );
-
-    color: white;
-
-    font-family: 'Poppins', sans-serif;
-
-    font-size: 11px;
-
-    font-weight: 600;
-
-    cursor: pointer;
-
-    box-shadow:
-        0 8px 20px
-        rgba(0,0,0,.22);
-}
-
-
-#helpPanel {
-
-    position: fixed;
-
-    right: 20px;
-    bottom: 85px;
-
-    z-index: 2000;
-
-    width: 310px;
-
-    max-height: 430px;
-
-    overflow-y: auto;
-
-    display: none;
-
-    padding: 18px;
-
-    background: rgba(13,27,46,.96);
-
-    border: 1px solid #263c56;
-
-    border-radius: 14px;
-
-    color: white;
-
-    box-shadow:
-        0 20px 40px
-        rgba(0,0,0,.3);
-}
-
-
-.help-header {
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: space-between;
-}
-
-
-.help-header h3 {
-
-    margin: 0;
-
-    font-size: 14px;
-}
-
-
-.help-header span {
-
-    cursor: pointer;
-
-    font-size: 17px;
-}
-
-
-.help-section {
-
-    margin-top: 15px;
-}
-
-
-.help-section h4 {
-
-    margin: 0 0 6px;
-
-    font-size: 11px;
-
-    color: #78b5ff;
-}
-
-
-.help-section ul {
-
-    margin: 0;
-
-    padding-left: 18px;
-
-    color: #c7d1df;
-
-    font-size: 10px;
-
-    line-height: 1.7;
-}
-
-
-.help-section p {
-
-    margin: 5px 0;
-
-    color: #c7d1df;
-
-    font-size: 10px;
-}
 
 
 /* =========================================================
@@ -1235,13 +1097,7 @@ body {
     }
 
 
-    #helpPanel {
-
-        right: 10px;
-
-        width:
-            calc(100% - 20px);
-    }
+   
 
 }
 
@@ -1345,89 +1201,6 @@ body {
     }
 }
 
-/* =========================================================
-   MINIMUM ORDER NOTIFICATION
-========================================================= */
-
-.minimum-order-message {
-    position: fixed;
-    top: 25px;
-    right: 25px;
-    z-index: 99999;
-
-    width: 360px;
-    min-height: 80px;
-
-    display: flex;
-    align-items: center;
-    gap: 14px;
-
-    padding: 15px 18px;
-
-    background: #ffffff;
-    border: 1px solid #f2d7d7;
-    border-radius: 14px;
-
-    color: #b42318;
-
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-
-    animation: paymentNotificationSlideIn 0.4s ease-out;
-}
-
-.minimum-order-icon {
-    width: 42px;
-    height: 42px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-
-    border-radius: 50%;
-
-    background: #d64545;
-    color: white;
-
-    font-size: 22px;
-    font-weight: bold;
-}
-
-.minimum-order-message strong {
-    font-size: 15px;
-}
-
-.minimum-order-message p {
-    margin: 5px 0 0;
-    font-size: 12px;
-    color: #666;
-    line-height: 1.4;
-}
-
-.minimum-order-message button {
-    margin-left: auto;
-    border: none;
-    background: transparent;
-    color: #777;
-    font-size: 22px;
-    line-height: 1;
-    cursor: pointer;
-    padding: 2px 5px;
-}
-
-.minimum-order-message button:hover {
-    color: #222;
-}
-
-@media (max-width: 600px) {
-    .minimum-order-message {
-        top: 15px;
-        right: 15px;
-        left: 15px;
-        width: auto;
-    }
-}
-
 .payment-success-icon {
     width: 30px;
     height: 30px;
@@ -1469,9 +1242,6 @@ body {
 }
 
 </style>
-
-<link rel="stylesheet"
-          href="{{ url_for('static', filename='css/responsive.css') }}">
 
 </head>
 
@@ -1880,8 +1650,8 @@ body {
             type="number"
             id="kldInput"
             placeholder="Required KLD"
-            step="0.1"
         >
+
 
         <select id="qualityInput">
 
@@ -2265,83 +2035,6 @@ function useLiveLocation(){
 
 
 
-/* ================= MINIMUM ORDER NOTIFICATION ================= */
-
-function showMinimumOrderNotification(){
-
-    const existing = document.getElementById("minimumOrderMessage");
-
-    if(existing){
-        existing.remove();
-    }
-
-    const notification = document.createElement("div");
-    notification.id = "minimumOrderMessage";
-    notification.className = "minimum-order-message";
-
-    notification.innerHTML = `
-        <div class="minimum-order-icon">!</div>
-
-        <div>
-            <strong>Order Rejected</strong>
-            <p>Minimum water order quantity is <strong>5 KLD</strong>. Please enter at least 5 KLD.</p>
-        </div>
-
-        <button type="button" onclick="this.parentElement.remove()">×</button>
-    `;
-
-    document.body.appendChild(notification);
-
-    setTimeout(function(){
-        if(notification && notification.parentElement){
-            notification.style.animation = "paymentNotificationSlideOut 0.4s ease-in forwards";
-            setTimeout(function(){
-                if(notification && notification.parentElement){
-                    notification.remove();
-                }
-            }, 400);
-        }
-    }, 5000);
-}
-
-
-/* ================= CLEAR DEMAND INPUTS ================= */
-
-function clearDemandInputs(){
-
-    const placeInput = document.getElementById("placeInput");
-    const kldInput = document.getElementById("kldInput");
-    const qualityInput = document.getElementById("qualityInput");
-    const typeInput = document.getElementById("typeInput");
-
-    if(placeInput) placeInput.value = "";
-    if(kldInput) kldInput.value = "";
-    if(qualityInput) qualityInput.value = "";
-    if(typeInput) typeInput.value = "";
-
-    liveLat = null;
-    liveLon = null;
-    useLive = false;
-
-    const oldBtn = document.getElementById("finalBookBtn");
-    if(oldBtn) oldBtn.remove();
-
-    const assigned = document.getElementById("assignedStp");
-    const predicted = document.getElementById("predictedKld");
-    const distance = document.getElementById("distanceStp");
-    const routeSummary = document.getElementById("routeSummary");
-
-    if(assigned) assigned.innerText = "--";
-    if(predicted) predicted.innerText = "--";
-    if(distance) distance.innerText = "--";
-    if(routeSummary) routeSummary.innerText = "--";
-
-    if(typeof markersLayer !== "undefined" && markersLayer){
-        markersLayer.clearLayers();
-    }
-}
-
-
 /* ================= SEARCH FUNCTION ================= */
 
 function searchLocation(){
@@ -2350,13 +2043,6 @@ let place=document.getElementById("placeInput").value;
 let requiredKLD=document.getElementById("kldInput").value || 0;
 let quality=document.getElementById("qualityInput").value;
 let type=document.getElementById("typeInput").value;
-
-/* 🔥 MINIMUM ORDER QUANTITY VALIDATION */
-if(isNaN(parseFloat(requiredKLD)) || parseFloat(requiredKLD) < 5){
-    showMinimumOrderNotification();
-    clearDemandInputs();
-    return;
-}
 
 /* 🔥 FIXED VALIDATION */
 if(!place && !useLive){
@@ -2377,17 +2063,7 @@ fetch(url)
 .then(res=>res.json())
 .then(data=>{
 
-if(data.error){
-    if((data.minimum_quantity_kld && Number(data.minimum_quantity_kld) >= 5) ||
-       String(data.error).toLowerCase().includes("minimum") ||
-       String(data.error).toLowerCase().includes("5 kld")){
-        showMinimumOrderNotification();
-        clearDemandInputs();
-    } else {
-        alert(data.error);
-    }
-    return;
-}
+if(data.error){ alert(data.error); return; }
 
 markersLayer.eachLayer(function(layer){
     markersLayer.removeLayer(layer);
@@ -2550,12 +2226,6 @@ btn.innerText = "Book Order";
 
 btn.onclick = function(){
 
-    if(isNaN(parseFloat(kld)) || parseFloat(kld) < 5){
-        showMinimumOrderNotification();
-        clearDemandInputs();
-        return;
-    }
-
     fetch("/create_order",{
         method:"POST",
         headers:{"Content-Type":"application/json"},
@@ -2598,11 +2268,7 @@ btn.onclick = function(){
 document.getElementById("resultCard").appendChild(btn);
 }
 
-/* ================= HELP TOGGLE ================= */
-function toggleHelp(){
-    const panel = document.getElementById("helpPanel");
-    panel.style.display = panel.style.display === "block" ? "none" : "block";
-}
+
 
 function goToTracking(orderId){
     window.location.href = `/track?order_id=${orderId}`;
@@ -2610,115 +2276,6 @@ function goToTracking(orderId){
 }
 
 </script>
-
-<!-- =====================================================
-     HELP BUTTON
-===================================================== -->
-
-<button
-    id="helpBtn"
-    onclick="toggleHelp()"
->
-    💬 Help
-</button>
-
-
-
-<!-- =====================================================
-     HELP PANEL
-===================================================== -->
-
-<div id="helpPanel">
-
-
-    <div class="help-header">
-
-        <h3>
-            Help Centre
-        </h3>
-
-        <span onclick="toggleHelp()">
-            ✕
-        </span>
-
-    </div>
-
-
-    <div class="help-section">
-
-        <h4>
-            How to Use
-        </h4>
-
-        <ul>
-
-            <li>
-                Enter location or use Live Location
-            </li>
-
-            <li>
-                Enter required KLD
-            </li>
-
-            <li>
-                Select quality & type
-            </li>
-
-            <li>
-                Click Search to find nearest STP
-            </li>
-
-        </ul>
-
-    </div>
-
-
-    <div class="help-section">
-
-        <h4>
-            Order Status
-        </h4>
-
-        <ul>
-
-            <li>
-                ⏳ Pending → Waiting for approval
-            </li>
-
-            <li>
-                ✅ Accepted → STP approved request
-            </li>
-
-            <li>
-                🚛 Out for Delivery → Tanker on the way
-            </li>
-
-        </ul>
-
-    </div>
-
-
-    <div class="help-section">
-
-        <h4>
-            Support
-        </h4>
-
-        <p>
-            📞 +91 9876543210
-        </p>
-
-        <p>
-            📧 support@waterflow.com
-        </p>
-
-    </div>
-
-
-</div>
-
-
-
 
 <!-- =========================================================
      GLOBAL PROFILE / AVATAR / LOGOUT MENU
@@ -2905,6 +2462,16 @@ function goToTracking(orderId){
 </script>
 <!-- END GLOBAL PROFILE / AVATAR / LOGOUT MENU -->
 
+{% include 'chatbot.html' %}
+
+<link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='chatbot.css') }}"
+>
+
+<script
+    src="{{ url_for('static', filename='chatbot.js') }}">
+</script>
 </body>
 
 

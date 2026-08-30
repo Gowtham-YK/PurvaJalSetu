@@ -1,33 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Registration Submitted</title>
+<head>
+
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>STP Registration Submitted</title>
 
     <style>
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+
         body {
+
             font-family: Arial, sans-serif;
+
             background: #f4f7fb;
+
             min-height: 100vh;
 
             display: flex;
+
             justify-content: center;
+
             align-items: center;
 
             padding: 20px;
         }
 
+
         .card {
+
             background: white;
+
             width: 100%;
+
             max-width: 520px;
 
             padding: 40px;
@@ -40,7 +56,9 @@
             text-align: center;
         }
 
+
         .success-icon {
+
             width: 70px;
             height: 70px;
 
@@ -51,24 +69,37 @@
             background: #e8f7ee;
 
             display: flex;
+
             align-items: center;
+
             justify-content: center;
 
             font-size: 35px;
+
+            color: #16a34a;
         }
 
+
         h1 {
+
             color: #163b65;
+
             margin-bottom: 10px;
         }
 
+
         .subtitle {
+
             color: #6b7280;
+
             line-height: 1.6;
+
             margin-bottom: 25px;
         }
 
+
         .details {
+
             background: #f7f9fc;
 
             border-radius: 12px;
@@ -80,36 +111,54 @@
             margin-bottom: 25px;
         }
 
+
         .detail-row {
+
             display: flex;
+
             justify-content: space-between;
 
             padding: 10px 0;
 
-            border-bottom: 1px solid #e5e7eb;
+            border-bottom:
+                1px solid #e5e7eb;
         }
 
+
         .detail-row:last-child {
+
             border-bottom: none;
         }
 
+
         .label {
+
             color: #6b7280;
         }
 
+
         .value {
+
             font-weight: 600;
+
             color: #163b65;
+
+            text-align: right;
         }
 
+
         .status {
+
             color: #d97706;
         }
 
+
         .info-box {
+
             background: #eef6ff;
 
-            border-left: 4px solid #1769aa;
+            border-left:
+                4px solid #1769aa;
 
             padding: 15px;
 
@@ -124,7 +173,9 @@
             margin-bottom: 25px;
         }
 
+
         .btn {
+
             display: block;
 
             width: 100%;
@@ -144,11 +195,15 @@
             margin-top: 10px;
         }
 
+
         .btn:hover {
+
             background: #12558a;
         }
 
+
         .secondary-btn {
+
             background: transparent;
 
             color: #1769aa;
@@ -156,21 +211,36 @@
             border: 1px solid #1769aa;
         }
 
+
         .secondary-btn:hover {
+
             background: #eef6ff;
         }
+
 
         @media (max-width: 600px) {
 
             .card {
+
                 padding: 30px 20px;
             }
 
+
             .detail-row {
+
                 flex-direction: column;
+
                 gap: 4px;
             }
+
+
+            .value {
+
+                text-align: left;
+            }
+
         }
+
     </style>
 
     <link rel="stylesheet"
@@ -178,78 +248,160 @@
           
 </head>
 
+
 <body>
 
+
 <div class="card">
+
+
+    <!-- SUCCESS ICON -->
 
     <div class="success-icon">
         ✓
     </div>
 
-    <h1>Registration Submitted</h1>
+
+    <!-- TITLE -->
+
+    <h1>
+        STP Registration Submitted
+    </h1>
+
 
     <p class="subtitle">
-        Your tanker partner registration has been successfully
-        submitted to the Purvankara team.
+
+        Your STP registration has been successfully
+        submitted for admin verification.
+
     </p>
+
+
+    <!-- REGISTRATION DETAILS -->
 
     <div class="details">
 
+
         <div class="detail-row">
-            <span class="label">Operator ID</span>
+
+            <span class="label">
+                Registration ID
+            </span>
 
             <span class="value">
-                {{ operator_id }}
+                {{ registration_id }}
             </span>
+
         </div>
 
+
         <div class="detail-row">
-            <span class="label">Operator Type</span>
+
+            <span class="label">
+                STP Name
+            </span>
 
             <span class="value">
-                {{ operator_type }}
+                {{ stp_name }}
             </span>
+
         </div>
 
+
         <div class="detail-row">
-            <span class="label">Status</span>
+
+            <span class="label">
+                Status
+            </span>
 
             <span class="value status">
                 Pending Verification
             </span>
+
         </div>
 
+
     </div>
+
+
+    <!-- WHAT HAPPENS NEXT -->
 
     <div class="info-box">
 
-        <strong>What happens next?</strong>
+        <strong>
+            What happens next?
+        </strong>
 
         <br><br>
 
-        The Purvankara team will review your submitted
-        information and verify your tanker details.
+        Your submitted STP information will be
+        reviewed by the administrator.
 
         <br><br>
 
-        Once your registration is approved, you will be
-        able to access the tanker partner dashboard.
+        Once your registration is approved, the system
+        will assign a permanent STP ID and add your STP
+        to the WasteWater Management platform.
+
+        <br><br>
+
+        After approval, your STP will be available for
+        eligible water-demand requests and bookings.
 
     </div>
 
-    <a href="/tanker/register" class="btn">
-        Register Another Tanker
+
+    <a href="{{ url_for('tanker_status') }}"
+    style="
+        display:inline-block;
+        margin-top:15px;
+        padding:12px 22px;
+        background:#2563eb;
+        color:#fff;
+        text-decoration:none;
+        border-radius:8px;
+        font-weight:600;
+    ">
+        🔍 Check Registration Status
+    </a>
+    
+    <a href="{{ url_for('tanker_status') }}"
+    style="
+        display:inline-block;
+        margin-top:15px;
+        padding:12px 22px;
+        background:#2563eb;
+        color:#fff;
+        text-decoration:none;
+        border-radius:8px;
+        font-weight:600;
+    ">
+        🔍 Check Registration Status
     </a>
 
     <a href="/" class="btn secondary-btn">
         Back to Home
+    <!-- BUTTONS -->
+
+    <a
+        href="/stp/register"
+        class="btn"
+    >
+        Register Another STP
     </a>
+
+
+    <a
+        href="/"
+        class="btn secondary-btn"
+    >
+        Back to Home
+    </a>
+
 
 </div>
 
 
-
-
-
 </body>
+
 </html>

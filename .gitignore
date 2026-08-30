@@ -1,15 +1,229 @@
-__pycache__/
-*.pyc
+# =========================================================
+# Python
+# =========================================================
 
-.venv/
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Virtual environments
 venv/
+.venv/
 env/
+ENV/
+env.bak/
+venv.bak/
+
+# Python packaging
+build/
+dist/
+*.egg-info/
+.eggs/
+pip-wheel-metadata/
+
+# Testing / coverage
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+.mypy_cache/
+.ruff_cache/
+
+# =========================================================
+# Flask
+# =========================================================
+
+instance/
+.flaskenv
+
+# =========================================================
+# Environment / Secrets
+# =========================================================
 
 .env
+.env.*
+!.env.example
 
-database/app.db
-database/users.xlsx
+*.pem
+*.key
+secrets/
+credentials/
+config.local.*
 
+# =========================================================
+# Machine Learning
+# =========================================================
+
+# Model caches / experiments
+runs/
+wandb/
 mlruns/
+outputs/
+checkpoints/
+
+# Large trained models
+*.pt
+*.pth
+*.onnx
+*.h5
+*.keras
+*.pkl
+*.pickle
+*.joblib
+
+# =========================================================
+# Data / Generated Files
+# =========================================================
+
+# Temporary/generated datasets
+*_generated.csv
+*_synthetic.csv
+synthetic_*.csv
+generated_*.csv
+
+# Temporary exports
+exports/
+tmp/
+temp/
+
+# Large generated maps / visualizations
+*.html.tmp
+*.geojson.tmp
+
+# =========================================================
+# Logs
+# =========================================================
 
 *.log
+logs/
+
+# =========================================================
+# SQLite / Local Databases
+# =========================================================
+
+*.db
+*.sqlite
+*.sqlite3
+
+# =========================================================
+# Flutter / Dart
+# =========================================================
+
+mobile/.dart_tool/
+mobile/.flutter-plugins
+mobile/.flutter-plugins-dependencies
+mobile/.packages
+
+mobile/build/
+mobile/.pub-cache/
+
+mobile/android/.gradle/
+mobile/android/local.properties
+
+mobile/ios/Pods/
+mobile/ios/.symlinks/
+mobile/ios/Flutter/ephemeral/
+
+mobile/macos/Pods/
+mobile/macos/Flutter/ephemeral/
+
+mobile/linux/flutter/ephemeral/
+mobile/windows/flutter/ephemeral/
+
+# Flutter generated files
+**/.dart_tool/
+**/build/
+**/.flutter-plugins
+**/.flutter-plugins-dependencies
+**/.packages
+
+# =========================================================
+# Android / Gradle
+# =========================================================
+
+**/.gradle/
+**/gradle-app.setting
+**/local.properties
+
+*.keystore
+*.jks
+
+# Android generated files
+**/captures/
+**/generated/
+
+# =========================================================
+# IDEs
+# =========================================================
+
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+
+# VS Code
+.history/
+
+# =========================================================
+# Jupyter
+# =========================================================
+
+.ipynb_checkpoints/
+
+# =========================================================
+# Linux
+# =========================================================
+
+*~
+.directory
+
+# =========================================================
+# macOS
+# =========================================================
+
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# =========================================================
+# Windows
+# =========================================================
+
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+Desktop.ini
+
+# =========================================================
+# Project temporary files
+# =========================================================
+
+*.tmp
+*.temp
+*.bak
+*.swp
+*.swo
+
+# =========================================================
+# Generated APKs
+# =========================================================
+
+*.apk
+*.aab
+
+# =========================================================
+# Build artifacts
+# =========================================================
+
+bin/
+obj/
+
+# =========================================================
+# Documentation generated files
+# =========================================================
+
+*.pdf.tmp

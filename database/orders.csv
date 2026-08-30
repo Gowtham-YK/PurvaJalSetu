@@ -1,2 +1,9 @@
-order_id,stp_id,stp_name,quantity_kld,quality,water_type,distance_km,location,buyer_user_id,buyer_name,buyer_phone,status,created_at,payment_status,accepted_at,capacity_release_at,capacity_released,delivery_lat,delivery_lon,tanker_request_status,delivered_at
-ORD-0823CC8A42,PSTP007,Purva Skywood Phase 2,5,General,,13.83,Thalaghattapura,USR-D00E9515BE,Gowtham Y K,9980144908,Delivered,2026-08-25 14:10:51,Cash on Delivery,2026-08-25T14:11:11.602044,2026-08-26T14:11:11.602044,False,12.8698169,77.5356688,Accepted,
+order_id,stp_id,stp_name,quantity_kld,quality,water_type,distance_km,location,buyer_user_id,buyer_name,buyer_phone,status,created_at,payment_status,accepted_at,capacity_release_at,capacity_released
+ORD-7E5FE52A78,PSTP005,Purva Palm Beach - Labour Colony,4,Silver,general,10.57,"K Kamaraj Ward, Gangadhar Chetty Road, Bengaluru Urban, Karnataka, 560042",USR-A62C83339C,Gowtham Y K,8431041386,Out for Delivery,2026-08-24 11:20:58,Cash on Delivery,2026-08-24T11:21:22.326904,2026-08-25T11:21:22.326904,True
+ORD-A6A1142F96,PSTP011,Provident Neora,15,Gold,,5.86,Hebbal,USR-6EBABEAAB7,Demand Site,9138918398,Out for Delivery,2026-08-25 11:30:46,Cash on Delivery,2026-08-25T11:31:06.052672,2026-08-26T11:31:06.052672,True
+ORD-7B91DAB061,PSTP009,Purva Atmosphere,10,Platinum,treated,11.77,majestic,,Unknown,N/A,Pending,2026-08-25 16:01:41,Pending,,,False
+ORD-D86075D3E1,PSTP011,Provident Neora,15,Gold,,5.86,Hebbal,USR-6EBABEAAB7,Demand Site,9138918398,Out for Delivery,2026-08-25 16:30:16,Cash on Delivery,2026-08-25T16:30:38.026392,2026-08-26T16:30:38.026392,True
+ORD-596876893D,PSTP011,Provident Neora,15,Gold,,5.86,Hebbal,USR-6EBABEAAB7,Demand Site,9138918398,Out for Delivery,2026-08-25 16:44:57,Cash on Delivery,2026-08-25T16:45:16.299554,2026-08-26T16:45:16.299554,True
+ORD-B1DB35ACD9,PSTP011,Provident Neora,15,Gold,,5.86,Hebbal,USR-6EBABEAAB7,Demand Site,9138918398,Out for Delivery,2026-08-27 15:15:20,Cash on Delivery,2026-08-27T15:18:38.904178,2026-08-28T15:18:38.904178,False
+ORD-187D23EEB5,PSTP011,Provident Neora,15,Gold,,5.86,Hebbal,USR-6EBABEAAB7,Demand Site,9138918398,Rejected,2026-08-27 15:53:30,Cash on Delivery,,,False
+ORD-4793E999C0,PSTP011,Provident Neora,15,Gold,,5.86,Hebbal,USR-6EBABEAAB7,Demand Site,9138918398,Delivered,2026-08-27 19:08:17,Cash on Delivery,2026-08-27T19:08:43.952891,2026-08-28T19:08:43.952891,False

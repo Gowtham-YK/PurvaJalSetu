@@ -1,0 +1,99 @@
+<!-- =========================================================
+     WASTEWATER AI CHATBOT
+     Reusable component for Site User / Seller / Tanker
+========================================================= -->
+
+<div id="ww-chatbot">
+
+    <!-- Floating button -->
+    <button
+        id="ww-chatbot-toggle"
+        type="button"
+        aria-label="Open Wastewater Assistant"
+    >
+        💬
+    </button>
+
+
+    <!-- Chat window -->
+    <div
+        id="ww-chatbot-window"
+        class="ww-chatbot-hidden"
+    >
+
+        <!-- Header -->
+        <div id="ww-chatbot-header">
+
+            <div class="ww-chatbot-title">
+
+                <div class="ww-chatbot-avatar">
+                    💧
+                </div>
+
+                <div>
+                    <strong>Wastewater Assistant</strong>
+                    <span>AI-powered support</span>
+                </div>
+
+            </div>
+
+            <button
+                id="ww-chatbot-close"
+                type="button"
+                aria-label="Close chatbot"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <!-- Messages -->
+        <div id="ww-chatbot-messages">
+
+            <div class="ww-chat-message ww-chat-bot">
+
+                <div class="ww-chat-bubble">
+                    Hello! 👋<br><br>
+                    I'm your Wastewater Assistant.
+                    I can help you with STPs, orders,
+                    routing, demand and tanker information.
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Typing indicator -->
+        <div
+            id="ww-chatbot-typing"
+            class="ww-chatbot-typing-hidden"
+        >
+            Assistant is typing...
+        </div>
+
+
+        <!-- Input -->
+        <div id="ww-chatbot-input-area">
+
+            <input
+                type="text"
+                id="ww-chatbot-input"
+                placeholder="Ask something..."
+                autocomplete="off"
+            >
+
+            <button
+                id="ww-chatbot-send"
+                type="button"
+                aria-label="Send message"
+            >
+                ➤
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
