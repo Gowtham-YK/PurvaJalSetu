@@ -1,3 +1,2 @@
 order_id,stp_id,stp_name,quantity_kld,quality,water_type,distance_km,location,buyer_user_id,buyer_name,buyer_phone,status,created_at,payment_status,accepted_at,capacity_release_at,capacity_released,delivery_lat,delivery_lon,tanker_request_status,delivered_at
-ORD-9265B0182F,PSTP005,Purva Palm Beach - Labour Colony,5,Silver,,25.36,Thalaghattapura,USR-E849398559,Gowtham Y K,8431041386,Pending,2026-08-25 16:36:07,Cash on Delivery,,,False,12.8698169,77.5356688,,
-ORD-4DD51CFF43,PSTP003,Starworth - Harmony,5,Gold,,14.83,Thalaghattapura,USR-E849398559,Gowtham Y K,8431041386,Pending,2026-08-25 17:02:34,Cash on Delivery,,,False,12.8698169,77.5356688,,
+ORD-0823CC8A42,PSTP007,Purva Skywood Phase 2,5,General,,13.83,Thalaghattapura,USR-D00E9515BE,Gowtham Y K,9980144908,Delivered,2026-08-25 14:10:51,Cash on Delivery,2026-08-25T14:11:11.602044,2026-08-26T14:11:11.602044,False,12.8698169,77.5356688,Accepted,

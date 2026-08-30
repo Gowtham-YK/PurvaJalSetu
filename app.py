@@ -194,6 +194,15 @@ def append_user(user):
 
         workbook.save(USERS_FILE)
 
+
+def safe_user_value(user, field_name, default=""):
+    """Return a consistent string for legacy and newly migrated users."""
+    value = user.get(field_name, default)
+    if value is None:
+        return ""
+    return str(value).strip()
+
+
 ensure_users_file()
 
 # =========================================================
@@ -509,8 +518,8 @@ def login():
         session["user_phone"] = str(matched_user.get("mobile") or "")
         session["user_email"] = str(matched_user.get("email") or "")
         session["role"] = str(matched_user.get("role") or "").strip().lower()
-        session["stp_id"] = str(matched_user.get("stp_id") or "").strip()
-        session["tanker_operator_id"] = str(matched_user.get("tanker_operator_id") or "").strip()
+        session["stp_id"] = safe_user_value(matched_user, "stp_id")
+        session["tanker_operator_id"] = safe_user_value(matched_user, "tanker_operator_id")
 
         # Keep the existing buyer session variables.
         if session["role"] == "demand":
