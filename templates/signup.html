@@ -136,6 +136,19 @@
             font-size: 10px;
         }
 
+        .role-id-section {
+            display: none;
+            grid-column: 1 / -1;
+        }
+
+        .role-id-section.show {
+            display: block;
+        }
+
+        .role-id-section .hint {
+            margin-top: 5px;
+        }
+
         .password-wrap {
             position: relative;
         }
@@ -329,7 +342,7 @@
 
                 <div class="field full">
                     <label>Account Type</label>
-                    <select name="role" required>
+                    <select name="role" id="role" required onchange="handleRoleChange()">
                         <option value="">Select your role</option>
                         <option value="demand">Demand Site User</option>
                         <option value="stp">STP Operator</option>
@@ -338,6 +351,34 @@
                     </select>
                     <div class="hint">
                         Admin accounts are created separately for security.
+                    </div>
+                </div>
+
+                <div class="field full role-id-section" id="stp-id-section">
+                    <label>STP ID</label>
+                    <input
+                        type="text"
+                        name="stp_id"
+                        id="stp_id"
+                        placeholder="Enter your STP ID"
+                        autocomplete="off"
+                    >
+                    <div class="hint">
+                        Enter the STP ID assigned to your STP.
+                    </div>
+                </div>
+
+                <div class="field full role-id-section" id="tanker-id-section">
+                    <label>Tanker Operator ID</label>
+                    <input
+                        type="text"
+                        name="tanker_id"
+                        id="tanker_id"
+                        placeholder="Enter your Tanker Operator ID"
+                        autocomplete="off"
+                    >
+                    <div class="hint">
+                        Enter the Tanker Operator ID assigned to you.
                     </div>
                 </div>
 
@@ -362,6 +403,36 @@
 function togglePassword(id) {
     const input = document.getElementById(id);
     input.type = input.type === "password" ? "text" : "password";
+}
+
+function handleRoleChange() {
+    const role = document.getElementById("role").value;
+
+    const stpSection = document.getElementById("stp-id-section");
+    const tankerSection = document.getElementById("tanker-id-section");
+
+    const stpInput = document.getElementById("stp_id");
+    const tankerInput = document.getElementById("tanker_id");
+
+    // Reset both role-specific sections first.
+    stpSection.classList.remove("show");
+    tankerSection.classList.remove("show");
+
+    stpInput.required = false;
+    tankerInput.required = false;
+
+    stpInput.value = role === "stp" ? stpInput.value : "";
+    tankerInput.value = role === "tanker" ? tankerInput.value : "";
+
+    if (role === "stp") {
+        stpSection.classList.add("show");
+        stpInput.required = true;
+        stpInput.focus();
+    } else if (role === "tanker") {
+        tankerSection.classList.add("show");
+        tankerInput.required = true;
+        tankerInput.focus();
+    }
 }
 </script>
 

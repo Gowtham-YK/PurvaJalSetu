@@ -110,18 +110,42 @@ USER_FIELDS = [
     "email",
     "password_hash",
     "role",
+    "stp_id",
+    "tanker_operator_id",
     "created_at",
     "account_status"
 ]
 
 def ensure_users_file():
-    """Create the Excel user database if it does not exist."""
+    """Create or safely update the Excel user database schema."""
     if not os.path.exists(USERS_FILE):
         workbook = Workbook()
         sheet = workbook.active
         sheet.title = "Users"
         sheet.append(USER_FIELDS)
         workbook.save(USERS_FILE)
+        return
+
+    with users_lock:
+        workbook = load_workbook(USERS_FILE)
+        sheet = workbook["Users"]
+
+        existing_headers = [
+            str(cell.value).strip() if cell.value is not None else ""
+            for cell in sheet[1]
+        ]
+
+        changed = False
+        for field in USER_FIELDS:
+            if field not in existing_headers:
+                sheet.cell(row=1, column=sheet.max_column + 1, value=field)
+                existing_headers.append(field)
+                changed = True
+
+        if changed:
+            workbook.save(USERS_FILE)
+
+        workbook.close()
 
 def load_users():
     """Load all registered users from users.xlsx."""
@@ -485,6 +509,8 @@ def login():
         session["user_phone"] = str(matched_user.get("mobile") or "")
         session["user_email"] = str(matched_user.get("email") or "")
         session["role"] = str(matched_user.get("role") or "").strip().lower()
+        session["stp_id"] = str(matched_user.get("stp_id") or "").strip()
+        session["tanker_operator_id"] = str(matched_user.get("tanker_operator_id") or "").strip()
 
         # Keep the existing buyer session variables.
         if session["role"] == "demand":
@@ -496,10 +522,11 @@ def login():
             return redirect(url_for("supply"))
 
         if session["role"] == "tanker":
-            # Keep the existing tanker dashboard flow.
-            # If this account is linked to an approved tanker operator,
-            # its operator id can be used later for tanker-specific assignments.
-            session["tanker_operator_id"] = session["user_id"]
+            # Keep the existing tanker dashboard flow, but use the
+            # registered Tanker Operator ID linked during signup.
+            session["tanker_operator_id"] = str(
+                matched_user.get("tanker_operator_id") or ""
+            ).strip()
             session["tanker_operator_name"] = session["user_name"]
             return redirect(url_for("tanker_dashboard"))
 
@@ -530,7 +557,11 @@ def signup():
         confirm_password = request.form.get("confirm_password", "")
         role = request.form.get("role", "").strip().lower()
 
-        allowed_roles = {"demand", "stp", "tanker"}
+        # Role-specific identity fields from signup.html.
+        stp_id = request.form.get("stp_id", "").strip()
+        tanker_operator_id = request.form.get("tanker_id", "").strip()
+
+        allowed_roles = {"demand", "stp", "tanker", "admin"}
 
         if not all([
             first_name,
@@ -552,6 +583,56 @@ def signup():
                 "signup.html",
                 signup_error="Please select a valid account type."
             )
+
+        # STP operators must provide an existing STP ID.
+        if role == "stp":
+            if not stp_id:
+                return render_template(
+                    "signup.html",
+                    signup_error="Please enter your STP ID."
+                )
+
+            stp_exists = any(
+                str(stp.get("stp_id") or "").strip().lower() == stp_id.lower()
+                for stp in load_stps()
+            )
+
+            if not stp_exists:
+                return render_template(
+                    "signup.html",
+                    signup_error="Invalid STP ID. Please enter a registered STP ID."
+                )
+
+        # Tanker operators must provide an existing tanker operator ID.
+        if role == "tanker":
+            if not tanker_operator_id:
+                return render_template(
+                    "signup.html",
+                    signup_error="Please enter your Tanker Operator ID."
+                )
+
+            tanker_exists = False
+            if os.path.exists(TANKER_REGISTRATIONS_FILE):
+                try:
+                    with open(
+                        TANKER_REGISTRATIONS_FILE,
+                        "r",
+                        newline="",
+                        encoding="utf-8"
+                    ) as f:
+                        reader = csv.DictReader(f)
+                        tanker_exists = any(
+                            str(row.get("operator_id") or "").strip().lower() == tanker_operator_id.lower()
+                            for row in reader
+                        )
+                except Exception as e:
+                    print("Tanker operator ID validation failed:", e)
+
+            if not tanker_exists:
+                return render_template(
+                    "signup.html",
+                    signup_error="Invalid Tanker Operator ID. Please enter a registered operator ID."
+                )
 
         if password != confirm_password:
             return render_template(
@@ -600,6 +681,8 @@ def signup():
             "email": email,
             "password_hash": generate_password_hash(password),
             "role": role,
+            "stp_id": stp_id if role == "stp" else "",
+            "tanker_operator_id": tanker_operator_id if role == "tanker" else "",
             "created_at": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
             "account_status": "active"
         }
