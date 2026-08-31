@@ -1,0 +1,5 @@
+registration_id,stp_id,owner_name,phone,email,company_name,stp_name,latitude,longitude,technology,total_capacity_mld,current_load_mld,treatment_cost_per_kl,quality_grade,verification_status,registration_date,approved_at
+REG-20260825125617,,Rajesh Kumar,9876543210,rajesh.kumar@example.com,GreenFlow Wastewater Solutions,GreenFlow Hebbal STP,13.03921967,77.60707855,450 KLD WTP,0.45,0.292,5.0,General,approved,2026-08-25T12:56:17.569262,2026-08-25T12:57:22.483075
+REG-20260825130533,,Arjun Nair,9123456780,arjun.nair@example.com,AquaPure Environmental Services,AquaPure Whitefield STP,12.99979083,77.76672363,SBR Treatment Plant,0.6,0.38,6.5,Gold,pending,2026-08-25T13:05:33.178533,
+REG-20260825132204,PSTP015,Ravi Kumar,9876543210,eng@gmail.com,DSU,Amazing,12.99761641,77.76440620,500 KLD MBR,0.5,0.41,8.0,Bronze,approved,2026-08-25T13:22:04.227560,2026-08-25T13:45:43.789730
+REG-20260827153143,PSTP014,Vikram Shetty,9347216580,vikram.shetty@example.com,BlueRiver Wastewater Solutions,BlueRiver Electronic City STP,12.84983728,77.65819073,MBBR,0.75,0.485,11.0,Bronze,approved,2026-08-27T15:31:43.521937,2026-08-27T15:32:23.407805

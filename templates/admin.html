@@ -1098,7 +1098,7 @@
         </div>
 
         <div class="stat-info">
-            <p>Total Tanker Partners</p>
+            <p>Total Tanker Registrations</p>
 
             <h2>
                 {{ total_tanker_operators }}
@@ -1519,6 +1519,193 @@
                 </div>
 
             </div>
+
+<!-- ========================================= -->
+<!-- STP REGISTRATIONS -->
+<!-- ========================================= -->
+
+<section class="admin-section">
+
+    <div class="section-header">
+
+        <div>
+            <h2>STP Registrations</h2>
+
+            <p>
+                Review and approve sewage treatment plant registrations.
+            </p>
+        </div>
+
+        <div class="section-count">
+            {{ stp_registrations|length }} Registered
+        </div>
+
+    </div>
+
+
+    {% if stp_registrations %}
+
+    <div class="table-container">
+
+        <table>
+
+            <thead>
+
+                <tr>
+                    <th>STP Name</th>
+                    <th>Owner</th>
+                    <th>Location</th>
+                    <th>Capacity</th>
+                    <th>Technology</th>
+                    <th>Quality</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+
+            </thead>
+
+
+            <tbody>
+
+                {% for registration in stp_registrations %}
+
+                <tr>
+
+                    <td>
+                        <strong>
+                            {{ registration.stp_name }}
+                        </strong>
+
+                        <br>
+
+                        <small>
+                            {{ registration.registration_id }}
+                        </small>
+                    </td>
+
+
+                    <td>
+
+                        {{ registration.owner_name }}
+
+                        <br>
+
+                        <small>
+                            {{ registration.phone }}
+                        </small>
+
+                    </td>
+
+
+                    <td>
+
+                        {{ registration.latitude }},
+                        {{ registration.longitude }}
+
+                    </td>
+
+
+                    <td>
+
+                        {{ (registration.total_capacity_mld|float * 1000)|round(2) }}
+                        KLD
+
+                    </td>
+
+
+                    <td>
+
+                        {{ registration.technology }}
+
+                    </td>
+
+
+                    <td>
+
+                        {{ registration.quality_grade }}
+
+                    </td>
+
+
+                    <td>
+
+                        {% if registration.verification_status == "approved" %}
+
+                            <span class="status approved">
+                                Approved
+                            </span>
+
+                        {% elif registration.verification_status == "rejected" %}
+
+                            <span class="status rejected">
+                                Rejected
+                            </span>
+
+                        {% else %}
+
+                            <span class="status pending">
+                                Pending
+                            </span>
+
+                        {% endif %}
+
+                    </td>
+
+
+                    <td>
+
+                        {% if registration.verification_status == "pending" %}
+
+                            <a
+                                href="/admin/stp/{{ registration.registration_id }}/status/approved"
+                                class="action-btn approve"
+                                onclick="return confirm('Approve this STP registration?')"
+                            >
+                                Approve
+                            </a>
+
+
+                            <a
+                                href="/admin/stp/{{ registration.registration_id }}/status/rejected"
+                                class="action-btn reject"
+                                onclick="return confirm('Reject this STP registration?')"
+                            >
+                                Reject
+                            </a>
+
+                        {% else %}
+
+                            <span>
+                                No action
+                            </span>
+
+                        {% endif %}
+
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+    {% else %}
+
+        <div class="empty-state">
+
+            <p>
+                No STP registrations found.
+            </p>
+
+        </div>
+
+    {% endif %}
+
+</section>
 
 <!-- =========================
   TANKER PARTNER REGISTRATIONS

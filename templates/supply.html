@@ -386,6 +386,12 @@
             align-items: start;
         }
 
+        .right-column {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
         /* =========================
            MAP
         ========================= */
@@ -446,7 +452,211 @@
         }
 
         /* =========================
-           DEMAND REQUESTS
+        PRICING & INCENTIVES
+        ========================= */
+
+        .pricing-card {
+            background: white;
+            border: 1px solid #edf0f5;
+            border-radius: 12px;
+            padding: 18px;
+            box-shadow: 0 3px 12px rgba(25,40,70,.04);
+        }
+
+        .pricing-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .pricing-header h2 {
+            margin: 0;
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .pricing-subtitle {
+            font-size: 9px;
+            color: #7b8799;
+            margin-top: 3px;
+        }
+
+        .pricing-icon {
+            width: 34px;
+            height: 34px;
+            border-radius: 9px;
+            background: #f0eaff;
+            color: #7048d8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+
+        .pricing-header-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .pricing-details-btn {
+            border: none;
+            background: #f1edff;
+            color: #6542c7;
+            border-radius: 6px;
+            padding: 6px 9px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 9px;
+            cursor: pointer;
+        }
+
+        .pricing-details-btn:hover {
+            background: #e7dfff;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+        }
+
+        .pricing-item {
+            padding: 10px;
+            border: 1px solid #edf0f5;
+            border-radius: 8px;
+        }
+
+        .pricing-item span {
+            display: block;
+            font-size: 8px;
+            color: #748197;
+            margin-bottom: 5px;
+        }
+
+        .pricing-item strong {
+            display: block;
+            font-size: 16px;
+            color: #5936d9;
+        }
+
+        .pricing-item small {
+            display: block;
+            margin-top: 3px;
+            font-size: 7px;
+            color: #8a94a6;
+        }
+
+        .pricing-item.incentive strong {
+            color: #159653;
+        }
+
+        .effective-price {
+            margin-top: 10px;
+            padding: 11px;
+            border-radius: 9px;
+            background: #f7f4ff;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .effective-price-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            background: #ebe4ff;
+            color: #6945d4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
+
+        .effective-price span {
+            display: block;
+            font-size: 8px;
+            color: #748197;
+        }
+
+        .effective-price strong {
+            display: block;
+            margin-top: 2px;
+            color: #5936d9;
+            font-size: 15px;
+        }
+
+        .effective-price small {
+            display: block;
+            margin-top: 2px;
+            color: #8a94a6;
+            font-size: 7px;
+        }
+
+        .stp-advantages {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 8px;
+            background: #eef8ff;
+        }
+
+        .stp-advantages-title {
+            font-size: 9px;
+            font-weight: 600;
+            color: #1976d2;
+        }
+
+        .advantage-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-top: 7px;
+        }
+
+        .advantage {
+            background: white;
+            border: 1px solid #dcecff;
+            color: #526075;
+            border-radius: 15px;
+            padding: 4px 7px;
+            font-size: 7px;
+        }
+
+        .bonus-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 7px;
+            margin-top: 8px;
+        }
+
+        .bonus-item {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            padding: 8px;
+            border: 1px solid #edf0f5;
+            border-radius: 8px;
+        }
+
+        .bonus-item-icon {
+            font-size: 15px;
+        }
+
+        .bonus-item strong {
+            display: block;
+            font-size: 8px;
+            color: #16794b;
+        }
+
+        .bonus-item small {
+            display: block;
+            margin-top: 2px;
+            font-size: 7px;
+            color: #748197;
+        }
+                
+        /* =========================
+        DEMAND REQUESTS
         ========================= */
 
         .demand-list {
@@ -505,6 +715,124 @@
             font-weight: 500;
         }
 
+        .pricing-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.45);
+            z-index: 5000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .pricing-modal.show {
+            display: flex;
+        }
+
+        .pricing-modal-box {
+            width: 520px;
+            max-width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            background: white;
+            border-radius: 14px;
+            box-shadow: 0 20px 50px rgba(15,23,42,.25);
+        }
+
+        .pricing-modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 20px;
+            border-bottom: 1px solid #edf0f5;
+        }
+
+        .pricing-modal-header h2 {
+            margin: 0;
+            font-size: 17px;
+        }
+
+        .pricing-modal-header p {
+            margin: 4px 0 0;
+            color: #7b8799;
+            font-size: 10px;
+        }
+
+        .pricing-close {
+            border: none;
+            background: transparent;
+            font-size: 24px;
+            color: #667085;
+            cursor: pointer;
+        }
+
+        .pricing-form {
+            padding: 20px;
+        }
+
+        .pricing-form label {
+            display: block;
+            margin: 12px 0 5px;
+            font-size: 10px;
+            color: #526075;
+            font-weight: 500;
+        }
+
+        .pricing-form input {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 9px 10px;
+            border: 1px solid #dce2ea;
+            border-radius: 7px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 11px;
+            outline: none;
+        }
+
+        .pricing-form input:focus {
+            border-color: #7048d8;
+            box-shadow: 0 0 0 3px rgba(112,72,216,.08);
+        }
+
+        .pricing-time-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .pricing-modal-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 8px;
+            padding: 15px 20px;
+            border-top: 1px solid #edf0f5;
+        }
+
+        .modal-cancel,
+        .modal-save {
+            padding: 9px 15px;
+            border-radius: 7px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 10px;
+            cursor: pointer;
+        }
+
+        .modal-cancel {
+            border: 1px solid #dce2ea;
+            background: white;
+            color: #526075;
+        }
+
+        .modal-save {
+            border: none;
+            background: #6742d1;
+            color: white;
+        }
+
+        .modal-save:hover {
+            background: #5635b8;
+        }
         /* =========================
            STATUS
         ========================= */
@@ -618,6 +946,22 @@
             cursor: pointer;
         }
 
+        .pricing-manage-btn {
+            margin-top: 10px;
+            border: 1px solid #ddd3ff;
+            background: #f5f1ff;
+            color: #6742d1;
+            padding: 10px 17px;
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 10px;
+            cursor: pointer;
+        }
+
+        .pricing-manage-btn:hover {
+            background: #eae2ff;
+        }
+
         /* =========================
            RESPONSIVE
         ========================= */
@@ -631,6 +975,11 @@
             .main-grid {
                 grid-template-columns: 1fr;
             }
+
+            .right-column {
+                width: 100%;
+            }
+
         }
 
         @media (max-width: 768px) {
@@ -797,10 +1146,6 @@
         }
 
     </style>
-
-    <link rel="stylesheet"
-          href="{{ url_for('static', filename='css/responsive.css') }}">
-
 </head>
 
 <body>
@@ -854,7 +1199,7 @@
                 <span>Assignments</span>
             </a>
 
-            <a href="/stp_track">
+            <a href="/track">
                 <div class="nav-icon">🚚</div>
                 <span>Tanker Tracking</span>
             </a>
@@ -1216,22 +1561,224 @@
 
                 </div>
 
+                <!-- RIGHT COLUMN -->
 
-                <!-- DEMAND REQUESTS -->
+                <div class="right-column">
 
-                <div class="card">
+                    <!-- PRICING & INCENTIVES -->
 
-                    <div class="card-header">
+                    <div class="pricing-card">
 
-                        <h2>
-                            Demand Requests
-                        </h2>
+                        <div class="pricing-header">
 
-                        <span>
-                            {{ demands|length }} Requests
-                        </span>
+                            <div class="pricing-header-left">
+
+                                <div class="pricing-icon">
+                                    💎
+                                </div>
+
+                                <div>
+                                    <h2>Pricing & Incentives</h2>
+
+                                    <div class="pricing-subtitle">
+                                        STP-specific water pricing
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <button
+                                type="button"
+                                class="pricing-details-btn"
+                                onclick="openPricingModal()"
+                            >
+                                Manage
+                            </button>
+
+                        </div>
+
+
+                        <div class="pricing-grid">
+
+                            <!-- BASE PRICE -->
+
+                            <div class="pricing-item">
+
+                                <span>
+                                    Base Price / KLD
+                                </span>
+
+                                <strong id="basePrice">
+                                    ₹--
+                                </strong>
+
+                                <small>
+                                    Standard rate
+                                </small>
+
+                            </div>
+
+
+                            <!-- PEAK INCENTIVE -->
+
+                            <div class="pricing-item incentive">
+
+                                <span>
+                                    Peak Incentive
+                                </span>
+
+                                <strong id="peakIncentive">
+                                    +₹--
+                                </strong>
+
+                                <small id="peakHours">
+                                    --
+                                </small>
+
+                            </div>
+
+
+                            <!-- OFF PEAK -->
+
+                            <div class="pricing-item incentive">
+
+                                <span>
+                                    Off-Peak
+                                </span>
+
+                                <strong id="offPeakIncentive">
+                                    +₹--
+                                </strong>
+
+                                <small id="offPeakHours">
+                                    --
+                                </small>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- EFFECTIVE PRICE -->
+
+                        <div class="effective-price">
+
+                            <div class="effective-price-icon">
+                                ₹
+                            </div>
+
+                            <div>
+
+                                <span>
+                                    Effective Price Range
+                                </span>
+
+                                <strong id="effectivePrice">
+                                    ₹-- – ₹--
+                                </strong>
+
+                                <small>
+                                    Based on delivery timing
+                                </small>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- STP ADVANTAGES -->
+
+                        <div class="stp-advantages">
+
+                            <div class="stp-advantages-title">
+                                ✓ Your STP Advantages
+                            </div>
+
+                            <div class="advantage-list">
+
+                                <span class="advantage">
+                                    ✓ {{ selected_stp.quality_grade }} quality
+                                </span>
+
+                                <span class="advantage">
+                                    ✓ {{ selected_stp.available_capacity_mld }} MLD available
+                                </span>
+
+                                <span class="advantage">
+                                    ✓ {{ selected_stp.technology }}
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- BONUSES -->
+
+                        <div class="bonus-grid">
+
+                            <div class="bonus-item">
+
+                                <div class="bonus-item-icon">
+                                    🌱
+                                </div>
+
+                                <div>
+
+                                    <strong>
+                                        Sustainability
+                                    </strong>
+
+                                    <small id="sustainabilityCredit">
+                                        +--%
+                                    </small>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="bonus-item">
+
+                                <div class="bonus-item-icon">
+                                    ⭐
+                                </div>
+
+                                <div>
+
+                                    <strong>
+                                        Reliability
+                                    </strong>
+
+                                    <small id="reliabilityBonus">
+                                        +--%
+                                    </small>
+
+                                </div>
+
+                            </div>
+
+                        </div>
 
                     </div>
+
+                    <!-- DEMAND REQUESTS -->
+
+                    <div class="card">
+
+                        <div class="card-header">
+
+                            <h2>
+                                Demand Requests
+                            </h2>
+
+                            <span>
+                                {{ demands|length }} Requests
+                            </span>
+
+                        </div>
+
+                    
 
 
                     <div class="demand-list">
@@ -1415,15 +1962,9 @@
 
                 <div class="update-actions">
 
-                    <!--
-                        KEEP YOUR EXISTING UPDATE FORM HERE.
-                        Your original backend logic is not changed.
-                    -->
-
                     <button class="primary-btn">
                         Update
                     </button>
-
 
                     <button class="secondary-btn">
                         Upload
@@ -1431,9 +1972,202 @@
 
                 </div>
 
+                <button
+                    type="button"
+                    class="pricing-manage-btn"
+                    onclick="openPricingModal()"
+                >
+                    💎 Manage Pricing
+                </button>
+
             </div>
 
+            <div
+                id="pricingModal"
+                class="pricing-modal"
+            >
 
+                <div class="pricing-modal-box">
+
+                    <div class="pricing-modal-header">
+
+                        <div>
+
+                            <h2>
+                                Manage Pricing
+                            </h2>
+
+                            <p id="pricingModalStp">
+                                STP Pricing
+                            </p>
+
+                        </div>
+
+                        <button
+                            type="button"
+                            class="pricing-close"
+                            onclick="closePricingModal()"
+                        >
+                            ×
+                        </button>
+
+                    </div>
+
+
+                    <div class="pricing-form">
+
+                        <label>
+                            Base Price / KLD
+                        </label>
+
+                        <input
+                            type="number"
+                            id="editBasePrice"
+                            min="0"
+                            step="0.01"
+                        >
+
+
+                        <label>
+                            Peak Hour Incentive
+                        </label>
+
+                        <input
+                            type="number"
+                            id="editPeakIncentive"
+                            min="0"
+                            step="0.01"
+                        >
+
+
+                        <label>
+                            Off-Peak Incentive
+                        </label>
+
+                        <input
+                            type="number"
+                            id="editOffPeakIncentive"
+                            min="0"
+                            step="0.01"
+                        >
+
+
+                        <div class="pricing-time-row">
+
+                            <div>
+
+                                <label>
+                                    Peak Start
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="editPeakStart"
+                                >
+
+                            </div>
+
+
+                            <div>
+
+                                <label>
+                                    Peak End
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="editPeakEnd"
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="pricing-time-row">
+
+                            <div>
+
+                                <label>
+                                    Off-Peak Start
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="editOffPeakStart"
+                                >
+
+                            </div>
+
+
+                            <div>
+
+                                <label>
+                                    Off-Peak End
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="editOffPeakEnd"
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <label>
+                            Sustainability Credit (%)
+                        </label>
+
+                        <input
+                            type="number"
+                            id="editSustainability"
+                            min="0"
+                            max="100"
+                            step="0.1"
+                        >
+
+
+                        <label>
+                            Reliability Bonus (%)
+                        </label>
+
+                        <input
+                            type="number"
+                            id="editReliability"
+                            min="0"
+                            max="100"
+                            step="0.1"
+                        >
+
+                    </div>
+
+
+                    <div class="pricing-modal-actions">
+
+                        <button
+                            type="button"
+                            class="modal-cancel"
+                            onclick="closePricingModal()"
+                        >
+                            Cancel
+                        </button>
+
+                        <button
+                            type="button"
+                            class="modal-save"
+                            onclick="savePricing()"
+                        >
+                            Save Changes
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+            
             {% endif %}
 
 
@@ -1446,9 +2180,376 @@
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
+        let currentPricing = null;
 
+
+        async function loadPricing(stpId) {
+
+            if (!stpId) {
+                return;
+            }
+
+            try {
+
+                const response = await fetch(
+                    `/api/stp_pricing/${encodeURIComponent(stpId)}`
+                );
+
+                const data = await response.json();
+
+
+                if (!data.success) {
+
+                    console.error(
+                        "Pricing error:",
+                        data.message
+                    );
+
+                    return;
+                }
+
+
+                currentPricing = data.pricing;
+
+                const pricing = data.pricing;
+
+
+                // BASE PRICE
+
+                document.getElementById(
+                    "basePrice"
+                ).textContent =
+                    `₹${pricing.base_price_per_kld.toFixed(2)}`;
+
+
+                // PEAK INCENTIVE
+
+                document.getElementById(
+                    "peakIncentive"
+                ).textContent =
+                    `+₹${pricing.peak_incentive.toFixed(2)}`;
+
+
+                // OFF PEAK INCENTIVE
+
+                document.getElementById(
+                    "offPeakIncentive"
+                ).textContent =
+                    `+₹${pricing.off_peak_incentive.toFixed(2)}`;
+
+
+                // TIME WINDOWS
+
+                document.getElementById(
+                    "peakHours"
+                ).textContent =
+                    `${pricing.peak_start} - ${pricing.peak_end}`;
+
+
+                document.getElementById(
+                    "offPeakHours"
+                ).textContent =
+                    `${pricing.off_peak_start} - ${pricing.off_peak_end}`;
+
+
+                // EFFECTIVE PRICE
+
+                const maximumPrice =
+                    pricing.base_price_per_kld +
+                    pricing.peak_incentive;
+
+
+                document.getElementById(
+                    "effectivePrice"
+                ).textContent =
+                    `₹${pricing.base_price_per_kld.toFixed(2)} – ₹${maximumPrice.toFixed(2)}`;
+
+
+                // BONUSES
+
+                document.getElementById(
+                    "sustainabilityCredit"
+                ).textContent =
+                    `+${pricing.sustainability_credit}%`;
+
+
+                document.getElementById(
+                    "reliabilityBonus"
+                ).textContent =
+                    `+${pricing.reliability_bonus}%`;
+
+            }
+            catch (error) {
+
+                console.error(
+                    "Failed to load pricing:",
+                    error
+                );
+
+            }
+        }
+
+        function openPricingModal() {
+
+            const stpId =
+                "{{ selected_stp.stp_id if selected_stp else '' }}";
+
+
+            if (!stpId) {
+
+                alert(
+                    "Please select an STP first."
+                );
+
+                return;
+            }
+
+
+            if (!currentPricing) {
+
+                loadPricing(stpId).then(() => {
+
+                    populatePricingModal();
+
+                });
+
+            }
+            else {
+
+                populatePricingModal();
+
+            }
+
+
+            document
+                .getElementById("pricingModal")
+                .classList.add("show");
+        }
+
+        function populatePricingModal() {
+
+            if (!currentPricing) {
+                return;
+            }
+
+            const pricing = currentPricing;
+
+
+            document.getElementById(
+                "pricingModalStp"
+            ).textContent =
+                "{{ selected_stp.stp_name if selected_stp else 'STP Pricing' }}";
+
+
+            document.getElementById(
+                "editBasePrice"
+            ).value =
+                pricing.base_price_per_kld;
+
+
+            document.getElementById(
+                "editPeakIncentive"
+            ).value =
+                pricing.peak_incentive;
+
+
+            document.getElementById(
+                "editOffPeakIncentive"
+            ).value =
+                pricing.off_peak_incentive;
+
+
+            document.getElementById(
+                "editPeakStart"
+            ).value =
+                pricing.peak_start;
+
+
+            document.getElementById(
+                "editPeakEnd"
+            ).value =
+                pricing.peak_end;
+
+
+            document.getElementById(
+                "editOffPeakStart"
+            ).value =
+                pricing.off_peak_start;
+
+
+            document.getElementById(
+                "editOffPeakEnd"
+            ).value =
+                pricing.off_peak_end;
+
+
+            document.getElementById(
+                "editSustainability"
+            ).value =
+                pricing.sustainability_credit;
+
+
+            document.getElementById(
+                "editReliability"
+            ).value =
+                pricing.reliability_bonus;
+        }
+
+        function closePricingModal() {
+
+            document
+                .getElementById("pricingModal")
+                .classList.remove("show");
+
+        }
+
+        async function savePricing() {
+
+            const stpId =
+                "{{ selected_stp.stp_id if selected_stp else '' }}";
+
+
+            if (!stpId) {
+
+                alert(
+                    "Please select an STP first."
+                );
+
+                return;
+            }
+
+
+            const payload = {
+
+                stp_id: stpId,
+
+
+                base_price_per_kld:
+                    Number(
+                        document.getElementById(
+                            "editBasePrice"
+                        ).value
+                    ),
+
+
+                peak_incentive:
+                    Number(
+                        document.getElementById(
+                            "editPeakIncentive"
+                        ).value
+                    ),
+
+
+                off_peak_incentive:
+                    Number(
+                        document.getElementById(
+                            "editOffPeakIncentive"
+                        ).value
+                    ),
+
+
+                peak_start:
+                    document.getElementById(
+                        "editPeakStart"
+                    ).value,
+
+
+                peak_end:
+                    document.getElementById(
+                        "editPeakEnd"
+                    ).value,
+
+
+                off_peak_start:
+                    document.getElementById(
+                        "editOffPeakStart"
+                    ).value,
+
+
+                off_peak_end:
+                    document.getElementById(
+                        "editOffPeakEnd"
+                    ).value,
+
+
+                sustainability_credit:
+                    Number(
+                        document.getElementById(
+                            "editSustainability"
+                        ).value
+                    ),
+
+
+                reliability_bonus:
+                    Number(
+                        document.getElementById(
+                            "editReliability"
+                        ).value
+                    )
+
+            };
+
+
+            try {
+
+                const response = await fetch(
+                    "/api/update_pricing",
+                    {
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type":
+                                "application/json"
+                        },
+
+                        body:
+                            JSON.stringify(payload)
+                    }
+                );
+
+
+                const data =
+                    await response.json();
+
+
+                if (!data.success) {
+
+                    alert(
+                        data.message ||
+                        "Failed to update pricing."
+                    );
+
+                    return;
+                }
+
+
+                // Reload the pricing card
+
+                await loadPricing(stpId);
+
+
+                // Close modal
+
+                closePricingModal();
+
+
+                alert(
+                    "Pricing updated successfully."
+                );
+
+            }
+            catch (error) {
+
+                console.error(error);
+
+                alert(
+                    "Unable to update pricing."
+                );
+
+            }
+        }
         /* =========================
-           WEEKLY FORECAST GRAPH
+        WEEKLY FORECAST GRAPH
         ========================== */
 
         function toggleGraph() {
@@ -1574,6 +2675,15 @@
 
 
         document.addEventListener("DOMContentLoaded", function () {
+            const selectedStpId =
+                "{{ selected_stp.stp_id if selected_stp else '' }}";
+
+            if (selectedStpId) {
+
+                loadPricing(selectedStpId);
+
+            }
+
             const mapElement = document.getElementById("map");
             if (!mapElement) return;
 
@@ -1854,6 +2964,17 @@
 })();
 </script>
 <!-- END GLOBAL PROFILE / AVATAR / LOGOUT MENU -->
+
+{% include 'chatbot.html' %}
+
+<link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='chatbot.css') }}"
+>
+
+<script
+    src="{{ url_for('static', filename='chatbot.js') }}">
+</script>
 
 </body>
 </html>

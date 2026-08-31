@@ -853,18 +853,6 @@
             background: #dc4141;
         }
 
-        .tanker-request-accepted {
-            width: 100%;
-            margin-top: 7px;
-            padding: 8px 12px;
-            border-radius: 7px;
-            background: #e8f8eb;
-            color: #16834d;
-            font-size: 9px;
-            font-weight: 600;
-            text-align: center;
-        }
-
         .pickup-form {
 
             margin: 0;
@@ -1270,118 +1258,6 @@
                 grid-column: auto;
             }
 
-        }
-
-    
-        /* =====================================================
-           MY TRIPS / ORDER HISTORY
-        ===================================================== */
-        .trips-card {
-            margin-top: 18px;
-        }
-
-        .trip-history-list {
-            display: grid;
-            gap: 10px;
-        }
-
-        .trip-history-item {
-            display: grid;
-            grid-template-columns: minmax(135px, 1.05fr)
-                                 minmax(120px, .9fr)
-                                 minmax(180px, 1.45fr)
-                                 minmax(120px, .8fr)
-                                 auto;
-            gap: 14px;
-            align-items: center;
-            padding: 14px;
-            border: 1px solid #e7edf4;
-            border-radius: 10px;
-            background: #fbfdff;
-        }
-
-        .trip-history-item:hover {
-            background: #f7fbff;
-            border-color: #d5e2f1;
-        }
-
-        .trip-history-order strong,
-        .trip-history-detail strong {
-            display: block;
-            color: #29374d;
-            font-size: 10px;
-            font-weight: 600;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .trip-history-order span,
-        .trip-history-detail span {
-            display: block;
-            margin-bottom: 4px;
-            color: #7b8799;
-            font-size: 8px;
-        }
-
-        .trip-history-status {
-            justify-self: end;
-            padding: 6px 9px;
-            border-radius: 999px;
-            font-size: 8px;
-            font-weight: 700;
-            white-space: nowrap;
-        }
-
-        .trip-status-accepted {
-            background: #fff4df;
-            color: #bd7800;
-        }
-
-        .trip-status-out {
-            background: #e8f8eb;
-            color: #16834d;
-        }
-
-        .trip-status-delivered {
-            background: #e7f0ff;
-            color: #176bdc;
-        }
-
-        .trip-history-empty {
-            padding: 34px 15px;
-            text-align: center;
-            color: #8793a5;
-            border: 1px dashed #d8e2ef;
-            border-radius: 10px;
-            background: #fbfdff;
-        }
-
-        .trip-history-empty strong {
-            display: block;
-            margin-bottom: 5px;
-            color: #526075;
-            font-size: 12px;
-        }
-
-        .trip-history-empty span {
-            font-size: 9px;
-        }
-
-    
-        @media (max-width: 768px) {
-            .trip-history-item {
-                grid-template-columns: 1fr 1fr;
-            }
-
-            .trip-history-status {
-                justify-self: start;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .trip-history-item {
-                grid-template-columns: 1fr;
-            }
         }
 
     </style>
@@ -1956,42 +1832,13 @@
 
 
 
-                            {% if order.tanker_request_status == "Pending" %}
+                            {% if order.status == "Accepted" %}
 
-                            <!-- TANKER APPROVAL -->
-
-                            <div class="tanker-request-actions">
-
-                                <button
-                                    type="button"
-                                    class="tanker-request-button tanker-request-accept"
-                                    onclick="respondToTankerRequest('{{ order.order_id }}', 'accept')"
-                                >
-                                    ✓ Accept Request
-                                </button>
-
-                                <button
-                                    type="button"
-                                    class="tanker-request-button tanker-request-reject"
-                                    onclick="respondToTankerRequest('{{ order.order_id }}', 'reject')"
-                                >
-                                    ✕ Reject
-                                </button>
-
-                            </div>
-
-                            {% elif order.tanker_request_status == "Accepted" %}
-
-                            <!-- REQUEST ACCEPTED -->
-                            <div class="tanker-request-accepted">
-                                ✓ Request Accepted
-                            </div>
-
-                            <!-- ACCEPT PICKUP AFTER APPROVAL -->
+                            <!-- MANUAL ACCEPT PICKUP -->
 
                             <form
                                 method="POST"
-                                action="/accept_pickup"
+                                action="{{ url_for('accept_pickup') }}"
                                 class="pickup-form"
                             >
 
@@ -2005,7 +1852,7 @@
                                     type="submit"
                                     class="pickup-button"
                                 >
-                                    🚚 Start Delivery
+                                    ✓ Accept Pickup
                                 </button>
 
                             </form>
@@ -2740,10 +2587,15 @@ async function respondToTankerRequest(orderId, action) {
     setInterval(refreshTankerNotifications, 3000);
 
 </script>
+{% include 'chatbot.html' %}
 
-<script>
-    // Keep My Trips synchronized with the current order status in orders.csv.
-    setTimeout(() => window.location.reload(), 5000);
+<link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='chatbot.css') }}"
+>
+
+<script
+    src="{{ url_for('static', filename='chatbot.js') }}">
 </script>
 
 </body>

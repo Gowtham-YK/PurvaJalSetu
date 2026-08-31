@@ -1,283 +1,512 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>Existing Purvankara Partner</title>
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    <!-- MAIN PROJECT CSS -->
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
 
-        body {
-            font-family: Arial, sans-serif;
-            background: #f4f7fb;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 30px;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 700px;
-        }
-
-        .header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .header h1 {
-            color: #163b65;
-            margin-bottom: 10px;
-        }
-
-        .header p {
-            color: #6b7280;
-        }
-
-        .form-card {
-            background: white;
-            padding: 35px;
-            border-radius: 18px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-        }
-
-        .form-card h2 {
-            color: #163b65;
-            margin-bottom: 8px;
-        }
-
-        .form-card .description {
-            color: #6b7280;
-            margin-bottom: 25px;
-        }
-
-        .form-group {
-            margin-bottom: 18px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 7px;
-            font-weight: 600;
-            color: #374151;
-        }
-
-        input,
-        select {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #d1d5db;
-            border-radius: 8px;
-            font-size: 15px;
-            outline: none;
-        }
-
-        input:focus,
-        select:focus {
-            border-color: #1769aa;
-        }
-
-        .section-title {
-            color: #1769aa;
-            margin: 25px 0 15px;
-            font-size: 17px;
-        }
-
-        .submit-btn {
-            width: 100%;
-            padding: 13px;
-            border: none;
-            border-radius: 8px;
-            background: #1769aa;
-            color: white;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-
-        .submit-btn:hover {
-            background: #12558a;
-        }
-
-        .back {
-            display: block;
-            text-align: center;
-            margin-top: 20px;
-            color: #1769aa;
-            text-decoration: none;
-        }
-
-        @media (max-width: 600px) {
-            body {
-                padding: 15px;
-            }
-
-            .form-card {
-                padding: 25px 20px;
-            }
-        }
-    </style>
-
-    <link rel="stylesheet"
-          href="{{ url_for('static', filename='css/responsive.css') }}">
-          
 </head>
+
 
 <body>
 
-<div class="container">
 
-    <div class="header">
-        <h1>Existing Purvankara Partner</h1>
-        <p>Register your existing Purvankara tanker contract</p>
-    </div>
+<!-- =====================================================
+     NAVBAR
+====================================================== -->
 
-    <div class="form-card">
+<header class="navbar">
 
-        <h2>Partner Registration</h2>
+    <div class="logo">
 
-        <p class="description">
-            Enter your details and existing contract information.
-            Your registration will be verified by the Purvankara team.
-        </p>
+        <a
+            href="/"
+            style="text-decoration:none;"
+        >
 
-        <form method="POST" action="/tanker/register/contracted">
+            <span class="logo-text">
+                WasteWater Management
+            </span>
 
-            <h3 class="section-title">Operator Details</h3>
-
-            <div class="form-group">
-                <label for="operator_name">Full Name</label>
-                <input
-                    type="text"
-                    id="operator_name"
-                    name="operator_name"
-                    placeholder="Enter your full name"
-                    required
-                >
-            </div>
-
-            <div class="form-group">
-                <label for="phone">Mobile Number</label>
-                <input
-                    type="tel"
-                    id="phone"
-                    name="phone"
-                    placeholder="Enter mobile number"
-                    required
-                >
-            </div>
-
-            <div class="form-group">
-                <label for="email">Email Address</label>
-                <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    placeholder="Enter email address"
-                    required
-                >
-            </div>
-
-
-            <h3 class="section-title">Contract Details</h3>
-
-            <div class="form-group">
-                <label for="contract_id">Purvankara Contract ID</label>
-                <input
-                    type="text"
-                    id="contract_id"
-                    name="contract_id"
-                    placeholder="Enter your contract ID"
-                    required
-                >
-            </div>
-
-            <div class="form-group">
-                <label for="contract_start">Contract Start Date</label>
-                <input
-                    type="date"
-                    id="contract_start"
-                    name="contract_start"
-                    required
-                >
-            </div>
-
-            <div class="form-group">
-                <label for="contract_end">Contract End Date</label>
-                <input
-                    type="date"
-                    id="contract_end"
-                    name="contract_end"
-                    required
-                >
-            </div>
-
-
-            <h3 class="section-title">Tanker Details</h3>
-
-            <div class="form-group">
-                <label for="registration_no">Tanker Registration Number</label>
-                <input
-                    type="text"
-                    id="registration_no"
-                    name="registration_no"
-                    placeholder="Example: KA-01-XX-1234"
-                    required
-                >
-            </div>
-
-            <div class="form-group">
-                <label for="capacity">Tanker Capacity</label>
-                <select id="capacity" name="capacity" required>
-                    <option value="">Select capacity</option>
-                    <option value="5">5 KL</option>
-                    <option value="6">6 KL</option>
-                    <option value="8">8 KL</option>
-                    <option value="10">10 KL</option>
-                    <option value="12">12 KL</option>
-                    <option value="14">14 KL</option>
-                    <option value="16">16 KL</option>
-                    <option value="20">20 KL</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label for="vehicle_model">Vehicle Model</label>
-                <input
-                    type="text"
-                    id="vehicle_model"
-                    name="vehicle_model"
-                    placeholder="Enter tanker vehicle model"
-                    required
-                >
-            </div>
-
-            <button type="submit" class="submit-btn">
-                Submit for Verification
-            </button>
-
-        </form>
-
-        <a href="/tanker/register" class="back">
-            ← Back to Partner Selection
         </a>
 
     </div>
 
-</div>
+
+    <nav>
+
+        <a href="/">
+            Home
+        </a>
+
+        <a
+            href="/tanker/register"
+            class="active"
+        >
+            Tanker Partner
+        </a>
+
+        <a href="/tanker/status">
+            Check Status
+        </a>
+
+    </nav>
+
+</header>
 
 
 
+<!-- =====================================================
+     PAGE
+====================================================== -->
+
+<main class="tanker-form-page">
+
+
+    <!-- PAGE HEADER -->
+
+    <section class="tanker-form-header">
+
+        <h1>
+            Existing Purvankara Partner
+        </h1>
+
+        <p>
+            Register your existing Purvankara tanker contract
+        </p>
+
+    </section>
+
+
+
+    <!-- FORM CONTAINER -->
+
+    <section class="tanker-form-container">
+
+        <div class="tanker-form-card">
+
+
+            <!-- =================================================
+                 CARD HEADER
+            ================================================== -->
+
+            <div class="tanker-form-card-header">
+
+                <h2>
+                    Partner Registration
+                </h2>
+
+                <p>
+                    Enter your operator details and existing
+                    Purvankara contract information. Your
+                    registration will be reviewed and verified
+                    by the Purvankara team.
+                </p>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 NOTICE
+            ================================================== -->
+
+            <div class="tanker-form-notice">
+
+                <div class="tanker-form-notice-icon">
+                    ℹ️
+                </div>
+
+                <div>
+
+                    <strong>
+                        Verification Required
+                    </strong>
+
+                    <br>
+
+                    Your existing contract details will be
+                    verified before your tanker becomes active
+                    on the platform.
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 FORM
+            ================================================== -->
+
+            <form
+                method="POST"
+                action="/tanker/register/contracted"
+            >
+
+
+                <!-- =============================================
+                     OPERATOR DETAILS
+                ============================================== -->
+
+                <div class="tanker-form-section">
+
+                    <h3>
+                        Operator Details
+                    </h3>
+
+
+                    <!-- Full Name -->
+
+                    <div class="tanker-form-group">
+
+                        <label for="operator_name">
+
+                            Full Name
+
+                            <span class="required-mark">
+                                *
+                            </span>
+
+                        </label>
+
+                        <input
+                            type="text"
+                            id="operator_name"
+                            name="operator_name"
+                            placeholder="Enter your full name"
+                            required
+                        >
+
+                    </div>
+
+
+
+                    <!-- Phone + Email -->
+
+                    <div class="tanker-form-row">
+
+
+                        <div class="tanker-form-group">
+
+                            <label for="phone">
+
+                                Mobile Number
+
+                                <span class="required-mark">
+                                    *
+                                </span>
+
+                            </label>
+
+                            <input
+                                type="tel"
+                                id="phone"
+                                name="phone"
+                                placeholder="Enter mobile number"
+                                required
+                            >
+
+                        </div>
+
+
+
+                        <div class="tanker-form-group">
+
+                            <label for="email">
+
+                                Email Address
+
+                                <span class="required-mark">
+                                    *
+                                </span>
+
+                            </label>
+
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                placeholder="Enter email address"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =============================================
+                     CONTRACT DETAILS
+                ============================================== -->
+
+                <div class="tanker-form-section">
+
+                    <h3>
+                        Contract Details
+                    </h3>
+
+
+                    <!-- Contract ID -->
+
+                    <div class="tanker-form-group">
+
+                        <label for="contract_id">
+
+                            Purvankara Contract ID
+
+                            <span class="required-mark">
+                                *
+                            </span>
+
+                        </label>
+
+                        <input
+                            type="text"
+                            id="contract_id"
+                            name="contract_id"
+                            placeholder="Enter your existing contract ID"
+                            required
+                        >
+
+                    </div>
+
+
+
+                    <!-- Contract Dates -->
+
+                    <div class="tanker-form-row">
+
+
+                        <div class="tanker-form-group">
+
+                            <label for="contract_start">
+
+                                Contract Start Date
+
+                                <span class="required-mark">
+                                    *
+                                </span>
+
+                            </label>
+
+                            <input
+                                type="date"
+                                id="contract_start"
+                                name="contract_start"
+                                required
+                            >
+
+                        </div>
+
+
+
+                        <div class="tanker-form-group">
+
+                            <label for="contract_end">
+
+                                Contract End Date
+
+                                <span class="required-mark">
+                                    *
+                                </span>
+
+                            </label>
+
+                            <input
+                                type="date"
+                                id="contract_end"
+                                name="contract_end"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =============================================
+                     TANKER DETAILS
+                ============================================== -->
+
+                <div class="tanker-form-section">
+
+                    <h3>
+                        Tanker Details
+                    </h3>
+
+
+                    <!-- Registration Number -->
+
+                    <div class="tanker-form-group">
+
+                        <label for="registration_no">
+
+                            Tanker Registration Number
+
+                            <span class="required-mark">
+                                *
+                            </span>
+
+                        </label>
+
+                        <input
+                            type="text"
+                            id="registration_no"
+                            name="registration_no"
+                            placeholder="Example: KA-01-AB-1234"
+                            required
+                        >
+
+                    </div>
+
+
+
+                    <!-- Capacity + Vehicle Model -->
+
+                    <div class="tanker-form-row">
+
+
+                        <div class="tanker-form-group">
+
+                            <label for="capacity">
+
+                                Tanker Capacity
+
+                                <span class="required-mark">
+                                    *
+                                </span>
+
+                            </label>
+
+                            <select
+                                id="capacity"
+                                name="capacity"
+                                required
+                            >
+
+                                <option value="">
+                                    Select capacity
+                                </option>
+
+                                <option value="5">
+                                    5 KL
+                                </option>
+
+                                <option value="6">
+                                    6 KL
+                                </option>
+
+                                <option value="8">
+                                    8 KL
+                                </option>
+
+                                <option value="10">
+                                    10 KL
+                                </option>
+
+                                <option value="12">
+                                    12 KL
+                                </option>
+
+                                <option value="16">
+                                    16 KL
+                                </option>
+
+                                <option value="20">
+                                    20 KL
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+
+                        <div class="tanker-form-group">
+
+                            <label for="vehicle_model">
+
+                                Vehicle Model
+
+                                <span class="required-mark">
+                                    *
+                                </span>
+
+                            </label>
+
+                            <input
+                                type="text"
+                                id="vehicle_model"
+                                name="vehicle_model"
+                                placeholder="Enter vehicle model"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     ACTIONS
+                ================================================== -->
+
+                <div class="tanker-form-actions">
+
+
+                    <a
+                        href="/tanker/register"
+                        class="tanker-form-secondary"
+                    >
+                        ← Back to Partner Selection
+                    </a>
+
+
+
+                    <button
+                        type="submit"
+                        class="tanker-form-primary"
+                    >
+                        Submit Registration
+                        →
+                    </button>
+
+
+                </div>
+
+
+            </form>
+
+        </div>
+
+    </section>
+
+</main>
 
 
 </body>
+
 </html>

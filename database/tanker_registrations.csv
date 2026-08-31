@@ -1,0 +1,5 @@
+operator_id,operator_name,operator_type,phone,email,area,pincode,contract_id,contract_start,contract_end,tanker_registration_no,tanker_capacity_kl,vehicle_model,water_type_supported,service_radius_km,verification_status,registration_date
+OP-BLR-0001,Manorajan S,contracted,9876897869,xyz@gmail.com,,,9289AJBEF,2026-08-11,2027-08-11,KA-01-MJ-1983,10,Tata Tank,,,approved,2026-08-25
+OP-BLR-0002,MANORANJAN S ,independent,07892012246,manoranjan00195@gmail.com,sahakar nagar,560097,,,,KA-50-EF-2327,8,tanker,fresh,10,rejected,2026-08-25
+OP-BLR-0003,MANORANJAN S ,independent,07892012246,manoranjan00195@gmail.com,sahakar nagar,560097,,,,KA-50-EF-2327,12,tanker,general,10,approved,2026-08-25
+OP-BLR-0002,MANORANJAN S ,independent,07892012246,eng23am0042@dsu.edu.in,sahakar nagar,560097,,,,KA-50-EF-2327,10,tanker,general,10,approved,2026-08-25
