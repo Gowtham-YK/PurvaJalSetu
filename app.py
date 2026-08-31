@@ -725,7 +725,11 @@ def signup():
             )
         )
 
-    return render_template("signup.html")
+    stps = load_stps()
+    return render_template(
+        "signup.html",
+        stps=stps
+    )
 
 
 @app.route("/logout")
