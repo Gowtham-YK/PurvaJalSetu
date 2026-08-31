@@ -1,9 +1,8 @@
 from flask import Flask, jsonify, request, render_template, redirect, url_for
 from flask import session
-from werkzeug.security import generate_password_hash, check_password_hash
-from openpyxl import Workbook, load_workbook
 
-import threading
+from config import Config
+
 import uuid
 from datetime import datetime, date, timedelta
 import json
@@ -15,6 +14,11 @@ import csv
 import osmnx as ox
 import networkx as nx
 from ml.predict_demand import predict_next_day, predict_week
+
+
+
+
+
 
 
 def format_clean_address(address, lat, lon):
@@ -38,9 +42,22 @@ def format_clean_address(address, lat, lon):
         return f"{lat}, {lon}"
 
 app = Flask(__name__)
+app.config.from_object(Config)
 
-app.secret_key = "secret123"
 
+
+from dotenv import load_dotenv
+from supabase import create_client
+
+
+load_dotenv()
+
+SUPABASE_URL = os.getenv("SUPABASE_URL")
+SUPABASE_KEY = os.getenv("SUPABASE_KEY")
+
+app.secret_key = os.getenv("FLASK_SECRET_KEY")
+
+supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
 # =========================================================
 # LOAD ROAD NETWORK FOR A* ROUTING
 # =========================================================
@@ -98,122 +115,6 @@ STP_REGISTRATIONS_FILE = os.path.join(
     DATABASE_DIR,
     "stp_registrations.csv"
 )
-# =========================================================
-# USER ACCOUNT DATABASE
-# =========================================================
-
-USERS_FILE = os.path.join(
-    DATABASE_DIR,
-    "users.xlsx"
-)
-
-users_lock = threading.Lock()
-
-USER_FIELDS = [
-    "user_id",
-    "first_name",
-    "last_name",
-    "username",
-    "mobile",
-    "email",
-    "password_hash",
-    "role",
-    "stp_id",
-    "tanker_operator_id",
-    "created_at",
-    "account_status"
-]
-
-def ensure_users_file():
-    """Create or safely update the Excel user database schema."""
-    if not os.path.exists(USERS_FILE):
-        workbook = Workbook()
-        sheet = workbook.active
-        sheet.title = "Users"
-        sheet.append(USER_FIELDS)
-        workbook.save(USERS_FILE)
-        return
-
-    with users_lock:
-        workbook = load_workbook(USERS_FILE)
-        sheet = workbook["Users"]
-
-        existing_headers = [
-            str(cell.value).strip() if cell.value is not None else ""
-            for cell in sheet[1]
-        ]
-
-        changed = False
-        for field in USER_FIELDS:
-            if field not in existing_headers:
-                sheet.cell(row=1, column=sheet.max_column + 1, value=field)
-                existing_headers.append(field)
-                changed = True
-
-        if changed:
-            workbook.save(USERS_FILE)
-
-        workbook.close()
-
-def load_users():
-    """Load all registered users from users.xlsx."""
-    ensure_users_file()
-
-    with users_lock:
-        workbook = load_workbook(USERS_FILE)
-        sheet = workbook["Users"]
-
-        rows = list(sheet.iter_rows(values_only=True))
-
-        if not rows:
-            return []
-
-        headers = [str(value).strip() if value is not None else "" for value in rows[0]]
-
-        users = []
-        for values in rows[1:]:
-            user = {}
-            for index, header in enumerate(headers):
-                user[header] = values[index] if index < len(values) else ""
-            users.append(user)
-
-        return users
-
-def append_user(user):
-    """Append one user safely to users.xlsx."""
-    ensure_users_file()
-
-    with users_lock:
-        workbook = load_workbook(USERS_FILE)
-        sheet = workbook["Users"]
-
-        # Ensure the expected header exists.
-        existing_headers = [
-            cell.value for cell in sheet[1]
-        ]
-
-        if existing_headers != USER_FIELDS:
-            sheet.delete_rows(1, sheet.max_row)
-            sheet.append(USER_FIELDS)
-
-        sheet.append([
-            user.get(field, "") for field in USER_FIELDS
-        ])
-
-        workbook.save(USERS_FILE)
-
-
-def safe_user_value(user, field_name, default=""):
-    """Return a consistent string for legacy and newly migrated users."""
-    value = user.get(field_name, default)
-    if value is None:
-        return ""
-    return str(value).strip()
-
-
-ensure_users_file()
-
-# =========================================================
 
 # SYNTHETIC / DEMAND HEATMAP DATASET
 # =========================================================
@@ -482,95 +383,124 @@ def login():
 
     if request.method == 'POST':
 
-        login_identifier = request.form.get("login_identifier", "").strip()
+        login_identifier = request.form.get(
+            "login_identifier", ""
+        ).strip()
+
         password = request.form.get("password", "")
 
         if not login_identifier or not password:
             return render_template(
                 "login.html",
-                login_error="Please enter your username/email and password."
+                login_error="Please enter your email and password."
             )
 
-        users = load_users()
-        matched_user = None
+        try:
+            # Supabase Auth login
+            response = supabase.auth.sign_in_with_password({
+                "email": login_identifier,
+                "password": password
+            })
 
-        for user in users:
-            username = str(user.get("username") or "").strip().lower()
-            email = str(user.get("email") or "").strip().lower()
+            if not response.user:
+                return render_template(
+                    "login.html",
+                    login_error="Invalid email or password."
+                )
 
-            if login_identifier.lower() in [username, email]:
-                matched_user = user
-                break
+            user = response.user
 
-        if matched_user is None:
-            return render_template(
-                "login.html",
-                login_error="Invalid username/email or password."
+            # Get metadata saved during signup
+            metadata = user.user_metadata or {}
+
+            # Clear previous Flask session
+            session.clear()
+
+
+            session.permanent = True
+
+
+            # Preserve existing session structure
+            session["user_id"] = str(user.id)
+            session["first_name"] = str(
+                metadata.get("first_name", "")
+            )
+            session["last_name"] = str(
+                metadata.get("last_name", "")
+            )
+            session["username"] = str(
+                metadata.get("username", "")
             )
 
-        if str(matched_user.get("account_status") or "").strip().lower() != "active":
-            return render_template(
-                "login.html",
-                login_error="Your account is not active. Please contact the administrator."
-            )
-
-        password_hash = str(matched_user.get("password_hash") or "")
-
-        if not password_hash or not check_password_hash(password_hash, password):
-            return render_template(
-                "login.html",
-                login_error="Invalid username/email or password."
-            )
-
-        # Each browser receives its own independent Flask session.
-        session.clear()
-
-        session["user_id"] = str(matched_user.get("user_id") or "")
-        session["first_name"] = str(matched_user.get("first_name") or "")
-        session["last_name"] = str(matched_user.get("last_name") or "")
-        session["username"] = str(matched_user.get("username") or "")
-
-        session["user_name"] = (
-            f"{matched_user.get('first_name', '')} "
-            f"{matched_user.get('last_name', '')}"
-        ).strip()
-
-        session["user_phone"] = str(matched_user.get("mobile") or "")
-        session["user_email"] = str(matched_user.get("email") or "")
-        session["role"] = str(matched_user.get("role") or "").strip().lower()
-        session["stp_id"] = safe_user_value(matched_user, "stp_id")
-        session["tanker_operator_id"] = safe_user_value(matched_user, "tanker_operator_id")
-
-        # Keep the existing buyer session variables.
-        if session["role"] == "demand":
-            session["buyer_name"] = session["user_name"]
-            session["buyer_phone"] = session["user_phone"]
-            return redirect(url_for("demand"))
-
-        if session["role"] == "stp":
-            return redirect(url_for("supply"))
-
-        if session["role"] == "tanker":
-            # Keep the existing tanker dashboard flow, but use the
-            # registered Tanker Operator ID linked during signup.
-            session["tanker_operator_id"] = str(
-                matched_user.get("tanker_operator_id") or ""
+            session["user_name"] = (
+                f"{session['first_name']} "
+                f"{session['last_name']}"
             ).strip()
-            session["tanker_operator_name"] = session["user_name"]
-            return redirect(url_for("tanker_dashboard"))
 
-        if session["role"] == "admin":
-            return redirect(url_for("admin_dashboard"))
+            session["user_phone"] = str(
+                metadata.get("mobile", "")
+            )
 
-        session.clear()
+            session["user_email"] = str(
+                user.email or ""
+            )
 
-        return render_template(
-            "login.html",
-            login_error="Your account has an invalid role."
-        )
+            session["role"] = str(
+                metadata.get("role", "")
+            ).strip().lower()
+
+            session["stp_id"] = metadata.get(
+                "stp_id", ""
+            )
+
+            session["tanker_operator_id"] = metadata.get(
+                "tanker_operator_id", ""
+            )
+
+            # Existing role redirects
+            if session["role"] == "demand":
+
+                session["buyer_name"] = session["user_name"]
+                session["buyer_phone"] = session["user_phone"]
+
+                return redirect(url_for("demand"))
+
+            if session["role"] == "stp":
+                return redirect(url_for("supply"))
+
+            if session["role"] == "tanker":
+
+                session["tanker_operator_name"] = (
+                    session["user_name"]
+                )
+
+                return redirect(
+                    url_for("tanker_dashboard")
+                )
+
+            if session["role"] == "admin":
+                return redirect(
+                    url_for("admin_dashboard")
+                )
+
+            # Invalid/missing role
+            session.clear()
+
+            return render_template(
+                "login.html",
+                login_error="Your account has an invalid role."
+            )
+
+        except Exception as e:
+
+            print("Supabase login error:", e)
+
+            return render_template(
+                "login.html",
+                login_error="Invalid email or password."
+            )
 
     return render_template("login.html")
-
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
@@ -586,7 +516,6 @@ def signup():
         confirm_password = request.form.get("confirm_password", "")
         role = request.form.get("role", "").strip().lower()
 
-        # Role-specific identity fields from signup.html.
         stp_id = request.form.get("stp_id", "").strip()
         tanker_operator_id = request.form.get("tanker_id", "").strip()
 
@@ -613,8 +542,9 @@ def signup():
                 signup_error="Please select a valid account type."
             )
 
-        # STP operators must provide an existing STP ID.
+        # Validate STP ID
         if role == "stp":
+
             if not stp_id:
                 return render_template(
                     "signup.html",
@@ -622,7 +552,8 @@ def signup():
                 )
 
             stp_exists = any(
-                str(stp.get("stp_id") or "").strip().lower() == stp_id.lower()
+                str(stp.get("stp_id") or "").strip().lower()
+                == stp_id.lower()
                 for stp in load_stps()
             )
 
@@ -632,8 +563,9 @@ def signup():
                     signup_error="Invalid STP ID. Please enter a registered STP ID."
                 )
 
-        # Tanker operators must provide an existing tanker operator ID.
+        # Validate Tanker Operator ID
         if role == "tanker":
+
             if not tanker_operator_id:
                 return render_template(
                     "signup.html",
@@ -641,6 +573,7 @@ def signup():
                 )
 
             tanker_exists = False
+
             if os.path.exists(TANKER_REGISTRATIONS_FILE):
                 try:
                     with open(
@@ -649,18 +582,30 @@ def signup():
                         newline="",
                         encoding="utf-8"
                     ) as f:
+
                         reader = csv.DictReader(f)
+
                         tanker_exists = any(
-                            str(row.get("operator_id") or "").strip().lower() == tanker_operator_id.lower()
+                            str(
+                                row.get("operator_id") or ""
+                            ).strip().lower()
+                            == tanker_operator_id.lower()
                             for row in reader
                         )
+
                 except Exception as e:
-                    print("Tanker operator ID validation failed:", e)
+                    print(
+                        "Tanker operator ID validation failed:",
+                        e
+                    )
 
             if not tanker_exists:
                 return render_template(
                     "signup.html",
-                    signup_error="Invalid Tanker Operator ID. Please enter a registered operator ID."
+                    signup_error=(
+                        "Invalid Tanker Operator ID. "
+                        "Please enter a registered operator ID."
+                    )
                 )
 
         if password != confirm_password:
@@ -672,134 +617,120 @@ def signup():
         if len(password) < 8:
             return render_template(
                 "signup.html",
-                signup_error="Password must be at least 8 characters long."
+                signup_error=(
+                    "Password must be at least 8 characters long."
+                )
             )
 
-        users = load_users()
+        try:
 
-        for user in users:
-            existing_username = str(user.get("username") or "").strip().lower()
-            existing_email = str(user.get("email") or "").strip().lower()
+            # Create user in Supabase Auth
+            response = supabase.auth.sign_up({
+                "email": email,
+                "password": password,
+                "options": {
+                    "data": {
+                        "first_name": first_name,
+                        "last_name": last_name,
+                        "username": username,
+                        "mobile": mobile,
+                        "role": role,
+                        "stp_id": (
+                            stp_id if role == "stp" else ""
+                        ),
+                        "tanker_operator_id": (
+                            tanker_operator_id
+                            if role == "tanker"
+                            else ""
+                        )
+                    }
+                }
+            })
 
-            if username == existing_username:
+            if not response.user:
                 return render_template(
                     "signup.html",
-                    signup_error="That username is already registered."
+                    signup_error=(
+                        "Unable to create account. "
+                        "Please try again."
+                    )
                 )
 
-            if email == existing_email:
-                return render_template(
-                    "signup.html",
-                    signup_error="That email address is already registered."
+            return redirect(
+                url_for(
+                    "login",
+                    signup_success=(
+                        "Account created successfully. "
+                        "Please log in."
+                    )
                 )
-
-            if mobile == str(user.get("mobile") or "").strip():
-                return render_template(
-                    "signup.html",
-                    signup_error="That mobile number is already registered."
-                )
-
-        user_id = "USR-" + uuid.uuid4().hex[:10].upper()
-
-        new_user = {
-            "user_id": user_id,
-            "first_name": first_name,
-            "last_name": last_name,
-            "username": username,
-            "mobile": mobile,
-            "email": email,
-            "password_hash": generate_password_hash(password),
-            "role": role,
-            "stp_id": stp_id if role == "stp" else "",
-            "tanker_operator_id": tanker_operator_id if role == "tanker" else "",
-            "created_at": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-            "account_status": "active"
-        }
-
-        append_user(new_user)
-
-        return redirect(
-            url_for(
-                "login",
-                signup_success="Account created successfully. Please log in."
             )
-        )
+
+        except Exception as e:
+
+            print("Supabase signup error:", e)
+
+            error_message = str(e)
+
+            if "already registered" in error_message.lower():
+                error_message = (
+                    "That email address is already registered."
+                )
+            else:
+                error_message = (
+                    "Unable to create account. Please try again."
+                )
+
+            return render_template(
+                "signup.html",
+                signup_error=error_message
+            )
 
     return render_template("signup.html")
-
-
 @app.route("/logout")
 def logout():
+
+    try:
+        supabase.auth.sign_out()
+    except Exception as e:
+        print("Supabase logout error:", e)
+
     session.clear()
+
     return redirect(url_for("login"))
+
 
 @app.route("/delete_account", methods=["POST"])
 def delete_account():
 
-    # User must be logged in
     if not session.get("user_id"):
         return redirect(url_for("login"))
 
-    user_id = str(session.get("user_id") or "")
+    try:
+        # Sign out from Supabase
+        supabase.auth.sign_out()
 
-    if not user_id:
-        return redirect(url_for("login"))
+        # Clear Flask session
+        session.clear()
 
-    # Make sure users.xlsx exists
-    ensure_users_file()
-
-    with users_lock:
-
-        workbook = load_workbook(USERS_FILE)
-        sheet = workbook["Users"]
-
-        headers = [
-            str(cell.value).strip() if cell.value is not None else ""
-            for cell in sheet[1]
-        ]
-
-        # Find user_id column
-        if "user_id" not in headers:
-            workbook.close()
-            return "User ID column not found in users.xlsx", 500
-
-        user_id_column = headers.index("user_id") + 1
-
-        user_found = False
-
-        # Find and delete the logged-in user's row
-        for row in range(2, sheet.max_row + 1):
-
-            current_user_id = str(
-                sheet.cell(
-                    row=row,
-                    column=user_id_column
-                ).value or ""
-            ).strip()
-
-            if current_user_id == user_id:
-
-                sheet.delete_rows(row, 1)
-                user_found = True
-                break
-
-        workbook.save(USERS_FILE)
-        workbook.close()
-
-    # Clear the current login session
-    session.clear()
-
-    if user_found:
         return redirect(
             url_for(
                 "login",
-                account_deleted="Account deleted successfully."
+                account_deleted=(
+                    "You have been logged out. "
+                    "Account deletion requires Supabase admin configuration."
+                )
             )
         )
 
-    return redirect(url_for("login"))
+    except Exception as e:
+        print("Supabase account deletion error:", e)
 
-
+        return redirect(
+            url_for(
+                "profile"
+            )
+        )
 # =========================================================
 # CURRENT LOGGED-IN USER
 # =========================================================
@@ -811,35 +742,42 @@ def profile():
     if not session.get("user_id"):
         return redirect(url_for("login"))
 
-    # Get the complete user record from users.xlsx
-    users = load_users()
-    logged_in_user = None
+    try:
+        # Get the currently authenticated Supabase user
+        response = supabase.auth.get_user()
 
-    for user in users:
-        if str(user.get("user_id") or "") == str(session.get("user_id") or ""):
-            logged_in_user = user
-            break
+        if not response.user:
+            session.clear()
+            return redirect(url_for("login"))
 
-    if logged_in_user is None:
+        user = response.user
+        metadata = user.user_metadata or {}
+
+        return render_template(
+            "profile.html",
+            user={
+                "user_id": str(user.id),
+                "first_name": metadata.get("first_name", ""),
+                "last_name": metadata.get("last_name", ""),
+                "name": (
+                    f"{metadata.get('first_name', '')} "
+                    f"{metadata.get('last_name', '')}"
+                ).strip(),
+                "username": metadata.get("username", ""),
+                "mobile": metadata.get("mobile", ""),
+                "email": user.email or "",
+                "role": metadata.get("role", ""),
+                "created_at": (
+                    user.created_at or ""
+                ),
+                "account_status": "active"
+            }
+        )
+
+    except Exception as e:
+        print("Supabase profile error:", e)
         session.clear()
         return redirect(url_for("login"))
-
-    return render_template(
-        "profile.html",
-        user={
-            "user_id": logged_in_user.get("user_id", ""),
-            "first_name": logged_in_user.get("first_name", ""),
-            "last_name": logged_in_user.get("last_name", ""),
-            "name": f"{logged_in_user.get('first_name', '')} {logged_in_user.get('last_name', '')}".strip(),
-            "username": logged_in_user.get("username", ""),
-            "mobile": logged_in_user.get("mobile", ""),
-            "email": logged_in_user.get("email", ""),
-            "role": logged_in_user.get("role", ""),
-            "created_at": logged_in_user.get("created_at", ""),
-            "account_status": logged_in_user.get("account_status", "")
-        }
-    )
-    
 @app.route("/api/current_user")
 def current_user():
     """Return only the user stored in this browser's Flask session."""
@@ -1475,6 +1413,11 @@ def update_tanker_status(operator_id, status):
                 f,
                 fieldnames=fieldnames
             )
+
+            writer.writeheader()
+            writer.writerows(rows)
+
+    return redirect("/admin")
 
 @app.route("/api/stp_orders")
 def api_stp_orders():
@@ -3094,7 +3037,7 @@ def accept_pickup():
     stp_id=stp_id_redirect
 )
 
-import os
+
 # =========================================================
 # WASTEWATER CHATBOT API
 # =========================================================
