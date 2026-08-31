@@ -3007,6 +3007,25 @@ def update_order_status():
     return redirect(url_for("supply", stp_id=stp_id_redirect))
 
 
+@app.route("/trip_history")
+def trip_history():
+    auto_reset_capacity()
+
+    trip_history = []
+
+    if os.path.exists(ORDERS_FILE):
+        with open(ORDERS_FILE, "r", newline="", encoding="utf-8") as f:
+            reader = csv.DictReader(f)
+
+            for row in reader:
+                status = (row.get("status") or "").strip()
+
+                if status in {"Accepted", "Out for Delivery", "Delivered"}:
+                    trip_history.append(row)
+
+    return render_template("tanker.html", trip_history=trip_history)
+
+
 @app.route("/tanker")
 def tanker_dashboard():
 
