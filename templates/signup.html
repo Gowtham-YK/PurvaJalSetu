@@ -352,15 +352,19 @@
 
                 <div class="field full role-id-section" id="stp-id-section">
                     <label>STP ID</label>
-                    <input
-                        type="text"
+                    <select
                         name="stp_id"
                         id="stp_id"
-                        placeholder="Enter your STP ID"
-                        autocomplete="off"
                     >
+                        <option value="">Select your STP</option>
+                        {% for stp in stps %}
+                            <option value="{{ stp.get('stp_id', '') }}">
+                                {{ stp.get('stp_id', '') }} - {{ stp.get('stp_name', 'STP') }}
+                            </option>
+                        {% endfor %}
+                    </select>
                     <div class="hint">
-                        Enter the STP ID assigned to your STP.
+                        Select the STP assigned to you from the registered STP dataset.
                     </div>
                 </div>
 
