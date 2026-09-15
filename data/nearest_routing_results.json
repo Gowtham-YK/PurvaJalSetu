@@ -1,0 +1,5004 @@
+{
+    "routing_results": [
+        {
+            "seller_id": "S0001",
+            "assigned_stp": "Jakkur STP",
+            "distance_km": 3.2
+        },
+        {
+            "seller_id": "S0002",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 3.66
+        },
+        {
+            "seller_id": "S0003",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 2.09
+        },
+        {
+            "seller_id": "S0004",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 1.37
+        },
+        {
+            "seller_id": "S0005",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 1.27
+        },
+        {
+            "seller_id": "S0006",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 3.07
+        },
+        {
+            "seller_id": "S0007",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 4.87
+        },
+        {
+            "seller_id": "S0008",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 3.55
+        },
+        {
+            "seller_id": "S0009",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 2.79
+        },
+        {
+            "seller_id": "S0010",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 4.67
+        },
+        {
+            "seller_id": "S0011",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 2.65
+        },
+        {
+            "seller_id": "S0012",
+            "assigned_stp": "Domlur STP",
+            "distance_km": 3.6
+        },
+        {
+            "seller_id": "S0013",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 3.98
+        },
+        {
+            "seller_id": "S0014",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 0.35
+        },
+        {
+            "seller_id": "S0015",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 6.61
+        },
+        {
+            "seller_id": "S0016",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 5.0
+        },
+        {
+            "seller_id": "S0017",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 5.86
+        },
+        {
+            "seller_id": "S0018",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 2.67
+        },
+        {
+            "seller_id": "S0019",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 4.08
+        },
+        {
+            "seller_id": "S0020",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 3.67
+        },
+        {
+            "seller_id": "S0021",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 1.84
+        },
+        {
+            "seller_id": "S0022",
+            "assigned_stp": "Domlur STP",
+            "distance_km": 4.57
+        },
+        {
+            "seller_id": "S0023",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 0.14
+        },
+        {
+            "seller_id": "S0024",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 4.15
+        },
+        {
+            "seller_id": "S0025",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 4.11
+        },
+        {
+            "seller_id": "S0026",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 2.62
+        },
+        {
+            "seller_id": "S0027",
+            "assigned_stp": "Jakkur STP",
+            "distance_km": 2.58
+        },
+        {
+            "seller_id": "S0028",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 4.0
+        },
+        {
+            "seller_id": "S0029",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 0.54
+        },
+        {
+            "seller_id": "S0030",
+            "assigned_stp": "Domlur STP",
+            "distance_km": 5.33
+        },
+        {
+            "seller_id": "S0031",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 1.56
+        },
+        {
+            "seller_id": "S0032",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 1.29
+        },
+        {
+            "seller_id": "S0033",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 3.89
+        },
+        {
+            "seller_id": "S0034",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 1.74
+        },
+        {
+            "seller_id": "S0035",
+            "assigned_stp": "Domlur STP",
+            "distance_km": 4.12
+        },
+        {
+            "seller_id": "S0036",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 2.41
+        },
+        {
+            "seller_id": "S0037",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 2.65
+        },
+        {
+            "seller_id": "S0038",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 1.51
+        },
+        {
+            "seller_id": "S0039",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 5.01
+        },
+        {
+            "seller_id": "S0040",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 2.18
+        },
+        {
+            "seller_id": "S0041",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 5.44
+        },
+        {
+            "seller_id": "S0042",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 3.14
+        },
+        {
+            "seller_id": "S0043",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 1.06
+        },
+        {
+            "seller_id": "S0044",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 2.71
+        },
+        {
+            "seller_id": "S0045",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 5.58
+        },
+        {
+            "seller_id": "S0046",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 3.27
+        },
+        {
+            "seller_id": "S0047",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 2.69
+        },
+        {
+            "seller_id": "S0048",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 2.81
+        },
+        {
+            "seller_id": "S0049",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 6.17
+        },
+        {
+            "seller_id": "S0050",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 0.92
+        },
+        {
+            "seller_id": "S0051",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 1.96
+        },
+        {
+            "seller_id": "S0052",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 3.35
+        },
+        {
+            "seller_id": "S0053",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 3.33
+        },
+        {
+            "seller_id": "S0054",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 4.3
+        },
+        {
+            "seller_id": "S0055",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 4.6
+        },
+        {
+            "seller_id": "S0056",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 4.52
+        },
+        {
+            "seller_id": "S0057",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 3.63
+        },
+        {
+            "seller_id": "S0058",
+            "assigned_stp": "Jakkur STP",
+            "distance_km": 1.96
+        },
+        {
+            "seller_id": "S0059",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 6.27
+        },
+        {
+            "seller_id": "S0060",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 2.66
+        },
+        {
+            "seller_id": "S0061",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 1.99
+        },
+        {
+            "seller_id": "S0062",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 3.09
+        },
+        {
+            "seller_id": "S0063",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 1.67
+        },
+        {
+            "seller_id": "S0064",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 2.7
+        },
+        {
+            "seller_id": "S0065",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 5.02
+        },
+        {
+            "seller_id": "S0066",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 1.78
+        },
+        {
+            "seller_id": "S0067",
+            "assigned_stp": "Domlur STP",
+            "distance_km": 4.11
+        },
+        {
+            "seller_id": "S0068",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 3.69
+        },
+        {
+            "seller_id": "S0069",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 0.48
+        },
+        {
+            "seller_id": "S0070",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 2.67
+        },
+        {
+            "seller_id": "S0071",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 4.26
+        },
+        {
+            "seller_id": "S0072",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 2.53
+        },
+        {
+            "seller_id": "S0073",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 2.57
+        },
+        {
+            "seller_id": "S0074",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 4.92
+        },
+        {
+            "seller_id": "S0075",
+            "assigned_stp": "Domlur STP",
+            "distance_km": 4.64
+        },
+        {
+            "seller_id": "S0076",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 1.91
+        },
+        {
+            "seller_id": "S0077",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 3.59
+        },
+        {
+            "seller_id": "S0078",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 2.56
+        },
+        {
+            "seller_id": "S0079",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 3.32
+        },
+        {
+            "seller_id": "S0080",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 5.12
+        },
+        {
+            "seller_id": "S0081",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 0.26
+        },
+        {
+            "seller_id": "S0082",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 1.95
+        },
+        {
+            "seller_id": "S0083",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 0.98
+        },
+        {
+            "seller_id": "S0084",
+            "assigned_stp": "Domlur STP",
+            "distance_km": 2.52
+        },
+        {
+            "seller_id": "S0085",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 2.3
+        },
+        {
+            "seller_id": "S0086",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 2.63
+        },
+        {
+            "seller_id": "S0087",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 1.94
+        },
+        {
+            "seller_id": "S0088",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 4.5
+        },
+        {
+            "seller_id": "S0089",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 5.73
+        },
+        {
+            "seller_id": "S0090",
+            "assigned_stp": "Koramangala STP",
+            "distance_km": 3.6
+        },
+        {
+            "seller_id": "S0091",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 3.78
+        },
+        {
+            "seller_id": "S0092",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 3.17
+        },
+        {
+            "seller_id": "S0093",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 0.26
+        },
+        {
+            "seller_id": "S0094",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 2.04
+        },
+        {
+            "seller_id": "S0095",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 3.58
+        },
+        {
+            "seller_id": "S0096",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 1.5
+        },
+        {
+            "seller_id": "S0097",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 2.02
+        },
+        {
+            "seller_id": "S0098",
+            "assigned_stp": "Domlur STP",
+            "distance_km": 2.92
+        },
+        {
+            "seller_id": "S0099",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 5.2
+        },
+        {
+            "seller_id": "S0100",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 1.83
+        },
+        {
+            "seller_id": "S0101",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 0.89
+        },
+        {
+            "seller_id": "S0102",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 1.17
+        },
+        {
+            "seller_id": "S0103",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 1.18
+        },
+        {
+            "seller_id": "S0104",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 2.13
+        },
+        {
+            "seller_id": "S0105",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 6.25
+        },
+        {
+            "seller_id": "S0106",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 3.39
+        },
+        {
+            "seller_id": "S0107",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 4.72
+        },
+        {
+            "seller_id": "S0108",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 1.81
+        },
+        {
+            "seller_id": "S0109",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 4.54
+        },
+        {
+            "seller_id": "S0110",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 5.87
+        },
+        {
+            "seller_id": "S0111",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 5.73
+        },
+        {
+            "seller_id": "S0112",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 0.91
+        },
+        {
+            "seller_id": "S0113",
+            "assigned_stp": "Madiwala STP",
+            "distance_km": 4.09
+        },
+        {
+            "seller_id": "S0114",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 2.5
+        },
+        {
+            "seller_id": "S0115",
+            "assigned_stp": "Jakkur STP",
+            "distance_km": 2.99
+        },
+        {
+            "seller_id": "S0116",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 4.12
+        },
+        {
+            "seller_id": "S0117",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 2.99
+        },
+        {
+            "seller_id": "S0118",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 3.46
+        },
+        {
+            "seller_id": "S0119",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 1.61
+        },
+        {
+            "seller_id": "S0120",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 3.8
+        },
+        {
+            "seller_id": "S0121",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 3.8
+        },
+        {
+            "seller_id": "S0122",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 2.78
+        },
+        {
+            "seller_id": "S0123",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 3.31
+        },
+        {
+            "seller_id": "S0124",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 3.06
+        },
+        {
+            "seller_id": "S0125",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 1.76
+        },
+        {
+            "seller_id": "S0126",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 2.58
+        },
+        {
+            "seller_id": "S0127",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 4.14
+        },
+        {
+            "seller_id": "S0128",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 3.11
+        },
+        {
+            "seller_id": "S0129",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 3.9
+        },
+        {
+            "seller_id": "S0130",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 5.42
+        },
+        {
+            "seller_id": "S0131",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 0.88
+        },
+        {
+            "seller_id": "S0132",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 4.76
+        },
+        {
+            "seller_id": "S0133",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 6.01
+        },
+        {
+            "seller_id": "S0134",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 4.21
+        },
+        {
+            "seller_id": "S0135",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 5.65
+        },
+        {
+            "seller_id": "S0136",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 4.0
+        },
+        {
+            "seller_id": "S0137",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 0.81
+        },
+        {
+            "seller_id": "S0138",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 3.83
+        },
+        {
+            "seller_id": "S0139",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 2.94
+        },
+        {
+            "seller_id": "S0140",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 0.42
+        },
+        {
+            "seller_id": "S0141",
+            "assigned_stp": "Domlur STP",
+            "distance_km": 4.27
+        },
+        {
+            "seller_id": "S0142",
+            "assigned_stp": "Domlur STP",
+            "distance_km": 4.69
+        },
+        {
+            "seller_id": "S0143",
+            "assigned_stp": "Jakkur STP",
+            "distance_km": 3.02
+        },
+        {
+            "seller_id": "S0144",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 3.52
+        },
+        {
+            "seller_id": "S0145",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 4.31
+        },
+        {
+            "seller_id": "S0146",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 0.46
+        },
+        {
+            "seller_id": "S0147",
+            "assigned_stp": "Domlur STP",
+            "distance_km": 2.94
+        },
+        {
+            "seller_id": "S0148",
+            "assigned_stp": "Domlur STP",
+            "distance_km": 3.65
+        },
+        {
+            "seller_id": "S0149",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 4.55
+        },
+        {
+            "seller_id": "S0150",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 2.49
+        },
+        {
+            "seller_id": "S0151",
+            "assigned_stp": "Domlur STP",
+            "distance_km": 4.06
+        },
+        {
+            "seller_id": "S0152",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 4.03
+        },
+        {
+            "seller_id": "S0153",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 2.06
+        },
+        {
+            "seller_id": "S0154",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 1.93
+        },
+        {
+            "seller_id": "S0155",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 5.49
+        },
+        {
+            "seller_id": "S0156",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 3.97
+        },
+        {
+            "seller_id": "S0157",
+            "assigned_stp": "Domlur STP",
+            "distance_km": 5.64
+        },
+        {
+            "seller_id": "S0158",
+            "assigned_stp": "Domlur STP",
+            "distance_km": 3.95
+        },
+        {
+            "seller_id": "S0159",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 2.32
+        },
+        {
+            "seller_id": "S0160",
+            "assigned_stp": "Domlur STP",
+            "distance_km": 2.87
+        },
+        {
+            "seller_id": "S0161",
+            "assigned_stp": "Koramangala STP",
+            "distance_km": 3.16
+        },
+        {
+            "seller_id": "S0162",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 5.51
+        },
+        {
+            "seller_id": "S0163",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 1.56
+        },
+        {
+            "seller_id": "S0164",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 1.45
+        },
+        {
+            "seller_id": "S0165",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 2.67
+        },
+        {
+            "seller_id": "S0166",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 2.22
+        },
+        {
+            "seller_id": "S0167",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 3.44
+        },
+        {
+            "seller_id": "S0168",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 4.62
+        },
+        {
+            "seller_id": "S0169",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 1.99
+        },
+        {
+            "seller_id": "S0170",
+            "assigned_stp": "Domlur STP",
+            "distance_km": 3.97
+        },
+        {
+            "seller_id": "S0171",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 2.28
+        },
+        {
+            "seller_id": "S0172",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 0.65
+        },
+        {
+            "seller_id": "S0173",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 6.54
+        },
+        {
+            "seller_id": "S0174",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 1.41
+        },
+        {
+            "seller_id": "S0175",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 4.57
+        },
+        {
+            "seller_id": "S0176",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 3.88
+        },
+        {
+            "seller_id": "S0177",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 1.69
+        },
+        {
+            "seller_id": "S0178",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 3.81
+        },
+        {
+            "seller_id": "S0179",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 3.44
+        },
+        {
+            "seller_id": "S0180",
+            "assigned_stp": "Domlur STP",
+            "distance_km": 4.7
+        },
+        {
+            "seller_id": "S0181",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 2.95
+        },
+        {
+            "seller_id": "S0182",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 6.31
+        },
+        {
+            "seller_id": "S0183",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 1.24
+        },
+        {
+            "seller_id": "S0184",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 1.96
+        },
+        {
+            "seller_id": "S0185",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 1.88
+        },
+        {
+            "seller_id": "S0186",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 4.73
+        },
+        {
+            "seller_id": "S0187",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 2.15
+        },
+        {
+            "seller_id": "S0188",
+            "assigned_stp": "Madiwala STP",
+            "distance_km": 2.47
+        },
+        {
+            "seller_id": "S0189",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 3.28
+        },
+        {
+            "seller_id": "S0190",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 3.23
+        },
+        {
+            "seller_id": "S0191",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 1.23
+        },
+        {
+            "seller_id": "S0192",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 1.84
+        },
+        {
+            "seller_id": "S0193",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 4.28
+        },
+        {
+            "seller_id": "S0194",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 6.15
+        },
+        {
+            "seller_id": "S0195",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 1.9
+        },
+        {
+            "seller_id": "S0196",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 0.87
+        },
+        {
+            "seller_id": "S0197",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 2.35
+        },
+        {
+            "seller_id": "S0198",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 1.14
+        },
+        {
+            "seller_id": "S0199",
+            "assigned_stp": "Domlur STP",
+            "distance_km": 3.43
+        },
+        {
+            "seller_id": "S0200",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 1.36
+        },
+        {
+            "seller_id": "S0201",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 1.15
+        },
+        {
+            "seller_id": "S0202",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 2.43
+        },
+        {
+            "seller_id": "S0203",
+            "assigned_stp": "Domlur STP",
+            "distance_km": 3.56
+        },
+        {
+            "seller_id": "S0204",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 1.6
+        },
+        {
+            "seller_id": "S0205",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 2.93
+        },
+        {
+            "seller_id": "S0206",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 1.45
+        },
+        {
+            "seller_id": "S0207",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 2.24
+        },
+        {
+            "seller_id": "S0208",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 4.01
+        },
+        {
+            "seller_id": "S0209",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 4.0
+        },
+        {
+            "seller_id": "S0210",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 5.01
+        },
+        {
+            "seller_id": "S0211",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 6.03
+        },
+        {
+            "seller_id": "S0212",
+            "assigned_stp": "Jakkur STP",
+            "distance_km": 2.21
+        },
+        {
+            "seller_id": "S0213",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 1.34
+        },
+        {
+            "seller_id": "S0214",
+            "assigned_stp": "Koramangala STP",
+            "distance_km": 4.73
+        },
+        {
+            "seller_id": "S0215",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 1.65
+        },
+        {
+            "seller_id": "S0216",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 2.74
+        },
+        {
+            "seller_id": "S0217",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 3.1
+        },
+        {
+            "seller_id": "S0218",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 1.75
+        },
+        {
+            "seller_id": "S0219",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 5.23
+        },
+        {
+            "seller_id": "S0220",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 1.16
+        },
+        {
+            "seller_id": "S0221",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 0.79
+        },
+        {
+            "seller_id": "S0222",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 2.44
+        },
+        {
+            "seller_id": "S0223",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 3.2
+        },
+        {
+            "seller_id": "S0224",
+            "assigned_stp": "Domlur STP",
+            "distance_km": 2.55
+        },
+        {
+            "seller_id": "S0225",
+            "assigned_stp": "Domlur STP",
+            "distance_km": 4.22
+        },
+        {
+            "seller_id": "S0226",
+            "assigned_stp": "Domlur STP",
+            "distance_km": 4.8
+        },
+        {
+            "seller_id": "S0227",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 2.78
+        },
+        {
+            "seller_id": "S0228",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 5.79
+        },
+        {
+            "seller_id": "S0229",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 2.38
+        },
+        {
+            "seller_id": "S0230",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 0.73
+        },
+        {
+            "seller_id": "S0231",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 3.3
+        },
+        {
+            "seller_id": "S0232",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 2.17
+        },
+        {
+            "seller_id": "S0233",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 2.47
+        },
+        {
+            "seller_id": "S0234",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 3.23
+        },
+        {
+            "seller_id": "S0235",
+            "assigned_stp": "Domlur STP",
+            "distance_km": 5.05
+        },
+        {
+            "seller_id": "S0236",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 3.47
+        },
+        {
+            "seller_id": "S0237",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 4.0
+        },
+        {
+            "seller_id": "S0238",
+            "assigned_stp": "Koramangala STP",
+            "distance_km": 5.71
+        },
+        {
+            "seller_id": "S0239",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 3.7
+        },
+        {
+            "seller_id": "S0240",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 1.26
+        },
+        {
+            "seller_id": "S0241",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 2.05
+        },
+        {
+            "seller_id": "S0242",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 1.85
+        },
+        {
+            "seller_id": "S0243",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 6.12
+        },
+        {
+            "seller_id": "S0244",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 1.3
+        },
+        {
+            "seller_id": "S0245",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 0.45
+        },
+        {
+            "seller_id": "S0246",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 0.85
+        },
+        {
+            "seller_id": "S0247",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 2.18
+        },
+        {
+            "seller_id": "S0248",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 1.28
+        },
+        {
+            "seller_id": "S0249",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 1.65
+        },
+        {
+            "seller_id": "S0250",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 3.5
+        },
+        {
+            "seller_id": "S0251",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 2.45
+        },
+        {
+            "seller_id": "S0252",
+            "assigned_stp": "Kengeri STP",
+            "distance_km": 3.65
+        },
+        {
+            "seller_id": "S0253",
+            "assigned_stp": "Koramangala STP",
+            "distance_km": 4.23
+        },
+        {
+            "seller_id": "S0254",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 4.12
+        },
+        {
+            "seller_id": "S0255",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 3.9
+        },
+        {
+            "seller_id": "S0256",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 5.56
+        },
+        {
+            "seller_id": "S0257",
+            "assigned_stp": "Domlur STP",
+            "distance_km": 5.96
+        },
+        {
+            "seller_id": "S0258",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 3.37
+        },
+        {
+            "seller_id": "S0259",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 1.4
+        },
+        {
+            "seller_id": "S0260",
+            "assigned_stp": "Domlur STP",
+            "distance_km": 3.98
+        },
+        {
+            "seller_id": "S0261",
+            "assigned_stp": "Domlur STP",
+            "distance_km": 4.89
+        },
+        {
+            "seller_id": "S0262",
+            "assigned_stp": "Koramangala STP",
+            "distance_km": 4.63
+        },
+        {
+            "seller_id": "S0263",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 3.41
+        },
+        {
+            "seller_id": "S0264",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 2.3
+        },
+        {
+            "seller_id": "S0265",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 0.55
+        },
+        {
+            "seller_id": "S0266",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 1.58
+        },
+        {
+            "seller_id": "S0267",
+            "assigned_stp": "Domlur STP",
+            "distance_km": 5.64
+        },
+        {
+            "seller_id": "S0268",
+            "assigned_stp": "Madiwala STP",
+            "distance_km": 2.41
+        },
+        {
+            "seller_id": "S0269",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 5.36
+        },
+        {
+            "seller_id": "S0270",
+            "assigned_stp": "Koramangala STP",
+            "distance_km": 3.34
+        },
+        {
+            "seller_id": "S0271",
+            "assigned_stp": "Hebbal STP",
+            "distance_km": 5.72
+        },
+        {
+            "seller_id": "S0272",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 1.45
+        },
+        {
+            "seller_id": "S0273",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 4.91
+        },
+        {
+            "seller_id": "S0274",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 3.41
+        },
+        {
+            "seller_id": "S0275",
+            "assigned_stp": "Koramangala STP",
+            "distance_km": 5.71
+        },
+        {
+            "seller_id": "S0276",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 5.28
+        },
+        {
+            "seller_id": "S0277",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 6.3
+        },
+        {
+            "seller_id": "S0278",
+            "assigned_stp": "Koramangala STP",
+            "distance_km": 2.88
+        },
+        {
+            "seller_id": "S0279",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 2.54
+        },
+        {
+            "seller_id": "S0280",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 2.19
+        },
+        {
+            "seller_id": "S0281",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 5.28
+        },
+        {
+            "seller_id": "S0282",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 3.46
+        },
+        {
+            "seller_id": "S0283",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 3.0
+        },
+        {
+            "seller_id": "S0284",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 3.04
+        },
+        {
+            "seller_id": "S0285",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 0.85
+        },
+        {
+            "seller_id": "S0286",
+            "assigned_stp": "Domlur STP",
+            "distance_km": 6.74
+        },
+        {
+            "seller_id": "S0287",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 2.86
+        },
+        {
+            "seller_id": "S0288",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 2.98
+        },
+        {
+            "seller_id": "S0289",
+            "assigned_stp": "Jakkur STP",
+            "distance_km": 2.38
+        },
+        {
+            "seller_id": "S0290",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 2.98
+        },
+        {
+            "seller_id": "S0291",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 2.3
+        },
+        {
+            "seller_id": "S0292",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 2.84
+        },
+        {
+            "seller_id": "S0293",
+            "assigned_stp": "Madiwala STP",
+            "distance_km": 2.81
+        },
+        {
+            "seller_id": "S0294",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 3.0
+        },
+        {
+            "seller_id": "S0295",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 5.74
+        },
+        {
+            "seller_id": "S0296",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 3.18
+        },
+        {
+            "seller_id": "S0297",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 6.2
+        },
+        {
+            "seller_id": "S0298",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 5.77
+        },
+        {
+            "seller_id": "S0299",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 1.01
+        },
+        {
+            "seller_id": "S0300",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 2.71
+        },
+        {
+            "seller_id": "S0301",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 3.12
+        },
+        {
+            "seller_id": "S0302",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 5.31
+        },
+        {
+            "seller_id": "S0303",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 3.9
+        },
+        {
+            "seller_id": "S0304",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 2.35
+        },
+        {
+            "seller_id": "S0305",
+            "assigned_stp": "Koramangala STP",
+            "distance_km": 5.3
+        },
+        {
+            "seller_id": "S0306",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 1.95
+        },
+        {
+            "seller_id": "S0307",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 3.98
+        },
+        {
+            "seller_id": "S0308",
+            "assigned_stp": "Jakkur STP",
+            "distance_km": 3.21
+        },
+        {
+            "seller_id": "S0309",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 4.88
+        },
+        {
+            "seller_id": "S0310",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 3.89
+        },
+        {
+            "seller_id": "S0311",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 3.85
+        },
+        {
+            "seller_id": "S0312",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 6.53
+        },
+        {
+            "seller_id": "S0313",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 1.19
+        },
+        {
+            "seller_id": "S0314",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 3.13
+        },
+        {
+            "seller_id": "S0315",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 3.44
+        },
+        {
+            "seller_id": "S0316",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 1.74
+        },
+        {
+            "seller_id": "S0317",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 1.77
+        },
+        {
+            "seller_id": "S0318",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 5.51
+        },
+        {
+            "seller_id": "S0319",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 1.36
+        },
+        {
+            "seller_id": "S0320",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 3.46
+        },
+        {
+            "seller_id": "S0321",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 3.43
+        },
+        {
+            "seller_id": "S0322",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 1.11
+        },
+        {
+            "seller_id": "S0323",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 3.37
+        },
+        {
+            "seller_id": "S0324",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 3.89
+        },
+        {
+            "seller_id": "S0325",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 2.67
+        },
+        {
+            "seller_id": "S0326",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 3.39
+        },
+        {
+            "seller_id": "S0327",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 2.96
+        },
+        {
+            "seller_id": "S0328",
+            "assigned_stp": "Jakkur STP",
+            "distance_km": 2.12
+        },
+        {
+            "seller_id": "S0329",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 2.85
+        },
+        {
+            "seller_id": "S0330",
+            "assigned_stp": "Jakkur STP",
+            "distance_km": 3.3
+        },
+        {
+            "seller_id": "S0331",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 1.0
+        },
+        {
+            "seller_id": "S0332",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 3.4
+        },
+        {
+            "seller_id": "S0333",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 3.61
+        },
+        {
+            "seller_id": "S0334",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 3.11
+        },
+        {
+            "seller_id": "S0335",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 4.11
+        },
+        {
+            "seller_id": "S0336",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 3.67
+        },
+        {
+            "seller_id": "S0337",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 2.17
+        },
+        {
+            "seller_id": "S0338",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 5.51
+        },
+        {
+            "seller_id": "S0339",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 5.48
+        },
+        {
+            "seller_id": "S0340",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 1.86
+        },
+        {
+            "seller_id": "S0341",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 2.42
+        },
+        {
+            "seller_id": "S0342",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 2.93
+        },
+        {
+            "seller_id": "S0343",
+            "assigned_stp": "Jakkur STP",
+            "distance_km": 2.76
+        },
+        {
+            "seller_id": "S0344",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 1.2
+        },
+        {
+            "seller_id": "S0345",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 5.39
+        },
+        {
+            "seller_id": "S0346",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 5.61
+        },
+        {
+            "seller_id": "S0347",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 4.65
+        },
+        {
+            "seller_id": "S0348",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 3.07
+        },
+        {
+            "seller_id": "S0349",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 2.97
+        },
+        {
+            "seller_id": "S0350",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 2.86
+        },
+        {
+            "seller_id": "S0351",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 3.32
+        },
+        {
+            "seller_id": "S0352",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 1.7
+        },
+        {
+            "seller_id": "S0353",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 1.59
+        },
+        {
+            "seller_id": "S0354",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 4.97
+        },
+        {
+            "seller_id": "S0355",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 1.82
+        },
+        {
+            "seller_id": "S0356",
+            "assigned_stp": "Domlur STP",
+            "distance_km": 2.68
+        },
+        {
+            "seller_id": "S0357",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 1.09
+        },
+        {
+            "seller_id": "S0358",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 5.76
+        },
+        {
+            "seller_id": "S0359",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 2.19
+        },
+        {
+            "seller_id": "S0360",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 1.94
+        },
+        {
+            "seller_id": "S0361",
+            "assigned_stp": "Hebbal STP",
+            "distance_km": 6.05
+        },
+        {
+            "seller_id": "S0362",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 3.48
+        },
+        {
+            "seller_id": "S0363",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 1.67
+        },
+        {
+            "seller_id": "S0364",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 4.11
+        },
+        {
+            "seller_id": "S0365",
+            "assigned_stp": "Domlur STP",
+            "distance_km": 5.04
+        },
+        {
+            "seller_id": "S0366",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 3.86
+        },
+        {
+            "seller_id": "S0367",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 3.16
+        },
+        {
+            "seller_id": "S0368",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 5.02
+        },
+        {
+            "seller_id": "S0369",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 2.06
+        },
+        {
+            "seller_id": "S0370",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 4.31
+        },
+        {
+            "seller_id": "S0371",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 4.26
+        },
+        {
+            "seller_id": "S0372",
+            "assigned_stp": "Jakkur STP",
+            "distance_km": 2.45
+        },
+        {
+            "seller_id": "S0373",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 4.26
+        },
+        {
+            "seller_id": "S0374",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 1.97
+        },
+        {
+            "seller_id": "S0375",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 4.05
+        },
+        {
+            "seller_id": "S0376",
+            "assigned_stp": "Koramangala STP",
+            "distance_km": 5.68
+        },
+        {
+            "seller_id": "S0377",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 0.98
+        },
+        {
+            "seller_id": "S0378",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 3.62
+        },
+        {
+            "seller_id": "S0379",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 1.45
+        },
+        {
+            "seller_id": "S0380",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 2.42
+        },
+        {
+            "seller_id": "S0381",
+            "assigned_stp": "Jakkur STP",
+            "distance_km": 1.91
+        },
+        {
+            "seller_id": "S0382",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 2.37
+        },
+        {
+            "seller_id": "S0383",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 2.64
+        },
+        {
+            "seller_id": "S0384",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 2.5
+        },
+        {
+            "seller_id": "S0385",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 5.65
+        },
+        {
+            "seller_id": "S0386",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 4.56
+        },
+        {
+            "seller_id": "S0387",
+            "assigned_stp": "Koramangala STP",
+            "distance_km": 2.68
+        },
+        {
+            "seller_id": "S0388",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 2.57
+        },
+        {
+            "seller_id": "S0389",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 1.76
+        },
+        {
+            "seller_id": "S0390",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 2.97
+        },
+        {
+            "seller_id": "S0391",
+            "assigned_stp": "Jakkur STP",
+            "distance_km": 2.49
+        },
+        {
+            "seller_id": "S0392",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 3.04
+        },
+        {
+            "seller_id": "S0393",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 4.44
+        },
+        {
+            "seller_id": "S0394",
+            "assigned_stp": "Domlur STP",
+            "distance_km": 3.01
+        },
+        {
+            "seller_id": "S0395",
+            "assigned_stp": "Domlur STP",
+            "distance_km": 4.99
+        },
+        {
+            "seller_id": "S0396",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 0.94
+        },
+        {
+            "seller_id": "S0397",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 1.93
+        },
+        {
+            "seller_id": "S0398",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 3.62
+        },
+        {
+            "seller_id": "S0399",
+            "assigned_stp": "Domlur STP",
+            "distance_km": 4.95
+        },
+        {
+            "seller_id": "S0400",
+            "assigned_stp": "Jakkur STP",
+            "distance_km": 2.17
+        },
+        {
+            "seller_id": "S0401",
+            "assigned_stp": "Domlur STP",
+            "distance_km": 4.57
+        },
+        {
+            "seller_id": "S0402",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 1.94
+        },
+        {
+            "seller_id": "S0403",
+            "assigned_stp": "Domlur STP",
+            "distance_km": 4.49
+        },
+        {
+            "seller_id": "S0404",
+            "assigned_stp": "Domlur STP",
+            "distance_km": 2.3
+        },
+        {
+            "seller_id": "S0405",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 2.33
+        },
+        {
+            "seller_id": "S0406",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 1.36
+        },
+        {
+            "seller_id": "S0407",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 2.56
+        },
+        {
+            "seller_id": "S0408",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 5.68
+        },
+        {
+            "seller_id": "S0409",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 1.6
+        },
+        {
+            "seller_id": "S0410",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 4.11
+        },
+        {
+            "seller_id": "S0411",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 1.36
+        },
+        {
+            "seller_id": "S0412",
+            "assigned_stp": "Koramangala STP",
+            "distance_km": 5.58
+        },
+        {
+            "seller_id": "S0413",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 2.45
+        },
+        {
+            "seller_id": "S0414",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 4.18
+        },
+        {
+            "seller_id": "S0415",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 2.12
+        },
+        {
+            "seller_id": "S0416",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 2.59
+        },
+        {
+            "seller_id": "S0417",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 6.02
+        },
+        {
+            "seller_id": "S0418",
+            "assigned_stp": "Kengeri STP",
+            "distance_km": 3.55
+        },
+        {
+            "seller_id": "S0419",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 4.84
+        },
+        {
+            "seller_id": "S0420",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 4.53
+        },
+        {
+            "seller_id": "S0421",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 3.4
+        },
+        {
+            "seller_id": "S0422",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 1.82
+        },
+        {
+            "seller_id": "S0423",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 2.77
+        },
+        {
+            "seller_id": "S0424",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 5.4
+        },
+        {
+            "seller_id": "S0425",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 3.02
+        },
+        {
+            "seller_id": "S0426",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 3.37
+        },
+        {
+            "seller_id": "S0427",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 1.53
+        },
+        {
+            "seller_id": "S0428",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 0.79
+        },
+        {
+            "seller_id": "S0429",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 2.86
+        },
+        {
+            "seller_id": "S0430",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 1.4
+        },
+        {
+            "seller_id": "S0431",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 4.0
+        },
+        {
+            "seller_id": "S0432",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 5.79
+        },
+        {
+            "seller_id": "S0433",
+            "assigned_stp": "Madiwala STP",
+            "distance_km": 3.61
+        },
+        {
+            "seller_id": "S0434",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 2.38
+        },
+        {
+            "seller_id": "S0435",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 6.64
+        },
+        {
+            "seller_id": "S0436",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 2.79
+        },
+        {
+            "seller_id": "S0437",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 4.15
+        },
+        {
+            "seller_id": "S0438",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 3.31
+        },
+        {
+            "seller_id": "S0439",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 0.86
+        },
+        {
+            "seller_id": "S0440",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 3.72
+        },
+        {
+            "seller_id": "S0441",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 0.58
+        },
+        {
+            "seller_id": "S0442",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 2.58
+        },
+        {
+            "seller_id": "S0443",
+            "assigned_stp": "Domlur STP",
+            "distance_km": 2.53
+        },
+        {
+            "seller_id": "S0444",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 4.29
+        },
+        {
+            "seller_id": "S0445",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 6.16
+        },
+        {
+            "seller_id": "S0446",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 2.85
+        },
+        {
+            "seller_id": "S0447",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 3.22
+        },
+        {
+            "seller_id": "S0448",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 2.92
+        },
+        {
+            "seller_id": "S0449",
+            "assigned_stp": "Koramangala STP",
+            "distance_km": 4.21
+        },
+        {
+            "seller_id": "S0450",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 0.6
+        },
+        {
+            "seller_id": "S0451",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 3.81
+        },
+        {
+            "seller_id": "S0452",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 2.57
+        },
+        {
+            "seller_id": "S0453",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 2.78
+        },
+        {
+            "seller_id": "S0454",
+            "assigned_stp": "Jakkur STP",
+            "distance_km": 1.44
+        },
+        {
+            "seller_id": "S0455",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 4.71
+        },
+        {
+            "seller_id": "S0456",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 1.55
+        },
+        {
+            "seller_id": "S0457",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 4.74
+        },
+        {
+            "seller_id": "S0458",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 3.66
+        },
+        {
+            "seller_id": "S0459",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 3.72
+        },
+        {
+            "seller_id": "S0460",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 4.94
+        },
+        {
+            "seller_id": "S0461",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 0.26
+        },
+        {
+            "seller_id": "S0462",
+            "assigned_stp": "Kengeri STP",
+            "distance_km": 3.69
+        },
+        {
+            "seller_id": "S0463",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 1.77
+        },
+        {
+            "seller_id": "S0464",
+            "assigned_stp": "Jakkur STP",
+            "distance_km": 2.69
+        },
+        {
+            "seller_id": "S0465",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 4.1
+        },
+        {
+            "seller_id": "S0466",
+            "assigned_stp": "Madiwala STP",
+            "distance_km": 3.73
+        },
+        {
+            "seller_id": "S0467",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 6.12
+        },
+        {
+            "seller_id": "S0468",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 1.86
+        },
+        {
+            "seller_id": "S0469",
+            "assigned_stp": "Domlur STP",
+            "distance_km": 3.96
+        },
+        {
+            "seller_id": "S0470",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 3.5
+        },
+        {
+            "seller_id": "S0471",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 0.47
+        },
+        {
+            "seller_id": "S0472",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 2.92
+        },
+        {
+            "seller_id": "S0473",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 4.69
+        },
+        {
+            "seller_id": "S0474",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 4.68
+        },
+        {
+            "seller_id": "S0475",
+            "assigned_stp": "Jakkur STP",
+            "distance_km": 2.44
+        },
+        {
+            "seller_id": "S0476",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 3.28
+        },
+        {
+            "seller_id": "S0477",
+            "assigned_stp": "Domlur STP",
+            "distance_km": 3.58
+        },
+        {
+            "seller_id": "S0478",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 2.95
+        },
+        {
+            "seller_id": "S0479",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 0.99
+        },
+        {
+            "seller_id": "S0480",
+            "assigned_stp": "Domlur STP",
+            "distance_km": 4.6
+        },
+        {
+            "seller_id": "S0481",
+            "assigned_stp": "Jakkur STP",
+            "distance_km": 1.51
+        },
+        {
+            "seller_id": "S0482",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 2.95
+        },
+        {
+            "seller_id": "S0483",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 4.6
+        },
+        {
+            "seller_id": "S0484",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 3.38
+        },
+        {
+            "seller_id": "S0485",
+            "assigned_stp": "Domlur STP",
+            "distance_km": 2.87
+        },
+        {
+            "seller_id": "S0486",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 4.36
+        },
+        {
+            "seller_id": "S0487",
+            "assigned_stp": "Madiwala STP",
+            "distance_km": 3.43
+        },
+        {
+            "seller_id": "S0488",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 4.4
+        },
+        {
+            "seller_id": "S0489",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 2.83
+        },
+        {
+            "seller_id": "S0490",
+            "assigned_stp": "Domlur STP",
+            "distance_km": 4.45
+        },
+        {
+            "seller_id": "S0491",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 2.51
+        },
+        {
+            "seller_id": "S0492",
+            "assigned_stp": "Koramangala STP",
+            "distance_km": 3.12
+        },
+        {
+            "seller_id": "S0493",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 2.38
+        },
+        {
+            "seller_id": "S0494",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 0.56
+        },
+        {
+            "seller_id": "S0495",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 4.83
+        },
+        {
+            "seller_id": "S0496",
+            "assigned_stp": "Jakkur STP",
+            "distance_km": 2.46
+        },
+        {
+            "seller_id": "S0497",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 5.07
+        },
+        {
+            "seller_id": "S0498",
+            "assigned_stp": "Jakkur STP",
+            "distance_km": 2.2
+        },
+        {
+            "seller_id": "S0499",
+            "assigned_stp": "Jakkur STP",
+            "distance_km": 2.43
+        },
+        {
+            "seller_id": "S0500",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 1.76
+        },
+        {
+            "seller_id": "S0501",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 1.95
+        },
+        {
+            "seller_id": "S0502",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 3.97
+        },
+        {
+            "seller_id": "S0503",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 5.96
+        },
+        {
+            "seller_id": "S0504",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 0.42
+        },
+        {
+            "seller_id": "S0505",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 4.52
+        },
+        {
+            "seller_id": "S0506",
+            "assigned_stp": "Domlur STP",
+            "distance_km": 6.69
+        },
+        {
+            "seller_id": "S0507",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 3.38
+        },
+        {
+            "seller_id": "S0508",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 2.22
+        },
+        {
+            "seller_id": "S0509",
+            "assigned_stp": "Koramangala STP",
+            "distance_km": 3.39
+        },
+        {
+            "seller_id": "S0510",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 2.83
+        },
+        {
+            "seller_id": "S0511",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 2.94
+        },
+        {
+            "seller_id": "S0512",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 5.99
+        },
+        {
+            "seller_id": "S0513",
+            "assigned_stp": "Kengeri STP",
+            "distance_km": 3.86
+        },
+        {
+            "seller_id": "S0514",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 2.23
+        },
+        {
+            "seller_id": "S0515",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 2.29
+        },
+        {
+            "seller_id": "S0516",
+            "assigned_stp": "Domlur STP",
+            "distance_km": 4.98
+        },
+        {
+            "seller_id": "S0517",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 2.67
+        },
+        {
+            "seller_id": "S0518",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 4.67
+        },
+        {
+            "seller_id": "S0519",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 2.84
+        },
+        {
+            "seller_id": "S0520",
+            "assigned_stp": "Koramangala STP",
+            "distance_km": 3.25
+        },
+        {
+            "seller_id": "S0521",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 0.69
+        },
+        {
+            "seller_id": "S0522",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 2.81
+        },
+        {
+            "seller_id": "S0523",
+            "assigned_stp": "Jakkur STP",
+            "distance_km": 2.6
+        },
+        {
+            "seller_id": "S0524",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 3.78
+        },
+        {
+            "seller_id": "S0525",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 4.29
+        },
+        {
+            "seller_id": "S0526",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 4.63
+        },
+        {
+            "seller_id": "S0527",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 2.92
+        },
+        {
+            "seller_id": "S0528",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 4.88
+        },
+        {
+            "seller_id": "S0529",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 1.34
+        },
+        {
+            "seller_id": "S0530",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 5.5
+        },
+        {
+            "seller_id": "S0531",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 0.7
+        },
+        {
+            "seller_id": "S0532",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 6.36
+        },
+        {
+            "seller_id": "S0533",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 4.91
+        },
+        {
+            "seller_id": "S0534",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 0.95
+        },
+        {
+            "seller_id": "S0535",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 3.86
+        },
+        {
+            "seller_id": "S0536",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 1.98
+        },
+        {
+            "seller_id": "S0537",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 5.23
+        },
+        {
+            "seller_id": "S0538",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 4.72
+        },
+        {
+            "seller_id": "S0539",
+            "assigned_stp": "Jakkur STP",
+            "distance_km": 2.62
+        },
+        {
+            "seller_id": "S0540",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 2.12
+        },
+        {
+            "seller_id": "S0541",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 3.94
+        },
+        {
+            "seller_id": "S0542",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 5.43
+        },
+        {
+            "seller_id": "S0543",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 3.24
+        },
+        {
+            "seller_id": "S0544",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 4.08
+        },
+        {
+            "seller_id": "S0545",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 4.5
+        },
+        {
+            "seller_id": "S0546",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 4.54
+        },
+        {
+            "seller_id": "S0547",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 2.56
+        },
+        {
+            "seller_id": "S0548",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 1.52
+        },
+        {
+            "seller_id": "S0549",
+            "assigned_stp": "Domlur STP",
+            "distance_km": 3.38
+        },
+        {
+            "seller_id": "S0550",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 4.43
+        },
+        {
+            "seller_id": "S0551",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 2.06
+        },
+        {
+            "seller_id": "S0552",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 4.9
+        },
+        {
+            "seller_id": "S0553",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 2.29
+        },
+        {
+            "seller_id": "S0554",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 6.58
+        },
+        {
+            "seller_id": "S0555",
+            "assigned_stp": "Koramangala STP",
+            "distance_km": 5.14
+        },
+        {
+            "seller_id": "S0556",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 4.09
+        },
+        {
+            "seller_id": "S0557",
+            "assigned_stp": "Jakkur STP",
+            "distance_km": 1.89
+        },
+        {
+            "seller_id": "S0558",
+            "assigned_stp": "Jakkur STP",
+            "distance_km": 2.39
+        },
+        {
+            "seller_id": "S0559",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 3.09
+        },
+        {
+            "seller_id": "S0560",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 2.61
+        },
+        {
+            "seller_id": "S0561",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 5.18
+        },
+        {
+            "seller_id": "S0562",
+            "assigned_stp": "Kengeri STP",
+            "distance_km": 3.97
+        },
+        {
+            "seller_id": "S0563",
+            "assigned_stp": "Jakkur STP",
+            "distance_km": 2.27
+        },
+        {
+            "seller_id": "S0564",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 2.75
+        },
+        {
+            "seller_id": "S0565",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 5.0
+        },
+        {
+            "seller_id": "S0566",
+            "assigned_stp": "Domlur STP",
+            "distance_km": 6.08
+        },
+        {
+            "seller_id": "S0567",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 2.33
+        },
+        {
+            "seller_id": "S0568",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 4.91
+        },
+        {
+            "seller_id": "S0569",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 4.84
+        },
+        {
+            "seller_id": "S0570",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 1.09
+        },
+        {
+            "seller_id": "S0571",
+            "assigned_stp": "Domlur STP",
+            "distance_km": 4.45
+        },
+        {
+            "seller_id": "S0572",
+            "assigned_stp": "Domlur STP",
+            "distance_km": 5.91
+        },
+        {
+            "seller_id": "S0573",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 2.74
+        },
+        {
+            "seller_id": "S0574",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 5.95
+        },
+        {
+            "seller_id": "S0575",
+            "assigned_stp": "Domlur STP",
+            "distance_km": 3.63
+        },
+        {
+            "seller_id": "S0576",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 4.37
+        },
+        {
+            "seller_id": "S0577",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 2.22
+        },
+        {
+            "seller_id": "S0578",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 2.92
+        },
+        {
+            "seller_id": "S0579",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 1.68
+        },
+        {
+            "seller_id": "S0580",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 5.55
+        },
+        {
+            "seller_id": "S0581",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 4.92
+        },
+        {
+            "seller_id": "S0582",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 0.88
+        },
+        {
+            "seller_id": "S0583",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 4.1
+        },
+        {
+            "seller_id": "S0584",
+            "assigned_stp": "Madiwala STP",
+            "distance_km": 4.09
+        },
+        {
+            "seller_id": "S0585",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 2.12
+        },
+        {
+            "seller_id": "S0586",
+            "assigned_stp": "Madiwala STP",
+            "distance_km": 2.69
+        },
+        {
+            "seller_id": "S0587",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 4.4
+        },
+        {
+            "seller_id": "S0588",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 2.64
+        },
+        {
+            "seller_id": "S0589",
+            "assigned_stp": "Domlur STP",
+            "distance_km": 5.51
+        },
+        {
+            "seller_id": "S0590",
+            "assigned_stp": "Domlur STP",
+            "distance_km": 4.44
+        },
+        {
+            "seller_id": "S0591",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 2.28
+        },
+        {
+            "seller_id": "S0592",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 3.53
+        },
+        {
+            "seller_id": "S0593",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 3.1
+        },
+        {
+            "seller_id": "S0594",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 4.37
+        },
+        {
+            "seller_id": "S0595",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 1.23
+        },
+        {
+            "seller_id": "S0596",
+            "assigned_stp": "Domlur STP",
+            "distance_km": 5.55
+        },
+        {
+            "seller_id": "S0597",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 2.84
+        },
+        {
+            "seller_id": "S0598",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 1.75
+        },
+        {
+            "seller_id": "S0599",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 1.44
+        },
+        {
+            "seller_id": "S0600",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 3.21
+        },
+        {
+            "seller_id": "S0601",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 3.44
+        },
+        {
+            "seller_id": "S0602",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 3.13
+        },
+        {
+            "seller_id": "S0603",
+            "assigned_stp": "Koramangala STP",
+            "distance_km": 3.2
+        },
+        {
+            "seller_id": "S0604",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 1.46
+        },
+        {
+            "seller_id": "S0605",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 2.93
+        },
+        {
+            "seller_id": "S0606",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 1.39
+        },
+        {
+            "seller_id": "S0607",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 2.84
+        },
+        {
+            "seller_id": "S0608",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 4.73
+        },
+        {
+            "seller_id": "S0609",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 4.01
+        },
+        {
+            "seller_id": "S0610",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 0.89
+        },
+        {
+            "seller_id": "S0611",
+            "assigned_stp": "Domlur STP",
+            "distance_km": 3.54
+        },
+        {
+            "seller_id": "S0612",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 5.55
+        },
+        {
+            "seller_id": "S0613",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 5.56
+        },
+        {
+            "seller_id": "S0614",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 4.19
+        },
+        {
+            "seller_id": "S0615",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 1.03
+        },
+        {
+            "seller_id": "S0616",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 1.36
+        },
+        {
+            "seller_id": "S0617",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 2.24
+        },
+        {
+            "seller_id": "S0618",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 3.65
+        },
+        {
+            "seller_id": "S0619",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 0.16
+        },
+        {
+            "seller_id": "S0620",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 3.4
+        },
+        {
+            "seller_id": "S0621",
+            "assigned_stp": "Domlur STP",
+            "distance_km": 6.16
+        },
+        {
+            "seller_id": "S0622",
+            "assigned_stp": "Hebbal STP",
+            "distance_km": 5.85
+        },
+        {
+            "seller_id": "S0623",
+            "assigned_stp": "Koramangala STP",
+            "distance_km": 4.11
+        },
+        {
+            "seller_id": "S0624",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 3.08
+        },
+        {
+            "seller_id": "S0625",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 0.67
+        },
+        {
+            "seller_id": "S0626",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 3.5
+        },
+        {
+            "seller_id": "S0627",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 0.63
+        },
+        {
+            "seller_id": "S0628",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 3.02
+        },
+        {
+            "seller_id": "S0629",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 5.23
+        },
+        {
+            "seller_id": "S0630",
+            "assigned_stp": "Domlur STP",
+            "distance_km": 4.61
+        },
+        {
+            "seller_id": "S0631",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 5.19
+        },
+        {
+            "seller_id": "S0632",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 3.4
+        },
+        {
+            "seller_id": "S0633",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 3.1
+        },
+        {
+            "seller_id": "S0634",
+            "assigned_stp": "Koramangala STP",
+            "distance_km": 4.57
+        },
+        {
+            "seller_id": "S0635",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 1.65
+        },
+        {
+            "seller_id": "S0636",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 0.58
+        },
+        {
+            "seller_id": "S0637",
+            "assigned_stp": "Kengeri STP",
+            "distance_km": 3.63
+        },
+        {
+            "seller_id": "S0638",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 5.31
+        },
+        {
+            "seller_id": "S0639",
+            "assigned_stp": "Jakkur STP",
+            "distance_km": 3.01
+        },
+        {
+            "seller_id": "S0640",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 4.22
+        },
+        {
+            "seller_id": "S0641",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 0.46
+        },
+        {
+            "seller_id": "S0642",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 1.28
+        },
+        {
+            "seller_id": "S0643",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 1.14
+        },
+        {
+            "seller_id": "S0644",
+            "assigned_stp": "Domlur STP",
+            "distance_km": 4.48
+        },
+        {
+            "seller_id": "S0645",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 1.14
+        },
+        {
+            "seller_id": "S0646",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 2.08
+        },
+        {
+            "seller_id": "S0647",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 2.68
+        },
+        {
+            "seller_id": "S0648",
+            "assigned_stp": "Domlur STP",
+            "distance_km": 4.36
+        },
+        {
+            "seller_id": "S0649",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 2.1
+        },
+        {
+            "seller_id": "S0650",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 1.48
+        },
+        {
+            "seller_id": "S0651",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 5.07
+        },
+        {
+            "seller_id": "S0652",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 5.3
+        },
+        {
+            "seller_id": "S0653",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 5.62
+        },
+        {
+            "seller_id": "S0654",
+            "assigned_stp": "Domlur STP",
+            "distance_km": 3.64
+        },
+        {
+            "seller_id": "S0655",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 1.42
+        },
+        {
+            "seller_id": "S0656",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 3.9
+        },
+        {
+            "seller_id": "S0657",
+            "assigned_stp": "Domlur STP",
+            "distance_km": 2.82
+        },
+        {
+            "seller_id": "S0658",
+            "assigned_stp": "Domlur STP",
+            "distance_km": 3.39
+        },
+        {
+            "seller_id": "S0659",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 2.51
+        },
+        {
+            "seller_id": "S0660",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 3.56
+        },
+        {
+            "seller_id": "S0661",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 1.67
+        },
+        {
+            "seller_id": "S0662",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 2.75
+        },
+        {
+            "seller_id": "S0663",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 1.17
+        },
+        {
+            "seller_id": "S0664",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 6.62
+        },
+        {
+            "seller_id": "S0665",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 0.8
+        },
+        {
+            "seller_id": "S0666",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 2.1
+        },
+        {
+            "seller_id": "S0667",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 1.93
+        },
+        {
+            "seller_id": "S0668",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 1.77
+        },
+        {
+            "seller_id": "S0669",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 1.31
+        },
+        {
+            "seller_id": "S0670",
+            "assigned_stp": "Madiwala STP",
+            "distance_km": 2.53
+        },
+        {
+            "seller_id": "S0671",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 2.24
+        },
+        {
+            "seller_id": "S0672",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 1.7
+        },
+        {
+            "seller_id": "S0673",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 4.62
+        },
+        {
+            "seller_id": "S0674",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 1.32
+        },
+        {
+            "seller_id": "S0675",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 0.95
+        },
+        {
+            "seller_id": "S0676",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 3.93
+        },
+        {
+            "seller_id": "S0677",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 2.43
+        },
+        {
+            "seller_id": "S0678",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 1.23
+        },
+        {
+            "seller_id": "S0679",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 6.12
+        },
+        {
+            "seller_id": "S0680",
+            "assigned_stp": "Koramangala STP",
+            "distance_km": 2.87
+        },
+        {
+            "seller_id": "S0681",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 5.0
+        },
+        {
+            "seller_id": "S0682",
+            "assigned_stp": "Domlur STP",
+            "distance_km": 4.81
+        },
+        {
+            "seller_id": "S0683",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 0.15
+        },
+        {
+            "seller_id": "S0684",
+            "assigned_stp": "Madiwala STP",
+            "distance_km": 2.64
+        },
+        {
+            "seller_id": "S0685",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 4.64
+        },
+        {
+            "seller_id": "S0686",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 3.76
+        },
+        {
+            "seller_id": "S0687",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 3.24
+        },
+        {
+            "seller_id": "S0688",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 0.52
+        },
+        {
+            "seller_id": "S0689",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 1.1
+        },
+        {
+            "seller_id": "S0690",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 3.64
+        },
+        {
+            "seller_id": "S0691",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 4.57
+        },
+        {
+            "seller_id": "S0692",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 3.53
+        },
+        {
+            "seller_id": "S0693",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 4.47
+        },
+        {
+            "seller_id": "S0694",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 3.02
+        },
+        {
+            "seller_id": "S0695",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 3.81
+        },
+        {
+            "seller_id": "S0696",
+            "assigned_stp": "Jakkur STP",
+            "distance_km": 3.12
+        },
+        {
+            "seller_id": "S0697",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 4.18
+        },
+        {
+            "seller_id": "S0698",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 4.77
+        },
+        {
+            "seller_id": "S0699",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 4.98
+        },
+        {
+            "seller_id": "S0700",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 0.69
+        },
+        {
+            "seller_id": "S0701",
+            "assigned_stp": "Koramangala STP",
+            "distance_km": 4.24
+        },
+        {
+            "seller_id": "S0702",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 6.49
+        },
+        {
+            "seller_id": "S0703",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 3.18
+        },
+        {
+            "seller_id": "S0704",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 3.17
+        },
+        {
+            "seller_id": "S0705",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 0.94
+        },
+        {
+            "seller_id": "S0706",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 4.19
+        },
+        {
+            "seller_id": "S0707",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 1.69
+        },
+        {
+            "seller_id": "S0708",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 1.9
+        },
+        {
+            "seller_id": "S0709",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 5.08
+        },
+        {
+            "seller_id": "S0710",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 3.44
+        },
+        {
+            "seller_id": "S0711",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 1.45
+        },
+        {
+            "seller_id": "S0712",
+            "assigned_stp": "Domlur STP",
+            "distance_km": 4.6
+        },
+        {
+            "seller_id": "S0713",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 2.13
+        },
+        {
+            "seller_id": "S0714",
+            "assigned_stp": "Domlur STP",
+            "distance_km": 3.33
+        },
+        {
+            "seller_id": "S0715",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 3.2
+        },
+        {
+            "seller_id": "S0716",
+            "assigned_stp": "Kengeri STP",
+            "distance_km": 4.17
+        },
+        {
+            "seller_id": "S0717",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 1.31
+        },
+        {
+            "seller_id": "S0718",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 3.9
+        },
+        {
+            "seller_id": "S0719",
+            "assigned_stp": "Domlur STP",
+            "distance_km": 4.72
+        },
+        {
+            "seller_id": "S0720",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 5.22
+        },
+        {
+            "seller_id": "S0721",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 2.62
+        },
+        {
+            "seller_id": "S0722",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 2.58
+        },
+        {
+            "seller_id": "S0723",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 4.74
+        },
+        {
+            "seller_id": "S0724",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 0.9
+        },
+        {
+            "seller_id": "S0725",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 4.07
+        },
+        {
+            "seller_id": "S0726",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 3.17
+        },
+        {
+            "seller_id": "S0727",
+            "assigned_stp": "Koramangala STP",
+            "distance_km": 4.04
+        },
+        {
+            "seller_id": "S0728",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 2.48
+        },
+        {
+            "seller_id": "S0729",
+            "assigned_stp": "Koramangala STP",
+            "distance_km": 4.07
+        },
+        {
+            "seller_id": "S0730",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 4.12
+        },
+        {
+            "seller_id": "S0731",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 1.95
+        },
+        {
+            "seller_id": "S0732",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 4.65
+        },
+        {
+            "seller_id": "S0733",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 2.87
+        },
+        {
+            "seller_id": "S0734",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 1.88
+        },
+        {
+            "seller_id": "S0735",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 5.42
+        },
+        {
+            "seller_id": "S0736",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 4.11
+        },
+        {
+            "seller_id": "S0737",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 1.2
+        },
+        {
+            "seller_id": "S0738",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 2.76
+        },
+        {
+            "seller_id": "S0739",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 2.5
+        },
+        {
+            "seller_id": "S0740",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 1.95
+        },
+        {
+            "seller_id": "S0741",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 6.18
+        },
+        {
+            "seller_id": "S0742",
+            "assigned_stp": "Koramangala STP",
+            "distance_km": 5.12
+        },
+        {
+            "seller_id": "S0743",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 2.71
+        },
+        {
+            "seller_id": "S0744",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 5.09
+        },
+        {
+            "seller_id": "S0745",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 5.27
+        },
+        {
+            "seller_id": "S0746",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 2.11
+        },
+        {
+            "seller_id": "S0747",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 4.02
+        },
+        {
+            "seller_id": "S0748",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 2.81
+        },
+        {
+            "seller_id": "S0749",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 4.71
+        },
+        {
+            "seller_id": "S0750",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 1.14
+        },
+        {
+            "seller_id": "S0751",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 3.86
+        },
+        {
+            "seller_id": "S0752",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 3.61
+        },
+        {
+            "seller_id": "S0753",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 4.48
+        },
+        {
+            "seller_id": "S0754",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 1.96
+        },
+        {
+            "seller_id": "S0755",
+            "assigned_stp": "Domlur STP",
+            "distance_km": 2.99
+        },
+        {
+            "seller_id": "S0756",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 3.8
+        },
+        {
+            "seller_id": "S0757",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 5.48
+        },
+        {
+            "seller_id": "S0758",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 5.01
+        },
+        {
+            "seller_id": "S0759",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 2.68
+        },
+        {
+            "seller_id": "S0760",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 2.08
+        },
+        {
+            "seller_id": "S0761",
+            "assigned_stp": "Jakkur STP",
+            "distance_km": 2.35
+        },
+        {
+            "seller_id": "S0762",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 4.66
+        },
+        {
+            "seller_id": "S0763",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 4.71
+        },
+        {
+            "seller_id": "S0764",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 5.78
+        },
+        {
+            "seller_id": "S0765",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 2.56
+        },
+        {
+            "seller_id": "S0766",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 4.25
+        },
+        {
+            "seller_id": "S0767",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 1.18
+        },
+        {
+            "seller_id": "S0768",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 0.94
+        },
+        {
+            "seller_id": "S0769",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 3.28
+        },
+        {
+            "seller_id": "S0770",
+            "assigned_stp": "Domlur STP",
+            "distance_km": 5.72
+        },
+        {
+            "seller_id": "S0771",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 1.81
+        },
+        {
+            "seller_id": "S0772",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 3.86
+        },
+        {
+            "seller_id": "S0773",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 4.34
+        },
+        {
+            "seller_id": "S0774",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 1.67
+        },
+        {
+            "seller_id": "S0775",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 6.01
+        },
+        {
+            "seller_id": "S0776",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 2.67
+        },
+        {
+            "seller_id": "S0777",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 3.55
+        },
+        {
+            "seller_id": "S0778",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 3.34
+        },
+        {
+            "seller_id": "S0779",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 5.44
+        },
+        {
+            "seller_id": "S0780",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 3.3
+        },
+        {
+            "seller_id": "S0781",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 3.13
+        },
+        {
+            "seller_id": "S0782",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 4.21
+        },
+        {
+            "seller_id": "S0783",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 1.44
+        },
+        {
+            "seller_id": "S0784",
+            "assigned_stp": "Domlur STP",
+            "distance_km": 5.9
+        },
+        {
+            "seller_id": "S0785",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 4.69
+        },
+        {
+            "seller_id": "S0786",
+            "assigned_stp": "Koramangala STP",
+            "distance_km": 4.38
+        },
+        {
+            "seller_id": "S0787",
+            "assigned_stp": "Domlur STP",
+            "distance_km": 4.92
+        },
+        {
+            "seller_id": "S0788",
+            "assigned_stp": "Jakkur STP",
+            "distance_km": 3.07
+        },
+        {
+            "seller_id": "S0789",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 4.06
+        },
+        {
+            "seller_id": "S0790",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 2.3
+        },
+        {
+            "seller_id": "S0791",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 4.98
+        },
+        {
+            "seller_id": "S0792",
+            "assigned_stp": "Domlur STP",
+            "distance_km": 3.07
+        },
+        {
+            "seller_id": "S0793",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 5.05
+        },
+        {
+            "seller_id": "S0794",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 3.26
+        },
+        {
+            "seller_id": "S0795",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 5.85
+        },
+        {
+            "seller_id": "S0796",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 2.14
+        },
+        {
+            "seller_id": "S0797",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 3.67
+        },
+        {
+            "seller_id": "S0798",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 2.61
+        },
+        {
+            "seller_id": "S0799",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 1.8
+        },
+        {
+            "seller_id": "S0800",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 3.5
+        },
+        {
+            "seller_id": "S0801",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 3.17
+        },
+        {
+            "seller_id": "S0802",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 3.42
+        },
+        {
+            "seller_id": "S0803",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 2.31
+        },
+        {
+            "seller_id": "S0804",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 3.09
+        },
+        {
+            "seller_id": "S0805",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 3.53
+        },
+        {
+            "seller_id": "S0806",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 1.25
+        },
+        {
+            "seller_id": "S0807",
+            "assigned_stp": "Madiwala STP",
+            "distance_km": 2.69
+        },
+        {
+            "seller_id": "S0808",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 2.72
+        },
+        {
+            "seller_id": "S0809",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 6.06
+        },
+        {
+            "seller_id": "S0810",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 3.79
+        },
+        {
+            "seller_id": "S0811",
+            "assigned_stp": "Hebbal STP",
+            "distance_km": 5.37
+        },
+        {
+            "seller_id": "S0812",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 4.24
+        },
+        {
+            "seller_id": "S0813",
+            "assigned_stp": "Domlur STP",
+            "distance_km": 4.33
+        },
+        {
+            "seller_id": "S0814",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 2.4
+        },
+        {
+            "seller_id": "S0815",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 2.51
+        },
+        {
+            "seller_id": "S0816",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 2.72
+        },
+        {
+            "seller_id": "S0817",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 6.74
+        },
+        {
+            "seller_id": "S0818",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 3.54
+        },
+        {
+            "seller_id": "S0819",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 3.79
+        },
+        {
+            "seller_id": "S0820",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 3.35
+        },
+        {
+            "seller_id": "S0821",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 3.16
+        },
+        {
+            "seller_id": "S0822",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 5.36
+        },
+        {
+            "seller_id": "S0823",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 3.34
+        },
+        {
+            "seller_id": "S0824",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 3.38
+        },
+        {
+            "seller_id": "S0825",
+            "assigned_stp": "Domlur STP",
+            "distance_km": 3.97
+        },
+        {
+            "seller_id": "S0826",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 0.52
+        },
+        {
+            "seller_id": "S0827",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 2.65
+        },
+        {
+            "seller_id": "S0828",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 2.34
+        },
+        {
+            "seller_id": "S0829",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 3.26
+        },
+        {
+            "seller_id": "S0830",
+            "assigned_stp": "Domlur STP",
+            "distance_km": 4.55
+        },
+        {
+            "seller_id": "S0831",
+            "assigned_stp": "Domlur STP",
+            "distance_km": 3.16
+        },
+        {
+            "seller_id": "S0832",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 3.68
+        },
+        {
+            "seller_id": "S0833",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 4.18
+        },
+        {
+            "seller_id": "S0834",
+            "assigned_stp": "Koramangala STP",
+            "distance_km": 5.5
+        },
+        {
+            "seller_id": "S0835",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 3.85
+        },
+        {
+            "seller_id": "S0836",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 2.83
+        },
+        {
+            "seller_id": "S0837",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 2.8
+        },
+        {
+            "seller_id": "S0838",
+            "assigned_stp": "Koramangala STP",
+            "distance_km": 5.55
+        },
+        {
+            "seller_id": "S0839",
+            "assigned_stp": "Jakkur STP",
+            "distance_km": 2.14
+        },
+        {
+            "seller_id": "S0840",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 2.66
+        },
+        {
+            "seller_id": "S0841",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 3.17
+        },
+        {
+            "seller_id": "S0842",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 3.0
+        },
+        {
+            "seller_id": "S0843",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 2.99
+        },
+        {
+            "seller_id": "S0844",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 4.97
+        },
+        {
+            "seller_id": "S0845",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 2.24
+        },
+        {
+            "seller_id": "S0846",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 3.53
+        },
+        {
+            "seller_id": "S0847",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 2.35
+        },
+        {
+            "seller_id": "S0848",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 2.36
+        },
+        {
+            "seller_id": "S0849",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 3.22
+        },
+        {
+            "seller_id": "S0850",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 2.72
+        },
+        {
+            "seller_id": "S0851",
+            "assigned_stp": "Jakkur STP",
+            "distance_km": 1.71
+        },
+        {
+            "seller_id": "S0852",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 3.53
+        },
+        {
+            "seller_id": "S0853",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 4.26
+        },
+        {
+            "seller_id": "S0854",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 3.2
+        },
+        {
+            "seller_id": "S0855",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 2.4
+        },
+        {
+            "seller_id": "S0856",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 2.84
+        },
+        {
+            "seller_id": "S0857",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 3.65
+        },
+        {
+            "seller_id": "S0858",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 1.12
+        },
+        {
+            "seller_id": "S0859",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 1.7
+        },
+        {
+            "seller_id": "S0860",
+            "assigned_stp": "Madiwala STP",
+            "distance_km": 2.64
+        },
+        {
+            "seller_id": "S0861",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 0.87
+        },
+        {
+            "seller_id": "S0862",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 2.14
+        },
+        {
+            "seller_id": "S0863",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 3.23
+        },
+        {
+            "seller_id": "S0864",
+            "assigned_stp": "Domlur STP",
+            "distance_km": 3.59
+        },
+        {
+            "seller_id": "S0865",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 2.54
+        },
+        {
+            "seller_id": "S0866",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 2.18
+        },
+        {
+            "seller_id": "S0867",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 2.37
+        },
+        {
+            "seller_id": "S0868",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 3.53
+        },
+        {
+            "seller_id": "S0869",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 2.95
+        },
+        {
+            "seller_id": "S0870",
+            "assigned_stp": "Koramangala STP",
+            "distance_km": 5.11
+        },
+        {
+            "seller_id": "S0871",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 4.09
+        },
+        {
+            "seller_id": "S0872",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 2.97
+        },
+        {
+            "seller_id": "S0873",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 3.49
+        },
+        {
+            "seller_id": "S0874",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 1.81
+        },
+        {
+            "seller_id": "S0875",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 0.86
+        },
+        {
+            "seller_id": "S0876",
+            "assigned_stp": "Koramangala STP",
+            "distance_km": 3.38
+        },
+        {
+            "seller_id": "S0877",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 1.98
+        },
+        {
+            "seller_id": "S0878",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 0.89
+        },
+        {
+            "seller_id": "S0879",
+            "assigned_stp": "Domlur STP",
+            "distance_km": 3.81
+        },
+        {
+            "seller_id": "S0880",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 5.34
+        },
+        {
+            "seller_id": "S0881",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 3.85
+        },
+        {
+            "seller_id": "S0882",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 3.29
+        },
+        {
+            "seller_id": "S0883",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 4.39
+        },
+        {
+            "seller_id": "S0884",
+            "assigned_stp": "Hebbal STP",
+            "distance_km": 5.31
+        },
+        {
+            "seller_id": "S0885",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 4.49
+        },
+        {
+            "seller_id": "S0886",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 3.16
+        },
+        {
+            "seller_id": "S0887",
+            "assigned_stp": "Koramangala STP",
+            "distance_km": 5.42
+        },
+        {
+            "seller_id": "S0888",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 3.59
+        },
+        {
+            "seller_id": "S0889",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 1.43
+        },
+        {
+            "seller_id": "S0890",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 3.85
+        },
+        {
+            "seller_id": "S0891",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 4.4
+        },
+        {
+            "seller_id": "S0892",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 3.54
+        },
+        {
+            "seller_id": "S0893",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 3.88
+        },
+        {
+            "seller_id": "S0894",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 4.35
+        },
+        {
+            "seller_id": "S0895",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 4.15
+        },
+        {
+            "seller_id": "S0896",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 2.96
+        },
+        {
+            "seller_id": "S0897",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 2.8
+        },
+        {
+            "seller_id": "S0898",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 2.56
+        },
+        {
+            "seller_id": "S0899",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 0.73
+        },
+        {
+            "seller_id": "S0900",
+            "assigned_stp": "Koramangala STP",
+            "distance_km": 5.21
+        },
+        {
+            "seller_id": "S0901",
+            "assigned_stp": "Jakkur STP",
+            "distance_km": 2.35
+        },
+        {
+            "seller_id": "S0902",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 2.89
+        },
+        {
+            "seller_id": "S0903",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 2.27
+        },
+        {
+            "seller_id": "S0904",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 2.17
+        },
+        {
+            "seller_id": "S0905",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 0.96
+        },
+        {
+            "seller_id": "S0906",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 3.84
+        },
+        {
+            "seller_id": "S0907",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 0.42
+        },
+        {
+            "seller_id": "S0908",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 3.72
+        },
+        {
+            "seller_id": "S0909",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 4.11
+        },
+        {
+            "seller_id": "S0910",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 3.03
+        },
+        {
+            "seller_id": "S0911",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 3.78
+        },
+        {
+            "seller_id": "S0912",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 3.64
+        },
+        {
+            "seller_id": "S0913",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 6.51
+        },
+        {
+            "seller_id": "S0914",
+            "assigned_stp": "Domlur STP",
+            "distance_km": 4.47
+        },
+        {
+            "seller_id": "S0915",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 4.57
+        },
+        {
+            "seller_id": "S0916",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 1.59
+        },
+        {
+            "seller_id": "S0917",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 6.21
+        },
+        {
+            "seller_id": "S0918",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 6.04
+        },
+        {
+            "seller_id": "S0919",
+            "assigned_stp": "Domlur STP",
+            "distance_km": 2.86
+        },
+        {
+            "seller_id": "S0920",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 3.73
+        },
+        {
+            "seller_id": "S0921",
+            "assigned_stp": "Koramangala STP",
+            "distance_km": 5.77
+        },
+        {
+            "seller_id": "S0922",
+            "assigned_stp": "Domlur STP",
+            "distance_km": 3.44
+        },
+        {
+            "seller_id": "S0923",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 2.24
+        },
+        {
+            "seller_id": "S0924",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 0.65
+        },
+        {
+            "seller_id": "S0925",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 3.1
+        },
+        {
+            "seller_id": "S0926",
+            "assigned_stp": "Jakkur STP",
+            "distance_km": 1.6
+        },
+        {
+            "seller_id": "S0927",
+            "assigned_stp": "Jakkur STP",
+            "distance_km": 2.09
+        },
+        {
+            "seller_id": "S0928",
+            "assigned_stp": "Jakkur STP",
+            "distance_km": 3.18
+        },
+        {
+            "seller_id": "S0929",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 2.64
+        },
+        {
+            "seller_id": "S0930",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 2.1
+        },
+        {
+            "seller_id": "S0931",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 2.72
+        },
+        {
+            "seller_id": "S0932",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 4.81
+        },
+        {
+            "seller_id": "S0933",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 0.45
+        },
+        {
+            "seller_id": "S0934",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 1.94
+        },
+        {
+            "seller_id": "S0935",
+            "assigned_stp": "Koramangala STP",
+            "distance_km": 4.04
+        },
+        {
+            "seller_id": "S0936",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 1.16
+        },
+        {
+            "seller_id": "S0937",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 2.85
+        },
+        {
+            "seller_id": "S0938",
+            "assigned_stp": "Koramangala STP",
+            "distance_km": 3.49
+        },
+        {
+            "seller_id": "S0939",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 4.26
+        },
+        {
+            "seller_id": "S0940",
+            "assigned_stp": "Koramangala STP",
+            "distance_km": 5.39
+        },
+        {
+            "seller_id": "S0941",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 4.32
+        },
+        {
+            "seller_id": "S0942",
+            "assigned_stp": "Domlur STP",
+            "distance_km": 2.88
+        },
+        {
+            "seller_id": "S0943",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 3.27
+        },
+        {
+            "seller_id": "S0944",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 4.4
+        },
+        {
+            "seller_id": "S0945",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 0.77
+        },
+        {
+            "seller_id": "S0946",
+            "assigned_stp": "Domlur STP",
+            "distance_km": 3.41
+        },
+        {
+            "seller_id": "S0947",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 2.96
+        },
+        {
+            "seller_id": "S0948",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 0.58
+        },
+        {
+            "seller_id": "S0949",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 4.45
+        },
+        {
+            "seller_id": "S0950",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 2.79
+        },
+        {
+            "seller_id": "S0951",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 3.13
+        },
+        {
+            "seller_id": "S0952",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 5.11
+        },
+        {
+            "seller_id": "S0953",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 3.22
+        },
+        {
+            "seller_id": "S0954",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 3.96
+        },
+        {
+            "seller_id": "S0955",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 0.68
+        },
+        {
+            "seller_id": "S0956",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 3.77
+        },
+        {
+            "seller_id": "S0957",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 4.14
+        },
+        {
+            "seller_id": "S0958",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 3.99
+        },
+        {
+            "seller_id": "S0959",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 3.87
+        },
+        {
+            "seller_id": "S0960",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 2.1
+        },
+        {
+            "seller_id": "S0961",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 4.58
+        },
+        {
+            "seller_id": "S0962",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 4.61
+        },
+        {
+            "seller_id": "S0963",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 2.84
+        },
+        {
+            "seller_id": "S0964",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 2.41
+        },
+        {
+            "seller_id": "S0965",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 1.09
+        },
+        {
+            "seller_id": "S0966",
+            "assigned_stp": "Koramangala STP",
+            "distance_km": 5.76
+        },
+        {
+            "seller_id": "S0967",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 3.62
+        },
+        {
+            "seller_id": "S0968",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 4.0
+        },
+        {
+            "seller_id": "S0969",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 4.26
+        },
+        {
+            "seller_id": "S0970",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 1.59
+        },
+        {
+            "seller_id": "S0971",
+            "assigned_stp": "Koramangala STP",
+            "distance_km": 3.96
+        },
+        {
+            "seller_id": "S0972",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 0.4
+        },
+        {
+            "seller_id": "S0973",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 4.54
+        },
+        {
+            "seller_id": "S0974",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 2.58
+        },
+        {
+            "seller_id": "S0975",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 1.49
+        },
+        {
+            "seller_id": "S0976",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 2.96
+        },
+        {
+            "seller_id": "S0977",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 3.11
+        },
+        {
+            "seller_id": "S0978",
+            "assigned_stp": "Domlur STP",
+            "distance_km": 5.66
+        },
+        {
+            "seller_id": "S0979",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 5.57
+        },
+        {
+            "seller_id": "S0980",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 1.63
+        },
+        {
+            "seller_id": "S0981",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 3.42
+        },
+        {
+            "seller_id": "S0982",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 5.79
+        },
+        {
+            "seller_id": "S0983",
+            "assigned_stp": "Jakkur STP",
+            "distance_km": 1.98
+        },
+        {
+            "seller_id": "S0984",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 5.12
+        },
+        {
+            "seller_id": "S0985",
+            "assigned_stp": "K&C Valley STP",
+            "distance_km": 2.79
+        },
+        {
+            "seller_id": "S0986",
+            "assigned_stp": "Yelahanka STP",
+            "distance_km": 0.98
+        },
+        {
+            "seller_id": "S0987",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 3.23
+        },
+        {
+            "seller_id": "S0988",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 3.28
+        },
+        {
+            "seller_id": "S0989",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 4.06
+        },
+        {
+            "seller_id": "S0990",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 4.58
+        },
+        {
+            "seller_id": "S0991",
+            "assigned_stp": "Domlur STP",
+            "distance_km": 5.76
+        },
+        {
+            "seller_id": "S0992",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 2.38
+        },
+        {
+            "seller_id": "S0993",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 3.11
+        },
+        {
+            "seller_id": "S0994",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 3.03
+        },
+        {
+            "seller_id": "S0995",
+            "assigned_stp": "Kadubeesanahalli STP",
+            "distance_km": 4.31
+        },
+        {
+            "seller_id": "S0996",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 3.45
+        },
+        {
+            "seller_id": "S0997",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 4.75
+        },
+        {
+            "seller_id": "S0998",
+            "assigned_stp": "Hulimavu STP",
+            "distance_km": 2.39
+        },
+        {
+            "seller_id": "S0999",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 2.07
+        },
+        {
+            "seller_id": "S1000",
+            "assigned_stp": "Vrishabhavathi Valley STP",
+            "distance_km": 3.37
+        }
+    ]
+}

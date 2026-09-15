@@ -1,0 +1,15 @@
+Flask
+pandas
+numpy
+scikit-learn
+xgboost
+gunicorn
+osmnx
+networkx
+requests
+openpyxl
+Werkzeug
+firebase-admin>=6.5.0
+Flask-SQLAlchemy
+supabase
+python-dotenv

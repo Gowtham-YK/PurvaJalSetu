@@ -1,0 +1,285 @@
+.
+├── app.py
+├── config.py
+├── data
+│   ├── nearest_routing_results.json
+│   ├── stp_data.json
+│   ├── stp_status.json
+│   ├── synthetic_demand.csv
+│   └── synthetic_sellers_data.json
+├── database
+│   ├── bangalore_tanker_operators_synthetic_updated.csv
+│   ├── orders.csv
+│   ├── stp_updates.csv
+│   ├── synthetic_orders.csv
+│   └── users.xlsx
+├── DOCUMENTATION.md
+├── generate_synthetic_orders.py
+├── ml
+│   ├── generate_dataset.py
+│   ├── models
+│   │   ├── xgboost_PSTP001.pkl
+│   │   ├── xgboost_PSTP002.pkl
+│   │   ├── xgboost_PSTP003.pkl
+│   │   ├── xgboost_PSTP004.pkl
+│   │   ├── xgboost_PSTP005.pkl
+│   │   ├── xgboost_PSTP006.pkl
+│   │   ├── xgboost_PSTP007.pkl
+│   │   ├── xgboost_PSTP008.pkl
+│   │   ├── xgboost_PSTP009.pkl
+│   │   ├── xgboost_PSTP010.pkl
+│   │   ├── xgboost_PSTP011.pkl
+│   │   ├── xgboost_PSTP012.pkl
+│   │   ├── xgboost_PSTP013.pkl
+│   │   └── xgboost_PSTP014.pkl
+│   ├── predict_demand.py
+│   ├── preprocess.py
+│   ├── __pycache__
+│   │   ├── predict_demand.cpython-312.pyc
+│   │   └── preprocess.cpython-312.pyc
+│   └── train_model.py
+├── mobile
+│   ├── analysis_options.yaml
+│   ├── android
+│   │   ├── app
+│   │   │   ├── build.gradle.kts
+│   │   │   └── src
+│   │   ├── build.gradle.kts
+│   │   ├── gradle
+│   │   │   └── wrapper
+│   │   ├── gradle.properties
+│   │   ├── gradlew
+│   │   ├── gradlew.bat
+│   │   ├── local.properties
+│   │   ├── mobile_android.iml
+│   │   └── settings.gradle.kts
+│   ├── assets
+│   │   └── icon.png
+│   ├── build
+│   │   ├── app
+│   │   │   ├── deeplink.json
+│   │   │   ├── generated
+│   │   │   ├── intermediates
+│   │   │   ├── kotlin
+│   │   │   ├── kotlinToolingMetadata
+│   │   │   ├── outputs
+│   │   │   ├── reports
+│   │   │   └── tmp
+│   │   ├── jni
+│   │   │   ├── generated
+│   │   │   ├── intermediates
+│   │   │   ├── outputs
+│   │   │   └── tmp
+│   │   ├── jni_flutter
+│   │   │   ├── generated
+│   │   │   ├── intermediates
+│   │   │   ├── outputs
+│   │   │   └── tmp
+│   │   ├── reports
+│   │   │   └── problems
+│   │   ├── shared_preferences_android
+│   │   │   ├── generated
+│   │   │   ├── intermediates
+│   │   │   ├── kotlin
+│   │   │   ├── outputs
+│   │   │   └── tmp
+│   │   └── webview_flutter_android
+│   │       ├── generated
+│   │       ├── intermediates
+│   │       ├── kotlin
+│   │       ├── outputs
+│   │       └── tmp
+│   ├── ios
+│   │   ├── Flutter
+│   │   │   ├── AppFrameworkInfo.plist
+│   │   │   ├── Debug.xcconfig
+│   │   │   ├── ephemeral
+│   │   │   ├── flutter_export_environment.sh
+│   │   │   ├── Generated.xcconfig
+│   │   │   └── Release.xcconfig
+│   │   ├── Runner
+│   │   │   ├── AppDelegate.swift
+│   │   │   ├── Assets.xcassets
+│   │   │   ├── Base.lproj
+│   │   │   ├── GeneratedPluginRegistrant.h
+│   │   │   ├── GeneratedPluginRegistrant.m
+│   │   │   ├── Info.plist
+│   │   │   ├── Runner-Bridging-Header.h
+│   │   │   └── SceneDelegate.swift
+│   │   ├── RunnerTests
+│   │   │   └── RunnerTests.swift
+│   │   ├── Runner.xcodeproj
+│   │   │   ├── project.pbxproj
+│   │   │   ├── project.xcworkspace
+│   │   │   └── xcshareddata
+│   │   └── Runner.xcworkspace
+│   │       ├── contents.xcworkspacedata
+│   │       └── xcshareddata
+│   ├── lib
+│   │   ├── api_config.dart
+│   │   └── main.dart
+│   ├── linux
+│   │   ├── CMakeLists.txt
+│   │   ├── flutter
+│   │   │   ├── CMakeLists.txt
+│   │   │   ├── ephemeral
+│   │   │   ├── generated_plugin_registrant.cc
+│   │   │   ├── generated_plugin_registrant.h
+│   │   │   └── generated_plugins.cmake
+│   │   └── runner
+│   │       ├── CMakeLists.txt
+│   │       ├── main.cc
+│   │       ├── my_application.cc
+│   │       └── my_application.h
+│   ├── macos
+│   │   ├── Flutter
+│   │   │   ├── ephemeral
+│   │   │   ├── Flutter-Debug.xcconfig
+│   │   │   ├── Flutter-Release.xcconfig
+│   │   │   └── GeneratedPluginRegistrant.swift
+│   │   ├── Runner
+│   │   │   ├── AppDelegate.swift
+│   │   │   ├── Assets.xcassets
+│   │   │   ├── Base.lproj
+│   │   │   ├── Configs
+│   │   │   ├── DebugProfile.entitlements
+│   │   │   ├── Info.plist
+│   │   │   ├── MainFlutterWindow.swift
+│   │   │   └── Release.entitlements
+│   │   ├── RunnerTests
+│   │   │   └── RunnerTests.swift
+│   │   ├── Runner.xcodeproj
+│   │   │   ├── project.pbxproj
+│   │   │   ├── project.xcworkspace
+│   │   │   └── xcshareddata
+│   │   └── Runner.xcworkspace
+│   │       ├── contents.xcworkspacedata
+│   │       └── xcshareddata
+│   ├── mobile.iml
+│   ├── pubspec.lock
+│   ├── pubspec.yaml
+│   ├── README.md
+│   ├── test
+│   │   └── widget_test.dart
+│   ├── web
+│   │   ├── favicon.png
+│   │   ├── icons
+│   │   │   ├── Icon-192.png
+│   │   │   ├── Icon-512.png
+│   │   │   ├── Icon-maskable-192.png
+│   │   │   └── Icon-maskable-512.png
+│   │   ├── index.html
+│   │   └── manifest.json
+│   └── windows
+│       ├── CMakeLists.txt
+│       ├── flutter
+│       │   ├── CMakeLists.txt
+│       │   ├── ephemeral
+│       │   ├── generated_plugin_registrant.cc
+│       │   ├── generated_plugin_registrant.h
+│       │   └── generated_plugins.cmake
+│       └── runner
+│           ├── CMakeLists.txt
+│           ├── flutter_window.cpp
+│           ├── flutter_window.h
+│           ├── main.cpp
+│           ├── resource.h
+│           ├── resources
+│           ├── runner.exe.manifest
+│           ├── Runner.rc
+│           ├── utils.cpp
+│           ├── utils.h
+│           ├── win32_window.cpp
+│           └── win32_window.h
+├── models
+│   ├── xgboost_PSTP001.pkl
+│   ├── xgboost_PSTP002.pkl
+│   ├── xgboost_PSTP003.pkl
+│   ├── xgboost_PSTP004.pkl
+│   ├── xgboost_PSTP005.pkl
+│   ├── xgboost_PSTP006.pkl
+│   ├── xgboost_PSTP007.pkl
+│   ├── xgboost_PSTP008.pkl
+│   ├── xgboost_PSTP009.pkl
+│   ├── xgboost_PSTP010.pkl
+│   ├── xgboost_PSTP011.pkl
+│   ├── xgboost_PSTP012.pkl
+│   ├── xgboost_PSTP013.pkl
+│   └── xgboost_PSTP014.pkl
+├── models.py
+├── nearest_stp_routing.py
+├── orders.csv
+├── Procfile
+├── Profile
+├── project_tree.txt
+├── requirements.txt
+├── static
+│   ├── assets
+│   │   ├── analyze.png
+│   │   ├── efficiency.png
+│   │   ├── logo.png
+│   │   ├── ocean.png
+│   │   ├── optimize.png
+│   │   ├── predict.png
+│   │   ├── stp.png
+│   │   ├── title-icon.png
+│   │   ├── wastewater-map.png
+│   │   └── wastewater-sources.png
+│   ├── firebase-messaging-sw.js
+│   ├── js
+│   │   └── live_location.js
+│   ├── script.js
+│   └── style.css
+├── synthetic_bangalore_wastewater_dataset.csv
+├── templates
+│   ├── admin.html
+│   ├── demand.html
+│   ├── index.html
+│   ├── invoice.html
+│   ├── login.html
+│   ├── profile.html
+│   ├── registration_success.html
+│   ├── signup.html
+│   ├── supply.html
+│   ├── tanker.html
+│   ├── tanker_register_contracted.html
+│   ├── tanker_register_independent.html
+│   ├── tanker_status.html
+│   ├── tanker_summary.html
+│   └── track.html
+├── tree_clean.txt
+├── tree.txt
+└── venv
+    ├── bin
+    │   ├── activate
+    │   ├── activate.csh
+    │   ├── activate.fish
+    │   ├── Activate.ps1
+    │   ├── cffi-gen-src
+    │   ├── doesitcache
+    │   ├── f2py
+    │   ├── flask
+    │   ├── gunicorn
+    │   ├── gunicornc
+    │   ├── httpx
+    │   ├── idna
+    │   ├── normalizer
+    │   ├── numpy-config
+    │   ├── pip
+    │   ├── pip3
+    │   ├── pip3.12
+    │   ├── pyproj
+    │   ├── python -> python3
+    │   ├── python3 -> /usr/bin/python3
+    │   └── python3.12 -> python3
+    ├── include
+    │   ├── python3.12
+    │   └── site
+    │       └── python3.12
+    ├── lib
+    │   └── python3.12
+    │       └── site-packages
+    ├── lib64 -> lib
+    └── pyvenv.cfg
+
+99 directories, 184 files

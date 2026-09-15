@@ -1,0 +1,1201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Independent Tanker Operator</title>
+
+    <!-- MAIN PROJECT CSS -->
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+
+    <!-- LEAFLET CSS -->
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    />
+
+    <!-- LEAFLET JS -->
+    <script
+        src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
+    </script>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     NAVBAR
+====================================================== -->
+
+<header class="navbar">
+
+    <div class="logo">
+
+        <a
+            href="/"
+            style="text-decoration:none;"
+        >
+
+            <span class="logo-text">
+                WasteWater Management
+            </span>
+
+        </a>
+
+    </div>
+
+
+    <nav>
+
+        <a href="/">
+            Home
+        </a>
+
+        <a
+            href="/tanker/register"
+            class="active"
+        >
+            Tanker Partner
+        </a>
+
+        <a href="/tanker/status">
+            Check Status
+        </a>
+
+    </nav>
+
+</header>
+
+
+
+<!-- =====================================================
+     PAGE
+====================================================== -->
+
+<main class="tanker-form-page">
+
+
+    <!-- PAGE HEADER -->
+
+    <section class="tanker-form-header">
+
+        <h1>
+            Independent Tanker Operator
+        </h1>
+
+        <p>
+            Join the Purvankara Tanker Partner Network
+        </p>
+
+    </section>
+
+
+
+    <!-- FORM -->
+
+    <section class="tanker-form-container">
+
+        <div class="tanker-form-card">
+
+
+            <!-- CARD HEADER -->
+
+            <div class="tanker-form-card-header">
+
+                <h2>
+                    Operator Registration
+                </h2>
+
+                <p>
+                    Register your tanker and become an independent
+                    delivery partner. Once your account is verified,
+                    you can receive eligible customer delivery
+                    opportunities through the platform.
+                </p>
+
+            </div>
+
+
+
+            <!-- NOTICE -->
+
+            <div class="tanker-form-notice">
+
+                <div class="tanker-form-notice-icon">
+                    ℹ️
+                </div>
+
+                <div>
+
+                    <strong>
+                        Verification Required
+                    </strong>
+
+                    <br>
+
+                    Your application will be reviewed before your
+                    account becomes active. You will be able to
+                    receive orders only after verification.
+
+                </div>
+
+            </div>
+
+
+
+            <!-- FORM -->
+
+            <form
+                method="POST"
+                action="/tanker/register/independent"
+            >
+
+
+                <!-- =====================================
+                     PERSONAL DETAILS
+                ====================================== -->
+
+                <div class="tanker-form-section">
+
+                    <h3>
+                        Personal Details
+                    </h3>
+
+
+                    <div class="tanker-form-group">
+
+                        <label for="operator_name">
+                            Full Name
+                            <span class="required-mark">*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            id="operator_name"
+                            name="operator_name"
+                            placeholder="Enter your full name"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="tanker-form-row">
+
+                        <div class="tanker-form-group">
+
+                            <label for="phone">
+                                Mobile Number
+                                <span class="required-mark">*</span>
+                            </label>
+
+                            <input
+                                type="tel"
+                                id="phone"
+                                name="phone"
+                                placeholder="Enter mobile number"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="tanker-form-group">
+
+                            <label for="email">
+                                Email Address
+                                <span class="required-mark">*</span>
+                            </label>
+
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                placeholder="Enter email address"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =====================================
+                     OPERATING LOCATION
+                ====================================== -->
+
+                <div class="tanker-form-section">
+
+                    <h3>
+                        Operating Location
+                    </h3>
+
+
+                    <div class="tanker-form-row">
+
+                        <div class="tanker-form-group">
+
+                            <label for="area">
+                                Operating Area
+                                <span class="required-mark">*</span>
+                            </label>
+
+                            <input
+                                type="text"
+                                id="area"
+                                name="area"
+                                placeholder="Example: Whitefield"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="tanker-form-group">
+
+                            <label for="pincode">
+                                Pincode
+                                <span class="required-mark">*</span>
+                            </label>
+
+                            <input
+                                type="text"
+                                id="pincode"
+                                name="pincode"
+                                placeholder="Enter pincode"
+                                maxlength="6"
+                                inputmode="numeric"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="tanker-form-row">
+
+                        <div class="tanker-form-group">
+
+                            <label for="operational_tankers">
+                                Number of Operational Tankers
+                                <span class="required-mark">*</span>
+                            </label>
+
+                            <input
+                                type="number"
+                                id="operational_tankers"
+                                name="operational_tankers"
+                                min="1"
+                                placeholder="Example: 4"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="tanker-form-group">
+
+                            <label>
+                                Current Location
+                                <span class="required-mark">*</span>
+                            </label>
+
+                            <button
+                                type="button"
+                                id="use-location-btn"
+                                class="tanker-form-secondary"
+                                style="margin-bottom:12px;"
+                            >
+                                📍 Use My Current Location
+                            </button>
+
+                            <p
+                                id="location-status"
+                                style="margin-top:8px;"
+                            >
+                                No location selected.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- SEARCH LOCATION -->
+
+                    <div class="tanker-form-group">
+
+                        <label for="location-search">
+                            Search Location on Map
+                        </label>
+
+                        <div
+                            style="
+                                display:flex;
+                                gap:10px;
+                                align-items:center;
+                            "
+                        >
+
+                            <input
+                                type="text"
+                                id="location-search"
+                                placeholder="Example: Sahakar Nagar, Bengaluru"
+                                style="flex:1;"
+                            >
+
+                            <button
+                                type="button"
+                                id="search-location-btn"
+                                class="tanker-form-secondary"
+                            >
+                                Search
+                            </button>
+
+                        </div>
+
+
+                        <div
+                            id="search-results"
+                            style="
+                                margin-top:10px;
+                                border-radius:8px;
+                                overflow:hidden;
+                            "
+                        ></div>
+
+                    </div>
+
+
+                    <!-- HIDDEN LOCATION VALUES -->
+
+                    <input
+                        type="hidden"
+                        id="latitude"
+                        name="latitude"
+                        required
+                    >
+
+                    <input
+                        type="hidden"
+                        id="longitude"
+                        name="longitude"
+                        required
+                    >
+
+
+                    <!-- MAP -->
+
+                    <div
+                        id="operator-map"
+                        style="
+                            width:100%;
+                            height:350px;
+                            border-radius:12px;
+                            margin-top:15px;
+                            border:1px solid #ddd;
+                            z-index:1;
+                        "
+                    ></div>
+
+                </div>
+
+
+
+                <!-- =====================================
+                     TANKER DETAILS
+                ====================================== -->
+
+                <div class="tanker-form-section">
+
+                    <h3>
+                        Tanker Details
+                    </h3>
+
+
+                    <div class="tanker-form-group">
+
+                        <label for="registration_no">
+                            Tanker Registration Number
+                            <span class="required-mark">*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            id="registration_no"
+                            name="registration_no"
+                            placeholder="Example: KA-01-AB-1234"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="tanker-form-row">
+
+                        <div class="tanker-form-group">
+
+                            <label for="capacity">
+                                Tanker Capacity
+                                <span class="required-mark">*</span>
+                            </label>
+
+                            <select
+                                id="capacity"
+                                name="capacity"
+                                required
+                            >
+
+                                <option value="">
+                                    Select capacity
+                                </option>
+
+                                <option value="5">5 KL</option>
+                                <option value="6">6 KL</option>
+                                <option value="8">8 KL</option>
+                                <option value="10">10 KL</option>
+                                <option value="12">12 KL</option>
+                                <option value="16">16 KL</option>
+                                <option value="20">20 KL</option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="tanker-form-group">
+
+                            <label for="vehicle_model">
+                                Vehicle Model
+                                <span class="required-mark">*</span>
+                            </label>
+
+                            <input
+                                type="text"
+                                id="vehicle_model"
+                                name="vehicle_model"
+                                placeholder="Enter vehicle model"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =====================================
+                     SERVICE PREFERENCES
+                ====================================== -->
+
+                <div class="tanker-form-section">
+
+                    <h3>
+                        Service Preferences
+                    </h3>
+
+
+                    <div class="tanker-form-row">
+
+                        <div class="tanker-form-group">
+
+                            <label for="water_type">
+                                Water Type Supported
+                                <span class="required-mark">*</span>
+                            </label>
+
+                            <select
+                                id="water_type"
+                                name="water_type"
+                                required
+                            >
+
+                                <option value="">
+                                    Select water type
+                                </option>
+
+                                <option value="treated">
+                                    Treated Water
+                                </option>
+
+                                <option value="fresh">
+                                    Fresh Water
+                                </option>
+
+                                <option value="general">
+                                    General Water
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="tanker-form-group">
+
+                            <label for="radius">
+                                Maximum Service Radius
+                                <span class="required-mark">*</span>
+                            </label>
+
+                            <select
+                                id="radius"
+                                name="radius"
+                                required
+                            >
+
+                                <option value="">
+                                    Select radius
+                                </option>
+
+                                <option value="2">2 km</option>
+                                <option value="5">5 km</option>
+                                <option value="7">7 km</option>
+                                <option value="9">9 km</option>
+                                <option value="10">10 km</option>
+                                <option value="15">15 km</option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =====================================
+                     ACTIONS
+                ====================================== -->
+
+                <div class="tanker-form-actions">
+
+                    <a
+                        href="/tanker/register"
+                        class="tanker-form-secondary"
+                    >
+                        ← Back
+                    </a>
+
+
+                    <button
+                        type="submit"
+                        class="tanker-form-primary"
+                    >
+                        Submit Registration →
+                    </button>
+
+                </div>
+
+
+            </form>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+
+<script>
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+
+        /* ==========================================
+           ELEMENTS
+        ========================================== */
+
+        const locationButton =
+            document.getElementById(
+                "use-location-btn"
+            );
+
+        const latitudeInput =
+            document.getElementById(
+                "latitude"
+            );
+
+        const longitudeInput =
+            document.getElementById(
+                "longitude"
+            );
+
+        const locationStatus =
+            document.getElementById(
+                "location-status"
+            );
+
+        const searchInput =
+            document.getElementById(
+                "location-search"
+            );
+
+        const searchButton =
+            document.getElementById(
+                "search-location-btn"
+            );
+
+        const searchResults =
+            document.getElementById(
+                "search-results"
+            );
+
+
+        /* ==========================================
+           MAP
+        ========================================== */
+
+        const defaultLat = 12.9716;
+        const defaultLon = 77.5946;
+
+
+        const map = L.map(
+            "operator-map"
+        ).setView(
+            [
+                defaultLat,
+                defaultLon
+            ],
+            11
+        );
+
+
+        L.tileLayer(
+            "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+            {
+
+                maxZoom: 19,
+
+                attribution:
+                    "&copy; OpenStreetMap contributors"
+
+            }
+        ).addTo(map);
+
+
+        let marker = null;
+
+
+
+        /* ==========================================
+           SET LOCATION
+        ========================================== */
+
+        function setLocation(
+            lat,
+            lon
+        ) {
+
+            lat = parseFloat(lat);
+            lon = parseFloat(lon);
+
+
+            latitudeInput.value =
+                lat;
+
+            longitudeInput.value =
+                lon;
+
+
+            locationStatus.textContent =
+                "Selected location: " +
+                lat.toFixed(6) +
+                ", " +
+                lon.toFixed(6);
+
+
+            if (marker) {
+
+                marker.setLatLng(
+                    [
+                        lat,
+                        lon
+                    ]
+                );
+
+            }
+
+            else {
+
+                marker = L.marker(
+                    [
+                        lat,
+                        lon
+                    ],
+                    {
+                        draggable: true
+                    }
+                ).addTo(map);
+
+
+                marker.on(
+                    "dragend",
+                    function () {
+
+                        const position =
+                            marker.getLatLng();
+
+
+                        latitudeInput.value =
+                            position.lat;
+
+                        longitudeInput.value =
+                            position.lng;
+
+
+                        locationStatus.textContent =
+                            "Selected location: " +
+                            position.lat.toFixed(6) +
+                            ", " +
+                            position.lng.toFixed(6);
+
+                    }
+                );
+
+            }
+
+
+            map.setView(
+                [
+                    lat,
+                    lon
+                ],
+                16
+            );
+
+        }
+
+
+
+        /* ==========================================
+           CURRENT LOCATION
+        ========================================== */
+
+        locationButton.addEventListener(
+            "click",
+            function () {
+
+
+                if (
+                    !navigator.geolocation
+                ) {
+
+                    locationStatus.textContent =
+                        "Geolocation is not supported by this browser.";
+
+                    return;
+
+                }
+
+
+                locationStatus.textContent =
+                    "Getting your current location...";
+
+
+                navigator.geolocation
+                    .getCurrentPosition(
+
+                        function (
+                            position
+                        ) {
+
+                            setLocation(
+
+                                position
+                                    .coords
+                                    .latitude,
+
+                                position
+                                    .coords
+                                    .longitude
+
+                            );
+
+                        },
+
+
+                        function (
+                            error
+                        ) {
+
+                            console.log(
+                                "Geolocation error:",
+                                error
+                            );
+
+
+                            locationStatus.textContent =
+                                "Unable to detect current location. Search or select your location manually on the map.";
+
+                        },
+
+
+                        {
+
+                            enableHighAccuracy:
+                                true,
+
+                            timeout:
+                                10000,
+
+                            maximumAge:
+                                0
+
+                        }
+
+                    );
+
+            }
+        );
+
+
+
+        /* ==========================================
+           CLICK MAP MANUALLY
+        ========================================== */
+
+        map.on(
+            "click",
+            function (
+                event
+            ) {
+
+                setLocation(
+
+                    event.latlng.lat,
+
+                    event.latlng.lng
+
+                );
+
+            }
+        );
+
+
+
+        /* ==========================================
+           SEARCH LOCATION
+        ========================================== */
+
+        async function searchLocation() {
+
+
+            const query =
+                searchInput
+                    .value
+                    .trim();
+
+
+            if (!query) {
+
+                searchResults.innerHTML =
+                    "<div style='padding:10px;'>Enter a location to search.</div>";
+
+                return;
+
+            }
+
+
+            searchResults.innerHTML =
+                "<div style='padding:10px;'>Searching...</div>";
+
+
+            try {
+
+
+                const response =
+                    await fetch(
+
+                        "https://nominatim.openstreetmap.org/search" +
+
+                        "?format=json" +
+
+                        "&addressdetails=1" +
+
+                        "&limit=5" +
+
+                        "&countrycodes=in" +
+
+                        "&q=" +
+
+                        encodeURIComponent(
+                            query
+                        )
+
+                    );
+
+
+                if (
+                    !response.ok
+                ) {
+
+                    throw new Error(
+                        "Search request failed"
+                    );
+
+                }
+
+
+                const results =
+                    await response.json();
+
+
+                searchResults.innerHTML =
+                    "";
+
+
+                if (
+                    results.length === 0
+                ) {
+
+                    searchResults.innerHTML =
+                        "<div style='padding:10px;'>No matching locations found.</div>";
+
+                    return;
+
+                }
+
+
+                results.forEach(
+                    function (
+                        result
+                    ) {
+
+
+                        const item =
+                            document
+                                .createElement(
+                                    "div"
+                                );
+
+
+                        item.textContent =
+                            result.display_name;
+
+
+                        item.style.padding =
+                            "12px";
+
+                        item.style.cursor =
+                            "pointer";
+
+                        item.style.background =
+                            "#ffffff";
+
+                        item.style.border =
+                            "1px solid #e5e7eb";
+
+                        item.style.borderTop =
+                            "none";
+
+
+                        item.addEventListener(
+                            "mouseenter",
+                            function () {
+
+                                item.style
+                                    .background =
+                                    "#f3f4f6";
+
+                            }
+                        );
+
+
+                        item.addEventListener(
+                            "mouseleave",
+                            function () {
+
+                                item.style
+                                    .background =
+                                    "#ffffff";
+
+                            }
+                        );
+
+
+                        item.addEventListener(
+                            "click",
+                            function () {
+
+
+                                const lat =
+                                    parseFloat(
+                                        result.lat
+                                    );
+
+                                const lon =
+                                    parseFloat(
+                                        result.lon
+                                    );
+
+
+                                setLocation(
+                                    lat,
+                                    lon
+                                );
+
+
+                                searchInput.value =
+                                    result
+                                        .display_name;
+
+
+                                searchResults
+                                    .innerHTML =
+                                    "";
+
+                            }
+                        );
+
+
+                        searchResults
+                            .appendChild(
+                                item
+                            );
+
+                    }
+                );
+
+
+            }
+
+            catch (
+                error
+            ) {
+
+
+                console.error(
+                    "Location search error:",
+                    error
+                );
+
+
+                searchResults.innerHTML =
+                    "<div style='padding:10px;'>Unable to search location. Please try again.</div>";
+
+            }
+
+        }
+
+
+
+        /* ==========================================
+           SEARCH BUTTON
+        ========================================== */
+
+        searchButton.addEventListener(
+            "click",
+            searchLocation
+        );
+
+
+
+        /* ==========================================
+           ENTER KEY SEARCH
+        ========================================== */
+
+        searchInput.addEventListener(
+            "keydown",
+            function (
+                event
+            ) {
+
+
+                if (
+                    event.key ===
+                    "Enter"
+                ) {
+
+
+                    event.preventDefault();
+
+
+                    searchLocation();
+
+                }
+
+            }
+        );
+
+
+
+        /* ==========================================
+           FORM VALIDATION
+        ========================================== */
+
+        const form =
+            document.querySelector(
+                'form[action="/tanker/register/independent"]'
+            );
+
+
+        form.addEventListener(
+            "submit",
+            function (
+                event
+            ) {
+
+
+                if (
+                    !latitudeInput.value ||
+                    !longitudeInput.value
+                ) {
+
+
+                    event.preventDefault();
+
+
+                    alert(
+                        "Please select the operator location using current location, search, or the map."
+                    );
+
+
+                    document
+                        .getElementById(
+                            "operator-map"
+                        )
+                        .scrollIntoView(
+                            {
+                                behavior:
+                                    "smooth"
+                            }
+                        );
+
+                }
+
+            }
+        );
+
+
+    }
+);
+
+</script>
+
+
+</body>
+
+</html>
