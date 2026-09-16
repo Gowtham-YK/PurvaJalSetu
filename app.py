@@ -2591,45 +2591,102 @@ def api_search_place():
         print("Using LIVE coordinates:", lat, lon)
 
     elif place and place != "Using Live Location":
+
+        place = str(place).strip()
+
         search_queries = [
             f"{place}, Bengaluru, Karnataka, India",
             f"{place}, Bangalore, Karnataka, India",
             f"{place}, Karnataka, India",
+            f"{place}, India",
         ]
 
         geo_data = []
 
+        headers = {
+            "User-Agent": "PurvaJalSetu/1.0 (wastewater management application)",
+            "Accept": "application/json"
+        }
+
         for search_place in search_queries:
-            geo_url = (
-                "https://nominatim.openstreetmap.org/search"
-                f"?format=json&limit=1&q="
-                f"{requests.utils.quote(search_place)}"
-            )
 
             try:
+
                 response = requests.get(
-                    geo_url,
-                    headers={"User-Agent": "wastewater-app"},
-                    timeout=8
+                    "https://nominatim.openstreetmap.org/search",
+                    params={
+                        "format": "jsonv2",
+                        "q": search_place,
+                        "limit": 1,
+                        "countrycodes": "in",
+                        "addressdetails": 1
+                    },
+                    headers=headers,
+                    timeout=10
+                )
+
+                print(
+                    "Location search:",
+                    search_place,
+                    "Status:",
+                    response.status_code
                 )
 
                 if response.ok:
-                    geo_data = response.json()
 
-                if geo_data:
-                    break
+                    try:
+                        result = response.json()
+                    except ValueError:
+                        print(
+                            "Nominatim returned invalid JSON:",
+                            response.text[:300]
+                        )
+                        result = []
 
-            except Exception as e:
-                print("Location search failed:", e)
+                    if result:
+                        geo_data = result
+                        break
+
+                else:
+                    print(
+                        "Nominatim request failed:",
+                        response.status_code,
+                        response.text[:300]
+                    )
+
+            except requests.RequestException as e:
+
+                print(
+                    "Location search request failed:",
+                    search_place,
+                    e
+                )
 
         if not geo_data:
             return jsonify({
-                "error": f"Unable to find location: {place}"
+                "error": (
+                    f"Unable to find location: {place}. "
+                    "Please enter a more specific Bengaluru location."
+                )
             }), 404
 
-        lat = float(geo_data[0]["lat"])
-        lon = float(geo_data[0]["lon"])
+        try:
+
+            lat = float(geo_data[0]["lat"])
+            lon = float(geo_data[0]["lon"])
+
+        except (KeyError, TypeError, ValueError):
+
+            return jsonify({
+                "error": f"Invalid coordinates returned for location: {place}"
+            }), 404
+
         location_name = place
+
+        print(
+            f"Location resolved: {place} -> "
+            f"{lat}, {lon}"
+        )
 
     else:
         return jsonify({"error": "No location provided"}), 400
