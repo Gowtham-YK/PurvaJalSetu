@@ -20,6 +20,7 @@ import osmnx as ox
 import networkx as nx
 from ml.predict_demand import predict_next_day, predict_week
 from chatbot.fuzzy_matcher import find_fuzzy_intent
+from rapidfuzz import process as rapidfuzz_process, fuzz as rapidfuzz_fuzz
 from dotenv import load_dotenv
 from supabase import create_client
 from config import Config
@@ -2550,6 +2551,73 @@ def demand_heatmap():
         }), 500
     
 
+# =========================================================
+# LOCATION SPELLING CORRECTION
+# =========================================================
+# Common Bengaluru/locality names used to correct small typing
+# mistakes before sending the location to Nominatim.
+BENGALURU_LOCATION_NAMES = [
+    "Hebbal", "Yelahanka", "Jakkur", "Hennur", "Kalyan Nagar",
+    "Kammanahalli", "Nagawara", "Thanisandra", "Manyata Tech Park",
+    "RT Nagar", "Sanjay Nagar", "Sadashivanagar", "Malleshwaram",
+    "Rajajinagar", "Vijayanagar", "Basaveshwaranagar", "Nagarbhavi",
+    "Kengeri", "Kumbalgodu", "Nayandahalli", "Majestic",
+    "Shivajinagar", "Frazer Town", "Cooke Town", "Indiranagar",
+    "Domlur", "Ulsoor", "Halasuru", "CV Raman Nagar",
+    "KR Puram", "Mahadevapura", "Whitefield", "Brookefield",
+    "Marathahalli", "Bellandur", "Kadubeesanahalli", "Varthur",
+    "Sarjapur", "Sarjapur Road", "HSR Layout", "Koramangala",
+    "BTM Layout", "Bommanahalli", "Hosur Road", "Electronic City",
+    "Begur", "Bannerghatta Road", "JP Nagar", "Jayanagar",
+    "Banashankari", "Padmanabhanagar", "Kumaraswamy Layout",
+    "Uttarahalli", "Kanakapura Road", "Rajarajeshwari Nagar",
+    "Mysore Road", "Kengeri Satellite Town", "Chandra Layout",
+    "Vijayanagar", "Peenya", "Nagasandra", "Tumkur Road",
+    "Dasarahalli", "Yeshwanthpur", "Mathikere", "Vidyaranyapura",
+    "Sahakar Nagar", "Hebbal Kempapura", "Doddaballapur Road",
+    "Bangalore", "Bengaluru"
+]
+
+def correct_location_spelling(place):
+    """
+    Correct a likely small spelling mistake in a Bengaluru locality.
+    Returns (corrected_name, confidence_score).
+    If no sufficiently close match is found, the original input is kept.
+    """
+    original = str(place or "").strip()
+
+    if not original:
+        return original, 0
+
+    # Exact/case-insensitive match needs no correction.
+    normalized = " ".join(original.lower().split())
+    for candidate in BENGALURU_LOCATION_NAMES:
+        if normalized == " ".join(candidate.lower().split()):
+            return candidate, 100
+
+    try:
+        match = rapidfuzz_process.extractOne(
+            original,
+            BENGALURU_LOCATION_NAMES,
+            scorer=rapidfuzz_fuzz.WRatio
+        )
+    except Exception as e:
+        print("Location spelling correction failed:", e)
+        return original, 0
+
+    if not match:
+        return original, 0
+
+    corrected_name, score, _ = match
+
+    # Only auto-correct when the match is sufficiently strong.
+    # This avoids turning a genuinely different locality into another one.
+    if score >= 78:
+        return corrected_name, score
+
+    return original, score
+
+
 @app.route("/api/search_place")
 def api_search_place():
 
@@ -2593,6 +2661,17 @@ def api_search_place():
     elif place and place != "Using Live Location":
 
         place = str(place).strip()
+
+        # Correct common small spelling mistakes before geocoding.
+        corrected_place, correction_score = correct_location_spelling(place)
+
+        if corrected_place != place:
+            print(
+                f"Location spelling corrected: "
+                f"'{place}' -> '{corrected_place}' "
+                f"(score: {correction_score:.1f})"
+            )
+            place = corrected_place
 
         search_queries = [
             f"{place}, Bengaluru, Karnataka, India",
