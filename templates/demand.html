@@ -2367,7 +2367,7 @@ let url = "";
 if(useLive){
     url = `/api/search_place?lat=${liveLat}&lon=${liveLon}&required_kld=${requiredKLD}&quality=${quality}&type=${type}`;
 }else{
-    url = `/api/search_place?place=${place}&required_kld=${requiredKLD}&quality=${quality}&type=${type}`;
+    url = `/api/search_place?place=${encodeURIComponent(place)}&required_kld=${encodeURIComponent(requiredKLD)}&quality=${encodeURIComponent(quality)}&type=${encodeURIComponent(type)}`;
 }
 
 fetch(url)
@@ -2393,6 +2393,14 @@ markersLayer.eachLayer(function(layer){
 let location=data.searched_location;
 let nearest=data.nearest_stp;
 console.log("Nearest STP:", nearest);
+
+/*  SHOW AUTO-CORRECTED LOCATION */
+if(location && location.name){
+    const placeInput = document.getElementById("placeInput");
+    if(placeInput){
+        placeInput.value = location.name;
+    }
+}
 
 let lat=location.latitude;
 let lon=location.longitude;
