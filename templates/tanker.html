@@ -1384,7 +1384,176 @@
             }
         }
 
-    </style>
+    /* =====================================================
+           LIVE GPS TRIP TRACKING
+        ===================================================== */
+
+        .trip-tracking {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 12px;
+
+            flex-wrap: wrap;
+
+            background: white;
+
+            padding: 13px 16px;
+
+            margin-bottom: 10px;
+
+            border-radius: 9px;
+
+            border: 1px solid #e4eaf2;
+
+            box-shadow:
+                0 3px 10px
+                rgba(25,40,70,.04);
+        }
+
+
+        .trip-tracking-buttons {
+
+            display: flex;
+
+            gap: 8px;
+        }
+
+
+        .trip-btn {
+
+            border: none;
+
+            border-radius: 7px;
+
+            padding: 9px 16px;
+
+            font-family: 'Poppins', sans-serif;
+
+            font-size: 11px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+
+            transition: .2s;
+        }
+
+
+        .trip-btn:disabled {
+
+            opacity: .5;
+
+            cursor: not-allowed;
+        }
+
+
+        .trip-btn-start {
+
+            background: #16834d;
+
+            color: white;
+        }
+
+
+        .trip-btn-start:not(:disabled):hover {
+
+            background: #126b3f;
+        }
+
+
+        .trip-btn-stop {
+
+            background: #dc4141;
+
+            color: white;
+        }
+
+
+        .trip-btn-stop:not(:disabled):hover {
+
+            background: #b53434;
+        }
+
+
+        .trip-status {
+
+            font-size: 10px;
+
+            font-weight: 500;
+
+            color: #66748a;
+        }
+
+
+        .trip-status[data-tone="good"] {
+
+            color: #16834d;
+        }
+
+
+        .trip-status[data-tone="warn"] {
+
+            color: #d88910;
+        }
+
+
+        .trip-status[data-tone="error"] {
+
+            color: #dc4141;
+        }
+
+
+        .tanker-live-marker {
+
+            background: transparent;
+
+            border: 0;
+        }
+
+
+        .tanker-live-dot {
+
+            width: 34px;
+
+            height: 34px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 20px;
+
+            background: #ffffff;
+
+            border: 3px solid #16834d;
+
+            border-radius: 50%;
+
+            box-shadow: 0 3px 10px rgba(0,0,0,.25);
+        }
+
+
+        @media (max-width: 480px) {
+
+            .trip-tracking {
+
+                flex-direction: column;
+
+                align-items: flex-start;
+            }
+
+        }
+
+        
+
+</style>
 
 </head>
 
@@ -1949,8 +2118,8 @@
                                     {{ order.distance_km|default('null', true) }},
                                     {{ order.order_id|default('', true)|tojson }},
                                     {{ order.request_type|default('demand', true)|tojson }},
-                                    {{ order.delivery_latitude|default('null', true) }},
-                                    {{ order.delivery_longitude|default('null', true) }}
+                                    {{ order.delivery_lat|default(order.delivery_latitude, true)|default('null', true) }},
+                                    {{ order.delivery_lon|default(order.delivery_longitude, true)|default('null', true) }}
                                 )"
                             >
 
@@ -1983,6 +2152,27 @@
                                             class="pickup-button"
                                         >
                                              Accept Transfer Pickup
+                                        </button>
+
+                                    </form>
+
+                                    <form
+                                        method="POST"
+                                        action="{{ url_for('reject_transfer_pickup') }}"
+                                        class="pickup-form"
+                                    >
+
+                                        <input
+                                            type="hidden"
+                                            name="transfer_id"
+                                            value="{{ order.transfer_id }}"
+                                        >
+
+                                        <button
+                                            type="submit"
+                                            class="pickup-button"
+                                        >
+                                            Reject Transfer Pickup
                                         </button>
 
                                     </form>
@@ -2192,7 +2382,43 @@
                     </div>
 
 
-                    <!-- ROUTE INFORMATION -->
+                    <!-- LIVE GPS TRIP TRACKING -->
+
+                    <div class="trip-tracking">
+
+                        <div class="trip-tracking-buttons">
+
+                            <button
+                                type="button"
+                                id="tripStartBtn"
+                                class="trip-btn trip-btn-start"
+                            >
+                                ▶ Start Trip
+                            </button>
+
+                            <button
+                                type="button"
+                                id="tripStopBtn"
+                                class="trip-btn trip-btn-stop"
+                            >
+                                ■ Stop Trip
+                            </button>
+
+                        </div>
+
+                        <div
+                            id="tripStatus"
+                            class="trip-status"
+                            data-tone="muted"
+                        >
+                            Tracking is off.
+                        </div>
+
+                    </div>
+
+
+                    
+<!-- ROUTE INFORMATION -->
 
                     <div
                         id="routeInfo"
@@ -2832,6 +3058,201 @@
     }
 </script>
 
+
+<!-- =========================================================
+     LIVE GPS TRIP TRACKING
+     Uses navigator.geolocation.watchPosition() to follow the operator's
+     position while a trip is active, and pings Flask ~every 10 seconds.
+========================================================= -->
+
+<script>
+(function () {
+
+    var startBtn = document.getElementById('tripStartBtn');
+    var stopBtn = document.getElementById('tripStopBtn');
+    var statusEl = document.getElementById('tripStatus');
+
+    var SEND_INTERVAL_MS = 10000;
+
+    var watchId = null;
+    var sendTimer = null;
+    var latestPosition = null;
+    var tankerMarker = null;
+
+    var tankerIcon = L.divIcon({
+        className: 'tanker-live-marker',
+        html: '<div class="tanker-live-dot">\uD83D\uDE9A</div>',
+        iconSize: [34, 34],
+        iconAnchor: [17, 17]
+    });
+
+    function setStatus(text, tone) {
+        if (!statusEl) return;
+        statusEl.textContent = text;
+        statusEl.dataset.tone = tone || 'muted';
+    }
+
+    function placeMarker(lat, lon) {
+        if (tankerMarker) {
+            tankerMarker.setLatLng([lat, lon]);
+        } else {
+            tankerMarker = L.marker(
+                [lat, lon],
+                { icon: tankerIcon, zIndexOffset: 1000 }
+            )
+                .addTo(map)
+                .bindPopup('\uD83D\uDCCD Your current location');
+        }
+    }
+
+    function sendLocation(position) {
+        var coords = position.coords;
+
+        var body = {
+            latitude: coords.latitude,
+            longitude: coords.longitude,
+            accuracy: coords.accuracy,
+            speed: coords.speed,
+            heading: coords.heading,
+            timestamp: position.timestamp
+        };
+
+        fetch('/api/tanker/location', {
+            method: 'POST',
+            credentials: 'same-origin',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(body)
+        })
+            .then(function (response) {
+                if (response.status === 401) {
+                    stopTrip();
+                    setStatus('Session expired. Please log in again.', 'error');
+                    return null;
+                }
+                return response.json().catch(function () { return {}; });
+            })
+            .then(function (data) {
+                if (!data) return;
+                if (!data.success) {
+                    setStatus('Tracking on, but the last update did not save.', 'warn');
+                    return;
+                }
+                setStatus(
+                    'Tracking active \u2014 last sent ' +
+                    new Date().toLocaleTimeString(),
+                    'good'
+                );
+            })
+            .catch(function (error) {
+                console.error('Tanker location send failed:', error);
+                setStatus('Tracking on, but you appear to be offline.', 'warn');
+            });
+    }
+
+    function handlePositionUpdate(position) {
+        latestPosition = position;
+
+        placeMarker(
+            position.coords.latitude,
+            position.coords.longitude
+        );
+
+        map.setView(
+            [position.coords.latitude, position.coords.longitude],
+            Math.max(map.getZoom(), 14)
+        );
+
+        if (statusEl && statusEl.dataset.tone !== 'good') {
+            setStatus('GPS lock acquired. Sending updates every 10s...', 'good');
+        }
+    }
+
+    function handlePositionError(error) {
+        var message = 'Unable to get your location.';
+
+        if (error.code === error.PERMISSION_DENIED) {
+            message = 'Location permission denied. Enable it in your browser settings to start a trip.';
+        } else if (error.code === error.POSITION_UNAVAILABLE) {
+            message = 'Location is currently unavailable. Retrying...';
+        } else if (error.code === error.TIMEOUT) {
+            message = 'Timed out getting your location. Retrying...';
+        }
+
+        console.warn('Geolocation error:', error);
+        setStatus(message, 'error');
+    }
+
+    function startTrip() {
+        if (!navigator.geolocation) {
+            setStatus('Geolocation is not supported by this browser.', 'error');
+            return;
+        }
+
+        if (watchId !== null) return;
+
+        setStatus('Requesting location permission...', 'muted');
+
+        watchId = navigator.geolocation.watchPosition(
+            handlePositionUpdate,
+            handlePositionError,
+            {
+                enableHighAccuracy: true,
+                maximumAge: 5000,
+                timeout: 20000
+            }
+        );
+
+        sendTimer = setInterval(function () {
+            if (latestPosition) {
+                sendLocation(latestPosition);
+            }
+        }, SEND_INTERVAL_MS);
+
+        if (startBtn) startBtn.disabled = true;
+        if (stopBtn) stopBtn.disabled = false;
+    }
+
+    function stopTrip() {
+        if (watchId !== null) {
+            navigator.geolocation.clearWatch(watchId);
+            watchId = null;
+        }
+
+        if (sendTimer) {
+            clearInterval(sendTimer);
+            sendTimer = null;
+        }
+
+        latestPosition = null;
+
+        if (startBtn) startBtn.disabled = false;
+        if (stopBtn) stopBtn.disabled = true;
+
+        setStatus('Tracking stopped.', 'muted');
+    }
+
+    if (startBtn && stopBtn) {
+        startBtn.addEventListener('click', startTrip);
+        stopBtn.addEventListener('click', stopTrip);
+        stopBtn.disabled = true;
+    }
+
+    // Restore the tanker's last known position on page load, if any,
+    // without starting a new trip automatically.
+    fetch('/api/tanker/location/latest', { credentials: 'same-origin' })
+        .then(function (res) { return res.json(); })
+        .then(function (data) {
+            var loc = data && data.location;
+            if (loc && loc.latitude && loc.longitude) {
+                placeMarker(Number(loc.latitude), Number(loc.longitude));
+            }
+        })
+        .catch(function (error) {
+            console.warn('Unable to load last tanker location:', error);
+        });
+
+})();
+</script>
 
 <script>
 async function respondToTankerRequest(orderId, action) {

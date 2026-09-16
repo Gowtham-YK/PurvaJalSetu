@@ -2525,7 +2525,15 @@ document.getElementById("assignedStp").innerText=nearest.stp_name;
 /*  FIX BOOKING LOCATION */
 let locationLabel = location.name;
 
-addBookButton(nearest,requiredKLD,quality,type,locationLabel);
+addBookButton(
+    nearest,
+    requiredKLD,
+    quality,
+    type,
+    locationLabel,
+    location.latitude,
+    location.longitude
+);
 }
 
 /*  RESET */
@@ -2535,7 +2543,16 @@ addBookButton(nearest,requiredKLD,quality,type,locationLabel);
 }
 
 
-function addBookButton(nearest, kld, quality, type, place){
+function addBookButton(
+    nearest,
+    kld,
+    quality,
+    type,
+    place,
+    deliveryLat,
+    deliveryLon
+)
+{
 
 let oldBtn = document.getElementById("finalBookBtn");
 if(oldBtn) oldBtn.remove();
@@ -2559,11 +2576,16 @@ btn.onclick = function(){
         body: JSON.stringify({
             stp_id: nearest.stp_id,
             stp_name: nearest.stp_name,
+
             quantity_kld: kld,
             quality: quality,
             water_type: type,
+
             distance_km: nearest.distance_km,
-            location: place
+            location: place,
+
+            delivery_latitude: deliveryLat,
+            delivery_longitude: deliveryLon
         })
     })
     .then(res=>res.json())
