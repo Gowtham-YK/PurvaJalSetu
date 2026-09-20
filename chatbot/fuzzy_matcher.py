@@ -284,6 +284,21 @@ INTENT_EXAMPLES = {
         "how soon will the water reach me",
         "when is my water delivery coming",
     ],
+
+    # -----------------------------------------------------
+    # STP CAPACITY QUERY
+    # -----------------------------------------------------
+    "stp_capacity_query": [
+        "do you have any plants with enough capacity",
+        "plants with enough capacity for 50 kld",
+        "which stp can provide 50 kld",
+        "stps available for 50 kld",
+        "find plants with capacity",
+        "which plants have enough water",
+        "do any stps have enough capacity",
+        "plants that can provide 20 kld",
+        "find an stp for 50 kld",
+    ],
 }
 
 

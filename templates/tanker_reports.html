@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Tanker Reports</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: #f5f7fb;
+            color: #172033;
+        }
+
+        .page {
+            max-width: 1200px;
+            margin: auto;
+            padding: 35px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .header p {
+            margin: 5px 0 0;
+            color: #7b8799;
+            font-size: 12px;
+        }
+
+        .back-button {
+            text-decoration: none;
+            background: #1976f3;
+            color: white;
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-size: 12px;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .stat {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid #e8edf3;
+        }
+
+        .stat p {
+            margin: 0;
+            color: #7b8799;
+            font-size: 11px;
+        }
+
+        .stat h2 {
+            margin: 5px 0 0;
+            font-size: 22px;
+        }
+
+        .card {
+            background: white;
+            border: 1px solid #e8edf3;
+            border-radius: 12px;
+            padding: 22px;
+        }
+
+        .card h2 {
+            margin: 0 0 20px;
+            font-size: 17px;
+        }
+
+        .details {
+            display: grid;
+            grid-template-columns:
+                repeat(3, minmax(0, 1fr));
+
+            gap: 14px;
+        }
+
+        .detail {
+            background: #fafbfd;
+            border: 1px solid #e8edf3;
+            border-radius: 9px;
+            padding: 14px;
+        }
+
+        .detail p {
+            margin: 0;
+            color: #7b8799;
+            font-size: 10px;
+        }
+
+        .detail strong {
+            display: block;
+            margin-top: 5px;
+            font-size: 13px;
+        }
+
+        @media (max-width: 800px) {
+
+            .stats,
+            .details {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="page">
+
+    <div class="header">
+
+        <div>
+
+            <h1>
+                Tanker Reports
+            </h1>
+
+            <p>
+                {{ operator.operator_name }}
+                •
+                {{ operator.operator_id }}
+            </p>
+
+        </div>
+
+        <a
+            href="{{ url_for('tanker_dashboard') }}"
+            class="back-button"
+        >
+            ← Dashboard
+        </a>
+
+    </div>
+
+
+    <div class="stats">
+
+        <div class="stat">
+            <p>Operational Tankers</p>
+            <h2>{{ operational_tankers }}</h2>
+        </div>
+
+        <div class="stat">
+            <p>Active Tankers</p>
+            <h2>{{ active_tankers }}</h2>
+        </div>
+
+        <div class="stat">
+            <p>Available Tankers</p>
+            <h2>{{ available_tankers }}</h2>
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>
+            Operator Details
+        </h2>
+
+        <div class="details">
+
+            <div class="detail">
+                <p>Operator ID</p>
+                <strong>{{ operator.operator_id }}</strong>
+            </div>
+
+            <div class="detail">
+                <p>Operator Name</p>
+                <strong>{{ operator.operator_name }}</strong>
+            </div>
+
+            <div class="detail">
+                <p>Operator Type</p>
+                <strong>{{ operator.operator_type|title }}</strong>
+            </div>
+
+            <div class="detail">
+                <p>Phone</p>
+                <strong>{{ operator.phone or "—" }}</strong>
+            </div>
+
+            <div class="detail">
+                <p>Email</p>
+                <strong>{{ operator.email or "—" }}</strong>
+            </div>
+
+            <div class="detail">
+                <p>Approval Status</p>
+                <strong>{{ operator.verification_status|title }}</strong>
+            </div>
+
+            <div class="detail">
+                <p>Area</p>
+                <strong>{{ operator.area or "—" }}</strong>
+            </div>
+
+            <div class="detail">
+                <p>Pincode</p>
+                <strong>{{ operator.pincode or "—" }}</strong>
+            </div>
+
+            <div class="detail">
+                <p>Tanker Registration</p>
+                <strong>
+                    {{ operator.tanker_registration_no or "—" }}
+                </strong>
+            </div>
+
+            <div class="detail">
+                <p>Vehicle Model</p>
+                <strong>{{ operator.vehicle_model or "—" }}</strong>
+            </div>
+
+            <div class="detail">
+                <p>Tanker Capacity</p>
+                <strong>
+                    {{ operator.tanker_capacity_kl or "—" }}
+                    {% if operator.tanker_capacity_kl %}
+                        KL
+                    {% endif %}
+                </strong>
+            </div>
+
+
+            {% if operator_type == "independent" %}
+
+            <div class="detail">
+                <p>Water Type Supported</p>
+                <strong>
+                    {{ operator.water_type_supported|title or "—" }}
+                </strong>
+            </div>
+
+            <div class="detail">
+                <p>Service Radius</p>
+                <strong>
+                    {{ operator.service_radius_km or "—" }}
+                    {% if operator.service_radius_km %}
+                        km
+                    {% endif %}
+                </strong>
+            </div>
+
+            {% elif operator_type == "contracted" %}
+
+            <div class="detail">
+                <p>Contract ID</p>
+                <strong>{{ operator.contract_id or "—" }}</strong>
+            </div>
+
+            <div class="detail">
+                <p>Contract Start</p>
+                <strong>{{ operator.contract_start or "—" }}</strong>
+            </div>
+
+            <div class="detail">
+                <p>Contract End</p>
+                <strong>{{ operator.contract_end or "—" }}</strong>
+            </div>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
