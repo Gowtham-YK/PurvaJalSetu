@@ -45,10 +45,23 @@ footer{margin:24px 0 0;background:#0b1b32;color:#9fb0c5;text-align:center;paddin
       <div>
         <div class="brand-title">PURVA - JalSetu</div>
       </div>
-    </div>
+    
+
+            <button
+                type="button"
+                class="mobile-sidebar-toggle"
+                aria-label="Open sidebar"
+                aria-expanded="false"
+                aria-controls="mobile-sidebar-links"
+            >
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+</div>
 
     <div class="menu-label">MAIN MENU</div>
-    <nav class="side-nav">
+    <nav class="side-nav" id="mobile-sidebar-links">
       <a href="{{ url_for('home') }}" class="side-link active"><span class="side-icon"></span>Home</a>
       <a href="#about" class="side-link"><span class="side-icon">ⓘ</span>About Project</a>
       <a href="#how-it-works" class="side-link"><span class="side-icon">⚙</span>How It Works</a>
@@ -194,6 +207,106 @@ footer{margin:24px 0 0;background:#0b1b32;color:#9fb0c5;text-align:center;paddin
 
 
 
+
+
+<script id="mobile-sidebar-script">
+(function () {
+    function initMobileSidebar() {
+        var sidebar = document.querySelector('.sidebar');
+        var toggle = document.querySelector('.mobile-sidebar-toggle');
+        var links = document.getElementById('mobile-sidebar-links');
+        if (!sidebar || !toggle || !links) return;
+
+        var backdrop = document.getElementById('mobile-sidebar-backdrop');
+        if (!backdrop) {
+            backdrop = document.createElement('div');
+            backdrop.id = 'mobile-sidebar-backdrop';
+            backdrop.className = 'mobile-sidebar-backdrop';
+            document.body.appendChild(backdrop);
+        }
+
+        function isMobile() {
+            return window.matchMedia('(max-width: 768px)').matches;
+        }
+
+        function openSidebar() {
+            if (!isMobile()) return;
+            document.body.classList.add('mobile-sidebar-open');
+            sidebar.classList.add('mobile-sidebar-open');
+            toggle.setAttribute('aria-expanded', 'true');
+            toggle.setAttribute('aria-label', 'Close sidebar');
+        }
+
+        function closeSidebar() {
+            document.body.classList.remove('mobile-sidebar-open');
+            sidebar.classList.remove('mobile-sidebar-open');
+            toggle.setAttribute('aria-expanded', 'false');
+            toggle.setAttribute('aria-label', 'Open sidebar');
+        }
+
+        toggle.addEventListener('click', function (event) {
+            event.preventDefault();
+            event.stopPropagation();
+            if (document.body.classList.contains('mobile-sidebar-open')) {
+                closeSidebar();
+            } else {
+                openSidebar();
+            }
+        });
+
+        backdrop.addEventListener('click', closeSidebar);
+
+        document.addEventListener('keydown', function (event) {
+            if (event.key === 'Escape') closeSidebar();
+        });
+
+        links.addEventListener('click', function (event) {
+            if (event.target.closest('a') && isMobile()) {
+                closeSidebar();
+            }
+        });
+
+        window.addEventListener('resize', function () {
+            if (!isMobile()) closeSidebar();
+        });
+
+        /* Swipe from the left edge to open; swipe sidebar to close. */
+        var startX = 0;
+        var startY = 0;
+        var tracking = false;
+
+        document.addEventListener('touchstart', function (event) {
+            if (!isMobile() || !event.touches.length) return;
+            startX = event.touches[0].clientX;
+            startY = event.touches[0].clientY;
+            tracking = true;
+        }, { passive: true });
+
+        document.addEventListener('touchend', function (event) {
+            if (!tracking || !isMobile() || !event.changedTouches.length) return;
+            tracking = false;
+            var endX = event.changedTouches[0].clientX;
+            var endY = event.changedTouches[0].clientY;
+            var dx = endX - startX;
+            var dy = Math.abs(endY - startY);
+
+            if (dy > 70 || Math.abs(dx) < 60) return;
+
+            if (!document.body.classList.contains('mobile-sidebar-open') && startX <= 28 && dx > 60) {
+                openSidebar();
+            } else if (document.body.classList.contains('mobile-sidebar-open') && startX < 320 && dx < -60) {
+                closeSidebar();
+            }
+        }, { passive: true });
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initMobileSidebar);
+    } else {
+        initMobileSidebar();
+    }
+})();
+</script>
 
 </body>
 </html>
