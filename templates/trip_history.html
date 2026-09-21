@@ -1732,6 +1732,163 @@
     }
 }
 </style>
+
+/* =========================================================
+   MOBILE SIDEBAR SWIPE NAVIGATION
+   Desktop layout remains completely unchanged.
+   ========================================================= */
+@media (max-width: 768px) {
+    .sidebar {
+        position: fixed !important;
+        left: 0 !important;
+        top: 0 !important;
+        bottom: 0 !important;
+        right: auto !important;
+        width: min(280px, 82vw) !important;
+        min-width: 0 !important;
+        height: 100vh !important;
+        min-height: 100vh !important;
+        max-height: none !important;
+        box-sizing: border-box !important;
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+        -webkit-overflow-scrolling: touch !important;
+        transform: translate3d(-105%, 0, 0) !important;
+        transition: transform 0.28s cubic-bezier(.22,.61,.36,1) !important;
+        z-index: 10001 !important;
+        box-shadow: 12px 0 35px rgba(0,0,0,.28) !important;
+    }
+
+    body.sidebar-swipe-open .sidebar {
+        transform: translate3d(0, 0, 0) !important;
+    }
+
+    .sidebar-swipe-backdrop {
+        position: fixed !important;
+        inset: 0 !important;
+        background: rgba(0,0,0,.42) !important;
+        opacity: 0 !important;
+        visibility: hidden !important;
+        pointer-events: none !important;
+        transition: opacity .22s ease, visibility .22s ease !important;
+        z-index: 10000 !important;
+    }
+
+    body.sidebar-swipe-open .sidebar-swipe-backdrop {
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+    }
+
+    .sidebar-swipe-edge {
+        position: fixed !important;
+        left: 0 !important;
+        top: 50% !important;
+        width: 5px !important;
+        height: 72px !important;
+        transform: translateY(-50%) !important;
+        border-radius: 0 6px 6px 0 !important;
+        background: rgba(255,255,255,.30) !important;
+        z-index: 9999 !important;
+        pointer-events: none !important;
+        opacity: .65 !important;
+    }
+
+    body.sidebar-swipe-open .sidebar-swipe-edge {
+        opacity: 0 !important;
+    }
+
+    .main-content {
+        margin-left: 0 !important;
+        width: 100% !important;
+        min-width: 0 !important;
+        max-width: 100% !important;
+    }
+
+    body.sidebar-swipe-open {
+        overflow: hidden !important;
+        touch-action: none !important;
+    }
+
+    .sidebar {
+        touch-action: pan-y !important;
+    }
+}
+
+@media (min-width: 769px) {
+    .sidebar-swipe-backdrop,
+    .sidebar-swipe-edge {
+        display: none !important;
+    }
+}
+
+
+<style id="purva-sidebar-menu-button-style">
+/* Mobile sidebar menu button. Desktop sidebar remains unchanged. */
+.sidebar-menu-toggle {
+    display: none;
+    width: 42px;
+    height: 42px;
+    padding: 9px;
+    margin: 0;
+    border: 0;
+    border-radius: 10px;
+    background: transparent;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 5px;
+    flex: 0 0 auto;
+    z-index: 1102;
+    -webkit-tap-highlight-color: transparent;
+}
+.sidebar-menu-toggle span {
+    display: block;
+    width: 23px;
+    height: 2.5px;
+    border-radius: 999px;
+    background: currentColor;
+    transition: transform .2s ease, opacity .2s ease;
+}
+.sidebar-menu-toggle:active {
+    transform: scale(.96);
+}
+@media (max-width: 768px) {
+    .sidebar-menu-toggle {
+        display: inline-flex;
+        color: inherit;
+    }
+    .topbar {
+        position: sticky;
+        z-index: 1100;
+    }
+    .topbar .welcome {
+        margin-left: 46px;
+        min-width: 0;
+    }
+    .topbar .welcome h1,
+    .topbar .welcome p {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    .topbar .topbar-right {
+        position: relative;
+        z-index: 1101;
+    }
+    body.sidebar-swipe-open .sidebar-menu-toggle span:nth-child(1) {
+        transform: translateY(7.5px) rotate(45deg);
+    }
+    body.sidebar-swipe-open .sidebar-menu-toggle span:nth-child(2) {
+        opacity: 0;
+    }
+    body.sidebar-swipe-open .sidebar-menu-toggle span:nth-child(3) {
+        transform: translateY(-7.5px) rotate(-45deg);
+    }
+}
+</style>
+
 </head>
 
 
@@ -1939,6 +2096,12 @@
 
 <header class="topbar">
 
+            <button type="button" class="sidebar-menu-toggle" aria-label="Open navigation menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
 
             <div class="welcome">
 
@@ -2131,6 +2294,188 @@
 </main>
 
 
-</div></body>
+</div>
+<script>
+(function () {
+    const sidebar = document.querySelector('.sidebar');
+    if (!sidebar || window.__purvaSidebarSwipeInitialized) return;
+
+    window.__purvaSidebarSwipeInitialized = true;
+
+    const body = document.body;
+    const backdrop = document.createElement('div');
+    backdrop.className = 'sidebar-swipe-backdrop';
+    backdrop.setAttribute('aria-hidden', 'true');
+    body.appendChild(backdrop);
+
+    const edge = document.createElement('div');
+    edge.className = 'sidebar-swipe-edge';
+    edge.setAttribute('aria-hidden', 'true');
+    body.appendChild(edge);
+
+    let startX = 0;
+    let startY = 0;
+    let currentX = 0;
+    let tracking = false;
+    let trackingFromEdge = false;
+    let trackingInsideSidebar = false;
+    let movedHorizontally = false;
+
+    const isMobile = () => window.matchMedia('(max-width: 768px)').matches;
+
+    function isOpen() {
+        return body.classList.contains('sidebar-swipe-open');
+    }
+
+    function openSidebar() {
+        if (!isMobile()) return;
+        body.classList.add('sidebar-swipe-open');
+        sidebar.setAttribute('aria-hidden', 'false');
+    }
+
+    function closeSidebar() {
+        body.classList.remove('sidebar-swipe-open');
+        sidebar.setAttribute('aria-hidden', 'true');
+        sidebar.style.transform = '';
+        sidebar.style.transition = '';
+    }
+
+    function resetTracking() {
+        tracking = false;
+        trackingFromEdge = false;
+        trackingInsideSidebar = false;
+        movedHorizontally = false;
+        sidebar.style.transition = '';
+        sidebar.style.transform = '';
+    }
+
+    document.addEventListener('touchstart', function (event) {
+        if (!isMobile() || !event.touches || event.touches.length !== 1) return;
+
+        const touch = event.touches[0];
+        startX = touch.clientX;
+        startY = touch.clientY;
+        currentX = startX;
+
+        trackingFromEdge = !isOpen() && startX <= 30;
+        trackingInsideSidebar = isOpen() && sidebar.contains(event.target);
+        tracking = trackingFromEdge || trackingInsideSidebar;
+    }, { passive: true });
+
+    document.addEventListener('touchmove', function (event) {
+        if (!tracking || !isMobile() || !event.touches || event.touches.length !== 1) return;
+
+        const touch = event.touches[0];
+        currentX = touch.clientX;
+        const deltaX = currentX - startX;
+        const deltaY = touch.clientY - startY;
+
+        if (Math.abs(deltaX) < 8) return;
+
+        if (Math.abs(deltaY) > Math.abs(deltaX) * 1.15) {
+            return;
+        }
+
+        movedHorizontally = true;
+        event.preventDefault();
+
+        sidebar.style.transition = 'none';
+
+        if (trackingFromEdge) {
+            const width = sidebar.getBoundingClientRect().width || 280;
+            const progress = Math.max(0, Math.min(1, deltaX / width));
+            const offset = -105 + (105 * progress);
+            sidebar.style.transform = 'translate3d(' + offset + '%, 0, 0)';
+        } else if (trackingInsideSidebar && deltaX < 0) {
+            const width = sidebar.getBoundingClientRect().width || 280;
+            const progress = Math.max(0, Math.min(1, Math.abs(deltaX) / width));
+            const offset = -105 * progress;
+            sidebar.style.transform = 'translate3d(' + offset + '%, 0, 0)';
+        }
+    }, { passive: false });
+
+    document.addEventListener('touchend', function () {
+        if (!tracking) return;
+
+        const deltaX = currentX - startX;
+        const width = sidebar.getBoundingClientRect().width || 280;
+        const threshold = Math.max(55, Math.min(120, width * 0.22));
+
+        sidebar.style.transition = '';
+
+        if (movedHorizontally) {
+            if (trackingFromEdge && deltaX >= threshold) {
+                openSidebar();
+            } else if (trackingInsideSidebar && deltaX <= -threshold) {
+                closeSidebar();
+            } else if (trackingFromEdge) {
+                closeSidebar();
+            } else if (trackingInsideSidebar) {
+                openSidebar();
+            }
+        }
+
+        resetTracking();
+    }, { passive: true });
+
+    document.addEventListener('touchcancel', resetTracking, { passive: true });
+
+    backdrop.addEventListener('click', closeSidebar);
+
+    document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape' && isOpen()) {
+            closeSidebar();
+        }
+    });
+
+    window.addEventListener('resize', function () {
+        if (!isMobile()) {
+            body.classList.remove('sidebar-swipe-open');
+            sidebar.style.transform = '';
+            sidebar.style.transition = '';
+        }
+    });
+
+    sidebar.setAttribute('aria-hidden', isMobile() ? 'true' : 'false');
+})();
+</script>
+
+
+<script id="purva-sidebar-menu-button-script">
+(function () {
+    const button = document.querySelector('.sidebar-menu-toggle');
+    const sidebar = document.querySelector('.sidebar');
+    if (!button || !sidebar || window.__purvaSidebarMenuButtonInitialized) return;
+    window.__purvaSidebarMenuButtonInitialized = true;
+
+    function isMobile() {
+        return window.matchMedia('(max-width: 768px)').matches;
+    }
+
+    function setOpen(open) {
+        if (!isMobile()) return;
+        document.body.classList.toggle('sidebar-swipe-open', open);
+        sidebar.setAttribute('aria-hidden', open ? 'false' : 'true');
+        button.setAttribute('aria-expanded', open ? 'true' : 'false');
+        button.setAttribute('aria-label', open ? 'Close navigation menu' : 'Open navigation menu');
+    }
+
+    button.addEventListener('click', function () {
+        setOpen(!document.body.classList.contains('sidebar-swipe-open'));
+    });
+
+    window.addEventListener('resize', function () {
+        if (!isMobile()) {
+            document.body.classList.remove('sidebar-swipe-open');
+            sidebar.style.transform = '';
+            sidebar.style.transition = '';
+            button.setAttribute('aria-expanded', 'false');
+            button.setAttribute('aria-label', 'Open navigation menu');
+        }
+    });
+})();
+</script>
+
+</body>
 
 </html>
