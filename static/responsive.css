@@ -1,0 +1,418 @@
+
+/*
+ * JalSetu responsive UI layer
+ * Added without replacing page-specific styles.
+ * Desktop styles remain unchanged; rules below activate only on smaller screens.
+ */
+
+html {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+img, video, canvas, iframe {
+    max-width: 100%;
+}
+
+button, input, select, textarea {
+    max-width: 100%;
+}
+
+@media (max-width: 1024px) {
+    .main-grid,
+    .content-grid,
+    .dashboard-grid,
+    .stats-grid,
+    .cards-grid,
+    .card-grid,
+    .form-grid,
+    .tanker-form-row,
+    .tanker-form-secondary,
+    .details-grid,
+    .route-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    }
+
+    .container,
+    .page,
+    .main-content,
+    .content,
+    .dashboard-content {
+        max-width: 100% !important;
+    }
+
+    .hero {
+        margin-left: 18px !important;
+        margin-right: 18px !important;
+    }
+
+    table {
+        min-width: 680px;
+    }
+
+    .table-container,
+    .table-wrapper,
+    .table-wrap,
+    .table-responsive,
+    .orders-table-container,
+    .responsive-table,
+    .data-table-container {
+        max-width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .map-card,
+    #map,
+    .map,
+    .leaflet-container {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Dashboard/sidebar layouts */
+    .dashboard,
+    .app-shell {
+        display: flex !important;
+        flex-direction: column !important;
+        min-height: 100vh;
+    }
+
+    .sidebar {
+        position: relative !important;
+        left: auto !important;
+        right: auto !important;
+        top: auto !important;
+        bottom: auto !important;
+        width: 100% !important;
+        min-width: 0 !important;
+        min-height: auto !important;
+        height: auto !important;
+        max-height: none !important;
+        padding: 12px 10px !important;
+        z-index: 1000;
+    }
+
+    .sidebar .brand {
+        padding: 4px 8px 12px !important;
+    }
+
+    .side-nav,
+    .nav-links {
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
+        gap: 6px !important;
+        overflow-x: auto;
+        padding-bottom: 3px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: thin;
+    }
+
+    .side-link,
+    .nav-links a {
+        flex: 0 0 auto !important;
+        white-space: nowrap;
+    }
+
+    .menu-label,
+    .menu-title {
+        padding-left: 8px !important;
+        margin-top: 5px !important;
+    }
+
+    .main-content {
+        margin-left: 0 !important;
+        width: 100% !important;
+        min-width: 0 !important;
+    }
+
+    .topbar {
+        height: auto !important;
+        min-height: 52px;
+        padding: 10px 14px !important;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .top-nav {
+        max-width: 100%;
+        flex-wrap: wrap;
+        gap: 8px 14px !important;
+    }
+
+    .topbar-right {
+        max-width: 100%;
+        flex-wrap: wrap;
+    }
+
+    /* Grids become single-column where space is limited */
+    .main-grid,
+    .content-grid,
+    .dashboard-grid,
+    .stats-grid,
+    .cards-grid,
+    .card-grid,
+    .form-grid,
+    .details-grid,
+    .route-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .tanker-form-row,
+    .tanker-form-secondary {
+        grid-template-columns: 1fr !important;
+    }
+
+    .container,
+    .page,
+    .content,
+    .dashboard-content,
+    .main-content > * {
+        max-width: 100% !important;
+    }
+
+    .hero {
+        margin: 10px 12px 0 !important;
+        min-height: 230px !important;
+    }
+
+    .hero-overlay {
+        padding: 34px 24px !important;
+    }
+
+    .hero h1 {
+        font-size: clamp(26px, 6vw, 36px) !important;
+    }
+
+    /* Cards/forms */
+    .card,
+    .stat-card,
+    .section,
+    .map-card,
+    .pickup-form,
+    .operation-item,
+    .detail-box {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    form {
+        max-width: 100%;
+    }
+
+    input,
+    select,
+    textarea {
+        width: 100% !important;
+        min-width: 0 !important;
+    }
+
+    .btn,
+    button,
+    .hero-btn,
+    .pickup-button,
+    .tanker-request-button {
+        min-height: 42px;
+        max-width: 100%;
+    }
+
+    /* Keep wide data tables usable by horizontal scrolling */
+    .table-container,
+    .table-wrapper,
+    .table-wrap,
+    .table-responsive,
+    .orders-table-container,
+    .responsive-table,
+    .data-table-container {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    table {
+        min-width: 680px;
+    }
+
+    /* Maps remain usable on phones */
+    #map,
+    .map,
+    .map-container,
+    .map-card .leaflet-container {
+        width: 100% !important;
+        min-height: 280px;
+        max-width: 100%;
+    }
+
+    /* Avoid fixed-width content causing horizontal scrolling */
+    .modal,
+    .modal-content,
+    .popup,
+    .dropdown-menu,
+    .notification-panel {
+        max-width: calc(100vw - 24px) !important;
+    }
+
+    .modal-content {
+        width: calc(100vw - 24px) !important;
+    }
+
+    .notification {
+        max-width: calc(100vw - 24px);
+    }
+
+    /* Chatbot */
+    #ww-chatbot-window {
+        width: min(390px, calc(100vw - 24px)) !important;
+        max-width: calc(100vw - 24px) !important;
+        right: 12px !important;
+        bottom: 72px !important;
+    }
+
+    #ww-chatbot-toggle {
+        right: 14px !important;
+        bottom: 14px !important;
+    }
+
+    #ww-chatbot-messages {
+        max-height: 52vh;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        overflow-x: hidden !important;
+    }
+
+    .sidebar {
+        padding: 10px 8px !important;
+    }
+
+    .brand {
+        gap: 8px !important;
+    }
+
+    .brand-text h2,
+    .brand-title {
+        font-size: 15px !important;
+    }
+
+    .brand-text p,
+    .brand-subtitle {
+        font-size: 9px !important;
+    }
+
+    .brand-icon {
+        width: 36px !important;
+        height: 36px !important;
+        font-size: 18px !important;
+    }
+
+    .side-link,
+    .nav-links a {
+        padding: 9px 10px !important;
+        font-size: 12px !important;
+    }
+
+    .topbar {
+        padding: 8px 10px !important;
+    }
+
+    .top-link {
+        font-size: 11px !important;
+    }
+
+    .hero {
+        margin: 8px !important;
+        min-height: 210px !important;
+        border-radius: 10px !important;
+    }
+
+    .hero-overlay {
+        padding: 28px 18px !important;
+    }
+
+    .hero h1 {
+        font-size: 25px !important;
+    }
+
+    .hero p {
+        font-size: 13px !important;
+    }
+
+    .card,
+    .stat-card,
+    .section,
+    .map-card,
+    .pickup-form {
+        padding: 14px !important;
+    }
+
+    .card-header {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .stat-info h3,
+    .stat-info .value {
+        font-size: 20px !important;
+    }
+
+    .detail-row {
+        flex-wrap: wrap;
+        gap: 4px;
+    }
+
+    .detail-label,
+    .detail-value {
+        max-width: 100%;
+        overflow-wrap: anywhere;
+    }
+
+    .tanker-form-group {
+        width: 100% !important;
+    }
+
+    table {
+        min-width: 620px;
+        font-size: 12px;
+    }
+
+    th,
+    td {
+        padding: 8px !important;
+    }
+
+    #ww-chatbot-window {
+        width: calc(100vw - 16px) !important;
+        max-width: calc(100vw - 16px) !important;
+        right: 8px !important;
+        bottom: 64px !important;
+    }
+
+    #ww-chatbot-input-area {
+        gap: 6px;
+    }
+
+    #ww-chatbot-input {
+        min-width: 0;
+    }
+}
+
+/* Accessibility and touch usability */
+@media (hover: none) and (pointer: coarse) {
+    a,
+    button,
+    input[type="button"],
+    input[type="submit"],
+    select {
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    button,
+    input[type="button"],
+    input[type="submit"] {
+        touch-action: manipulation;
+    }
+}
