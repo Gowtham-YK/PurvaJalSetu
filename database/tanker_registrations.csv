@@ -1,9 +1,6 @@
 operator_id,operator_name,operator_type,phone,email,area,pincode,latitude,longitude,operational_tankers,contract_id,contract_start,contract_end,tanker_registration_no,tanker_capacity_kl,vehicle_model,water_type_supported,service_radius_km,verification_status,registration_date
-OP-BLR-0001,MANORANJAN S ,contracted,07892012246,eng23am0042@dsu.edu.in,,,,,,123456,2026-08-20,2026-09-30,KA-50-EF-2327,10,tanker,,,approved,2026-08-31
-OP-BLR-0002,MANORANJAN S ,independent,07892012246,eng23am0042@dsu.edu.in,sahakar nagar,560097,,,,,,,KA-50-EF-2327,8,tanker,treated,5,approved,2026-08-31
-OP-BLR-0003,Mohith Mohan,independent,9876543210,something@dsu.com,Hebbal,122490,,,,,,,KA-01-MJ-1487,10,Tata Tank,treated,7,approved,2026-08-31
-OP-BLR-0004,Manoranjan S,independent,07892012246,eng23am0042@dsu.edu.in,harohalli,562112,12.675678530967227,77.44777679443361,9,,,,KA-50-EF-2327,12,tanker,treated,10,approved,2026-09-07
-OP-BLR-0005,MANORANJAN S,contracted,07892012246,eng23am0042@dsu.edu.in,,,13.043212382609896,77.58898973464967,8,123456,2026-09-09,2026-09-30,KA-50-EF-2327,12,tanker,,,approved,2026-09-07
-OP-BLR-0006,tank,independent,9036845727,mac@gmail.com,jakkur,560008,13.079102058983526,77.61064052581789,8,,,,KA-50-MK-1321,16,tanker,treated,15,approved,2026-09-07
-OP-BLR-0007,MANGO,independent,9611263098,mnc@gmail.com,majestic,560010,12.985071349513591,77.58098602294923,7,,,,KA-04-MK-2221,12,tanker,treated,9,approved,2026-09-07
-OP-BLR-0008,ramesh,independent,1111111111,a1@gmail.com,rajajinagar,560202,12.999686289782497,77.54238367080688,9,,,,KA-04-MK-9090,16,tanker,treated,9,pending,2026-09-07
+OP-BLR-0001,MANORANJAN S ,independent,7892012246,eng23am0042@dsu.edu.in,sahakar nagar,560097,13.070239863312363,77.58233785629274,8,,,,KA-50-EF-2327,10,tata tanker,treated,7,approved,2026-09-08
+OP-BLR-0002,Gowtham Y K,independent,8431041386,gowthamyk2004@gmail.com,harohalli,562101,12.684387217681799,77.47266769409181,6,,,,KA-01-AM-1234,16,tata tanker,treated,5,approved,2026-09-08
+OP-BLR-0003,Mohith Mohan,independent,9845430586,mickeymiles723@gmail.com,rt nagar,560212,13.022453773449994,77.59853839874268,7,,,,KA-05-KW-9876,12,tanker,treated,15,approved,2026-09-13
+OP-BLR-0004,Kaviya U,contracted,9003933065,kaviyasandiya@gmail.com,,,13.042773396814006,77.62845039367677,4,123456,2026-09-09,2026-09-30,KA-50-AO-7878,12,tanker,,,approved,2026-09-15
+OP-BLR-0005,Cathrine B,contracted,8971211229,cathrinebabu5@gmail.com,,,13.009533639813588,77.57555723190309,6,987654,2026-09-12,2026-09-30,KA-05-BH-6666,10,tata tanker,,,approved,2026-09-15

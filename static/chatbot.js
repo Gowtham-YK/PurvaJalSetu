@@ -1,16 +1,16 @@
 /* =========================================================
-   WASTEWATER CHATBOT
+   JALSETU WASTEWATER ASSISTANT
+   Professional Chatbot Frontend
 ========================================================= */
 
 document.addEventListener("DOMContentLoaded", function () {
 
-        // =====================================================
-    // GET USER LOCATION
-    // =====================================================
+    /* =====================================================
+       GET USER LOCATION
+    ===================================================== */
 
     window.chatbotLatitude = null;
     window.chatbotLongitude = null;
-
 
     if (navigator.geolocation) {
 
@@ -32,17 +32,26 @@ document.addEventListener("DOMContentLoaded", function () {
 
             },
 
-            function (error) {
+            function () {
 
                 console.log(
                     "Location permission not granted."
                 );
 
+            },
+
+            {
+                enableHighAccuracy: true,
+                timeout: 10000,
+                maximumAge: 300000
             }
-
         );
-
     }
+
+
+    /* =====================================================
+       GET CHATBOT ELEMENTS
+    ===================================================== */
 
     const toggle =
         document.getElementById("ww-chatbot-toggle");
@@ -67,31 +76,128 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* =====================================================
+       SAFETY CHECK
+    ===================================================== */
+
+    if (
+        !toggle ||
+        !windowElement ||
+        !close ||
+        !input ||
+        !send ||
+        !messages ||
+        !typing
+    ) {
+
+        console.error(
+            "Wastewater chatbot: required element missing."
+        );
+
+        return;
+    }
+
+
+    /* =====================================================
+       STATE
+    ===================================================== */
+
+    let isSending = false;
+
+
+    /* =====================================================
+       SCROLL TO BOTTOM
+    ===================================================== */
+
+    function scrollToBottom() {
+
+        requestAnimationFrame(function () {
+
+            messages.scrollTo({
+                top: messages.scrollHeight,
+                behavior: "smooth"
+            });
+
+        });
+    }
+
+
+    /* =====================================================
        OPEN CHAT
     ===================================================== */
 
-    toggle.addEventListener("click", function () {
+    function openChat() {
 
         windowElement.classList.remove(
             "ww-chatbot-hidden"
         );
 
-        input.focus();
+        toggle.setAttribute(
+            "aria-expanded",
+            "true"
+        );
 
-    });
+        scrollToBottom();
+
+        setTimeout(function () {
+            input.focus();
+        }, 100);
+    }
 
 
     /* =====================================================
        CLOSE CHAT
     ===================================================== */
 
-    close.addEventListener("click", function () {
+    function closeChat() {
 
         windowElement.classList.add(
             "ww-chatbot-hidden"
         );
 
-    });
+        toggle.setAttribute(
+            "aria-expanded",
+            "false"
+        );
+
+        toggle.focus();
+    }
+
+
+    /* =====================================================
+       OPEN / CLOSE EVENTS
+    ===================================================== */
+
+    toggle.addEventListener(
+        "click",
+        openChat
+    );
+
+    close.addEventListener(
+        "click",
+        closeChat
+    );
+
+
+    /* =====================================================
+       ESCAPE KEY
+    ===================================================== */
+
+    document.addEventListener(
+        "keydown",
+        function (event) {
+
+            if (
+                event.key === "Escape" &&
+                !windowElement.classList.contains(
+                    "ww-chatbot-hidden"
+                )
+            ) {
+
+                closeChat();
+            }
+
+        }
+    );
 
 
     /* =====================================================
@@ -118,7 +224,6 @@ document.addEventListener("DOMContentLoaded", function () {
             wrapper.classList.add(
                 "ww-chat-bot"
             );
-
         }
 
 
@@ -129,17 +234,183 @@ document.addEventListener("DOMContentLoaded", function () {
             "ww-chat-bubble"
         );
 
-        bubble.textContent = message;
+        bubble.textContent =
+            String(message);
 
 
         wrapper.appendChild(bubble);
 
         messages.appendChild(wrapper);
 
+        scrollToBottom();
 
-        messages.scrollTop =
-            messages.scrollHeight;
+        return wrapper;
+    }
 
+
+    /* =====================================================
+       QUICK ACTIONS
+    ===================================================== */
+
+    function addQuickActions() {
+
+        const existing =
+            document.querySelector(
+                ".ww-chatbot-quick-actions"
+            );
+
+        if (existing) {
+            return;
+        }
+
+
+        const container =
+            document.createElement("div");
+
+        container.classList.add(
+            "ww-chatbot-quick-actions"
+        );
+
+
+        const actions = [
+            {
+                icon: "🏭",
+                title: "Find an STP",
+                message: "Find the nearest STP"
+            },
+            {
+                icon: "📦",
+                title: "My Orders",
+                message: "Show me my latest order"
+            },
+            {
+                icon: "🚛",
+                title: "Track Delivery",
+                message: "What is my delivery status?"
+            },
+            {
+                icon: "💧",
+                title: "STP Capacity",
+                message: "Do you have any plants with enough capacity for 50 KLD?"
+            }
+        ];
+
+
+        actions.forEach(function (action) {
+
+            const button =
+                document.createElement("button");
+
+            button.type = "button";
+
+            button.classList.add(
+                "ww-chatbot-quick-action"
+            );
+
+
+            button.innerHTML = `
+                <span class="ww-chatbot-quick-icon">
+                    ${action.icon}
+                </span>
+                <span class="ww-chatbot-quick-title">
+                    ${action.title}
+                </span>
+            `;
+
+
+            button.addEventListener(
+                "click",
+                function () {
+
+                    input.value =
+                        action.message;
+
+                    sendMessage();
+
+                }
+            );
+
+
+            container.appendChild(button);
+
+        });
+
+
+        messages.appendChild(container);
+
+        scrollToBottom();
+    }
+
+
+    /* =====================================================
+       SHOW INITIAL QUICK ACTIONS
+    ===================================================== */
+
+    addQuickActions();
+
+
+    /* =====================================================
+       TYPING INDICATOR
+    ===================================================== */
+
+    function showTyping() {
+
+        typing.classList.remove(
+            "ww-chatbot-typing-hidden"
+        );
+
+        typing.innerHTML = `
+            <span class="ww-chatbot-typing-label">
+            Juno is typing            
+            </span>
+            <span class="ww-chatbot-typing-dots">
+                <span></span>
+                <span></span>
+                <span></span>
+            </span>
+        `;
+
+        scrollToBottom();
+    }
+
+
+    /* =====================================================
+       HIDE TYPING INDICATOR
+    ===================================================== */
+
+    function hideTyping() {
+
+        typing.classList.add(
+            "ww-chatbot-typing-hidden"
+        );
+
+        typing.innerHTML = "";
+    }
+
+
+    /* =====================================================
+       SET SENDING STATE
+    ===================================================== */
+
+    function setSendingState(sending) {
+
+        isSending = sending;
+
+        input.disabled = sending;
+
+        send.disabled = sending;
+
+
+        if (sending) {
+
+            send.innerHTML = `
+                <span class="ww-chatbot-send-spinner"></span>
+            `;
+
+        } else {
+
+            send.innerHTML = "➤";
+        }
     }
 
 
@@ -153,12 +424,24 @@ document.addEventListener("DOMContentLoaded", function () {
             input.value.trim();
 
 
-        if (!message) {
+        if (!message || isSending) {
             return;
         }
 
 
-        /* Show user's message */
+        /* Remove quick actions after first interaction */
+
+        const quickActions =
+            document.querySelector(
+                ".ww-chatbot-quick-actions"
+            );
+
+        if (quickActions) {
+            quickActions.remove();
+        }
+
+
+        /* Show user message */
 
         addMessage(
             message,
@@ -171,11 +454,11 @@ document.addEventListener("DOMContentLoaded", function () {
         input.value = "";
 
 
-        /* Show typing */
+        /* Set loading state */
 
-        typing.classList.remove(
-            "ww-chatbot-typing-hidden"
-        );
+        setSendingState(true);
+
+        showTyping();
 
 
         try {
@@ -191,20 +474,45 @@ document.addEventListener("DOMContentLoaded", function () {
                                 "application/json"
                         },
 
-                       body: JSON.stringify({
-                        message: message,
-                        latitude: window.chatbotLatitude || null,
-                        longitude: window.chatbotLongitude || null
-                    })
+                        body: JSON.stringify({
+
+                            message: message,
+
+                            latitude:
+                                window.chatbotLatitude ||
+                                null,
+
+                            longitude:
+                                window.chatbotLongitude ||
+                                null
+                        })
                     }
                 );
 
 
-            const data =
-                await response.json();
+            let data = null;
 
 
-            if (data.reply) {
+            try {
+
+                data =
+                    await response.json();
+
+            } catch (jsonError) {
+
+                console.error(
+                    "Chatbot response was not valid JSON:",
+                    jsonError
+                );
+
+            }
+
+
+            if (
+                response.ok &&
+                data &&
+                data.reply
+            ) {
 
                 addMessage(
                     data.reply,
@@ -214,34 +522,40 @@ document.addEventListener("DOMContentLoaded", function () {
             } else {
 
                 addMessage(
-                    "I couldn't understand that request.",
+                    "Sorry, I couldn't process that request right now. Please try again.",
                     "bot"
                 );
 
+                console.error(
+                    "Chatbot API error:",
+                    response.status,
+                    data
+                );
             }
 
 
         } catch (error) {
 
             console.error(
-                "Chatbot error:",
+                "Chatbot connection error:",
                 error
             );
 
 
             addMessage(
-                "Sorry, I'm unable to connect to the assistant right now.",
+                "Sorry, I'm unable to connect to Juno right now. Please check your connection and try again.",
                 "bot"
             );
 
+
         } finally {
 
-            typing.classList.add(
-                "ww-chatbot-typing-hidden"
-            );
+            hideTyping();
 
+            setSendingState(false);
+
+            input.focus();
         }
-
     }
 
 
@@ -263,15 +577,50 @@ document.addEventListener("DOMContentLoaded", function () {
         "keydown",
         function (event) {
 
-            if (event.key === "Enter") {
+            if (
+                event.key === "Enter" &&
+                !event.shiftKey
+            ) {
 
                 event.preventDefault();
 
                 sendMessage();
-
             }
 
         }
+    );
+
+
+    /* =====================================================
+       INPUT STATE
+    ===================================================== */
+
+    input.addEventListener(
+        "input",
+        function () {
+
+            send.disabled =
+                isSending ||
+                input.value.trim().length === 0;
+
+        }
+    );
+
+
+    /* =====================================================
+       INITIAL SEND STATE
+    ===================================================== */
+
+    send.disabled = true;
+
+
+    /* =====================================================
+       INITIAL ARIA STATE
+    ===================================================== */
+
+    toggle.setAttribute(
+        "aria-expanded",
+        "false"
     );
 
 });

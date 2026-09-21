@@ -9,9 +9,8 @@
     <button
         id="ww-chatbot-toggle"
         type="button"
-        aria-label="Open Wastewater Assistant"
-    >
-        
+        aria-label="Open Juno AI"    >
+       <img src="{{ url_for('static', filename='images/juno-ai.png') }}" alt="Juno AI">
     </button>
 
 
@@ -27,12 +26,12 @@
             <div class="ww-chatbot-title">
 
                 <div class="ww-chatbot-avatar">
-                    
+                <img src="{{ url_for('static', filename='images/juno-ai.png') }}" alt="Juno AI">
                 </div>
 
                 <div>
-                    <strong>Wastewater Assistant</strong>
-                    <span>AI-powered support</span>
+                <strong>Juno AI</strong>                    
+                <span>AI-powered support</span>
                 </div>
 
             </div>
@@ -48,14 +47,14 @@
         </div>
 
 
-        <!-- Messages -->
+                <!-- Messages -->
         <div id="ww-chatbot-messages">
 
             <div class="ww-chat-message ww-chat-bot">
 
                 <div class="ww-chat-bubble">
-                    Hello! <br><br>
-                    I'm your Wastewater Assistant.
+                    Hello! 👋
+                    I'm Juno, your JalSetu AI assistant.
                     I can help you with STPs, orders,
                     routing, demand and tanker information.
                 </div>
@@ -70,8 +69,8 @@
             id="ww-chatbot-typing"
             class="ww-chatbot-typing-hidden"
         >
-            Assistant is typing...
-        </div>
+        Juno is typing...        
+    </div>
 
 
         <!-- Input -->
@@ -89,7 +88,7 @@
                 type="button"
                 aria-label="Send message"
             >
-                
+                ➤
             </button>
 
         </div>

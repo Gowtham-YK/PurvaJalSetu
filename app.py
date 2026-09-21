@@ -272,7 +272,7 @@ ORDERS_FILE = os.path.join(DATABASE_DIR, "orders.csv")
 # TANKER OFFER / REQUEST TIMEOUT SETTINGS
 # =========================================================
 REQUEST_TIMEOUT_MINUTES = 30
-TANKER_OFFER_TIMEOUT_MINUTES = 1
+TANKER_OFFER_TIMEOUT_MINUTES = 10
 ROLE_HOME_ENDPOINT = {
     "admin": "admin_dashboard",
     "demand": "demand",
@@ -971,6 +971,27 @@ PRICING_FILE = os.path.join(
     "stp_pricing.csv"
 )
 
+# Keep compatibility with the project copy that stores pricing in database/.
+# The data/ file remains the primary file, while missing records can be
+# recovered from database/stp_pricing.csv.
+DATABASE_PRICING_FILE = os.path.join(
+    DATABASE_DIR,
+    "stp_pricing.csv"
+)
+
+PRICING_FIELDS = [
+    "stp_id",
+    "base_price_per_kld",
+    "peak_incentive",
+    "off_peak_incentive",
+    "peak_start",
+    "peak_end",
+    "off_peak_start",
+    "off_peak_end",
+    "sustainability_credit",
+    "reliability_bonus"
+]
+
 STP_TRANSFERS_FILE = os.path.join(
     DATABASE_DIR,
     "stp_transfers.csv"
@@ -1237,14 +1258,8 @@ def load_stps():
         return data.get("stps", [])
 
 def save_stps(stps):
-
-    with open(STP_FILE, "r", encoding="utf-8") as f:
-        data = json.load(f)
-
-    data["stps"] = stps
-
-    with open(STP_FILE, "w", encoding="utf-8") as f:
-        json.dump(data, f, indent=4)
+    with open(STP_FILE, "w") as f:
+        json.dump({"stps": stps}, f, indent=4)
 
 def auto_reset_capacity():
     """Release STP capacity for accepted orders exactly 24 hours after acceptance."""
@@ -1601,8 +1616,7 @@ def signup():
                     signup_error="Please enter your Tanker Operator ID."
                 )
 
-            matched_tanker = None
-
+            tanker_exists = False
             if os.path.exists(TANKER_REGISTRATIONS_FILE):
                 try:
                     with open(
@@ -1612,43 +1626,17 @@ def signup():
                         encoding="utf-8"
                     ) as f:
                         reader = csv.DictReader(f)
-
-                        for row in reader:
-                            registered_operator_id = str(
-                                row.get("operator_id") or ""
-                            ).strip()
-
-                            if registered_operator_id.lower() == tanker_operator_id.lower():
-                                matched_tanker = row
-                                break
-
+                        tanker_exists = any(
+                            str(row.get("operator_id") or "").strip().lower() == tanker_operator_id.lower()
+                            for row in reader
+                        )
                 except Exception as e:
-                    print("Tanker operator validation failed:", e)
+                    print("Tanker operator ID validation failed:", e)
 
-            if matched_tanker is None:
+            if not tanker_exists:
                 return render_template(
                     "signup.html",
-                    signup_error="Invalid Tanker Operator ID."
-                )
-
-            verification_status = str(
-                matched_tanker.get("verification_status") or ""
-            ).strip().lower()
-
-            if verification_status != "approved":
-                return render_template(
-                    "signup.html",
-                    signup_error="This tanker registration has not been approved yet."
-                )
-
-            registered_phone = str(
-                matched_tanker.get("phone") or ""
-            ).strip()
-
-            if registered_phone != mobile:
-                return render_template(
-                    "signup.html",
-                    signup_error="Mobile number does not match the registered tanker operator."
+                    signup_error="Invalid Tanker Operator ID. Please enter a registered operator ID."
                 )
 
         if password != confirm_password:
@@ -2415,60 +2403,43 @@ def update_tanker_status(operator_id, status):
     if status not in ["approved", "rejected"]:
         return redirect("/admin")
 
-    # Make sure the tanker registration file exists
-    if not os.path.exists(TANKER_REGISTRATIONS_FILE):
-        return redirect("/admin")
-
     rows = []
 
-    # Read all existing tanker registrations
-    with open(
-        TANKER_REGISTRATIONS_FILE,
-        "r",
-        newline="",
-        encoding="utf-8"
-    ) as f:
+    if os.path.exists(TANKER_REGISTRATIONS_FILE):
 
-        reader = csv.DictReader(f)
-        fieldnames = reader.fieldnames
-        rows = list(reader)
+        with open(
+            TANKER_REGISTRATIONS_FILE,
+            "r",
+            newline="",
+            encoding="utf-8"
+        ) as f:
 
-    # If the CSV is empty or damaged
-    if not fieldnames:
-        return redirect("/admin")
+            reader = csv.DictReader(f)
+            fieldnames = reader.fieldnames
+            rows = list(reader)
 
-    operator_found = False
+        # Update the matching operator
+        for operator in rows:
 
-    # Update the selected tanker operator
-    for operator in rows:
+            if operator.get("operator_id") == operator_id:
+                operator["verification_status"] = status
+                break
 
-        if operator.get("operator_id") == operator_id:
+        # Save updated CSV
+        with open(
+            TANKER_REGISTRATIONS_FILE,
+            "w",
+            newline="",
+            encoding="utf-8"
+        ) as f:
 
-            operator["verification_status"] = status
+            writer = csv.DictWriter(
+                f,
+                fieldnames=fieldnames
+            )
 
-            operator_found = True
-
-            break
-
-    # If operator ID does not exist
-    if not operator_found:
-        return redirect("/admin")
-
-    # Save the entire CSV again
-    with open(
-        TANKER_REGISTRATIONS_FILE,
-        "w",
-        newline="",
-        encoding="utf-8"
-    ) as f:
-
-        writer = csv.DictWriter(
-            f,
-            fieldnames=fieldnames
-        )
-
-        writer.writeheader()
-        writer.writerows(rows)
+            writer.writeheader()
+            writer.writerows(rows)
 
     return redirect("/admin")
 
@@ -2641,45 +2612,102 @@ def api_search_place():
         print("Using LIVE coordinates:", lat, lon)
 
     elif place and place != "Using Live Location":
+
+        place = str(place).strip()
+
         search_queries = [
             f"{place}, Bengaluru, Karnataka, India",
             f"{place}, Bangalore, Karnataka, India",
             f"{place}, Karnataka, India",
+            f"{place}, India",
         ]
 
         geo_data = []
 
+        headers = {
+            "User-Agent": "PurvaJalSetu/1.0 (wastewater management application)",
+            "Accept": "application/json"
+        }
+
         for search_place in search_queries:
-            geo_url = (
-                "https://nominatim.openstreetmap.org/search"
-                f"?format=json&limit=1&q="
-                f"{requests.utils.quote(search_place)}"
-            )
 
             try:
+
                 response = requests.get(
-                    geo_url,
-                    headers={"User-Agent": "wastewater-app"},
-                    timeout=8
+                    "https://nominatim.openstreetmap.org/search",
+                    params={
+                        "format": "jsonv2",
+                        "q": search_place,
+                        "limit": 1,
+                        "countrycodes": "in",
+                        "addressdetails": 1
+                    },
+                    headers=headers,
+                    timeout=10
+                )
+
+                print(
+                    "Location search:",
+                    search_place,
+                    "Status:",
+                    response.status_code
                 )
 
                 if response.ok:
-                    geo_data = response.json()
 
-                if geo_data:
-                    break
+                    try:
+                        result = response.json()
+                    except ValueError:
+                        print(
+                            "Nominatim returned invalid JSON:",
+                            response.text[:300]
+                        )
+                        result = []
 
-            except Exception as e:
-                print("Location search failed:", e)
+                    if result:
+                        geo_data = result
+                        break
+
+                else:
+                    print(
+                        "Nominatim request failed:",
+                        response.status_code,
+                        response.text[:300]
+                    )
+
+            except requests.RequestException as e:
+
+                print(
+                    "Location search request failed:",
+                    search_place,
+                    e
+                )
 
         if not geo_data:
             return jsonify({
-                "error": f"Unable to find location: {place}"
+                "error": (
+                    f"Unable to find location: {place}. "
+                    "Please enter a more specific Bengaluru location."
+                )
             }), 404
 
-        lat = float(geo_data[0]["lat"])
-        lon = float(geo_data[0]["lon"])
+        try:
+
+            lat = float(geo_data[0]["lat"])
+            lon = float(geo_data[0]["lon"])
+
+        except (KeyError, TypeError, ValueError):
+
+            return jsonify({
+                "error": f"Invalid coordinates returned for location: {place}"
+            }), 404
+
         location_name = place
+
+        print(
+            f"Location resolved: {place} -> "
+            f"{lat}, {lon}"
+        )
 
     else:
         return jsonify({"error": "No location provided"}), 400
@@ -3969,13 +3997,27 @@ def supply():
 
                     demands.append(mapped_row)
 
+    # Load pricing on the server as well as through the browser API.
+    # This keeps the Pricing & Incentives card populated even when the
+    # browser fetch is blocked/interrupted or the pricing file was missing.
+    pricing_data = None
+    if selected_stp:
+        try:
+            pricing_data = ensure_stp_pricing_record(
+                selected_stp.get("stp_id")
+            )
+        except Exception as e:
+            print("STP PRICING PAGE LOAD ERROR:", repr(e))
+            pricing_data = None
+
     return render_template(
     "supply.html",
     stps=stps,
     selected_stp=selected_stp,
     demands=demands,
     prediction=prediction,
-    weekly_forecast=weekly_forecast
+    weekly_forecast=weekly_forecast,
+    pricing_data=pricing_data
     )
 
 @app.route("/update_capacity", methods=["POST"])
@@ -4311,9 +4353,7 @@ def tanker_dashboard():
         session.clear()
         return redirect(url_for("login"))
 
-    operator = get_tanker_operator_by_id(
-        current_operator_id
-    )
+    operator = get_logged_in_tanker_operator()
 
     if operator is None:
         session.clear()
@@ -4322,6 +4362,26 @@ def tanker_dashboard():
             "login.html",
             login_error="Your tanker operator registration could not be found."
         )
+
+    # Use the exact operator ID stored in tanker_registrations.csv.
+    # Supabase metadata may contain different casing/spacing, while
+    # orders.csv stores the registered operator ID.
+    registered_operator_id = str(
+        operator.get("operator_id") or ""
+    ).strip()
+
+    if registered_operator_id:
+        current_operator_id = registered_operator_id
+        session["tanker_operator_id"] = registered_operator_id
+
+    # Repair any accepted demand order that is waiting without a
+    # current tanker offer before building the dashboard list.
+    # This does not bypass eligibility rules; it simply re-runs the
+    # existing nearest eligible-operator selection.
+    try:
+        process_expired_order_offers()
+    except Exception as e:
+        print("TANKER DASHBOARD OFFER REPAIR ERROR:", e)
 
     # =========================================================
     # OPERATOR-SPECIFIC DASHBOARD DATA
@@ -4382,12 +4442,12 @@ def tanker_dashboard():
 
                 is_current_offer = (
                     status == "Accepted"
-                    and offered_operator_id == current_operator_id
+                    and offered_operator_id.lower() == current_operator_id.lower()
                 )
 
                 is_current_assignment = (
                     status in {"Accepted", "Out for Delivery"}
-                    and assigned_operator_id == current_operator_id
+                    and assigned_operator_id.lower() == current_operator_id.lower()
                 )
 
                 if not (
@@ -4430,6 +4490,18 @@ def tanker_dashboard():
                     row["delivery_lon"] = 0
 
                 row["request_type"] = "demand"
+
+                # Older offers may have been created before
+                # tanker_request_status was introduced. If this
+                # is the active offer for the logged-in operator,
+                # expose it as Pending so the Accept / Reject
+                # controls are rendered.
+                if (
+                    is_current_offer
+                    and str(row.get("tanker_request_status") or "").strip().lower()
+                    not in {"pending", "accepted"}
+                ):
+                    row["tanker_request_status"] = "Pending"
 
                 orders.append(row)
 
@@ -4715,20 +4787,41 @@ def respond_to_tanker_request():
                 }), 400
 
             offered_operator_id = str(row.get("offered_operator_id") or "").strip()
-            current_operator_id = str(session.get("tanker_operator_id") or "").strip()
 
-            if offered_operator_id and offered_operator_id != current_operator_id:
+            # Resolve the canonical registered operator before checking
+            # the offer. This also repairs older accounts whose Supabase
+            # metadata contains a stale tanker_operator_id.
+            operator = get_logged_in_tanker_operator()
+            if operator is None:
+                return jsonify({
+                    "success": False,
+                    "message": "Tanker operator registration not found."
+                }), 403
+
+            current_operator_id = canonical_tanker_operator_id(operator)
+
+            if offered_operator_id and not tanker_operator_ids_match(
+                offered_operator_id,
+                current_operator_id
+            ):
                 return jsonify({
                     "success": False,
                     "message": "This delivery request is assigned to another tanker operator."
                 }), 403
 
+            # Keep the canonical ID in the Flask session so the dashboard
+            # and subsequent Accept/Reject requests use the same identity.
+            session["tanker_operator_id"] = current_operator_id
+
             row["tanker_request_status"] = new_request_status
 
             if action == "accept":
                 row["assigned_operator_id"] = current_operator_id
-                operator = next((op for op in load_tanker_operators() if str(op.get("operator_id") or "").strip() == current_operator_id), None)
-                row["assigned_operator_name"] = str((operator or {}).get("operator_name") or session.get("tanker_operator_name") or "").strip()
+                row["assigned_operator_name"] = str(
+                    operator.get("operator_name")
+                    or session.get("tanker_operator_name")
+                    or ""
+                ).strip()
                 row["assigned_at"] = datetime.now().isoformat()
                 row["offer_status"] = "Accepted"
             else:
@@ -5161,18 +5254,123 @@ def ensure_stp_transfers_file():
                 for field in STP_TRANSFER_FIELDS
             })
 
-def load_stp_pricing():
-    if not os.path.exists(PRICING_FILE):
+def _read_pricing_file(path):
+    if not os.path.exists(path) or os.path.getsize(path) == 0:
         return []
 
-    with open(
-        PRICING_FILE,
-        "r",
-        newline="",
-        encoding="utf-8"
-    ) as file:
+    try:
+        with open(
+            path,
+            "r",
+            newline="",
+            encoding="utf-8-sig"
+        ) as file:
+            return list(csv.DictReader(file))
+    except (OSError, csv.Error) as e:
+        print("PRICING FILE READ ERROR:", path, repr(e))
+        return []
 
-        return list(csv.DictReader(file))
+
+def _normalise_pricing_row(row):
+    return {
+        field: str(row.get(field, "") or "").strip()
+        for field in PRICING_FIELDS
+    }
+
+
+def _write_pricing_files(rows):
+    """Write the canonical pricing records to both project pricing locations."""
+    clean_rows = [
+        {field: row.get(field, "") for field in PRICING_FIELDS}
+        for row in rows
+    ]
+
+    for path in (PRICING_FILE, DATABASE_PRICING_FILE):
+        try:
+            os.makedirs(os.path.dirname(path), exist_ok=True)
+            with open(
+                path,
+                "w",
+                newline="",
+                encoding="utf-8"
+            ) as file:
+                writer = csv.DictWriter(
+                    file,
+                    fieldnames=PRICING_FIELDS
+                )
+                writer.writeheader()
+                writer.writerows(clean_rows)
+        except OSError as e:
+            print("PRICING FILE WRITE ERROR:", path, repr(e))
+
+
+def _default_pricing_row(stp_id):
+    """Create a safe editable record when an STP has no pricing row yet."""
+    return {
+        "stp_id": str(stp_id or "").strip(),
+        "base_price_per_kld": "0",
+        "peak_incentive": "0",
+        "off_peak_incentive": "0",
+        "peak_start": "",
+        "peak_end": "",
+        "off_peak_start": "",
+        "off_peak_end": "",
+        "sustainability_credit": "0",
+        "reliability_bonus": "0"
+    }
+
+
+def load_stp_pricing():
+    """Load pricing while supporting both data/ and database/ project copies."""
+    primary = [
+        _normalise_pricing_row(row)
+        for row in _read_pricing_file(PRICING_FILE)
+    ]
+
+    fallback = [
+        _normalise_pricing_row(row)
+        for row in _read_pricing_file(DATABASE_PRICING_FILE)
+    ]
+
+    merged = {}
+
+    # The data/ copy is authoritative when the same STP exists in both.
+    for row in fallback:
+        stp_id = row.get("stp_id", "")
+        if stp_id:
+            merged[stp_id] = row
+
+    for row in primary:
+        stp_id = row.get("stp_id", "")
+        if stp_id:
+            merged[stp_id] = row
+
+    return list(merged.values())
+
+
+def ensure_stp_pricing_record(stp_id):
+    """Return an STP pricing row, creating an editable row when missing."""
+    stp_id = str(stp_id or "").strip()
+    if not stp_id:
+        return None
+
+    pricing = load_stp_pricing()
+
+    for row in pricing:
+        if str(row.get("stp_id") or "").strip() == stp_id:
+            return row
+
+    row = _default_pricing_row(stp_id)
+    pricing.append(row)
+    _write_pricing_files(pricing)
+    return row
+
+
+def _pricing_number(value):
+    try:
+        return float(value)
+    except (TypeError, ValueError):
+        return 0.0
 
 @app.route("/stp/register", methods=["GET", "POST"])
 def stp_register():
@@ -6588,7 +6786,7 @@ def chatbot():
         if fuzzy_intent == "greeting" or text in greetings:            
             return jsonify({
                 "reply": (
-                    "Hello! 👋 I'm Juno, your JalSetu AI assistant.\n"
+                    "Hello! 👋 I'm your Wastewater Assistant.\n\n"
                     "I can help you with STPs, orders, routing, "
                     "demand, predictions and tanker information."
                 )
@@ -6886,11 +7084,9 @@ def chatbot():
         # ---------------------------------------------------------
         # SMART STP RECOMMENDATION
         # ---------------------------------------------------------
-        recommendation_query = (
-            fuzzy_intent in {"stp_recommendation", "stp_capacity_query"}
-            or any(
-                phrase in text
-                for phrase in (
+        recommendation_query = any(
+            phrase in text
+            for phrase in (
                 "which stp should i choose",
                 "which stp should i select",
                 "which stp is best",
@@ -6904,7 +7100,6 @@ def chatbot():
                 "need an stp",
                 "which stp can provide",
                 "where can i get",
-                )
             )
         )
 
@@ -7590,53 +7785,44 @@ def chatbot():
 @app.route("/api/stp_pricing/<stp_id>")
 def get_stp_pricing(stp_id):
 
-    pricing = load_stp_pricing()
+    row = ensure_stp_pricing_record(stp_id)
 
-    for row in pricing:
-
-        if str(row["stp_id"]).strip() == str(stp_id).strip():
-
-            return jsonify({
-                "success": True,
-                "pricing": {
-                    "base_price_per_kld":
-                        float(row["base_price_per_kld"]),
-
-                    "peak_incentive":
-                        float(row["peak_incentive"]),
-
-                    "off_peak_incentive":
-                        float(row["off_peak_incentive"]),
-
-                    "peak_start":
-                        row["peak_start"],
-
-                    "peak_end":
-                        row["peak_end"],
-
-                    "off_peak_start":
-                        row["off_peak_start"],
-
-                    "off_peak_end":
-                        row["off_peak_end"],
-
-                    "sustainability_credit":
-                        float(row["sustainability_credit"]),
-
-                    "reliability_bonus":
-                        float(row["reliability_bonus"])
-                }
-            })
+    if row is None:
+        return jsonify({
+            "success": False,
+            "message": "STP ID is required"
+        }), 400
 
     return jsonify({
-        "success": False,
-        "message": "Pricing not found"
-    }), 404
+        "success": True,
+        "pricing": {
+            "base_price_per_kld": _pricing_number(
+                row.get("base_price_per_kld")
+            ),
+            "peak_incentive": _pricing_number(
+                row.get("peak_incentive")
+            ),
+            "off_peak_incentive": _pricing_number(
+                row.get("off_peak_incentive")
+            ),
+            "peak_start": row.get("peak_start", ""),
+            "peak_end": row.get("peak_end", ""),
+            "off_peak_start": row.get("off_peak_start", ""),
+            "off_peak_end": row.get("off_peak_end", ""),
+            "sustainability_credit": _pricing_number(
+                row.get("sustainability_credit")
+            ),
+            "reliability_bonus": _pricing_number(
+                row.get("reliability_bonus")
+            )
+        }
+    })
+
 
 @app.route("/api/update_pricing", methods=["POST"])
 def update_pricing():
 
-    data = request.get_json()
+    data = request.get_json(silent=True) or {}
 
     if not data:
         return jsonify({
@@ -7644,7 +7830,7 @@ def update_pricing():
             "message": "No pricing data received"
         }), 400
 
-    stp_id = data.get("stp_id")
+    stp_id = str(data.get("stp_id") or "").strip()
 
     if not stp_id:
         return jsonify({
@@ -7653,16 +7839,13 @@ def update_pricing():
         }), 400
 
     try:
-        base_price = float(data["base_price_per_kld"])
-        peak = float(data["peak_incentive"])
-        off_peak = float(data["off_peak_incentive"])
-        sustainability = float(data["sustainability_credit"])
-        reliability = float(data["reliability_bonus"])
+        base_price = float(data.get("base_price_per_kld"))
+        peak = float(data.get("peak_incentive"))
+        off_peak = float(data.get("off_peak_incentive"))
+        sustainability = float(data.get("sustainability_credit"))
+        reliability = float(data.get("reliability_bonus"))
 
-        if base_price < 0:
-            raise ValueError
-
-        if peak < 0 or off_peak < 0:
+        if base_price < 0 or peak < 0 or off_peak < 0:
             raise ValueError
 
         if not 0 <= sustainability <= 100:
@@ -7671,74 +7854,63 @@ def update_pricing():
         if not 0 <= reliability <= 100:
             raise ValueError
 
-    except (ValueError, TypeError, KeyError):
-
+    except (ValueError, TypeError):
         return jsonify({
             "success": False,
             "message": "Invalid pricing values"
         }), 400
 
-    pricing = load_stp_pricing()
-    found = False
-
-    for row in pricing:
-
-        if str(row["stp_id"]).strip() == str(stp_id).strip():
-
-            row["base_price_per_kld"] = base_price
-            row["peak_incentive"] = peak
-            row["off_peak_incentive"] = off_peak
-
-            row["peak_start"] = data.get("peak_start", "")
-            row["peak_end"] = data.get("peak_end", "")
-
-            row["off_peak_start"] = data.get("off_peak_start", "")
-            row["off_peak_end"] = data.get("off_peak_end", "")
-
-            row["sustainability_credit"] = sustainability
-            row["reliability_bonus"] = reliability
-
-            found = True
-            break
-
-    if not found:
-
+    # Create the record automatically if the STP was registered before
+    # pricing support was added or if one of the two pricing files was empty.
+    row = ensure_stp_pricing_record(stp_id)
+    if row is None:
         return jsonify({
             "success": False,
-            "message": "STP pricing record not found"
-        }), 404
+            "message": "Unable to create STP pricing record"
+        }), 500
 
-    fieldnames = [
-        "stp_id",
-        "base_price_per_kld",
-        "peak_incentive",
-        "off_peak_incentive",
-        "peak_start",
-        "peak_end",
-        "off_peak_start",
-        "off_peak_end",
-        "sustainability_credit",
-        "reliability_bonus"
-    ]
+    row["base_price_per_kld"] = base_price
+    row["peak_incentive"] = peak
+    row["off_peak_incentive"] = off_peak
+    row["peak_start"] = str(data.get("peak_start") or "").strip()
+    row["peak_end"] = str(data.get("peak_end") or "").strip()
+    row["off_peak_start"] = str(
+        data.get("off_peak_start") or ""
+    ).strip()
+    row["off_peak_end"] = str(
+        data.get("off_peak_end") or ""
+    ).strip()
+    row["sustainability_credit"] = sustainability
+    row["reliability_bonus"] = reliability
 
-    with open(
-        PRICING_FILE,
-        "w",
-        newline="",
-        encoding="utf-8"
-    ) as f:
+    pricing = load_stp_pricing()
+    replaced = False
 
-        writer = csv.DictWriter(
-            f,
-            fieldnames=fieldnames
-        )
+    for index, existing in enumerate(pricing):
+        if str(existing.get("stp_id") or "").strip() == stp_id:
+            pricing[index] = row
+            replaced = True
+            break
 
-        writer.writeheader()
-        writer.writerows(pricing)
+    if not replaced:
+        pricing.append(row)
+
+    _write_pricing_files(pricing)
 
     return jsonify({
         "success": True,
-        "message": "Pricing updated successfully"
+        "message": "Pricing updated successfully",
+        "pricing": {
+            "base_price_per_kld": base_price,
+            "peak_incentive": peak,
+            "off_peak_incentive": off_peak,
+            "peak_start": row["peak_start"],
+            "peak_end": row["peak_end"],
+            "off_peak_start": row["off_peak_start"],
+            "off_peak_end": row["off_peak_end"],
+            "sustainability_credit": sustainability,
+            "reliability_bonus": reliability
+        }
     })
 
 @app.route(
@@ -7784,6 +7956,71 @@ def get_tanker_operator_by_id(operator_id):
             return operator
 
     return None
+
+
+def get_logged_in_tanker_operator():
+    """
+    Resolve the logged-in tanker operator to the canonical registration
+    record. Older Supabase accounts can have a stale/missing tanker
+    operator ID in user metadata, so prefer the authenticated email/phone
+    when it identifies a registration, then fall back to the stored ID.
+    """
+
+    session_operator_id = str(
+        session.get("tanker_operator_id") or ""
+    ).strip()
+
+    session_email = str(
+        session.get("user_email") or ""
+    ).strip().lower()
+
+    session_phone = str(
+        session.get("user_phone") or ""
+    ).strip()
+
+    operators = load_tanker_operators()
+
+    # Authenticated email/phone is tied to the operator registration and
+    # is more reliable than stale Supabase metadata for older accounts.
+    if session_email or session_phone:
+        for candidate in operators:
+            candidate_email = str(
+                candidate.get("email") or ""
+            ).strip().lower()
+            candidate_phone = str(
+                candidate.get("phone") or ""
+            ).strip()
+
+            if session_email and candidate_email == session_email:
+                return candidate
+
+            if session_phone and candidate_phone == session_phone:
+                return candidate
+
+    # Preserve the existing operator-ID based login flow.
+    if session_operator_id:
+        for candidate in operators:
+            registered_id = str(
+                candidate.get("operator_id") or ""
+            ).strip()
+
+            if registered_id.casefold() == session_operator_id.casefold():
+                return candidate
+
+    return None
+
+def canonical_tanker_operator_id(operator):
+    return str(
+        (operator or {}).get("operator_id") or ""
+    ).strip()
+
+
+def tanker_operator_ids_match(left, right):
+    return (
+        str(left or "").strip().casefold()
+        == str(right or "").strip().casefold()
+        and bool(str(left or "").strip())
+    )
 
 
 def _offer_next_operator_for_order_unlocked(order_id):
@@ -7981,8 +8218,14 @@ def _offer_next_operator_for_order_unlocked(order_id):
 
 
     # -----------------------------------------------------
-    # FIND ELIGIBLE INDEPENDENT OPERATORS
+    # FIND ELIGIBLE TANKER OPERATORS
     # -----------------------------------------------------
+    # Demand orders do not carry a separate operator-type
+    # field in the existing orders schema. Try independent
+    # operators first (the existing behavior), then fall back
+    # to approved contracted operators if no independent
+    # operator is eligible. This prevents valid contracted
+    # tanker accounts from never receiving an order.
 
     candidates = (
         find_eligible_tanker_operators(
@@ -8011,6 +8254,19 @@ def _offer_next_operator_for_order_unlocked(order_id):
 
         )
     )
+
+    selected_operator_pool = "independent"
+
+    if not candidates:
+        candidates = find_eligible_tanker_operators(
+            pickup_latitude=pickup_latitude,
+            pickup_longitude=pickup_longitude,
+            quantity_kld=target_order.get("quantity_kld"),
+            water_type=target_order.get("water_type"),
+            operator_type="contracted",
+            excluded_operator_ids=attempted_operator_ids
+        )
+        selected_operator_pool = "contracted"
 
     print("\n================ STAGE 3 DEBUG ================")
 
@@ -8066,6 +8322,13 @@ def _offer_next_operator_for_order_unlocked(order_id):
     # -----------------------------------------------------
 
     if not candidates:
+
+        print(
+            "NO ELIGIBLE TANKER OPERATOR FOR ORDER:",
+            order_id,
+            "Check verification_status=approved, tanker capacity, "
+            "location, water type/service radius for independent operators."
+        )
 
         target_order[
             "offered_operator_id"
@@ -8138,6 +8401,14 @@ def _offer_next_operator_for_order_unlocked(order_id):
     target_order[
         "offer_status"
     ] = "Offered"
+
+    # The tanker dashboard uses this field to render the
+    # Accept / Reject controls. Older orders may not have it,
+    # so every newly-created offer must explicitly mark it
+    # Pending.
+    target_order[
+        "tanker_request_status"
+    ] = "Pending"
 
 
     # -----------------------------------------------------
@@ -8350,11 +8621,12 @@ def process_expired_order_offers():
                 row.get("offer_status") or ""
             ).strip().lower()
 
-            # Nothing currently offered.
-            if (
-                not offered_operator_id
-                or offer_status != "offered"
-            ):
+            # If an accepted order has no active tanker offer,
+            # retry the normal operator-selection flow. This makes
+            # the assignment self-healing when the first offer was
+            # not created or an operator became eligible later.
+            if not offered_operator_id or offer_status != "offered":
+                retry_order_ids.append(order_id)
                 continue
 
             # Offer is still alive.
@@ -9368,12 +9640,21 @@ def _accept_pickup_locked():
         return "Tanker operator identity missing", 403
 
 
-    operator = get_tanker_operator_by_id(
-        current_operator_id
-    )
+    # Resolve the registered operator using the same canonical
+    # identity logic used by the tanker dashboard. This allows the
+    # direct Accept Pickup button to work even when older Supabase
+    # metadata contains different casing or a stale operator ID.
+    operator = get_logged_in_tanker_operator()
 
     if operator is None:
         return "Tanker operator registration not found", 403
+
+    current_operator_id = canonical_tanker_operator_id(operator)
+
+    if not current_operator_id:
+        return "Tanker operator identity missing", 403
+
+    session["tanker_operator_id"] = current_operator_id
 
 
     updated_rows = []
@@ -9448,9 +9729,9 @@ def _accept_pickup_locked():
                 # WRONG OPERATOR
                 # -------------------------------------------------
 
-                if (
-                    offered_operator_id
-                    != current_operator_id
+                if not tanker_operator_ids_match(
+                    offered_operator_id,
+                    current_operator_id
                 ):
 
                     accept_error = (
@@ -9533,6 +9814,10 @@ def _accept_pickup_locked():
 
                 row[
                     "offer_status"
+                ] = "Accepted"
+
+                row[
+                    "tanker_request_status"
                 ] = "Accepted"
 
                 row[
@@ -9670,6 +9955,21 @@ def _reject_pickup_locked():
         return "Tanker operator identity missing", 403
 
 
+    # Resolve the registered operator so direct Reject Pickup uses
+    # the same canonical operator identity as the dashboard.
+    operator = get_logged_in_tanker_operator()
+
+    if operator is None:
+        return "Tanker operator registration not found", 403
+
+    current_operator_id = canonical_tanker_operator_id(operator)
+
+    if not current_operator_id:
+        return "Tanker operator identity missing", 403
+
+    session["tanker_operator_id"] = current_operator_id
+
+
     updated_rows = []
 
     target_order = None
@@ -9745,9 +10045,9 @@ def _reject_pickup_locked():
                 # WRONG OPERATOR
                 # =================================================
 
-                if (
-                    offered_operator_id
-                    != current_operator_id
+                if not tanker_operator_ids_match(
+                    offered_operator_id,
+                    current_operator_id
                 ):
 
                     reject_error = (
@@ -9812,6 +10112,10 @@ def _reject_pickup_locked():
 
                 row[
                     "offer_status"
+                ] = "Rejected"
+
+                row[
+                    "tanker_request_status"
                 ] = "Rejected"
 
                 row[
