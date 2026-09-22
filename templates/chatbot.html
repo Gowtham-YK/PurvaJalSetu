@@ -9,7 +9,9 @@
     <button
         id="ww-chatbot-toggle"
         type="button"
-        aria-label="Open Juno AI"    >
+        aria-label="Open Juno AI"
+        aria-expanded="false"
+    >
        <img src="{{ url_for('static', filename='images/juno-ai.png') }}" alt="Juno AI">
     </button>
 
@@ -18,6 +20,7 @@
     <div
         id="ww-chatbot-window"
         class="ww-chatbot-hidden"
+        aria-hidden="true"
     >
 
         <!-- Header -->

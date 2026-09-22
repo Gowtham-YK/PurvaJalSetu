@@ -124,8 +124,11 @@
 
 /* Hidden state */
 
-.ww-chatbot-hidden {
+.ww-chatbot-hidden,
+#ww-chatbot-window.ww-chatbot-hidden {
     display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
 }
 
 
@@ -1304,4 +1307,25 @@
         min-height: 44px !important;
         font-size: 28px !important;
     }
+}
+
+
+/* =========================================================
+   FINAL CHATBOT VISIBILITY STATE
+   The chatbot opens ONLY after the floating button is clicked.
+   This rule intentionally overrides mobile display:flex rules.
+========================================================= */
+#ww-chatbot-window.ww-chatbot-hidden,
+#ww-chatbot-window[aria-hidden="true"],
+#ww-chatbot-window[hidden] {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+
+#ww-chatbot-window[aria-hidden="false"] {
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
 }

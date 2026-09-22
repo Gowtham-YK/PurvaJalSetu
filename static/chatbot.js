@@ -1,9 +1,40 @@
+/* Ensure browser back/forward cache restoration never reopens the chatbot. */
+window.addEventListener("pageshow", function () {
+    const restoredChatWindow = document.getElementById("ww-chatbot-window");
+    const restoredChatToggle = document.getElementById("ww-chatbot-toggle");
+
+    if (restoredChatWindow) {
+        restoredChatWindow.classList.add("ww-chatbot-hidden");
+        restoredChatWindow.setAttribute("aria-hidden", "true");
+        restoredChatWindow.hidden = true;
+    }
+
+    if (restoredChatToggle) {
+        restoredChatToggle.setAttribute("aria-expanded", "false");
+    }
+});
+
 /* =========================================================
    JALSETU WASTEWATER ASSISTANT
    Professional Chatbot Frontend
 ========================================================= */
 
 document.addEventListener("DOMContentLoaded", function () {
+
+    /* Always start every fresh page load with the chatbot closed.
+       This also protects against mobile browser page-state restoration. */
+    const initialChatWindow = document.getElementById("ww-chatbot-window");
+    const initialChatToggle = document.getElementById("ww-chatbot-toggle");
+
+    if (initialChatWindow) {
+        initialChatWindow.classList.add("ww-chatbot-hidden");
+        initialChatWindow.setAttribute("aria-hidden", "true");
+        initialChatWindow.hidden = true;
+    }
+
+    if (initialChatToggle) {
+        initialChatToggle.setAttribute("aria-expanded", "false");
+    }
 
     /* =====================================================
        GET USER LOCATION
@@ -131,6 +162,13 @@ document.addEventListener("DOMContentLoaded", function () {
             "ww-chatbot-hidden"
         );
 
+        windowElement.setAttribute(
+            "aria-hidden",
+            "false"
+        );
+
+        windowElement.hidden = false;
+
         toggle.setAttribute(
             "aria-expanded",
             "true"
@@ -153,6 +191,13 @@ document.addEventListener("DOMContentLoaded", function () {
         windowElement.classList.add(
             "ww-chatbot-hidden"
         );
+
+        windowElement.setAttribute(
+            "aria-hidden",
+            "true"
+        );
+
+        windowElement.hidden = true;
 
         toggle.setAttribute(
             "aria-expanded",
