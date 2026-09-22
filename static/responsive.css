@@ -545,3 +545,108 @@ button,input,select,textarea { max-width:100%; }
         touch-action: none !important;
     }
 }
+
+/* Consistent PURVA - JalSetu brand image sizing across all pages. */
+.brand img[src*="title-icon.png"],
+.mobile-navbar-brand img[src*="title-icon.png"] {
+  width: 34px !important;
+  height: 34px !important;
+  min-width: 34px !important;
+  min-height: 34px !important;
+  max-width: 34px !important;
+  max-height: 34px !important;
+  object-fit: contain !important;
+  display: block !important;
+  flex: 0 0 34px !important;
+}
+
+/* Index page: softly curved corners for the brand image. */
+body:has(.public-topbar) .brand img[src*="title-icon.png"],
+body:has(.public-topbar) .mobile-navbar-brand img[src*="title-icon.png"] {
+  border-radius: 10px !important;
+}
+
+/* ==========================================================
+   PURVA - JalSetu BRAND IMAGE CONSISTENCY
+   Keep the index.html branding as the visual reference.
+   Sidebar brand holders on other pages are completely filled
+   by the same title-icon image; index.html keeps curved corners.
+   ========================================================== */
+
+/* Other sidebar pages: fill the complete brand-image holder. */
+.sidebar .brand .brand-icon {
+  width: 42px !important;
+  height: 42px !important;
+  min-width: 42px !important;
+  min-height: 42px !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 12px !important;
+}
+
+.sidebar .brand .brand-icon img {
+  width: 42px !important;
+  height: 42px !important;
+  min-width: 42px !important;
+  min-height: 42px !important;
+  max-width: 42px !important;
+  max-height: 42px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: block !important;
+  object-fit: cover !important;
+  border-radius: 12px !important;
+}
+
+/* Tracking pages: keep their compact top-navbar brand, but use the
+   same complete image treatment without the old empty holder space. */
+.navbar .brand-icon {
+  width: 34px !important;
+  height: 34px !important;
+  min-width: 34px !important;
+  min-height: 34px !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  border-radius: 10px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.navbar .brand-icon img {
+  width: 34px !important;
+  height: 34px !important;
+  min-width: 34px !important;
+  min-height: 34px !important;
+  max-width: 34px !important;
+  max-height: 34px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: block !important;
+  object-fit: cover !important;
+  border-radius: 10px !important;
+}
+
+/* Index.html: same image size, with softly curved corners. */
+body:has(.public-topbar) .brand > img[src*="title-icon.png"],
+body:has(.public-topbar) .mobile-navbar-brand img[src*="title-icon.png"],
+body:has(.public-topbar) .mobile-brand img[src*="title-icon.png"] {
+  width: 34px !important;
+  height: 34px !important;
+  min-width: 34px !important;
+  min-height: 34px !important;
+  max-width: 34px !important;
+  max-height: 34px !important;
+  display: block !important;
+  object-fit: cover !important;
+  border-radius: 10px !important;
+  overflow: hidden !important;
+}
+
+/* Simple brand-image headers used by registration/status/invoice pages. */
+body:not(:has(.public-topbar)) img[src*="title-icon.png"] {
+  border-radius: 10px;
+}
