@@ -220,14 +220,14 @@ body{font-family:'Inter',Arial,sans-serif;background:#f5f8fc;color:#172033;min-h
     <div id="results"></div>
 
     <div id="emptyState" class="empty-state" style="display:none;">
-        <div class="empty-icon"></div>
+        
         <h3>No orders yet</h3>
         <p>You haven't placed any orders.</p>
         <a class="order-now" href="/demand"> Order Water Now</a>
     </div>
 
     <div id="notFound" class="not-found">
-        <div class="not-found-icon"></div>
+        
         <h3>No orders found</h3>
         <p>There are no orders associated with this account yet.</p>
     </div>
@@ -336,7 +336,7 @@ function createOrderCard(order){
                 <div class="route-bottom">
                     <span> Distance: <strong class="route-distance">--</strong></span>
                     <span> ETA: <strong class="route-eta">--</strong></span>
-                    <span>🚛 Status: <strong class="route-live-status">${escapeHTML(info.label)}</strong></span>
+                    <span> Status: <strong class="route-live-status">${escapeHTML(info.label)}</strong></span>
                 </div>
             </div>
         </div>
@@ -537,7 +537,7 @@ async function loadMyOrders(showError){
                     if(headerStatus){
                         headerStatus.textContent=
                             currentStatus==="out for delivery"
-                                ?"🚛 Tanker is on the way"
+                                ?" Tanker is on the way"
                                 :currentStatus==="delivered"
                                     ?" Delivered"
                                     :"Route ready";
@@ -601,7 +601,7 @@ let activeRemainingLine=null;
 const tankerMapIcon=L.divIcon({
     className:"tanker-moving-marker",
     html:`<div class="tanker-vehicle">
-        <span class="tanker-truck">🚛</span>
+        <span class="tanker-truck">🚚</span>
     </div>`,
     iconSize:[42,42],
     iconAnchor:[21,21],
@@ -1099,7 +1099,7 @@ async function openOrderRoute(orderId,card){
             ).trim().toLowerCase().replace(/_/g," ");
 
         if(status==="out for delivery"){
-            statusEl.textContent="🚛 Tanker is on the way";
+            statusEl.textContent=" Tanker is on the way";
             animateTanker(pts,order,card);
             startLiveGpsTracking(order,card,pts);
 
@@ -1291,7 +1291,7 @@ function animateTanker(pts,order,card){
     const headerStatus=card.querySelector(".route-header-status");
 
     if(statusText)statusText.textContent="Out for Delivery";
-    if(headerStatus)headerStatus.textContent="🚛 Tanker is on the way";
+    if(headerStatus)headerStatus.textContent=" Tanker is on the way";
 
     let lastTimestamp=null;
     let routeProgress=0;

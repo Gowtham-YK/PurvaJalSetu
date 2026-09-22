@@ -1512,9 +1512,7 @@
                 href="/tanker"
             >
 
-                <div class="nav-icon">
-                    ⌂
-                </div>
+                <div class="nav-icon">⌂</div>
 
                 <span>
                     Dashboard
@@ -1525,9 +1523,7 @@
 
             <a href="#orders">
 
-                <div class="nav-icon">
-                    ▣
-                </div>
+                <div class="nav-icon">▤</div>
 
                 <span>
                     Available Orders
@@ -1538,9 +1534,7 @@
 
             <a href="/trip_history">
 
-                <div class="nav-icon">
-                    🚚
-                </div>
+                <div class="nav-icon">▱</div>
 
                 <span>
                     My Trips
@@ -1551,9 +1545,7 @@
 
             <a href="#orders">
 
-                <div class="nav-icon">
-                    ▤
-                </div>
+                <div class="nav-icon">•</div>
 
                 <span>
                     Assignments
@@ -1564,9 +1556,7 @@
 
             <a href="#map-section">
 
-                <div class="nav-icon">
-                    ◉
-                </div>
+                <div class="nav-icon">◎</div>
 
                 <span>
                     Tracking
@@ -1577,9 +1567,7 @@
 
             <a href="{{ url_for('tanker_reports') }}">
 
-                <div class="nav-icon">
-                    ▥
-                </div>
+                <div class="nav-icon">▥</div>
 
                 <span>
                     Reports
@@ -1604,9 +1592,7 @@
 
             <a href="#">
 
-                <div class="nav-icon">
-                    ♙
-                </div>
+                <div class="nav-icon">◉</div>
 
                 <span>
                     Profile
@@ -1617,9 +1603,7 @@
 
             <a href="#">
 
-                <div class="nav-icon">
-                    ⚙
-                </div>
+                <div class="nav-icon">⚙︎</div>
 
                 <span>
                     Settings
@@ -1630,9 +1614,7 @@
 
             <a href="{{ url_for('login') }}">
 
-                <div class="nav-icon">
-                    ↪
-                </div>
+                <div class="nav-icon">↪</div>
 
                 <span>
                     Logout
@@ -1715,7 +1697,7 @@
             <div class="welcome">
 
                 <h1>
-                    Welcome, {{ operator.operator_name or "Tanker Operator" }} 👋
+                    Welcome, {{ operator.operator_name or "Tanker Operator" }} 
                 </h1>
 
                 <p>
@@ -1733,7 +1715,7 @@
 
                 <div class="notification">
 
-                    🔔
+                    
 
                     <div class="notification-badge">
                         {{ orders|length }}
@@ -1784,9 +1766,7 @@
 
                 <div class="stat-card">
 
-                    <div class="stat-icon blue">
-                        📋
-                    </div>
+                    
 
 
                     <div class="stat-info">
@@ -1809,9 +1789,7 @@
 
                 <div class="stat-card">
 
-                    <div class="stat-icon green">
-                        🚚
-                    </div>
+                    
 
                     <div class="stat-info">
 
@@ -1837,9 +1815,7 @@
 
                 <div class="stat-card">
 
-                    <div class="stat-icon purple">
-                        🚛
-                    </div>
+                    
 
                     <div class="stat-info">
 
@@ -1865,9 +1841,7 @@
 
                 <div class="stat-card">
 
-                    <div class="stat-icon orange">
-                        ✓
-                    </div>
+                    
 
                     <div class="stat-info">
 
@@ -1986,7 +1960,7 @@
                                     Delivery Location
 
                                     <strong>
-                                        📍 {{ order.location }}
+                                         {{ order.location }}
                                     </strong>
 
                                 </div>
@@ -2044,7 +2018,7 @@
                                 )"
                             >
 
-                                🗺 View Route
+                                 View Route
 
                             </button>
 
@@ -2081,7 +2055,7 @@
                                                 tanker-request-accept
                                             "
                                         >
-                                            ✓ Accept
+                                             Accept
                                         </button>
 
                                     </form>
@@ -2108,7 +2082,7 @@
                                                 tanker-request-reject
                                             "
                                         >
-                                            ✕ Reject
+                                             Reject
                                         </button>
 
                                     </form>
@@ -2134,7 +2108,7 @@
                                                 type="submit"
                                                 class="pickup-button"
                                             >
-                                                ✓ Mark as Picked Up
+                                                 Mark as Picked Up
                                             </button>
                                         </form>
 
@@ -2165,7 +2139,7 @@
                                                     tanker-request-accept
                                                 "
                                             >
-                                                ✓ Accept
+                                                 Accept
                                             </button>
 
                                         </form>
@@ -2192,7 +2166,7 @@
                                                     tanker-request-reject
                                                 "
                                             >
-                                                ✕ Reject
+                                                 Reject
                                             </button>
 
                                         </form>
@@ -2224,7 +2198,7 @@
                                         type="submit"
                                         class="pickup-button"
                                     >
-                                        ✓ Mark Delivered
+                                         Mark Delivered
                                     </button>
 
                                 </form>
@@ -2248,7 +2222,7 @@
                                         type="submit"
                                         class="pickup-button"
                                     >
-                                        ✓ Mark as Delivered
+                                         Mark as Delivered
                                     </button>
                                 </form>
 
@@ -2278,7 +2252,7 @@
                                     margin-bottom:10px;
                                 "
                             >
-                                📋
+                                
                             </div>
 
 
@@ -3049,7 +3023,7 @@ async function respondToTankerRequest(orderId, action) {
             });
 
             onMessage(messaging, function(payload) {
-                const title = payload.notification?.title || "🚨 New Water Delivery Request";
+                const title = payload.notification?.title || " New Water Delivery Request";
                 const body = payload.notification?.body || "A new tanker delivery request is waiting for approval.";
                 alert(title + "\n\n" + body);
                 refreshTankerNotifications();

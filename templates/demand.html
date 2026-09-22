@@ -1478,7 +1478,7 @@ body {
 
     {% if payment_success %}
 <div id="paymentSuccessMessage" class="payment-success-message">
-    <div class="payment-success-icon">✓</div>
+    <div class="payment-success-icon"></div>
 
     <div>
         <strong>Payment Successful!</strong>
@@ -1533,7 +1533,7 @@ body {
 
         <a href="/demand" class="active">
 
-            <div class="nav-icon">🏠</div>
+            <div class="nav-icon">⌂</div>
 
             <span>
                 Dashboard
@@ -1544,7 +1544,7 @@ body {
 
         <a href="#search">
 
-            <div class="nav-icon">💧</div>
+            <div class="nav-icon">⌕</div>
 
             <span>
                 Find Water
@@ -1555,7 +1555,7 @@ body {
 
         <a href="/track">
 
-            <div class="nav-icon">🚚</div>
+            <div class="nav-icon">▤</div>
 
             <span>
                 My Orders
@@ -1566,7 +1566,7 @@ body {
 
         <a href="#map-section">
 
-            <div class="nav-icon">🗺</div>
+            <div class="nav-icon">◎</div>
 
             <span>
                 Routing Map
@@ -1577,7 +1577,7 @@ body {
 
         <a href="#">
 
-            <div class="nav-icon">📊</div>
+            <div class="nav-icon">▥</div>
 
             <span>
                 Reports
@@ -1602,7 +1602,7 @@ body {
 
         <a href="#">
 
-            <div class="nav-icon">👤</div>
+            <div class="nav-icon">◉</div>
 
             <span>
                 Profile
@@ -1613,7 +1613,7 @@ body {
 
         <a href="#">
 
-            <div class="nav-icon">⚙️</div>
+            <div class="nav-icon">⚙︎</div>
 
             <span>
                 Settings
@@ -1714,7 +1714,7 @@ body {
 
         <div class="notification">
 
-            🔔            
+                        
 
             <div class="notification-badge">
                 0
@@ -1761,9 +1761,7 @@ body {
 
     <div class="stat-card">
 
-        <div class="stat-icon blue">
-           🏭 
-        </div>
+        
 
         <div class="stat-info">
 
@@ -1782,9 +1780,7 @@ body {
 
     <div class="stat-card">
 
-        <div class="stat-icon green">
-           💧 
-        </div>
+        
 
         <div class="stat-info">
 
@@ -1803,12 +1799,10 @@ body {
 
     <div class="stat-card">
 
-        <div class="stat-icon purple">
-            
-        </div>
+        
 
         <div class="stat-info">
-                📍
+                
             <p>
                 Smart Routing
             </p>
@@ -1824,9 +1818,7 @@ body {
 
     <div class="stat-card">
 
-        <div class="stat-icon orange">
-            🚚
-        </div>
+        
 
         <div class="stat-info">
 
@@ -1937,7 +1929,7 @@ body {
             class="search-btn"
             onclick="searchLocation()"
         >
-            🔍 Search
+             Search
         </button>
 
 
@@ -1945,7 +1937,7 @@ body {
             class="live-btn"
             onclick="useLiveLocation()"
         >
-            📍 Live Location
+             Live Location
         </button>
 
 
@@ -1989,9 +1981,7 @@ body {
     <div class="result-item">
 
 
-        <div class="result-icon">
-            🏭
-        </div>
+        
 
 
         <div class="result-content">
@@ -2013,9 +2003,7 @@ body {
     <div class="result-item">
 
 
-        <div class="result-icon">
-            💧
-        </div>
+        
 
 
         <div class="result-content">
@@ -2037,9 +2025,7 @@ body {
     <div class="result-item">
 
 
-        <div class="result-icon">
-            📍
-        </div>
+        
 
 
         <div class="result-content">
@@ -2061,9 +2047,7 @@ body {
     <div class="result-item">
 
 
-        <div class="result-icon">
-            🛣️
-        </div>
+        
 
 
         <div class="result-content">
@@ -2514,13 +2498,13 @@ routeData.routes.forEach((route, index) => {
     const durationMin = ((distanceKm / 28) * 60).toFixed(1);
 
     if(index === 0){
-        summaryText += `🔵 Fastest: ${distanceKm} km (${durationMin} min)`;
+        summaryText += ` Fastest: ${distanceKm} km (${durationMin} min)`;
     }
     else{
         const extraTime =
             ((route.duration - routeData.routes[0].duration) / 60).toFixed(1);
 
-        summaryText += ` | 🔹 Alternate: ${distanceKm} km (${durationMin} min, +${extraTime} min)`;
+        summaryText += ` |  Alternate: ${distanceKm} km (${durationMin} min, +${extraTime} min)`;
     }
 });
 
@@ -2703,7 +2687,7 @@ function goToTracking(orderId){
             </li>
 
             <li>
-                🚛 Out for Delivery → Tanker on the way
+                 Out for Delivery → Tanker on the way
             </li>
 
         </ul>
@@ -2791,10 +2775,10 @@ function goToTracking(orderId){
     </div>
 
     <a id="wwAccountProfile" class="ww-account-item"
-       href="/profile" style="display:none;">👤 My Profile</a>
+       href="/profile" style="display:none;"> My Profile</a>
 
     <a id="wwAccountLogin" class="ww-account-item ww-account-login"
-       href="/login" style="display:none;">🔐 Login</a>
+       href="/login" style="display:none;"> Login</a>
 
     <a id="wwAccountLogout" class="ww-account-item ww-account-logout"
        href="/logout" style="display:none;">↪ Logout</a>
@@ -2818,7 +2802,7 @@ function goToTracking(orderId){
     function loggedOut(){
         const circle=avatar.querySelector(".profile-circle");
         const profileName=avatar.querySelector("span:not(:last-child)");
-        if(circle) circle.textContent="👤";
+        if(circle) circle.textContent="";
         if(profileName) profileName.textContent="Guest";
         avatar.title="Login";
         if(nameEl) nameEl.textContent="Guest";
@@ -2831,7 +2815,7 @@ function goToTracking(orderId){
     function loggedIn(user){
         const circle=avatar.querySelector(".profile-circle");
         const profileName=avatar.querySelector("span:not(:last-child)");
-        if(circle) circle.textContent=user.initials || "👤";
+        if(circle) circle.textContent=user.initials || "";
         if(profileName) profileName.textContent=user.name || "User";
         avatar.title=user.name || "My Profile";
 

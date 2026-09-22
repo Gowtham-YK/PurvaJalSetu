@@ -152,14 +152,14 @@ body{font-family:'Inter',Arial,sans-serif;background:#f5f8fc;color:#172033;min-h
     <div id="results"></div>
 
     <div id="emptyState" class="empty-state" style="display:none;">
-        <div class="empty-icon"></div>
+        
         <h3>No STP orders yet</h3>
         <p>There are no orders assigned to the selected STP.</p>
         <a class="order-now" href="/supply">← Back to STP Dashboard</a>
     </div>
 
     <div id="notFound" class="not-found">
-        <div class="not-found-icon"></div>
+        
         <h3>No orders found</h3>
         <p>There are no orders assigned to this STP yet.</p>
     </div>
@@ -267,7 +267,7 @@ function createOrderCard(order){
                 <div class="route-bottom">
                     <span> Distance: <strong class="route-distance">--</strong></span>
                     <span> ETA: <strong class="route-eta">--</strong></span>
-                    <span>🚛 Status: <strong class="route-live-status">${escapeHTML(info.label)}</strong></span>
+                    <span> Status: <strong class="route-live-status">${escapeHTML(info.label)}</strong></span>
                 </div>
             </div>
         </div>
@@ -325,7 +325,7 @@ let activeRouteKey=null;
 
 const tankerMapIcon=L.divIcon({
     className:"tanker-map-icon",
-    html:"<span>🚛</span>",
+    html:"<span></span>",
     iconSize:[34,34],
     iconAnchor:[17,17]
 });
@@ -487,7 +487,7 @@ async function openOrderRoute(orderId,card){
         card.querySelector(".route-distance").textContent=(route.distance/1000).toFixed(2)+" km";
         card.querySelector(".route-eta").textContent=Math.max(1,Math.round(route.duration/60))+" min";
         const st=String(order.status||"").toLowerCase().replace(/_/g," ");
-        statusEl.textContent=st==="out for delivery"?"🚛 Tanker is on the way":st==="delivered"?" Delivered":"Route ready";
+        statusEl.textContent=st==="out for delivery"?" Tanker is on the way":st==="delivered"?" Delivered":"Route ready";
         if(st==="out for delivery")animateTanker(pts,order,card);
         else if(st==="delivered")activeTruckMarker=L.marker(pts[pts.length-1],{icon:tankerMapIcon,zIndexOffset:1000}).addTo(map);
     }catch(e){

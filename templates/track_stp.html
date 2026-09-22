@@ -189,18 +189,18 @@ body{font-family:'Inter',Arial,sans-serif;background:#f5f8fc;color:#172033;min-h
         <a href="{{ url_for('track_stp') }}" class="active">
             ▣ STP Order Tracking
         </a>
-        <a href="/profile">♙ Profile</a>
+        <a href="/profile"> Profile</a>
     </div>
     <div class="account-area">
         <div class="notification" title="Notifications">🔔<span id="orderBadge" class="notification-badge">0</span></div>
         <button id="profileButton" class="profile-button" type="button">
-            <span id="avatar" class="avatar">👤</span>
+            <span id="avatar" class="avatar"></span>
             <span class="profile-text"><strong id="profileName">User</strong><span id="profileRole">Buyer</span></span>
             <span class="chevron">⌄</span>
         </button>
         <div id="accountMenu" class="account-menu">
             <div class="head"><strong id="menuName">User</strong><span id="menuRole">Buyer</span></div>
-            <a href="/profile">👤 My Profile</a>
+            <a href="/profile"> My Profile</a>
             <a href="/logout" class="logout">↪ Logout</a>
         </div>
     </div>
@@ -222,19 +222,19 @@ body{font-family:'Inter',Arial,sans-serif;background:#f5f8fc;color:#172033;min-h
     <div id="results"></div>
 
     <div id="emptyState" class="empty-state" style="display:none;">
-        <div class="empty-icon">👜</div>
+        
         <h3>No orders yet</h3>
         <p>You haven't placed any orders.</p>
         <a
             class="order-now"
             href="{{ url_for('stp_dashboard') }}"
         >
-            🏭 Back to STP Dashboard
+             Back to STP Dashboard
         </a>
     </div>
 
     <div id="notFound" class="not-found">
-        <div class="not-found-icon">📦</div>
+        
         <h3>No orders found</h3>
         <p>There are no orders associated with this account yet.</p>
     </div>
@@ -260,8 +260,8 @@ function formatMoney(quantity){
 
 function paymentLabel(payment){
     const p=(payment||"").toLowerCase();
-    if(p.includes("paid")) return '<span class="payment-paid">✓ Paid</span>';
-    if(p.includes("cash") || p.includes("cod")) return '<span class="payment-cod">✓ COD</span>';
+    if(p.includes("paid")) return '<span class="payment-paid"> Paid</span>';
+    if(p.includes("cash") || p.includes("cod")) return '<span class="payment-cod"> COD</span>';
     return '<span style="color:#7b8799">Pending</span>';
 }
 
@@ -276,7 +276,7 @@ function statusInfo(raw){
 
 function buildProgress(order, info){
     if(info.step===-1){
-        return '<div style="width:100%;text-align:center;padding:12px;background:#fff5f5;border-radius:8px;color:#dc2626;font-size:10px;font-weight:700">❌ This order has been rejected.</div>';
+        return '<div style="width:100%;text-align:center;padding:12px;background:#fff5f5;border-radius:8px;color:#dc2626;font-size:10px;font-weight:700"> This order has been rejected.</div>';
     }
 
     const steps=["Order Placed","STP Accepted","Out for Delivery","Delivered"];
@@ -286,7 +286,7 @@ function buildProgress(order, info){
         const current=index===info.step && info.step!==3;
         const acceptedCurrent=current && index===1;
         html += `<div class="progress-item ${completed?'completed':''} ${current?'current':''} ${acceptedCurrent?'accepted':''}">
-            <div class="circle">${completed?'✓':index+1}</div>
+            <div class="circle">${completed?'':index+1}</div>
             <div class="progress-label">${step}</div>
             <div class="progress-time">${index===0 ? escapeHTML(order.created_at||"") : (current ? "Current" : (index<info.step || info.step===3 ? "Completed" : "Pending"))}</div>
         </div>`;
@@ -356,9 +356,9 @@ function createOrderCard(order){
                 </div>
                 <div class="route-map"></div>
                 <div class="route-bottom">
-                    <span>🛣 Distance: <strong class="route-distance">--</strong></span>
+                    <span> Distance: <strong class="route-distance">--</strong></span>
                     <span>⏱ ETA: <strong class="route-eta">--</strong></span>
-                    <span>🚛 Status: <strong class="route-live-status">${escapeHTML(info.label)}</strong></span>
+                    <span> Status: <strong class="route-live-status">${escapeHTML(info.label)}</strong></span>
                 </div>
             </div>
         </div>
@@ -441,9 +441,9 @@ async function loadMyOrders(showError){
                     if(headerStatus){
                         headerStatus.textContent=
                             currentStatus==="out for delivery"
-                                ?"🚛 Tanker is on the way"
+                                ?" Tanker is on the way"
                                 :currentStatus==="delivered"
-                                    ?"✓ Delivered"
+                                    ?" Delivered"
                                     :"Route ready";
                     }
                 }
@@ -502,7 +502,7 @@ let activeRouteKey=null;
 const tankerMapIcon=L.divIcon({
     className:"tanker-moving-marker",
     html:`<div class="tanker-vehicle">
-        <span class="tanker-truck">🚛</span>
+        <span class="tanker-truck"></span>
     </div>`,
     iconSize:[42,42],
     iconAnchor:[21,21],
@@ -804,11 +804,11 @@ async function openOrderRoute(orderId,card){
             ).trim().toLowerCase().replace(/_/g," ");
 
         if(status==="out for delivery"){
-            statusEl.textContent="🚛 Tanker is on the way";
+            statusEl.textContent=" Tanker is on the way";
             animateTanker(pts,order,card);
 
         }else if(status==="delivered"){
-            statusEl.textContent="✓ Delivered";
+            statusEl.textContent=" Delivered";
 
             activeTruckMarker=L.marker(
                 pts[pts.length-1],
@@ -824,10 +824,10 @@ async function openOrderRoute(orderId,card){
             card.dataset.localTrackingComplete="true";
             syncDeliveredCard(card,{...order,status:"Delivered"});
         }else if(status==="accepted"){
-            statusEl.textContent="✓ STP accepted • Waiting for pickup";
+            statusEl.textContent=" STP accepted • Waiting for pickup";
 
         }else if(status==="rejected"){
-            statusEl.textContent="✕ Order rejected";
+            statusEl.textContent=" Order rejected";
 
         }else{
             statusEl.textContent="Order placed • Waiting for STP acceptance";
@@ -880,7 +880,7 @@ function syncDeliveredCard(card,order){
     if(liveStatus)liveStatus.textContent="Delivered";
 
     const headerStatus=card.querySelector(".route-header-status");
-    if(headerStatus)headerStatus.textContent="✓ Delivered";
+    if(headerStatus)headerStatus.textContent=" Delivered";
 
     card.dataset.localDelivered="true";
     card.dataset.localTrackingComplete="true";
@@ -940,7 +940,7 @@ async function completeDelivery(order,card){
     const statusText=card.querySelector(".route-live-status");
     const headerStatus=card.querySelector(".route-header-status");
     if(statusText)statusText.textContent="Delivered";
-    if(headerStatus)headerStatus.textContent="✓ Delivered";
+    if(headerStatus)headerStatus.textContent=" Delivered";
 
     syncDeliveredCard(card,{...order,status:"Delivered"});
 
@@ -988,7 +988,7 @@ function animateTanker(pts,order,card){
     const headerStatus=card.querySelector(".route-header-status");
 
     if(statusText)statusText.textContent="Out for Delivery";
-    if(headerStatus)headerStatus.textContent="🚛 Tanker is on the way";
+    if(headerStatus)headerStatus.textContent=" Tanker is on the way";
 
     let lastTimestamp=null;
     let routeProgress=0;

@@ -1630,17 +1630,17 @@
             </a>
 
             <a href="/supply">
-                <div class="nav-icon">▤</div>
+                <div class="nav-icon">•</div>
                 <span>Demand Requests</span>
             </a>
 
             <a href="/tanker">
-                <div class="nav-icon">▰</div>
+                <div class="nav-icon">•</div>
                 <span>Assignments</span>
             </a>
 
             <a href="{{ url_for('track_stp') }}">
-                <div class="nav-icon">🚚</div>
+                <div class="nav-icon">◎</div>
                 <span>Tanker Tracking</span>
             </a>
 
@@ -1660,12 +1660,12 @@
         <div class="nav-links">
 
             <a href="/supply">
-                <div class="nav-icon">♙</div>
+                <div class="nav-icon">◉</div>
                 <span>Profile</span>
             </a>
 
             <a href="/supply">
-                <div class="nav-icon">⚙</div>
+                <div class="nav-icon">⚙︎</div>
                 <span>Settings</span>
             </a>
 
@@ -1736,7 +1736,7 @@
             <div class="welcome">
 
                 <h1>
-                    Welcome back, Operator 👋
+                    Welcome back, Operator 
                 </h1>
 
                 <p>
@@ -1750,7 +1750,7 @@
 
                 <div class="notification">
 
-                    🔔
+                    
 
                     <div class="notification-badge">
                         3
@@ -1907,9 +1907,7 @@
 
                 <div class="request-water-content">
 
-                    <div class="request-water-icon">
-                        💧
-                    </div>
+                    
 
                     <div>
                         <h2>Request Water</h2>
@@ -1924,7 +1922,7 @@
                     href="/request-water?stp_id={{ selected_stp.stp_id }}"
                     class="request-water-btn"
                 >
-                    💧 Request Water
+                     Request Water
                 </a>
 
             </div>
@@ -1939,9 +1937,7 @@
 
                 <div class="stat-card">
 
-                    <div class="stat-icon blue">
-                        🏭
-                    </div>
+                    
 
                     <div class="stat-info">
 
@@ -1960,9 +1956,7 @@
 
                 <div class="stat-card">
 
-                    <div class="stat-icon green">
-                        💧
-                    </div>
+                    
 
                     <div class="stat-info">
 
@@ -1987,9 +1981,7 @@
 
                 <div class="stat-card">
 
-                    <div class="stat-icon purple">
-                        📋
-                    </div>
+                    
 
                     <div class="stat-info">
 
@@ -2008,9 +2000,7 @@
 
                 <div class="stat-card">
 
-                    <div class="stat-icon orange">
-                        🚚
-                    </div>
+                    
 
                     <div class="stat-info">
 
@@ -2073,9 +2063,7 @@
 
                             <div class="pricing-header-left">
 
-                                <div class="pricing-icon">
-                                    💎
-                                </div>
+                                <div class="pricing-icon">₹</div>
 
                                 <div>
                                     <h2>Pricing & Incentives</h2>
@@ -2191,21 +2179,21 @@
                         <div class="stp-advantages">
 
                             <div class="stp-advantages-title">
-                                ✓ Your STP Advantages
+                                 Your STP Advantages
                             </div>
 
                             <div class="advantage-list">
 
                                 <span class="advantage">
-                                    ✓ {{ selected_stp.quality_grade }} quality
+                                     {{ selected_stp.quality_grade }} quality
                                 </span>
 
                                 <span class="advantage">
-                                    ✓ {{ selected_stp.available_capacity_mld }} MLD available
+                                     {{ selected_stp.available_capacity_mld }} MLD available
                                 </span>
 
                                 <span class="advantage">
-                                    ✓ {{ selected_stp.technology }}
+                                     {{ selected_stp.technology }}
                                 </span>
 
                             </div>
@@ -2219,9 +2207,7 @@
 
                             <div class="bonus-item">
 
-                                <div class="bonus-item-icon">
-                                    🌱
-                                </div>
+                                <div class="bonus-item-icon">⭐</div>
 
                                 <div>
 
@@ -2337,7 +2323,7 @@
 
                             <div class="demand-location">
 
-                                📍 {{ demand.site_name }}
+                                 {{ demand.site_name }}
 
                             </div>
 
@@ -2474,7 +2460,7 @@
 
                                 <div class="transfer-id">
 
-                                    🔄 {{ transfer.transfer_id }}
+                                     {{ transfer.transfer_id }}
 
                                 </div>
 
@@ -2667,7 +2653,7 @@
 
                                 {% if transfer_status == "accepted" %}
 
-                                    ✓ Request accepted
+                                     Request accepted
 
                                 {% elif transfer_status == "rejected" %}
 
@@ -2690,9 +2676,7 @@
 
                     <div class="no-transfer-requests">
 
-                        <div class="no-transfer-icon">
-                            💧
-                        </div>
+                        <div class="no-transfer-icon"></div>
 
                         <strong>
                             No water transfer requests
@@ -2743,7 +2727,7 @@
                     class="pricing-manage-btn"
                     onclick="openPricingModal()"
                 >
-                    💎 Manage Pricing
+                     Manage Pricing
                 </button>
 
             </div>
@@ -3606,10 +3590,10 @@
     </div>
 
     <a id="wwAccountProfile" class="ww-account-item"
-       href="/profile" style="display:none;">👤 My Profile</a>
+       href="/profile" style="display:none;"> My Profile</a>
 
     <a id="wwAccountLogin" class="ww-account-item ww-account-login"
-       href="/login" style="display:none;">🔐 Login</a>
+       href="/login" style="display:none;"> Login</a>
 
     <a id="wwAccountLogout" class="ww-account-item ww-account-logout"
        href="/logout" style="display:none;">↪ Logout</a>
@@ -3633,7 +3617,7 @@
     function loggedOut(){
         const circle=avatar.querySelector(".profile-circle");
         const profileName=avatar.querySelector("span:not(:last-child)");
-        if(circle) circle.textContent="👤";
+        if(circle) circle.textContent="";
         if(profileName) profileName.textContent="Guest";
         avatar.title="Login";
         if(nameEl) nameEl.textContent="Guest";
@@ -3646,7 +3630,7 @@
     function loggedIn(user){
         const circle=avatar.querySelector(".profile-circle");
         const profileName=avatar.querySelector("span:not(:last-child)");
-        if(circle) circle.textContent=user.initials || "👤";
+        if(circle) circle.textContent=user.initials || "";
         if(profileName) profileName.textContent=user.name || "User";
         avatar.title=user.name || "My Profile";
 

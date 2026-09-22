@@ -1411,7 +1411,7 @@
                 class="active"
             >
 
-                <div class="nav-icon">🏠</div>
+                <div class="nav-icon">⌂</div>
 
                 <span>
                     Dashboard
@@ -1422,7 +1422,7 @@
 
             <a href="#orders">
 
-                <div class="nav-icon">📋</div>
+                <div class="nav-icon">▤</div>
 
                 <span>
                     Available Orders
@@ -1433,7 +1433,7 @@
 
             <a href="#orders">
 
-                <div class="nav-icon">🧳</div>
+                <div class="nav-icon">▱</div>
 
                 <span>
                     My Trips
@@ -1444,7 +1444,7 @@
 
             <a href="#orders">
 
-                <div class="nav-icon">📑</div>
+                <div class="nav-icon">•</div>
 
                 <span>
                     Assignments
@@ -1455,7 +1455,7 @@
 
             <a href="#map-section">
 
-                <div class="nav-icon">📍</div>
+                <div class="nav-icon">◎</div>
 
                 <span>
                     Tracking
@@ -1466,7 +1466,7 @@
 
             <a href="#operations">
 
-                <div class="nav-icon">📊</div>
+                <div class="nav-icon">▥</div>
 
                 <span>
                     Reports
@@ -1491,7 +1491,7 @@
 
             <a href="#">
 
-                <div class="nav-icon">👤</div>
+                <div class="nav-icon">◉</div>
 
                 <span>
                     Profile
@@ -1502,7 +1502,7 @@
 
             <a href="#">
 
-                <div class="nav-icon">⚙️</div>
+                <div class="nav-icon">⚙︎</div>
 
                 <span>
                     Settings
@@ -1513,7 +1513,7 @@
 
             <a href="{{ url_for('login') }}">
 
-                <div class="nav-icon">🚪</div>
+                <div class="nav-icon">↪</div>
 
                 <span>
                     Logout
@@ -1592,7 +1592,7 @@
             <div class="welcome">
 
                 <h1>
-                    Welcome back, Tanker Operator 👋
+                    Welcome back, Tanker Operator 
                 </h1>
 
                 <p>
@@ -1607,7 +1607,7 @@
 
                 <div class="notification">
 
-                    🔔
+                    
 
                     <div class="notification-badge">
                         {{ orders|length }}
@@ -1658,9 +1658,7 @@
 
                 <div class="stat-card">
 
-                    <div class="stat-icon blue">
-                        📋
-                    </div>
+                    
 
 
                     <div class="stat-info">
@@ -1683,9 +1681,7 @@
 
                 <div class="stat-card">
 
-                    <div class="stat-icon green">
-                        💧
-                    </div>
+                    
 
 
                     <div class="stat-info">
@@ -1731,9 +1727,7 @@
 
                 <div class="stat-card">
 
-                    <div class="stat-icon purple">
-                        📍
-                    </div>
+                    
 
 
                     <div class="stat-info">
@@ -1756,9 +1750,7 @@
 
                 <div class="stat-card">
 
-                    <div class="stat-icon orange">
-                        🚚
-                    </div>
+                    
 
 
                     <div class="stat-info">
@@ -1880,7 +1872,7 @@
                                     Delivery Location
 
                                     <strong>
-                                        📍 {{ order.location }}
+                                         {{ order.location }}
                                     </strong>
 
                                 </div>
@@ -1937,7 +1929,7 @@
                                 )"
                             >
 
-                                🗺 View Route
+                                 View Route
 
                             </button>
 
@@ -1955,7 +1947,7 @@
                                     this
                                 )"
                             >
-                                🚛 Track Delivery
+                                 Track Delivery
                             </button>
 
                             <div class="tanker-tracking-panel">
@@ -1976,9 +1968,9 @@
                                 <div class="tanker-tracking-map"></div>
 
                                 <div class="tanker-tracking-bottom">
-                                    <span>🛣 Distance: <strong class="tanker-route-distance">--</strong></span>
+                                    <span> Distance: <strong class="tanker-route-distance">--</strong></span>
                                     <span>⏱ ETA: <strong class="tanker-route-eta">--</strong></span>
-                                    <span>🚛 Status: <strong class="tanker-route-live-status">{{ order.status|default("Pending") }}</strong></span>
+                                    <span> Status: <strong class="tanker-route-live-status">{{ order.status|default("Pending") }}</strong></span>
                                 </div>
                             </div>
 
@@ -1995,7 +1987,7 @@
                                     class="tanker-request-button tanker-request-accept"
                                     onclick="respondToTankerRequest('{{ order.order_id }}', 'accept')"
                                 >
-                                    ✓ Accept Request
+                                     Accept Request
                                 </button>
 
                                 <button
@@ -2003,7 +1995,7 @@
                                     class="tanker-request-button tanker-request-reject"
                                     onclick="respondToTankerRequest('{{ order.order_id }}', 'reject')"
                                 >
-                                    ✕ Reject
+                                     Reject
                                 </button>
 
                             </div>
@@ -2028,7 +2020,7 @@
                                     type="submit"
                                     class="pickup-button"
                                 >
-                                    ✓ Accept Pickup
+                                     Accept Pickup
                                 </button>
 
                             </form>
@@ -2059,7 +2051,7 @@
                                     margin-bottom:10px;
                                 "
                             >
-                                📋
+                                
                             </div>
 
 
@@ -2647,7 +2639,7 @@ let activeTankerAnimationFrame = null;
 
 const tankerDeliveryIcon = L.divIcon({
     className: "tanker-delivery-icon",
-    html: "<span>🚛</span>",
+    html: "<span></span>",
     iconSize: [42, 28],
     iconAnchor: [21, 14]
 });
@@ -2735,7 +2727,7 @@ function animateTankerDelivery(routePoints, statusElement, headerElement){
             );
 
             if(statusElement){
-                statusElement.textContent="🚛 Tanker reached destination";
+                statusElement.textContent=" Tanker reached destination";
             }
 
             if(headerElement){
@@ -2915,7 +2907,7 @@ async function openTankerDeliveryTracking(
             .replace(/_/g," ");
 
         if(status==="out for delivery"){
-            statusElement.textContent="🚛 Tanker is on the way";
+            statusElement.textContent=" Tanker is on the way";
             headerElement.textContent="Tanker is on the way";
             animateTankerDelivery(
                 routePoints,
@@ -2923,7 +2915,7 @@ async function openTankerDeliveryTracking(
                 headerElement
             );
         }else if(status==="delivered"){
-            statusElement.textContent="✓ Delivered";
+            statusElement.textContent=" Delivered";
             headerElement.textContent="Delivered";
 
             activeTankerTruckMarker=L.marker(
@@ -3060,7 +3052,7 @@ async function respondToTankerRequest(orderId, action) {
             });
 
             onMessage(messaging, function(payload) {
-                const title = payload.notification?.title || "🚨 New Water Delivery Request";
+                const title = payload.notification?.title || " New Water Delivery Request";
                 const body = payload.notification?.body || "A new tanker delivery request is waiting for approval.";
                 alert(title + "\n\n" + body);
                 refreshTankerNotifications();
