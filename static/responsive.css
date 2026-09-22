@@ -3,6 +3,8 @@ html { max-width:100%; overflow-x:hidden; }
 img,video,canvas,iframe { max-width:100%; }
 button,input,select,textarea { max-width:100%; }
 
+/* Mobile-only navigation elements stay hidden on desktop. */
+.mobile-navbar { display:none; }
 .mobile-sidebar-toggle { display:none; }
 .mobile-sidebar-backdrop { display:none; }
 
@@ -17,62 +19,92 @@ button,input,select,textarea { max-width:100%; }
 @media (max-width: 768px) {
     html,body { max-width:100%; overflow-x:hidden !important; }
 
-    /*
-     * Mobile navigation:
-     * The brand row stays visible at the top.
-     * Only the navigation links are hidden until the hamburger is pressed.
-     */
-    .sidebar {
+    /* =========================================================
+       MOBILE NAVBAR
+       Brand icon + brand title + hamburger remain visible.
+       ========================================================= */
+    .mobile-navbar {
         position:fixed !important;
         left:0 !important;
         right:0 !important;
         top:0 !important;
-        bottom:auto !important;
         width:100% !important;
-        min-width:0 !important;
-        height:auto !important;
+        height:64px !important;
         min-height:64px !important;
-        max-height:100vh !important;
         box-sizing:border-box !important;
-        z-index:10001 !important;
-        overflow:visible !important;
-        transform:none !important;
-        visibility:visible !important;
-        opacity:1 !important;
-        padding:0 !important;
-        transition:none !important;
-    }
-
-    /* Brand/header is always visible. */
-    .sidebar .brand {
         display:flex !important;
         align-items:center !important;
-        width:100% !important;
-        min-height:64px !important;
-        box-sizing:border-box !important;
         gap:10px !important;
-        padding:10px 14px !important;
+        padding:8px 12px !important;
         margin:0 !important;
+        background:#ffffff !important;
+        border-bottom:1px solid #e7edf5 !important;
+        z-index:10005 !important;
+        overflow:hidden !important;
     }
 
-    .sidebar .brand > img,
-    .sidebar .brand > .brand-icon {
+    .mobile-navbar-brand {
+        display:flex !important;
+        align-items:center !important;
+        gap:10px !important;
+        min-width:0 !important;
+        flex:1 1 auto !important;
+        overflow:hidden !important;
+    }
+
+    .mobile-navbar-brand > .brand-icon,
+    .mobile-navbar-brand > img {
         flex:0 0 auto !important;
     }
 
-    .sidebar .brand-text,
-    .sidebar .brand-title {
-        min-width:0 !important;
-        flex:1 1 auto !important;
+    .mobile-navbar-brand .brand-icon {
+        width:42px !important;
+        height:42px !important;
+        min-width:42px !important;
+        min-height:42px !important;
+        border-radius:12px !important;
+        display:flex !important;
+        align-items:center !important;
+        justify-content:center !important;
+        box-sizing:border-box !important;
     }
 
-    .sidebar .brand-text p,
-    .sidebar .brand-subtitle {
+    .mobile-navbar-brand > img {
+        width:42px !important;
+        height:42px !important;
+        min-width:42px !important;
+        min-height:42px !important;
+        object-fit:cover !important;
+        border-radius:8px !important;
+    }
+
+    .mobile-navbar-brand .brand-text {
+        min-width:0 !important;
+        flex:1 1 auto !important;
+        overflow:hidden !important;
+    }
+
+    .mobile-navbar-brand .brand-text h2,
+    .mobile-navbar-brand .brand-title {
+        display:block !important;
+        margin:0 !important;
+        padding:0 !important;
+        font-size:15px !important;
+        line-height:1.2 !important;
+        white-space:nowrap !important;
+        overflow:hidden !important;
+        text-overflow:ellipsis !important;
+    }
+
+    .mobile-navbar-brand .brand-text p,
+    .mobile-navbar-brand .brand-subtitle {
         display:none !important;
     }
 
-    /* Hamburger is directly beside the brand title/icon. */
-    .mobile-sidebar-toggle {
+    /* =========================================================
+       HAMBURGER BUTTON
+       ========================================================= */
+    .mobile-navbar .mobile-sidebar-toggle {
         display:flex !important;
         flex:0 0 44px !important;
         align-items:center !important;
@@ -83,45 +115,103 @@ button,input,select,textarea { max-width:100%; }
         height:44px !important;
         min-width:44px !important;
         min-height:44px !important;
-        margin-left:auto !important;
+        margin:0 !important;
         padding:8px !important;
         border:0 !important;
         border-radius:9px !important;
         background:transparent !important;
-        color:inherit !important;
+        color:#172033 !important;
         cursor:pointer !important;
-        z-index:10003 !important;
+        z-index:10006 !important;
         touch-action:manipulation !important;
         -webkit-tap-highlight-color:transparent !important;
     }
 
-    .mobile-sidebar-toggle span {
+    .mobile-navbar .mobile-sidebar-toggle span {
         display:block !important;
         width:25px !important;
         height:3px !important;
         min-height:3px !important;
+        flex:0 0 3px !important;
         border-radius:3px !important;
         background:currentColor !important;
+        transition:transform .22s ease,opacity .18s ease !important;
     }
 
-    .mobile-sidebar-toggle:focus-visible {
-        outline:2px solid currentColor !important;
+    /* Turn hamburger into a close icon while open. */
+    body.mobile-sidebar-open .mobile-sidebar-toggle span:nth-child(1) {
+        transform:translateY(8px) rotate(45deg) !important;
+    }
+    body.mobile-sidebar-open .mobile-sidebar-toggle span:nth-child(2) {
+        opacity:0 !important;
+    }
+    body.mobile-sidebar-open .mobile-sidebar-toggle span:nth-child(3) {
+        transform:translateY(-8px) rotate(-45deg) !important;
+    }
+
+    .mobile-navbar .mobile-sidebar-toggle:focus-visible {
+        outline:2px solid #1769e0 !important;
         outline-offset:2px !important;
     }
 
-    /* Closed state: only brand/icon/title/hamburger are visible. */
-    .sidebar .menu-title,
-    .sidebar .nav-links,
-    .sidebar .side-nav {
+    /* =========================================================
+       MOBILE SIDEBAR
+       Only links are inside this panel. Brand stays in navbar.
+       ========================================================= */
+    .sidebar {
+        position:fixed !important;
+        left:0 !important;
+        right:auto !important;
+        top:64px !important;
+        bottom:0 !important;
+        width:min(290px,84vw) !important;
+        min-width:0 !important;
+        height:calc(100vh - 64px) !important;
+        min-height:0 !important;
+        max-height:calc(100vh - 64px) !important;
+        box-sizing:border-box !important;
+        padding:12px 10px 18px !important;
+        margin:0 !important;
+        z-index:10004 !important;
+        overflow-x:hidden !important;
+        overflow-y:auto !important;
+        -webkit-overflow-scrolling:touch !important;
+        transform:translateX(-105%) !important;
+        visibility:hidden !important;
+        opacity:0 !important;
+        pointer-events:none !important;
+        transition:transform .28s ease,opacity .2s ease,visibility 0s linear .28s !important;
+        box-shadow:12px 0 30px rgba(0,0,0,.22) !important;
+    }
+
+    /* The old sidebar brand is hidden on mobile because it now lives in navbar. */
+    .sidebar > .brand {
         display:none !important;
     }
 
-    /* Open state: reveal the existing sidebar links below the brand row. */
+    .sidebar.mobile-sidebar-open,
+    body.mobile-sidebar-open .sidebar {
+        transform:translateX(0) !important;
+        visibility:visible !important;
+        opacity:1 !important;
+        pointer-events:auto !important;
+        transition:transform .28s ease,opacity .2s ease,visibility 0s linear 0s !important;
+    }
+
+    /* Closed: hide all sidebar navigation content. */
+    .sidebar .menu-title,
+    .sidebar .nav-links,
+    .sidebar .side-nav,
+    .sidebar .system-status {
+        display:none !important;
+    }
+
+    /* Open: show the existing sidebar links without changing their content. */
     .sidebar.mobile-sidebar-open .menu-title,
     body.mobile-sidebar-open .sidebar .menu-title {
         display:block !important;
-        margin:0 !important;
-        padding:10px 18px 6px !important;
+        margin-top:4px !important;
+        padding:8px 10px 6px !important;
     }
 
     .sidebar.mobile-sidebar-open .nav-links,
@@ -132,13 +222,17 @@ button,input,select,textarea { max-width:100%; }
         flex-direction:column !important;
         flex-wrap:nowrap !important;
         width:100% !important;
-        gap:4px !important;
-        max-height:calc(100vh - 64px) !important;
-        overflow-y:auto !important;
-        overflow-x:hidden !important;
-        padding:0 10px 12px !important;
+        gap:5px !important;
         box-sizing:border-box !important;
-        -webkit-overflow-scrolling:touch;
+        overflow:visible !important;
+        padding:0 0 8px !important;
+    }
+
+    .sidebar.mobile-sidebar-open .system-status,
+    body.mobile-sidebar-open .sidebar .system-status {
+        display:block !important;
+        max-width:100% !important;
+        box-sizing:border-box !important;
     }
 
     .sidebar .side-link,
@@ -146,20 +240,24 @@ button,input,select,textarea { max-width:100%; }
         display:flex !important;
         align-items:center !important;
         width:100% !important;
+        min-height:44px !important;
         box-sizing:border-box !important;
         white-space:nowrap !important;
         flex:0 0 auto !important;
     }
 
-    /* Dark backdrop appears only when the menu is open. */
+    /* Backdrop below the fixed navbar. */
     .mobile-sidebar-backdrop {
         display:block !important;
         position:fixed !important;
-        inset:0 !important;
+        left:0 !important;
+        right:0 !important;
+        top:64px !important;
+        bottom:0 !important;
         width:100vw !important;
-        height:100vh !important;
+        height:calc(100vh - 64px) !important;
         background:rgba(0,0,0,.55) !important;
-        z-index:10000 !important;
+        z-index:10003 !important;
         opacity:0 !important;
         visibility:hidden !important;
         pointer-events:none !important;
@@ -174,12 +272,25 @@ button,input,select,textarea { max-width:100%; }
         transition:opacity .25s ease,visibility 0s linear 0s !important;
     }
 
-    /* Keep page content below the fixed mobile brand bar. */
+    /* Page starts below the mobile navbar. */
     .main-content {
         margin-left:0 !important;
         width:100% !important;
         min-width:0 !important;
         padding-top:64px !important;
+        box-sizing:border-box !important;
+    }
+
+    /* Existing dashboard topbar stays below the new mobile navbar. */
+    .main-content > .topbar {
+        position:relative !important;
+        top:auto !important;
+        z-index:900 !important;
+    }
+
+    /* The public landing-page desktop top navigation is replaced by the mobile navbar. */
+    .main-content > .public-topbar {
+        display:none !important;
     }
 
     .topbar { height:auto !important; min-height:52px; padding:10px 14px !important; flex-wrap:wrap; gap:8px; }
@@ -211,13 +322,22 @@ button,input,select,textarea { max-width:100%; }
 }
 
 @media (max-width: 480px) {
-    .sidebar { width:100% !important; padding:0 !important; }
-    .sidebar .brand { padding:4px 5px 16px !important; }
+    .mobile-navbar { height:60px !important; min-height:60px !important; padding:6px 9px !important; }
+    .mobile-navbar-brand { gap:8px !important; }
+    .mobile-navbar-brand .brand-icon,
+    .mobile-navbar-brand > img { width:38px !important; height:38px !important; min-width:38px !important; min-height:38px !important; }
+    .mobile-navbar-brand .brand-text h2,
+    .mobile-navbar-brand .brand-title { font-size:14px !important; }
+    .mobile-navbar .mobile-sidebar-toggle { width:42px !important; height:42px !important; min-width:42px !important; flex-basis:42px !important; }
+    .mobile-navbar .mobile-sidebar-toggle span { width:23px !important; height:3px !important; }
+
+    .sidebar { top:60px !important; height:calc(100vh - 60px) !important; max-height:calc(100vh - 60px) !important; }
+    .mobile-sidebar-backdrop { top:60px !important; height:calc(100vh - 60px) !important; }
+    .main-content { padding-top:60px !important; }
+
     .brand { gap:8px !important; }
     .brand-text h2,.brand-title { font-size:15px !important; }
     .brand-icon { width:36px !important; height:36px !important; font-size:18px !important; flex:0 0 36px !important; }
-    .mobile-sidebar-toggle { width:42px !important; height:42px !important; min-width:42px !important; flex-basis:42px !important; }
-    .mobile-sidebar-toggle span { width:23px !important; height:3px !important; }
     .side-link,.nav-links a { padding:9px 10px !important; font-size:12px !important; }
     .topbar { padding:8px 10px !important; }
     .top-link { font-size:11px !important; }
@@ -244,5 +364,5 @@ button,input,select,textarea { max-width:100%; }
 }
 
 @media (min-width:769px) {
-    .mobile-sidebar-toggle,.mobile-sidebar-backdrop { display:none !important; }
+    .mobile-navbar,.mobile-sidebar-toggle,.mobile-sidebar-backdrop { display:none !important; }
 }
