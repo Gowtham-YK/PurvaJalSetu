@@ -172,58 +172,59 @@ document.addEventListener("DOMContentLoaded", function () {
         openChat
     );
 
-    close.addEventListener(
-        "click",
-        function (event) {
-            event.preventDefault();
-            event.stopPropagation();
-            closeChat();
-        },
-        true
+    /*
+       Use one dedicated close handler for mouse, pointer and touch
+       input.  Mobile browsers can sometimes suppress the synthetic
+       click after a touch gesture, so the close action is completed
+       on pointer/touch interaction itself.
+    */
+    function handleCloseControl(event) {
+
+        const target = event.target;
+        const closeButton =
+            target && target.closest
+                ? target.closest("#ww-chatbot-close")
+                : null;
+
+        if (!closeButton) {
+            return;
+        }
+
+        event.preventDefault();
+        event.stopPropagation();
+
+        if (typeof event.stopImmediatePropagation === "function") {
+            event.stopImmediatePropagation();
+        }
+
+        closeChat();
+    }
+
+    /* Capture early so page-level responsive/sidebar handlers cannot
+       intercept the close control. */
+    document.addEventListener(
+        "pointerdown",
+        handleCloseControl,
+        { capture: true, passive: false }
     );
 
-    /* Mobile browsers can deliver touch/pointer events differently.
-       Handle the close control explicitly so it always responds. */
-    close.addEventListener(
-        "touchend",
-        function (event) {
-            event.preventDefault();
-            event.stopPropagation();
-            closeChat();
-        },
-        { passive: false, capture: true }
+    document.addEventListener(
+        "touchstart",
+        handleCloseControl,
+        { capture: true, passive: false }
     );
 
-    close.addEventListener(
-        "pointerup",
-        function (event) {
-            if (event.pointerType === "touch") {
-                event.preventDefault();
-                event.stopPropagation();
-                closeChat();
-            }
-        },
-        true
-    );
-
-    /* Delegated fallback for pages where another responsive layer
-       intercepts the original button event. */
     document.addEventListener(
         "click",
-        function (event) {
-            const closeButton = event.target.closest("#ww-chatbot-close");
-            if (!closeButton) return;
-            event.preventDefault();
-            event.stopPropagation();
-            closeChat();
-        },
-        true
+        handleCloseControl,
+        { capture: true, passive: false }
     );
 
 
     /* =====================================================
        ESCAPE KEY
     ===================================================== */
+
 
     document.addEventListener(
         "keydown",

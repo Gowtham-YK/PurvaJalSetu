@@ -1264,3 +1264,44 @@
         cursor: pointer !important;
     }
 }
+
+
+/* =========================================================
+   FINAL MOBILE CLOSE BUTTON RELIABILITY
+   Keeps the X control as the topmost interactive element.
+========================================================= */
+#ww-chatbot-window #ww-chatbot-header #ww-chatbot-close {
+    position: relative !important;
+    z-index: 2147483647 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 40px !important;
+    height: 40px !important;
+    min-width: 40px !important;
+    min-height: 40px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    pointer-events: auto !important;
+    touch-action: none !important;
+    cursor: pointer !important;
+    user-select: none !important;
+    -webkit-user-select: none !important;
+    -webkit-touch-callout: none !important;
+    -webkit-tap-highlight-color: transparent !important;
+}
+
+#ww-chatbot-window #ww-chatbot-header #ww-chatbot-close::before,
+#ww-chatbot-window #ww-chatbot-header #ww-chatbot-close::after {
+    pointer-events: none !important;
+}
+
+@media (max-width: 768px) {
+    #ww-chatbot-window #ww-chatbot-header #ww-chatbot-close {
+        width: 44px !important;
+        height: 44px !important;
+        min-width: 44px !important;
+        min-height: 44px !important;
+        font-size: 28px !important;
+    }
+}
