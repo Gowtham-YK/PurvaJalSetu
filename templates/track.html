@@ -594,6 +594,9 @@ let activeTrackingMap=null;
 let activeTruckMarker=null;
 let activeTruckAnimation=null;
 let activeRouteKey=null;
+let activeGpsPollTimer=null;
+let activeTraveledLine=null;
+let activeRemainingLine=null;
 
 const tankerMapIcon=L.divIcon({
     className:"tanker-moving-marker",
@@ -612,6 +615,196 @@ function stopTruckAnimation(){
     activeTruckAnimation=null;
 }
 
+/* ==========================================================
+   LIVE GPS ROUTE COVERAGE
+   As the tanker's real GPS position comes in, the route is
+   split at the nearest point on the path: everything behind
+   the tanker is drawn muted ("covered"), everything ahead
+   stays highlighted -- like Google Maps / Uber navigation.
+========================================================== */
+
+function haversineKm(lat1,lon1,lat2,lon2){
+    const R=6371;
+    const dLat=(lat2-lat1)*Math.PI/180;
+    const dLon=(lon2-lon1)*Math.PI/180;
+    const a=Math.sin(dLat/2)**2 +
+        Math.cos(lat1*Math.PI/180)*Math.cos(lat2*Math.PI/180)*
+        Math.sin(dLon/2)**2;
+    return R*2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a));
+}
+
+function closestPointIndex(pts,lat,lon){
+    let bestIdx=0;
+    let bestDist=Infinity;
+    for(let i=0;i<pts.length;i++){
+        const dLat=pts[i][0]-lat;
+        const dLon=pts[i][1]-lon;
+        const d=dLat*dLat+dLon*dLon;
+        if(d<bestDist){bestDist=d;bestIdx=i;}
+    }
+    return bestIdx;
+}
+
+function remainingDistanceKm(pts,idx){
+    let d=0;
+    for(let i=idx;i<pts.length-1;i++){
+        d+=haversineKm(pts[i][0],pts[i][1],pts[i+1][0],pts[i+1][1]);
+    }
+    return d;
+}
+
+function updateRouteCoverage(map,pts,idx){
+    const traveled=pts.slice(0,idx+1);
+    const remaining=pts.slice(idx);
+
+    if(activeTraveledLine){
+        try{map.removeLayer(activeTraveledLine);}catch(e){}
+        activeTraveledLine=null;
+    }
+    if(activeRemainingLine){
+        try{map.removeLayer(activeRemainingLine);}catch(e){}
+        activeRemainingLine=null;
+    }
+
+    if(traveled.length>1){
+        // Drawn AFTER (so visually on top of) the original solid route
+        // line, which is what makes the passed section look "covered".
+        activeTraveledLine=L.polyline(traveled,{
+            color:"#9aa5b1",
+            weight:6,
+            opacity:.85
+        }).addTo(map);
+    }
+
+    if(remaining.length>1){
+        activeRemainingLine=L.polyline(remaining,{
+            color:"#2563eb",
+            weight:6,
+            opacity:.9
+        }).addTo(map);
+    }
+}
+
+function animateMarkerTo(marker,from,to,duration){
+    const start=performance.now();
+    function step(now){
+        const t=Math.min(1,(now-start)/duration);
+        const lat=from.lat+(to.lat-from.lat)*t;
+        const lng=from.lng+(to.lng-from.lng)*t;
+        marker.setLatLng([lat,lng]);
+        if(t<1)requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+}
+
+async function pollTankerLocation(order,card,pts){
+    if(!activeTrackingMap||activeRouteKey!==String(order.order_id))return;
+
+    const badge=card.querySelector(".route-live-badge");
+
+    try{
+        const res=await fetch(
+            "/api/order_tracking/"+encodeURIComponent(order.order_id)+"/tanker_location",
+            {credentials:"same-origin",cache:"no-store"}
+        );
+
+        if(res.status===401){
+            window.location.replace("/login");
+            return;
+        }
+
+        const data=await res.json();
+
+        if(!data.success||!data.location){
+            if(badge){
+                badge.textContent=data.tanker_assigned===false
+                    ?"Waiting for tanker assignment"
+                    :"Waiting for GPS signal...";
+                badge.dataset.tone="muted";
+            }
+            return;
+        }
+
+        const lat=Number(data.location.latitude);
+        const lon=Number(data.location.longitude);
+
+        if(!Number.isFinite(lat)||!Number.isFinite(lon))return;
+
+        if(!activeTruckMarker){
+            activeTruckMarker=L.marker([lat,lon],{
+                icon:tankerMapIcon,
+                zIndexOffset:2000,
+                keyboard:false,
+                interactive:false
+            }).addTo(activeTrackingMap);
+        }else{
+            animateMarkerTo(
+                activeTruckMarker,
+                activeTruckMarker.getLatLng(),
+                L.latLng(lat,lon),
+                4000
+            );
+        }
+
+        const idx=closestPointIndex(pts,lat,lon);
+        updateRouteCoverage(activeTrackingMap,pts,idx);
+
+        const remainingKm=remainingDistanceKm(pts,idx);
+
+        const distanceEl=card.querySelector(".route-distance");
+        const etaEl=card.querySelector(".route-eta");
+
+        if(distanceEl)distanceEl.textContent=remainingKm.toFixed(2)+" km left";
+
+        if(etaEl){
+            const speed=Number(data.location.speed);
+            const avgSpeedKmh=(Number.isFinite(speed)&&speed>1)?speed*3.6:25;
+            const etaMin=Math.max(1,Math.round((remainingKm/avgSpeedKmh)*60));
+            etaEl.textContent=etaMin+" min";
+        }
+
+        if(badge){
+            badge.textContent="Live \u2022 updated "+
+                new Date().toLocaleTimeString([],{hour:"2-digit",minute:"2-digit"});
+            badge.dataset.tone="good";
+        }
+
+    }catch(err){
+        console.error("Tanker location poll failed:",err);
+        if(badge){
+            badge.textContent="Live tracking unavailable";
+            badge.dataset.tone="warn";
+        }
+    }
+}
+
+function startLiveGpsTracking(order,card,pts){
+    if(!activeTrackingMap||!pts||pts.length<2)return;
+
+    stopGpsPolling();
+
+    if(activeTruckMarker){
+        try{activeTrackingMap.removeLayer(activeTruckMarker);}catch(e){}
+        activeTruckMarker=null;
+    }
+    if(activeTraveledLine){
+        try{activeTrackingMap.removeLayer(activeTraveledLine);}catch(e){}
+        activeTraveledLine=null;
+    }
+    if(activeRemainingLine){
+        try{activeTrackingMap.removeLayer(activeRemainingLine);}catch(e){}
+        activeRemainingLine=null;
+    }
+
+    pollTankerLocation(order,card,pts);
+
+    activeGpsPollTimer=setInterval(
+        ()=>pollTankerLocation(order,card,pts),
+        5000
+    );
+}
+
+
 function closeRoute(button){
     const card=button.closest(".order-card");
     if(!card)return;
@@ -620,11 +813,17 @@ function closeRoute(button){
     if(panel)panel.classList.remove("show");
     if(btn)btn.textContent="Track Order";
     stopTruckAnimation();
+    if(activeGpsPollTimer){
+        clearInterval(activeGpsPollTimer);
+        activeGpsPollTimer=null;
+    }
     if(activeTrackingMap){
         activeTrackingMap.remove();
         activeTrackingMap=null;
     }
     activeTruckMarker=null;
+    activeTraveledLine=null;
+    activeRemainingLine=null;
     activeRouteKey=null;
     window.activeRouteCoordinates=null;
     window.activeRouteOrderId=null;
@@ -902,6 +1101,7 @@ async function openOrderRoute(orderId,card){
         if(status==="out for delivery"){
             statusEl.textContent="🚛 Tanker is on the way";
             animateTanker(pts,order,card);
+            startLiveGpsTracking(order,card,pts);
 
         }else if(status==="delivered"){
             statusEl.textContent=" Delivered";
@@ -927,6 +1127,13 @@ async function openOrderRoute(orderId,card){
 
         }else{
             statusEl.textContent="Order placed • Waiting for STP acceptance";
+        }
+
+        if(status!=="out for delivery"){
+            if(activeGpsPollTimer){
+                clearInterval(activeGpsPollTimer);
+                activeGpsPollTimer=null;
+            }
         }
 
         setTimeout(

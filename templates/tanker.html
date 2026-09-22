@@ -2117,6 +2117,29 @@
 
                                 {% else %}
 
+                                    {% if order.assigned_operator_id
+                                          and order.assigned_operator_id == operator_id %}
+
+                                        <!-- NORMAL DEMAND: EXPLICIT PICKUP (legacy/compatible flow) -->
+
+                                        <form
+                                            method="POST"
+                                            action="{{ url_for(
+                                                'tanker_mark_order_picked_up',
+                                                order_id=order.order_id
+                                            ) }}"
+                                            class="pickup-form"
+                                        >
+                                            <button
+                                                type="submit"
+                                                class="pickup-button"
+                                            >
+                                                ✓ Mark as Picked Up
+                                            </button>
+                                        </form>
+
+                                    {% else %}
+
                                     <!-- NORMAL DEMAND ORDER OFFER -->
 
                                     <div class="tanker-request-actions">
@@ -2176,6 +2199,8 @@
 
                                     </div>
 
+                                    {% endif %}
+
                                 {% endif %}
 
                             {% elif order.status == "Out for Delivery"
@@ -2202,6 +2227,29 @@
                                         ✓ Mark Delivered
                                     </button>
 
+                                </form>
+
+                            {% elif order.status == "Out for Delivery"
+                                and order.request_type == "demand"
+                                and order.assigned_operator_id == operator_id %}
+
+                                <!-- NORMAL DEMAND DELIVERY -->
+
+                                <form
+                                    method="POST"
+                                    action="{{ url_for(
+                                        'tanker_mark_order_delivered',
+                                        order_id=order.order_id
+                                    ) }}"
+                                    class="pickup-form"
+                                    onsubmit="return confirm('Confirm that this order has been delivered?');"
+                                >
+                                    <button
+                                        type="submit"
+                                        class="pickup-button"
+                                    >
+                                        ✓ Mark as Delivered
+                                    </button>
                                 </form>
 
                             {% endif %}

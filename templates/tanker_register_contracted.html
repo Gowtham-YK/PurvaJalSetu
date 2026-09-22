@@ -380,7 +380,8 @@
                                 min="1"
                                 placeholder="Example: 4"
                                 required
-                            >
+                            
+                                max="15">
 
                         </div>
 
@@ -486,124 +487,43 @@
 
                 </div>
 
-                <!-- =============================================
-                     TANKER DETAILS
-                ============================================== -->
+                <!-- =====================================
+                    VEHICLE DETAILS
+                ====================================== -->
 
                 <div class="tanker-form-section">
 
                     <h3>
-                        Tanker Details
+                        Vehicle Details
                     </h3>
 
+                    <p
+                        style="
+                            margin-top:-5px;
+                            margin-bottom:18px;
+                            color:#6b7280;
+                            font-size:13px;
+                        "
+                    >
+                        Enter the details of every operational tanker
+                        in your fleet.
+                    </p>
 
-                    <!-- Registration Number -->
 
-                    <div class="tanker-form-group">
+                    <div id="vehicle-details-container">
 
-                        <label for="registration_no">
-
-                            Tanker Registration Number
-
-                            <span class="required-mark">
-                                *
-                            </span>
-
-                        </label>
-
-                        <input
-                            type="text"
-                            id="registration_no"
-                            name="registration_no"
-                            placeholder="Example: KA-01-AB-1234"
-                            required
+                        <div
+                            style="
+                                padding:18px;
+                                border:1px dashed #cbd5e1;
+                                border-radius:10px;
+                                color:#64748b;
+                                text-align:center;
+                                font-size:13px;
+                            "
                         >
-
-                    </div>
-
-
-
-                    <!-- Capacity + Vehicle Model -->
-
-                    <div class="tanker-form-row">
-
-
-                        <div class="tanker-form-group">
-
-                            <label for="capacity">
-
-                                Tanker Capacity
-
-                                <span class="required-mark">
-                                    *
-                                </span>
-
-                            </label>
-
-                            <select
-                                id="capacity"
-                                name="capacity"
-                                required
-                            >
-
-                                <option value="">
-                                    Select capacity
-                                </option>
-
-                                <option value="5">
-                                    5 KL
-                                </option>
-
-                                <option value="6">
-                                    6 KL
-                                </option>
-
-                                <option value="8">
-                                    8 KL
-                                </option>
-
-                                <option value="10">
-                                    10 KL
-                                </option>
-
-                                <option value="12">
-                                    12 KL
-                                </option>
-
-                                <option value="16">
-                                    16 KL
-                                </option>
-
-                                <option value="20">
-                                    20 KL
-                                </option>
-
-                            </select>
-
-                        </div>
-
-
-
-                        <div class="tanker-form-group">
-
-                            <label for="vehicle_model">
-
-                                Vehicle Model
-
-                                <span class="required-mark">
-                                    *
-                                </span>
-
-                            </label>
-
-                            <input
-                                type="text"
-                                id="vehicle_model"
-                                name="vehicle_model"
-                                placeholder="Enter vehicle model"
-                                required
-                            >
-
+                            Enter the number of operational tankers
+                            above to add vehicle details.
                         </div>
 
                     </div>
@@ -611,6 +531,8 @@
                 </div>
 
 
+
+                
 
                 <!-- =================================================
                      ACTIONS
@@ -653,6 +575,301 @@
 document.addEventListener(
     "DOMContentLoaded",
     function () {
+
+                /* ==========================================
+        DYNAMIC VEHICLE DETAILS
+        ========================================== */
+
+        const operationalTankersInput =
+            document.getElementById(
+                "operational_tankers"
+            );
+
+        const vehicleDetailsContainer =
+            document.getElementById(
+                "vehicle-details-container"
+            );
+
+
+        function vehicleCapacityOptions() {
+
+            return `
+                <option value="">
+                    Select capacity
+                </option>
+
+                <option value="5">5 KL</option>
+                <option value="6">6 KL</option>
+                <option value="8">8 KL</option>
+                <option value="10">10 KL</option>
+                <option value="12">12 KL</option>
+                <option value="16">16 KL</option>
+                <option value="20">20 KL</option>
+            `;
+
+        }
+
+
+        function createVehicleSections() {
+
+            const tankerCount =
+                parseInt(
+                    operationalTankersInput.value,
+                    10
+                );
+
+            if (tankerCount > 15) {
+
+                operationalTankersInput.value = 15;
+
+                alert(
+                    "A maximum of 15 tankers can be registered."
+                );
+
+                createVehicleSections();
+
+                return;
+            }
+
+
+            vehicleDetailsContainer.innerHTML = "";
+
+
+            if (
+                !tankerCount
+                ||
+                tankerCount < 1
+            ) {
+
+                vehicleDetailsContainer.innerHTML = `
+                    <div
+                        style="
+                            padding:18px;
+                            border:1px dashed #cbd5e1;
+                            border-radius:10px;
+                            color:#64748b;
+                            text-align:center;
+                            font-size:13px;
+                        "
+                    >
+                        Enter the number of operational tankers
+                        above to add vehicle details.
+                    </div>
+                `;
+
+                return;
+            }
+
+
+            for (
+                let index = 1;
+                index <= tankerCount;
+                index++
+            ) {
+
+                const vehicleCard =
+                    document.createElement("details");
+
+
+                vehicleCard.className =
+                    "vehicle-details-card";
+
+
+                if (index === 1) {
+                    vehicleCard.open = true;
+                }
+
+
+                vehicleCard.style.marginBottom =
+                    "12px";
+
+                vehicleCard.style.border =
+                    "1px solid #e2e8f0";
+
+                vehicleCard.style.borderRadius =
+                    "10px";
+
+                vehicleCard.style.background =
+                    "#ffffff";
+
+                vehicleCard.style.overflow =
+                    "hidden";
+
+
+                vehicleCard.innerHTML = `
+
+                    <summary
+                        style="
+                            cursor:pointer;
+                            padding:15px 17px;
+                            font-size:14px;
+                            font-weight:600;
+                            color:#1e293b;
+                            background:#f8fafc;
+                            user-select:none;
+                        "
+                    >
+                        Vehicle ${index}
+                    </summary>
+
+
+                    <div
+                        style="
+                            padding:18px;
+                        "
+                    >
+
+                        <div class="tanker-form-group">
+
+                            <label>
+                                Registration Number
+
+                                <span class="required-mark">
+                                    *
+                                </span>
+                            </label>
+
+
+                            <input
+                                type="text"
+
+                                name="vehicle_registration_no[]"
+
+                                class="vehicle-registration-input"
+
+                                placeholder="Example: KA-01-AB-1234"
+
+                                autocomplete="off"
+
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="tanker-form-row">
+
+
+                            <div class="tanker-form-group">
+
+                                <label>
+                                    Tanker Capacity
+
+                                    <span class="required-mark">
+                                        *
+                                    </span>
+                                </label>
+
+
+                                <select
+                                    name="vehicle_capacity[]"
+                                    required
+                                >
+
+                                    ${vehicleCapacityOptions()}
+
+                                </select>
+
+                            </div>
+
+
+                            <div class="tanker-form-group">
+
+                                <label>
+                                    Vehicle Model
+
+                                    <span class="required-mark">
+                                        *
+                                    </span>
+                                </label>
+
+
+                                <input
+                                    type="text"
+
+                                    name="vehicle_model[]"
+
+                                    placeholder="Enter vehicle model"
+
+                                    required
+                                >
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                `;
+
+
+                vehicleDetailsContainer.appendChild(
+                    vehicleCard
+                );
+
+            }
+
+        }
+
+
+        operationalTankersInput.addEventListener(
+            "input",
+            createVehicleSections
+        );
+
+        function validateVehicleRegistrations() {
+
+        const inputs =
+            document.querySelectorAll(
+                ".vehicle-registration-input"
+            );
+
+
+        const seen =
+            new Set();
+
+
+        for (const input of inputs) {
+
+            const registration =
+                input.value
+                    .trim()
+                    .toUpperCase();
+
+
+            input.value =
+                registration;
+
+
+            input.setCustomValidity("");
+
+
+            if (!registration) {
+                continue;
+            }
+
+
+            if (seen.has(registration)) {
+
+                input.setCustomValidity(
+                    "Each vehicle must have a unique registration number."
+                );
+
+                input.reportValidity();
+
+                return false;
+            }
+
+
+            seen.add(registration);
+
+        }
+
+
+        return true;
+    }
+
+
 
         const locationButton =
             document.getElementById("use-location-btn");
@@ -1006,6 +1223,15 @@ document.addEventListener(
         form.addEventListener(
             "submit",
             function (event) {
+
+                if (!validateVehicleRegistrations()) {
+
+                    event.preventDefault();
+
+                    return;
+
+                }
+
 
                 if (
                     !latitudeInput.value ||

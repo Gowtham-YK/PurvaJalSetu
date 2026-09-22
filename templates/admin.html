@@ -1865,6 +1865,26 @@
 
                 {% endif %}
 
+                <a
+                    href="{{ url_for(
+                        'admin_tanker_operator_details',
+                        operator_id=operator.operator_id
+                    ) }}"
+                    style="
+                        display:inline-block;
+                        background:#e9f2ff;
+                        color:#1976f3;
+                        padding:6px 10px;
+                        border-radius:6px;
+                        text-decoration:none;
+                        font-size:9px;
+                        font-weight:500;
+                        margin-top:5px;
+                    "
+                >
+                    View Details
+                </a>
+
             </td>
 
             </tr>
