@@ -2105,6 +2105,417 @@ def current_user():
     })
 
 
+
+# =========================================================
+# FLUTTER MOBILE API - AUTHENTICATION
+# These API routes are added for the Flutter app.
+# Existing web login/signup/logout routes above remain unchanged.
+# =========================================================
+
+@app.route("/api/login", methods=["POST"])
+def api_login():
+    """JSON login endpoint for the Flutter application."""
+
+    data = request.get_json(silent=True) or {}
+
+    login_identifier = str(
+        data.get("login_identifier")
+        or data.get("email")
+        or ""
+    ).strip()
+
+    password = str(
+        data.get("password")
+        or ""
+    )
+
+    if not login_identifier or not password:
+        return jsonify({
+            "success": False,
+            "message": "Please enter your email and password."
+        }), 400
+
+    try:
+        # Use the same Supabase Auth login as the existing web login.
+        response = supabase.auth.sign_in_with_password({
+            "email": login_identifier,
+            "password": password
+        })
+
+        if not response.user:
+            return jsonify({
+                "success": False,
+                "message": "Invalid email or password."
+            }), 401
+
+        user = response.user
+
+        # Get metadata saved during signup.
+        metadata = user.user_metadata or {}
+
+        # Clear previous Flask session and create the same
+        # session structure used by the existing web login.
+        session.clear()
+        session.permanent = True
+
+        session["user_id"] = str(user.id)
+
+        session["first_name"] = str(
+            metadata.get("first_name", "")
+        )
+
+        session["last_name"] = str(
+            metadata.get("last_name", "")
+        )
+
+        session["username"] = str(
+            metadata.get("username", "")
+        )
+
+        session["user_name"] = (
+            f"{session['first_name']} "
+            f"{session['last_name']}"
+        ).strip()
+
+        session["user_phone"] = str(
+            metadata.get("mobile", "")
+        )
+
+        session["user_email"] = str(
+            user.email or ""
+        )
+
+        session["role"] = str(
+            metadata.get("role", "")
+        ).strip().lower()
+
+        session["stp_id"] = metadata.get(
+            "stp_id", ""
+        )
+
+        session["tanker_operator_id"] = metadata.get(
+            "tanker_operator_id", ""
+        )
+
+        # Preserve the same role-specific session fields
+        # used by the existing web application.
+        if session["role"] == "demand":
+            session["buyer_name"] = session["user_name"]
+            session["buyer_phone"] = session["user_phone"]
+
+        elif session["role"] == "tanker":
+            session["tanker_operator_name"] = (
+                session["user_name"]
+            )
+
+        elif session["role"] == "stp":
+            stp_id = str(
+                session.get("stp_id") or ""
+            ).strip()
+
+            if not stp_id:
+                session.clear()
+
+                return jsonify({
+                    "success": False,
+                    "message": "No STP is assigned to this account."
+                }), 403
+
+        # Match the existing web login's invalid-role behavior.
+        if session["role"] not in ROLE_HOME_ENDPOINT:
+            session.clear()
+
+            return jsonify({
+                "success": False,
+                "message": "Your account has an invalid role."
+            }), 403
+
+        return jsonify({
+            "success": True,
+            "message": "Login successful.",
+            "user": {
+                "user_id": session["user_id"],
+                "first_name": session["first_name"],
+                "last_name": session["last_name"],
+                "name": session["user_name"],
+                "username": session["username"],
+                "mobile": session["user_phone"],
+                "email": session["user_email"],
+                "role": session["role"],
+                "stp_id": session["stp_id"],
+                "tanker_operator_id": session["tanker_operator_id"]
+            }
+        }), 200
+
+    except Exception as e:
+        print("Flutter API login error:", e)
+
+        return jsonify({
+            "success": False,
+            "message": "Invalid email or password."
+        }), 401
+
+
+@app.route("/api/signup", methods=["POST"])
+def api_signup():
+    """JSON signup endpoint for the Flutter application."""
+
+    data = request.get_json(silent=True) or {}
+
+    first_name = str(
+        data.get("first_name") or ""
+    ).strip()
+
+    last_name = str(
+        data.get("last_name") or ""
+    ).strip()
+
+    mobile = str(
+        data.get("mobile") or ""
+    ).strip()
+
+    email = str(
+        data.get("email") or ""
+    ).strip().lower()
+
+    username = str(
+        data.get("username") or ""
+    ).strip().lower()
+
+    password = str(
+        data.get("password") or ""
+    )
+
+    confirm_password = str(
+        data.get("confirm_password")
+        or data.get("confirmPassword")
+        or ""
+    )
+
+    role = str(
+        data.get("role") or ""
+    ).strip().lower()
+
+    # Role-specific identity fields.
+    stp_id = str(
+        data.get("stp_id")
+        or data.get("stpId")
+        or ""
+    ).strip()
+
+    tanker_operator_id = str(
+        data.get("tanker_operator_id")
+        or data.get("tanker_id")
+        or data.get("tankerId")
+        or ""
+    ).strip()
+
+    allowed_roles = {
+        "demand",
+        "stp",
+        "tanker",
+        "admin"
+    }
+
+    if not all([
+        first_name,
+        last_name,
+        mobile,
+        email,
+        username,
+        password,
+        confirm_password,
+        role
+    ]):
+        return jsonify({
+            "success": False,
+            "message": "Please fill in all fields."
+        }), 400
+
+    if role not in allowed_roles:
+        return jsonify({
+            "success": False,
+            "message": "Please select a valid account type."
+        }), 400
+
+    # STP operators must provide an existing STP ID.
+    if role == "stp":
+
+        if not stp_id:
+            return jsonify({
+                "success": False,
+                "message": "Please enter your STP ID."
+            }), 400
+
+        stp_exists = any(
+            str(
+                stp.get("stp_id") or ""
+            ).strip().lower() == stp_id.lower()
+            for stp in load_stps()
+        )
+
+        if not stp_exists:
+            return jsonify({
+                "success": False,
+                "message": (
+                    "Invalid STP ID. "
+                    "Please enter a registered STP ID."
+                )
+            }), 400
+
+    # Tanker operators must provide an existing tanker operator ID.
+    if role == "tanker":
+
+        if not tanker_operator_id:
+            return jsonify({
+                "success": False,
+                "message": (
+                    "Please enter your Tanker Operator ID."
+                )
+            }), 400
+
+        tanker_exists = False
+
+        if os.path.exists(TANKER_REGISTRATIONS_FILE):
+
+            try:
+                with open(
+                    TANKER_REGISTRATIONS_FILE,
+                    "r",
+                    newline="",
+                    encoding="utf-8"
+                ) as f:
+
+                    reader = csv.DictReader(f)
+
+                    tanker_exists = any(
+                        str(
+                            row.get("operator_id") or ""
+                        ).strip().lower()
+                        == tanker_operator_id.lower()
+                        for row in reader
+                    )
+
+            except Exception as e:
+                print(
+                    "Flutter API tanker operator ID "
+                    "validation failed:",
+                    e
+                )
+
+        if not tanker_exists:
+            return jsonify({
+                "success": False,
+                "message": (
+                    "Invalid Tanker Operator ID. "
+                    "Please enter a registered operator ID."
+                )
+            }), 400
+
+    if password != confirm_password:
+        return jsonify({
+            "success": False,
+            "message": "Passwords do not match."
+        }), 400
+
+    if len(password) < 8:
+        return jsonify({
+            "success": False,
+            "message": (
+                "Password must be at least 8 characters long."
+            )
+        }), 400
+
+    try:
+
+        # Use the same Supabase Auth signup as the
+        # existing web signup.
+        response = supabase.auth.sign_up({
+            "email": email,
+            "password": password,
+            "options": {
+                "data": {
+                    "first_name": first_name,
+                    "last_name": last_name,
+                    "username": username,
+                    "mobile": mobile,
+                    "role": role,
+                    "stp_id": (
+                        stp_id
+                        if role == "stp"
+                        else ""
+                    ),
+                    "tanker_operator_id": (
+                        tanker_operator_id
+                        if role == "tanker"
+                        else ""
+                    )
+                }
+            }
+        })
+
+        if not response.user:
+            return jsonify({
+                "success": False,
+                "message": (
+                    "Unable to create account. "
+                    "Please try again."
+                )
+            }), 400
+
+        return jsonify({
+            "success": True,
+            "message": (
+                "Account created successfully. "
+                "Please log in."
+            ),
+            "user": {
+                "user_id": str(response.user.id),
+                "email": str(
+                    response.user.email or email
+                ),
+                "role": role
+            }
+        }), 201
+
+    except Exception as e:
+
+        print("Flutter API signup error:", e)
+
+        error_message = str(e)
+
+        if "already registered" in error_message.lower():
+            error_message = (
+                "That email address is already registered."
+            )
+        else:
+            error_message = (
+                "Unable to create account. Please try again."
+            )
+
+        return jsonify({
+            "success": False,
+            "message": error_message
+        }), 400
+
+
+@app.route("/api/logout", methods=["POST"])
+def api_logout():
+    """JSON logout endpoint for the Flutter application."""
+
+    try:
+        supabase.auth.sign_out()
+    except Exception as e:
+        print("Flutter API Supabase logout error:", e)
+
+    session.clear()
+
+    return jsonify({
+        "success": True,
+        "message": "Logged out successfully."
+    }), 200
+
+
 @app.route("/tanker/register")
 def tanker_register():
     return render_template("tanker_register.html")
