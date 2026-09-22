@@ -174,7 +174,50 @@ document.addEventListener("DOMContentLoaded", function () {
 
     close.addEventListener(
         "click",
-        closeChat
+        function (event) {
+            event.preventDefault();
+            event.stopPropagation();
+            closeChat();
+        },
+        true
+    );
+
+    /* Mobile browsers can deliver touch/pointer events differently.
+       Handle the close control explicitly so it always responds. */
+    close.addEventListener(
+        "touchend",
+        function (event) {
+            event.preventDefault();
+            event.stopPropagation();
+            closeChat();
+        },
+        { passive: false, capture: true }
+    );
+
+    close.addEventListener(
+        "pointerup",
+        function (event) {
+            if (event.pointerType === "touch") {
+                event.preventDefault();
+                event.stopPropagation();
+                closeChat();
+            }
+        },
+        true
+    );
+
+    /* Delegated fallback for pages where another responsive layer
+       intercepts the original button event. */
+    document.addEventListener(
+        "click",
+        function (event) {
+            const closeButton = event.target.closest("#ww-chatbot-close");
+            if (!closeButton) return;
+            event.preventDefault();
+            event.stopPropagation();
+            closeChat();
+        },
+        true
     );
 
 

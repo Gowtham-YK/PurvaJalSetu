@@ -1220,3 +1220,47 @@
         height: 48px !important;
     }
 }
+
+
+/* =========================================================
+   MOBILE CLOSE CONTROL FIX
+   Ensures the close button remains above responsive overlays
+   and receives touch/pointer input reliably.
+========================================================= */
+#ww-chatbot-close {
+    position: relative !important;
+    z-index: 11010 !important;
+    pointer-events: auto !important;
+    touch-action: manipulation !important;
+    -webkit-tap-highlight-color: transparent !important;
+    user-select: none !important;
+    -webkit-user-select: none !important;
+    flex: 0 0 auto !important;
+}
+
+@media (max-width: 768px) {
+    #ww-chatbot {
+        z-index: 12000 !important;
+    }
+
+    #ww-chatbot-window {
+        z-index: 12001 !important;
+    }
+
+    #ww-chatbot-header {
+        position: relative !important;
+        z-index: 12002 !important;
+        pointer-events: auto !important;
+    }
+
+    #ww-chatbot-close {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        position: relative !important;
+        z-index: 12003 !important;
+        pointer-events: auto !important;
+        touch-action: manipulation !important;
+        cursor: pointer !important;
+    }
+}
