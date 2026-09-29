@@ -1,0 +1,96 @@
+.
+├── app.py
+├── config.py
+├── data
+│   ├── nearest_routing_results.json
+│   ├── stp_data.json
+│   ├── stp_status.json
+│   ├── synthetic_demand.csv
+│   └── synthetic_sellers_data.json
+├── database
+│   ├── bangalore_tanker_operators_synthetic_updated.csv
+│   ├── orders.csv
+│   ├── stp_updates.csv
+│   ├── synthetic_orders.csv
+│   └── users.xlsx
+├── DOCUMENTATION.md
+├── generate_synthetic_orders.py
+├── ml
+│   ├── generate_dataset.py
+│   ├── models
+│   │   ├── xgboost_PSTP001.pkl
+│   │   ├── xgboost_PSTP002.pkl
+│   │   ├── xgboost_PSTP003.pkl
+│   │   ├── xgboost_PSTP004.pkl
+│   │   ├── xgboost_PSTP005.pkl
+│   │   ├── xgboost_PSTP006.pkl
+│   │   ├── xgboost_PSTP007.pkl
+│   │   ├── xgboost_PSTP008.pkl
+│   │   ├── xgboost_PSTP009.pkl
+│   │   ├── xgboost_PSTP010.pkl
+│   │   ├── xgboost_PSTP011.pkl
+│   │   ├── xgboost_PSTP012.pkl
+│   │   ├── xgboost_PSTP013.pkl
+│   │   └── xgboost_PSTP014.pkl
+│   ├── predict_demand.py
+│   ├── preprocess.py
+│   └── train_model.py
+├── models
+│   ├── xgboost_PSTP001.pkl
+│   ├── xgboost_PSTP002.pkl
+│   ├── xgboost_PSTP003.pkl
+│   ├── xgboost_PSTP004.pkl
+│   ├── xgboost_PSTP005.pkl
+│   ├── xgboost_PSTP006.pkl
+│   ├── xgboost_PSTP007.pkl
+│   ├── xgboost_PSTP008.pkl
+│   ├── xgboost_PSTP009.pkl
+│   ├── xgboost_PSTP010.pkl
+│   ├── xgboost_PSTP011.pkl
+│   ├── xgboost_PSTP012.pkl
+│   ├── xgboost_PSTP013.pkl
+│   └── xgboost_PSTP014.pkl
+├── models.py
+├── nearest_stp_routing.py
+├── orders.csv
+├── Procfile
+├── Profile
+├── requirements.txt
+├── static
+│   ├── assets
+│   │   ├── analyze.png
+│   │   ├── efficiency.png
+│   │   ├── logo.png
+│   │   ├── ocean.png
+│   │   ├── optimize.png
+│   │   ├── predict.png
+│   │   ├── stp.png
+│   │   ├── title-icon.png
+│   │   ├── wastewater-map.png
+│   │   └── wastewater-sources.png
+│   ├── firebase-messaging-sw.js
+│   ├── js
+│   │   └── live_location.js
+│   ├── script.js
+│   └── style.css
+├── synthetic_bangalore_wastewater_dataset.csv
+├── templates
+│   ├── admin.html
+│   ├── demand.html
+│   ├── index.html
+│   ├── invoice.html
+│   ├── login.html
+│   ├── profile.html
+│   ├── registration_success.html
+│   ├── signup.html
+│   ├── supply.html
+│   ├── tanker.html
+│   ├── tanker_register_contracted.html
+│   ├── tanker_register_independent.html
+│   ├── tanker_status.html
+│   ├── tanker_summary.html
+│   └── track.html
+├── tree_clean.txt
+└── tree.txt
+
+10 directories, 84 files

@@ -1,0 +1,652 @@
+/* JalSetu mobile sidebar and responsive UI layer. Desktop sidebar remains unchanged. */
+html { max-width:100%; overflow-x:hidden; }
+img,video,canvas,iframe { max-width:100%; }
+button,input,select,textarea { max-width:100%; }
+
+/* Mobile-only navigation elements stay hidden on desktop. */
+.mobile-navbar { display:none; }
+.mobile-sidebar-toggle { display:none; }
+.mobile-sidebar-backdrop { display:none; }
+
+@media (max-width: 1024px) {
+    .main-grid,.content-grid,.dashboard-grid,.stats-grid,.cards-grid,.card-grid,.form-grid,.tanker-form-row,.tanker-form-secondary,.details-grid,.route-grid { grid-template-columns:repeat(2,minmax(0,1fr)) !important; }
+    .container,.page,.main-content,.content,.dashboard-content { max-width:100% !important; }
+    table { min-width:680px; }
+    .table-container,.table-wrapper,.table-wrap,.table-responsive,.orders-table-container,.responsive-table,.data-table-container { max-width:100%; overflow-x:auto; -webkit-overflow-scrolling:touch; }
+    .map-card,#map,.map,.leaflet-container { max-width:100%; }
+}
+
+@media (max-width: 768px) {
+    html,body { max-width:100%; overflow-x:hidden !important; }
+
+    /* =========================================================
+       MOBILE NAVBAR
+       Brand icon + brand title + hamburger remain visible.
+       ========================================================= */
+    .mobile-navbar {
+        position:fixed !important;
+        left:0 !important;
+        right:0 !important;
+        top:0 !important;
+        width:100% !important;
+        height:64px !important;
+        min-height:64px !important;
+        box-sizing:border-box !important;
+        display:flex !important;
+        align-items:center !important;
+        gap:10px !important;
+        padding:8px 12px !important;
+        margin:0 !important;
+        background:#ffffff !important;
+        border-bottom:1px solid #e7edf5 !important;
+        z-index:10005 !important;
+        overflow:hidden !important;
+    }
+
+    .mobile-navbar-brand {
+        display:flex !important;
+        align-items:center !important;
+        gap:10px !important;
+        min-width:0 !important;
+        flex:1 1 auto !important;
+        overflow:hidden !important;
+    }
+
+    .mobile-navbar-brand > .brand-icon,
+    .mobile-navbar-brand > img {
+        flex:0 0 auto !important;
+    }
+
+    .mobile-navbar-brand .brand-icon {
+        width:42px !important;
+        height:42px !important;
+        min-width:42px !important;
+        min-height:42px !important;
+        border-radius:12px !important;
+        display:flex !important;
+        align-items:center !important;
+        justify-content:center !important;
+        box-sizing:border-box !important;
+    }
+
+    .mobile-navbar-brand > img {
+        width:42px !important;
+        height:42px !important;
+        min-width:42px !important;
+        min-height:42px !important;
+        object-fit:cover !important;
+        border-radius:8px !important;
+    }
+
+    .mobile-navbar-brand .brand-text {
+        min-width:0 !important;
+        flex:1 1 auto !important;
+        overflow:hidden !important;
+    }
+
+    .mobile-navbar-brand .brand-text h2,
+    .mobile-navbar-brand .brand-title {
+        display:block !important;
+        margin:0 !important;
+        padding:0 !important;
+        font-size:15px !important;
+        line-height:1.2 !important;
+        white-space:nowrap !important;
+        overflow:hidden !important;
+        text-overflow:ellipsis !important;
+    }
+
+    .mobile-navbar-brand .brand-text p,
+    .mobile-navbar-brand .brand-subtitle {
+        display:none !important;
+    }
+
+    /* =========================================================
+       HAMBURGER BUTTON
+       ========================================================= */
+    .mobile-navbar .mobile-sidebar-toggle {
+        display:flex !important;
+        flex:0 0 44px !important;
+        align-items:center !important;
+        justify-content:center !important;
+        flex-direction:column !important;
+        gap:5px !important;
+        width:44px !important;
+        height:44px !important;
+        min-width:44px !important;
+        min-height:44px !important;
+        margin:0 !important;
+        padding:8px !important;
+        border:0 !important;
+        border-radius:9px !important;
+        background:transparent !important;
+        color:#172033 !important;
+        cursor:pointer !important;
+        z-index:10006 !important;
+        touch-action:manipulation !important;
+        -webkit-tap-highlight-color:transparent !important;
+    }
+
+    .mobile-navbar .mobile-sidebar-toggle span {
+        display:block !important;
+        width:25px !important;
+        height:3px !important;
+        min-height:3px !important;
+        flex:0 0 3px !important;
+        border-radius:3px !important;
+        background:currentColor !important;
+        transition:transform .22s ease,opacity .18s ease !important;
+    }
+
+    /* Turn hamburger into a close icon while open. */
+    body.mobile-sidebar-open .mobile-sidebar-toggle span:nth-child(1) {
+        transform:translateY(8px) rotate(45deg) !important;
+    }
+    body.mobile-sidebar-open .mobile-sidebar-toggle span:nth-child(2) {
+        opacity:0 !important;
+    }
+    body.mobile-sidebar-open .mobile-sidebar-toggle span:nth-child(3) {
+        transform:translateY(-8px) rotate(-45deg) !important;
+    }
+
+    .mobile-navbar .mobile-sidebar-toggle:focus-visible {
+        outline:2px solid #1769e0 !important;
+        outline-offset:2px !important;
+    }
+
+    /* =========================================================
+       MOBILE SIDEBAR
+       Only links are inside this panel. Brand stays in navbar.
+       ========================================================= */
+    .sidebar {
+        position:fixed !important;
+        left:0 !important;
+        right:auto !important;
+        top:64px !important;
+        bottom:0 !important;
+        width:min(290px,84vw) !important;
+        min-width:0 !important;
+        height:calc(100vh - 64px) !important;
+        min-height:0 !important;
+        max-height:calc(100vh - 64px) !important;
+        box-sizing:border-box !important;
+        padding:12px 10px 18px !important;
+        margin:0 !important;
+        z-index:10004 !important;
+        overflow-x:hidden !important;
+        overflow-y:auto !important;
+        -webkit-overflow-scrolling:touch !important;
+        transform:translateX(-105%) !important;
+        visibility:hidden !important;
+        opacity:0 !important;
+        pointer-events:none !important;
+        transition:transform .28s ease,opacity .2s ease,visibility 0s linear .28s !important;
+        box-shadow:12px 0 30px rgba(0,0,0,.22) !important;
+    }
+
+    /* The old sidebar brand is hidden on mobile because it now lives in navbar. */
+    .sidebar > .brand {
+        display:none !important;
+    }
+
+    .sidebar.mobile-sidebar-open,
+    body.mobile-sidebar-open .sidebar {
+        transform:translateX(0) !important;
+        visibility:visible !important;
+        opacity:1 !important;
+        pointer-events:auto !important;
+        transition:transform .28s ease,opacity .2s ease,visibility 0s linear 0s !important;
+    }
+
+    /* Closed: hide all sidebar navigation content. */
+    .sidebar .menu-title,
+    .sidebar .nav-links,
+    .sidebar .side-nav,
+    .sidebar .system-status {
+        display:none !important;
+    }
+
+    /* Open: show the existing sidebar links without changing their content. */
+    .sidebar.mobile-sidebar-open .menu-title,
+    body.mobile-sidebar-open .sidebar .menu-title {
+        display:block !important;
+        margin-top:4px !important;
+        padding:8px 10px 6px !important;
+    }
+
+    .sidebar.mobile-sidebar-open .nav-links,
+    body.mobile-sidebar-open .sidebar .nav-links,
+    .sidebar.mobile-sidebar-open .side-nav,
+    body.mobile-sidebar-open .sidebar .side-nav {
+        display:flex !important;
+        flex-direction:column !important;
+        flex-wrap:nowrap !important;
+        width:100% !important;
+        gap:5px !important;
+        box-sizing:border-box !important;
+        overflow:visible !important;
+        padding:0 0 8px !important;
+    }
+
+    .sidebar.mobile-sidebar-open .system-status,
+    body.mobile-sidebar-open .sidebar .system-status {
+        display:block !important;
+        max-width:100% !important;
+        box-sizing:border-box !important;
+    }
+
+    .sidebar .side-link,
+    .sidebar .nav-links a {
+        display:flex !important;
+        align-items:center !important;
+        width:100% !important;
+        min-height:44px !important;
+        box-sizing:border-box !important;
+        white-space:nowrap !important;
+        flex:0 0 auto !important;
+    }
+
+    /* Backdrop below the fixed navbar. */
+    .mobile-sidebar-backdrop {
+        display:block !important;
+        position:fixed !important;
+        left:0 !important;
+        right:0 !important;
+        top:64px !important;
+        bottom:0 !important;
+        width:100vw !important;
+        height:calc(100vh - 64px) !important;
+        background:rgba(0,0,0,.55) !important;
+        z-index:10003 !important;
+        opacity:0 !important;
+        visibility:hidden !important;
+        pointer-events:none !important;
+        transition:opacity .25s ease,visibility 0s linear .25s !important;
+        -webkit-tap-highlight-color:transparent !important;
+    }
+
+    body.mobile-sidebar-open .mobile-sidebar-backdrop {
+        opacity:1 !important;
+        visibility:visible !important;
+        pointer-events:auto !important;
+        transition:opacity .25s ease,visibility 0s linear 0s !important;
+    }
+
+    /* Page starts below the mobile navbar. */
+    .main-content {
+        margin-left:0 !important;
+        width:100% !important;
+        min-width:0 !important;
+        padding-top:64px !important;
+        box-sizing:border-box !important;
+    }
+
+    /* Existing dashboard topbar stays below the new mobile navbar. */
+    .main-content > .topbar {
+        position:relative !important;
+        top:auto !important;
+        z-index:900 !important;
+    }
+
+    /* The public landing-page desktop top navigation is replaced by the mobile navbar. */
+    .main-content > .public-topbar {
+        display:none !important;
+    }
+
+    .topbar { height:auto !important; min-height:52px; padding:10px 14px !important; flex-wrap:wrap; gap:8px; }
+    .top-nav,.topbar-right { max-width:100%; flex-wrap:wrap; }
+
+    .main-grid,.content-grid,.dashboard-grid,.stats-grid,.cards-grid,.card-grid,.form-grid,.details-grid,.route-grid,.tanker-form-row,.tanker-form-secondary { grid-template-columns:1fr !important; }
+    .container,.page,.content,.dashboard-content,.main-content > * { max-width:100% !important; }
+
+    .hero { margin:10px 12px 0 !important; min-height:230px !important; }
+    .hero-overlay { padding:34px 24px !important; }
+    .hero h1 { font-size:clamp(26px,6vw,36px) !important; }
+
+    .card,.stat-card,.section,.map-card,.pickup-form,.operation-item,.detail-box { width:100%; max-width:100%; box-sizing:border-box; }
+    form { max-width:100%; }
+    input,select,textarea { width:100% !important; min-width:0 !important; box-sizing:border-box !important; }
+    .btn,button,.hero-btn,.pickup-button,.tanker-request-button { min-height:42px; max-width:100%; }
+
+    .table-container,.table-wrapper,.table-wrap,.table-responsive,.orders-table-container,.responsive-table,.data-table-container { width:100%; max-width:100%; overflow-x:auto !important; -webkit-overflow-scrolling:touch; }
+    table { min-width:680px; }
+
+    #map,.map,.map-container,.map-card .leaflet-container { width:100% !important; min-height:280px; max-width:100%; }
+    .modal,.modal-content,.popup,.dropdown-menu,.notification-panel { max-width:calc(100vw - 24px) !important; }
+    .modal-content { width:calc(100vw - 24px) !important; }
+    .notification { max-width:calc(100vw - 24px); }
+
+    #ww-chatbot-window { width:min(390px,calc(100vw - 24px)) !important; max-width:calc(100vw - 24px) !important; right:12px !important; bottom:72px !important; }
+    #ww-chatbot-toggle { right:14px !important; bottom:14px !important; }
+    #ww-chatbot-messages { max-height:52vh; }
+}
+
+@media (max-width: 480px) {
+    .mobile-navbar { height:60px !important; min-height:60px !important; padding:6px 9px !important; }
+    .mobile-navbar-brand { gap:8px !important; }
+    .mobile-navbar-brand .brand-icon,
+    .mobile-navbar-brand > img { width:38px !important; height:38px !important; min-width:38px !important; min-height:38px !important; }
+    .mobile-navbar-brand .brand-text h2,
+    .mobile-navbar-brand .brand-title { font-size:14px !important; }
+    .mobile-navbar .mobile-sidebar-toggle { width:42px !important; height:42px !important; min-width:42px !important; flex-basis:42px !important; }
+    .mobile-navbar .mobile-sidebar-toggle span { width:23px !important; height:3px !important; }
+
+    .sidebar { top:60px !important; height:calc(100vh - 60px) !important; max-height:calc(100vh - 60px) !important; }
+    .mobile-sidebar-backdrop { top:60px !important; height:calc(100vh - 60px) !important; }
+    .main-content { padding-top:60px !important; }
+
+    .brand { gap:8px !important; }
+    .brand-text h2,.brand-title { font-size:15px !important; }
+    .brand-icon { width:36px !important; height:36px !important; font-size:18px !important; flex:0 0 36px !important; }
+    .side-link,.nav-links a { padding:9px 10px !important; font-size:12px !important; }
+    .topbar { padding:8px 10px !important; }
+    .top-link { font-size:11px !important; }
+    .hero { margin:8px !important; min-height:210px !important; border-radius:10px !important; }
+    .hero-overlay { padding:28px 18px !important; }
+    .hero h1 { font-size:25px !important; }
+    .hero p { font-size:13px !important; }
+    .card,.stat-card,.section,.map-card,.pickup-form { padding:14px !important; }
+    .card-header { flex-wrap:wrap; gap:8px; }
+    .stat-info h3,.stat-info .value { font-size:20px !important; }
+    .detail-row { flex-wrap:wrap; gap:4px; }
+    .detail-label,.detail-value { max-width:100%; overflow-wrap:anywhere; }
+    .tanker-form-group { width:100% !important; }
+    table { min-width:620px; font-size:12px; }
+    th,td { padding:8px !important; }
+    #ww-chatbot-window { width:calc(100vw - 16px) !important; max-width:calc(100vw - 16px) !important; right:8px !important; bottom:64px !important; }
+    #ww-chatbot-input-area { gap:6px; }
+    #ww-chatbot-input { min-width:0; }
+}
+
+@media (hover:none) and (pointer:coarse) {
+    a,button,input[type="button"],input[type="submit"],select { -webkit-tap-highlight-color:transparent; }
+    button,input[type="button"],input[type="submit"] { touch-action:manipulation; }
+}
+
+@media (min-width:769px) {
+    .mobile-navbar,.mobile-sidebar-toggle,.mobile-sidebar-backdrop { display:none !important; }
+}
+
+/* =========================================================
+   FINAL MOBILE SIDEBAR POLISH
+   Keeps desktop navigation unchanged.
+   ========================================================= */
+@media (max-width: 768px) {
+    /* Keep the brand icon AND brand title visible in the mobile navbar. */
+    .mobile-navbar-brand {
+        display:flex !important;
+        align-items:center !important;
+        gap:10px !important;
+        min-width:0 !important;
+        flex:1 1 auto !important;
+        visibility:visible !important;
+        opacity:1 !important;
+    }
+
+    .mobile-navbar-brand .brand-text {
+        display:block !important;
+        visibility:visible !important;
+        opacity:1 !important;
+        min-width:0 !important;
+        flex:1 1 auto !important;
+    }
+
+    .mobile-navbar-brand .brand-text h2,
+    .mobile-navbar-brand .brand-title {
+        display:block !important;
+        visibility:visible !important;
+        opacity:1 !important;
+        color:#172033 !important;
+        white-space:nowrap !important;
+        overflow:hidden !important;
+        text-overflow:ellipsis !important;
+    }
+
+    /* Professional compact drawer: links slide in from the left. */
+    .sidebar {
+        width:min(320px, 82vw) !important;
+        max-width:320px !important;
+        border-right:1px solid rgba(255,255,255,.08) !important;
+        box-shadow:16px 0 40px rgba(0,0,0,.30) !important;
+    }
+
+    /* The previous page-level responsive rules hide link text at tablet sizes.
+       Explicitly restore it inside the opened mobile drawer. */
+    .sidebar.mobile-sidebar-open .nav-links a span,
+    body.mobile-sidebar-open .sidebar .nav-links a span,
+    .sidebar.mobile-sidebar-open .side-nav a span,
+    body.mobile-sidebar-open .sidebar .side-nav a span {
+        display:inline !important;
+        visibility:visible !important;
+        opacity:1 !important;
+        color:inherit !important;
+        white-space:nowrap !important;
+    }
+
+    .sidebar.mobile-sidebar-open .nav-links a,
+    body.mobile-sidebar-open .sidebar .nav-links a,
+    .sidebar.mobile-sidebar-open .side-nav a,
+    body.mobile-sidebar-open .sidebar .side-nav a {
+        justify-content:flex-start !important;
+        gap:12px !important;
+        padding:12px 14px !important;
+        min-height:46px !important;
+        text-align:left !important;
+    }
+
+    .sidebar.mobile-sidebar-open .nav-icon,
+    body.mobile-sidebar-open .sidebar .nav-icon,
+    .sidebar.mobile-sidebar-open .side-icon,
+    body.mobile-sidebar-open .sidebar .side-icon {
+        flex:0 0 24px !important;
+        width:24px !important;
+        min-width:24px !important;
+        text-align:center !important;
+    }
+
+    .sidebar.mobile-sidebar-open .menu-title,
+    body.mobile-sidebar-open .sidebar .menu-title {
+        display:block !important;
+        color:#9aa9bd !important;
+        letter-spacing:1.2px !important;
+        font-size:11px !important;
+        padding:12px 14px 8px !important;
+        margin:0 !important;
+    }
+
+    .sidebar.mobile-sidebar-open .nav-links,
+    body.mobile-sidebar-open .sidebar .nav-links,
+    .sidebar.mobile-sidebar-open .side-nav,
+    body.mobile-sidebar-open .sidebar .side-nav {
+        gap:6px !important;
+        width:100% !important;
+        padding:0 0 6px !important;
+    }
+
+    /* Keep the drawer below the mobile navbar and above page content. */
+    .sidebar {
+        top:64px !important;
+        height:calc(100dvh - 64px) !important;
+        max-height:calc(100dvh - 64px) !important;
+    }
+
+    .mobile-sidebar-backdrop {
+        top:64px !important;
+        height:calc(100dvh - 64px) !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .sidebar {
+        width:min(310px, 84vw) !important;
+        max-width:310px !important;
+        top:60px !important;
+        height:calc(100dvh - 60px) !important;
+        max-height:calc(100dvh - 60px) !important;
+    }
+
+    .mobile-sidebar-backdrop {
+        top:60px !important;
+        height:calc(100dvh - 60px) !important;
+    }
+
+    .mobile-navbar-brand .brand-text h2,
+    .mobile-navbar-brand .brand-title {
+        font-size:14px !important;
+    }
+
+    .sidebar.mobile-sidebar-open .nav-links a,
+    body.mobile-sidebar-open .sidebar .nav-links a,
+    .sidebar.mobile-sidebar-open .side-nav a,
+    body.mobile-sidebar-open .sidebar .side-nav a {
+        min-height:44px !important;
+        padding:11px 12px !important;
+    }
+}
+
+/* =========================================================
+   SMOOTH MOBILE SIDEBAR SCROLLING
+   Desktop behavior remains unchanged.
+========================================================= */
+@media (max-width: 768px) {
+    .sidebar {
+        overscroll-behavior-y: contain !important;
+        overscroll-behavior-x: none !important;
+        -webkit-overflow-scrolling: touch !important;
+        scroll-behavior: smooth !important;
+        scrollbar-width: thin !important;
+        scrollbar-color: rgba(255,255,255,.28) transparent !important;
+        touch-action: pan-y !important;
+    }
+
+    .sidebar::-webkit-scrollbar {
+        width: 5px !important;
+    }
+
+    .sidebar::-webkit-scrollbar-track {
+        background: transparent !important;
+    }
+
+    .sidebar::-webkit-scrollbar-thumb {
+        background: rgba(255,255,255,.28) !important;
+        border-radius: 999px !important;
+    }
+
+    .sidebar::-webkit-scrollbar-thumb:hover {
+        background: rgba(255,255,255,.42) !important;
+    }
+
+    body.mobile-sidebar-open {
+        overflow: hidden !important;
+        overscroll-behavior: none !important;
+    }
+
+    .mobile-sidebar-backdrop {
+        touch-action: none !important;
+    }
+}
+
+/* Consistent PURVA - JalSetu brand image sizing across all pages. */
+.brand img[src*="title-icon.png"],
+.mobile-navbar-brand img[src*="title-icon.png"] {
+  width: 34px !important;
+  height: 34px !important;
+  min-width: 34px !important;
+  min-height: 34px !important;
+  max-width: 34px !important;
+  max-height: 34px !important;
+  object-fit: contain !important;
+  display: block !important;
+  flex: 0 0 34px !important;
+}
+
+/* Index page: softly curved corners for the brand image. */
+body:has(.public-topbar) .brand img[src*="title-icon.png"],
+body:has(.public-topbar) .mobile-navbar-brand img[src*="title-icon.png"] {
+  border-radius: 10px !important;
+}
+
+/* ==========================================================
+   PURVA - JalSetu BRAND IMAGE CONSISTENCY
+   Keep the index.html branding as the visual reference.
+   Sidebar brand holders on other pages are completely filled
+   by the same title-icon image; index.html keeps curved corners.
+   ========================================================== */
+
+/* Other sidebar pages: fill the complete brand-image holder. */
+.sidebar .brand .brand-icon {
+  width: 42px !important;
+  height: 42px !important;
+  min-width: 42px !important;
+  min-height: 42px !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 12px !important;
+}
+
+.sidebar .brand .brand-icon img {
+  width: 42px !important;
+  height: 42px !important;
+  min-width: 42px !important;
+  min-height: 42px !important;
+  max-width: 42px !important;
+  max-height: 42px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: block !important;
+  object-fit: cover !important;
+  border-radius: 12px !important;
+}
+
+/* Tracking pages: keep their compact top-navbar brand, but use the
+   same complete image treatment without the old empty holder space. */
+.navbar .brand-icon {
+  width: 34px !important;
+  height: 34px !important;
+  min-width: 34px !important;
+  min-height: 34px !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  border-radius: 10px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.navbar .brand-icon img {
+  width: 34px !important;
+  height: 34px !important;
+  min-width: 34px !important;
+  min-height: 34px !important;
+  max-width: 34px !important;
+  max-height: 34px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: block !important;
+  object-fit: cover !important;
+  border-radius: 10px !important;
+}
+
+/* Index.html: same image size, with softly curved corners. */
+body:has(.public-topbar) .brand > img[src*="title-icon.png"],
+body:has(.public-topbar) .mobile-navbar-brand img[src*="title-icon.png"],
+body:has(.public-topbar) .mobile-brand img[src*="title-icon.png"] {
+  width: 34px !important;
+  height: 34px !important;
+  min-width: 34px !important;
+  min-height: 34px !important;
+  max-width: 34px !important;
+  max-height: 34px !important;
+  display: block !important;
+  object-fit: cover !important;
+  border-radius: 10px !important;
+  overflow: hidden !important;
+}
+
+/* Simple brand-image headers used by registration/status/invoice pages. */
+body:not(:has(.public-topbar)) img[src*="title-icon.png"] {
+  border-radius: 10px;
+}
