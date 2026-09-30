@@ -1,6 +1,2 @@
 operator_id,operator_name,operator_type,phone,email,area,pincode,latitude,longitude,operational_tankers,contract_id,contract_start,contract_end,tanker_registration_no,tanker_capacity_kl,vehicle_model,water_type_supported,service_radius_km,verification_status,registration_date
-OP-BLR-0001,MANORANJAN S ,independent,7892012246,eng23am0042@dsu.edu.in,sahakar nagar,560097,13.070239863312363,77.58233785629274,8,,,,KA-50-EF-2327,10,tata tanker,treated,7,approved,2026-09-08
-OP-BLR-0002,Gowtham Y K,independent,8431041386,gowthamyk2004@gmail.com,harohalli,562101,12.684387217681799,77.47266769409181,6,,,,KA-01-AM-1234,16,tata tanker,treated,5,approved,2026-09-08
-OP-BLR-0003,Mohith Mohan,independent,9845430586,mickeymiles723@gmail.com,rt nagar,560212,13.022453773449994,77.59853839874268,7,,,,KA-05-KW-9876,12,tanker,treated,15,approved,2026-09-13
-OP-BLR-0004,Kaviya U,contracted,9003933065,kaviyasandiya@gmail.com,,,13.042773396814006,77.62845039367677,4,123456,2026-09-09,2026-09-30,KA-50-AO-7878,12,tanker,,,approved,2026-09-15
-OP-BLR-0005,Cathrine B,contracted,8971211229,cathrinebabu5@gmail.com,,,13.009533639813588,77.57555723190309,6,987654,2026-09-12,2026-09-30,KA-05-BH-6666,10,tata tanker,,,approved,2026-09-15
+OP-BLR-0003,Mohith Mohan,independent,9845430586,mickeymiles723@gmail.com,MG Road,560102,12.971532422497196,77.61690616607667,3,,,,KA-03-MH-1111,12,tata tanker,treated,15,approved,2026-09-25
