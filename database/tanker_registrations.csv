@@ -1,0 +1,2 @@
+operator_id,operator_name,operator_type,phone,email,area,pincode,latitude,longitude,operational_tankers,contract_id,contract_start,contract_end,tanker_registration_no,tanker_capacity_kl,vehicle_model,water_type_supported,service_radius_km,verification_status,registration_date
+OP-BLR-0003,Mohith Mohan,independent,9845430586,mickeymiles723@gmail.com,MG Road,560102,12.971532422497196,77.61690616607667,3,,,,KA-03-MH-1111,12,tata tanker,treated,15,approved,2026-09-25

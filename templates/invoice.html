@@ -1,0 +1,1457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Invoice | WasteWater Management System</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: #f4f7fb;
+            color: #172033;
+            font-family: 'Inter', sans-serif;
+            padding: 30px 20px;
+        }
+
+        .invoice-wrapper {
+            width: 100%;
+            max-width: 900px;
+            margin: auto;
+        }
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        .invoice-header {
+            background: linear-gradient(135deg, #0d1b2e, #17365d);
+            color: white;
+            padding: 28px 32px;
+            border-radius: 16px 16px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+        }
+
+        .brand-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 13px;
+            background: linear-gradient(135deg, #1683ff, #20c997);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 23px;
+        }
+
+        .brand h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .brand p {
+            margin: 5px 0 0;
+            color: #b8c7da;
+            font-size: 11px;
+        }
+
+        .invoice-title {
+            text-align: right;
+        }
+
+        .invoice-title h2 {
+            margin: 0;
+            font-size: 23px;
+            font-weight: 700;
+        }
+
+        .invoice-title p {
+            margin: 5px 0 0;
+            color: #c4d0df;
+            font-size: 11px;
+        }
+
+        /* =========================
+           MAIN
+        ========================= */
+
+        .invoice-body {
+            background: white;
+            padding: 30px 32px;
+            border-radius: 0 0 16px 16px;
+            box-shadow: 0 15px 40px rgba(25, 40, 70, 0.10);
+        }
+
+        /* =========================
+           STATUS
+        ========================= */
+
+        .invoice-status {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            padding: 12px 15px;
+            background: #e8f8ef;
+            color: #16834d;
+            border: 1px solid #d2f0df;
+            border-radius: 9px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 25px;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #28ae69;
+        }
+
+        /* =========================
+           INVOICE META
+        ========================= */
+
+        .invoice-meta {
+            display: flex;
+            justify-content: space-between;
+            gap: 30px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid #edf0f5;
+        }
+
+        .meta-box {
+            flex: 1;
+        }
+
+        .meta-box h4 {
+            margin: 0 0 7px;
+            font-size: 11px;
+            color: #7b8799;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: .5px;
+        }
+
+        .meta-box strong {
+            font-size: 13px;
+            color: #172033;
+            font-weight: 600;
+        }
+
+        .meta-box p {
+            margin: 4px 0 0;
+            color: #66748a;
+            font-size: 11px;
+        }
+
+        /* =========================
+           CUSTOMER DETAILS
+        ========================= */
+
+        .section {
+            margin-top: 25px;
+        }
+
+        .section-title {
+            margin: 0 0 14px;
+            font-size: 15px;
+            font-weight: 700;
+            color: #172033;
+        }
+
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .detail-box {
+            padding: 14px 15px;
+            background: #f8fafc;
+            border: 1px solid #edf0f5;
+            border-radius: 9px;
+        }
+
+        .detail-box span {
+            display: block;
+            color: #7b8799;
+            font-size: 10px;
+            margin-bottom: 5px;
+        }
+
+        .detail-box strong {
+            display: block;
+            color: #263449;
+            font-size: 13px;
+            font-weight: 600;
+            word-break: break-word;
+        }
+
+        /* =========================
+           TABLE
+        ========================= */
+
+        .table-wrapper {
+            width: 100%;
+            overflow-x: auto;
+        }
+
+        .invoice-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 5px;
+        }
+
+        .invoice-table th {
+            background: #f1f5f9;
+            color: #526075;
+            font-size: 11px;
+            font-weight: 600;
+            text-align: left;
+            padding: 13px;
+            border-bottom: 1px solid #e4e9f0;
+        }
+
+        .invoice-table td {
+            padding: 14px 13px;
+            border-bottom: 1px solid #edf0f5;
+            font-size: 12px;
+            color: #526075;
+        }
+
+        .invoice-table td strong {
+            color: #263449;
+            font-weight: 600;
+        }
+
+        .invoice-table th:last-child,
+        .invoice-table td:last-child {
+            text-align: right;
+        }
+
+        /* =========================
+           TOTALS
+        ========================= */
+
+        .total-section {
+            margin-top: 22px;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .totals {
+            width: 330px;
+        }
+
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 7px 0;
+            font-size: 12px;
+            color: #66748a;
+        }
+
+        .total-row strong {
+            color: #263449;
+            font-weight: 600;
+        }
+
+        .grand-total {
+            margin-top: 8px;
+            padding: 15px 0;
+            border-top: 2px solid #172033;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .grand-total span {
+            font-size: 14px;
+            font-weight: 700;
+            color: #172033;
+        }
+
+        .grand-total strong {
+            font-size: 21px;
+            color: #1976f3;
+        }
+
+        /* =========================
+           PAYMENT
+        ========================= */
+
+        .payment-section {
+            margin-top: 30px;
+            padding-top: 25px;
+            border-top: 1px solid #edf0f5;
+        }
+
+        .payment-section h3 {
+            margin: 0;
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .payment-note {
+            margin: 5px 0 18px;
+            color: #7b8799;
+            font-size: 11px;
+        }
+
+        .payment-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .payment-options form {
+            margin: 0;
+        }
+
+        .payment-btn {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 9px;
+            font-family: 'Inter', sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: .2s;
+        }
+
+        .pay-now {
+            background: #1976f3;
+            color: white;
+        }
+
+        .pay-now:hover {
+            background: #125fc5;
+            transform: translateY(-1px);
+        }
+
+        .cod {
+            background: #e8f8ef;
+            color: #16834d;
+            border: 1px solid #d2f0df;
+        }
+
+        .cod:hover {
+            background: #199956;
+            color: white;
+            transform: translateY(-1px);
+        }
+
+        /* =========================
+           FOOTER ACTIONS
+        ========================= */
+
+        .footer-actions {
+            margin-top: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .back-btn {
+            padding: 11px 17px;
+            background: white;
+            color: #526075;
+            border: 1px solid #dce2ea;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .back-btn:hover {
+            background: #f8fafc;
+        }
+
+        .invoice-note {
+            color: #8a96a8;
+            font-size: 10px;
+            text-align: right;
+        }
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 700px) {
+
+            body {
+                padding: 15px;
+            }
+
+            .invoice-header {
+                padding: 22px 20px;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .invoice-title {
+                text-align: left;
+            }
+
+            .invoice-title h2 {
+                font-size: 20px;
+            }
+
+            .invoice-body {
+                padding: 22px 20px;
+            }
+
+            .invoice-meta {
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            .details-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .payment-options {
+                grid-template-columns: 1fr;
+            }
+
+            .total-section {
+                justify-content: stretch;
+            }
+
+            .totals {
+                width: 100%;
+            }
+
+            .footer-actions {
+                flex-direction: column-reverse;
+                align-items: stretch;
+            }
+
+            .back-btn {
+                text-align: center;
+            }
+
+            .invoice-note {
+                text-align: center;
+            }
+        }
+
+
+        /* =========================
+           PAYMENT CONFIRMATION MODAL
+        ========================= */
+
+        .ww-payment-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.58);
+            z-index: 2147483600;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .ww-payment-modal.ww-show {
+            display: flex;
+        }
+
+        .ww-payment-card {
+            width: 100%;
+            max-width: 430px;
+            background: #fff;
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 20px 60px rgba(15, 23, 42, 0.25);
+            position: relative;
+            animation: wwPaymentIn .18s ease-out;
+        }
+
+        @keyframes wwPaymentIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px) scale(.98);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .ww-payment-close {
+            position: absolute;
+            top: 12px;
+            right: 14px;
+            width: 30px;
+            height: 30px;
+            border: none;
+            border-radius: 50%;
+            background: #f1f5f9;
+            color: #526075;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        .ww-payment-card h3 {
+            margin: 0 35px 6px 0;
+            color: #172033;
+            font-size: 18px;
+        }
+
+        .ww-payment-card p {
+            margin: 0 0 18px;
+            color: #7b8799;
+            font-size: 11px;
+            line-height: 1.5;
+        }
+
+        .ww-payment-amount {
+            padding: 14px;
+            background: #f8fafc;
+            border: 1px solid #edf0f5;
+            border-radius: 9px;
+            margin-bottom: 17px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .ww-payment-amount span {
+            color: #66748a;
+            font-size: 11px;
+        }
+
+        .ww-payment-amount strong {
+            color: #1976f3;
+            font-size: 18px;
+        }
+
+        .ww-payment-field {
+            margin-bottom: 12px;
+        }
+
+        .ww-payment-field label {
+            display: block;
+            margin-bottom: 5px;
+            color: #526075;
+            font-size: 10px;
+            font-weight: 600;
+        }
+
+        .ww-payment-field input {
+            width: 100%;
+            padding: 11px 12px;
+            border: 1px solid #dce2ea;
+            border-radius: 8px;
+            outline: none;
+            font-family: 'Inter', sans-serif;
+            font-size: 12px;
+        }
+
+        .ww-payment-field input:focus {
+            border-color: #1976f3;
+        }
+
+        .ww-payment-confirm {
+            width: 100%;
+            margin-top: 5px;
+            padding: 13px;
+            border: none;
+            border-radius: 9px;
+            background: #1976f3;
+            color: white;
+            font-family: 'Inter', sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .ww-payment-confirm:hover {
+            background: #125fc5;
+        }
+
+        .ww-cod-confirm {
+            background: #16834d;
+        }
+
+        .ww-cod-confirm:hover {
+            background: #116b3e;
+        }
+
+        .ww-payment-small {
+            margin-top: 10px !important;
+            margin-bottom: 0 !important;
+            text-align: center;
+            font-size: 10px !important;
+            color: #8a96a8 !important;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="invoice-wrapper">
+
+    <!-- =========================
+         HEADER
+    ========================== -->
+
+    <div class="invoice-header">
+
+        <div class="brand">
+
+            <div class="brand-icon">
+                💧
+            </div>
+
+            <div>
+                <h1>WasteWater</h1>
+                <p>Treated Wastewater Management System</p>
+            </div>
+
+        </div>
+
+        <div class="invoice-title">
+
+            <h2>INVOICE</h2>
+
+            <p>
+                Order #{{ info.order_id }}
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="invoice-body">
+
+        <!-- =========================
+             STATUS
+        ========================== -->
+
+        <div class="invoice-status">
+
+            <div class="status-dot"></div>
+
+            Booking created successfully
+
+        </div>
+
+
+        <!-- =========================
+             INVOICE META
+        ========================== -->
+
+        <div class="invoice-meta">
+
+            <div class="meta-box">
+
+                <h4>Invoice Number</h4>
+
+                <strong>
+                    INV-{{ info.order_id }}
+                </strong>
+
+            </div>
+
+
+            <div class="meta-box">
+
+                <h4>Order ID</h4>
+
+                <strong>
+                    {{ info.order_id }}
+                </strong>
+
+            </div>
+
+
+            <div class="meta-box">
+
+                <h4>Invoice Date</h4>
+
+                <strong>
+                    {{ invoice_date if invoice_date else "Today" }}
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             CUSTOMER DETAILS
+        ========================== -->
+
+        <div class="section">
+
+            <h3 class="section-title">
+                Customer & Delivery Details
+            </h3>
+
+            <div class="details-grid">
+
+                <div class="detail-box">
+
+                    <span>Buyer Name</span>
+
+                    <strong>
+                        {{ info.buyer_name }}
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-box">
+
+                    <span>Phone Number</span>
+
+                    <strong>
+                        {{ info.buyer_phone }}
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-box">
+
+                    <span>STP</span>
+
+                    <strong>
+                        {{ info.stp_name if info.stp_name else "Selected STP" }}
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-box">
+
+                    <span>Delivery Location</span>
+
+                    <strong>
+                        {{ info.location if info.location else "Delivery Site" }}
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             SUPPLY DETAILS
+        ========================== -->
+
+        <div class="section">
+
+            <h3 class="section-title">
+                Supply Details
+            </h3>
+
+            <div class="details-grid">
+
+                <div class="detail-box">
+
+                    <span>Water Quantity</span>
+
+                    <strong>
+                        {{ info.quantity }} KLD
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-box">
+
+                    <span>Distance</span>
+
+                    <strong>
+                        {{ info.distance_km if info.distance_km else "—" }} km
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-box">
+
+                    <span>Quality Required</span>
+
+                    <strong>
+                        {{ info.quality_required if info.quality_required else "Treated Wastewater" }}
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-box">
+
+                    <span>Payment Status</span>
+
+                    <strong>
+                        Awaiting Payment
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             CHARGES
+        ========================== -->
+
+        <div class="section">
+
+            <h3 class="section-title">
+                Invoice Details
+            </h3>
+
+            <div class="table-wrapper">
+
+                <table class="invoice-table">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Description</th>
+
+                            <th>Quantity</th>
+
+                            <th>Rate</th>
+
+                            <th>Amount</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+
+                            <td>
+                                <strong>
+                                    Treated Wastewater
+                                </strong>
+                            </td>
+
+                            <td>
+                                {{ info.quantity }} KLD
+                            </td>
+
+                            <td>
+                                ₹30 / KL
+                            </td>
+
+                            <td>
+                                ₹{{ info.water_amount if info.water_amount else "0.00" }}
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <td>
+                                <strong>
+                                    Transportation
+                                </strong>
+                            </td>
+
+                            <td>
+                                {{ info.quantity }} KLD
+                            </td>
+
+                            <td>
+                                ₹{{ info.transport_rate if info.transport_rate else "0.00" }} / KL
+                            </td>
+
+                            <td>
+                                ₹{{ info.transport_amount if info.transport_amount else "0.00" }}
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             TOTALS
+        ========================== -->
+
+        <div class="total-section">
+
+            <div class="totals">
+
+                <div class="total-row">
+
+                    <span>Subtotal</span>
+
+                    <strong>
+                        ₹{{ info.subtotal if info.subtotal else "0.00" }}
+                    </strong>
+
+                </div>
+
+
+                <div class="total-row">
+
+                    <span>GST</span>
+
+                    <strong>
+                        ₹{{ info.gst if info.gst else "0.00" }}
+                    </strong>
+
+                </div>
+
+
+                <div class="grand-total">
+
+                    <span>
+                        Total Amount
+                    </span>
+
+                    <strong>
+                        ₹{{ info.total if info.total else "0.00" }}
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             PAYMENT OPTIONS
+        ========================== -->
+
+        <div class="payment-section">
+
+            <h3>
+                Choose Payment Method
+            </h3>
+
+            <p class="payment-note">
+                Select your preferred payment method to confirm this booking.
+            </p>
+
+
+            <div class="payment-options">
+
+
+                <!-- PAY NOW -->
+
+                <form method="POST" action="/pay_now">
+
+                    <input
+                        type="hidden"
+                        name="order_id"
+                        value="{{ info.order_id }}"
+                    >
+
+                    <input
+                        type="hidden"
+                        name="amount"
+                        value="{{ info.total if info.total else 0 }}"
+                    >
+
+                    <button
+                        type="submit"
+                        class="payment-btn pay-now"
+                    >
+
+                        💳 Pay Now
+
+                    </button>
+
+                </form>
+
+
+                <!-- CASH ON DELIVERY -->
+
+                <form method="POST" action="/confirm_cod">
+
+                    <input
+                        type="hidden"
+                        name="order_id"
+                        value="{{ info.order_id }}"
+                    >
+
+                    <input
+                        type="hidden"
+                        name="amount"
+                        value="{{ info.total if info.total else 0 }}"
+                    >
+
+                    <button
+                        type="submit"
+                        class="payment-btn cod"
+                    >
+
+                        💵 Cash on Delivery
+
+                    </button>
+
+                </form>
+
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             FOOTER
+        ========================== -->
+
+        <div class="footer-actions">
+
+            <a
+                class="back-btn"
+                href="/demand"
+            >
+                ← Back to Dashboard
+            </a>
+
+
+            <div class="invoice-note">
+
+                Invoice generated by WasteWater Management System
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+
+
+<!-- =========================================================
+     PAYMENT CONFIRMATION MODALS
+========================================================= -->
+
+<div id="wwPayNowModal" class="ww-payment-modal" aria-hidden="true">
+    <div class="ww-payment-card" role="dialog" aria-modal="true">
+        <button type="button" class="ww-payment-close" data-close-payment="wwPayNowModal">×</button>
+
+        <h3>Dummy Payment</h3>
+        <p>Enter the details below to complete the demo payment and confirm your order.</p>
+
+        <div class="ww-payment-amount">
+            <span>Amount to Pay</span>
+            <strong>₹{{ info.total if info.total else "0.00" }}</strong>
+        </div>
+
+        <div class="ww-payment-field">
+            <label>Card Number</label>
+            <input type="text" id="wwCardNumber" inputmode="numeric"
+                   maxlength="19" placeholder="1234 5678 9012 3456">
+        </div>
+
+        <div class="ww-payment-field">
+            <label>Card Holder Name</label>
+            <input type="text" id="wwCardName" placeholder="Card holder name">
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+            <div class="ww-payment-field">
+                <label>Expiry</label>
+                <input type="text" id="wwCardExpiry"
+                       maxlength="5" placeholder="MM/YY">
+            </div>
+
+            <div class="ww-payment-field">
+                <label>CVV</label>
+                <input type="password" id="wwCardCvv"
+                       inputmode="numeric" maxlength="4" placeholder="•••">
+            </div>
+        </div>
+
+        <button type="button" id="wwConfirmPay" class="ww-payment-confirm">
+            Pay ₹{{ info.total if info.total else "0.00" }} & Book Order
+        </button>
+
+        <p class="ww-payment-small">Demo payment only — no real money will be charged.</p>
+    </div>
+</div>
+
+<div id="wwCodModal" class="ww-payment-modal" aria-hidden="true">
+    <div class="ww-payment-card" role="dialog" aria-modal="true">
+        <button type="button" class="ww-payment-close" data-close-payment="wwCodModal">×</button>
+
+        <h3>Confirm Cash on Delivery</h3>
+        <p>Confirm the order now and pay the displayed amount when the tanker delivers the water.</p>
+
+        <div class="ww-payment-amount">
+            <span>Order Amount</span>
+            <strong>₹{{ info.total if info.total else "0.00" }}</strong>
+        </div>
+
+        <button type="button" id="wwConfirmCod"
+                class="ww-payment-confirm ww-cod-confirm">
+            Confirm COD & Book Order
+        </button>
+
+        <p class="ww-payment-small">Your order will be sent for processing after confirmation.</p>
+    </div>
+</div>
+
+<script>
+(function () {
+    "use strict";
+
+    const payForm = document.querySelector('form[action="/pay_now"]');
+    const codForm = document.querySelector('form[action="/confirm_cod"]');
+
+    const payModal = document.getElementById("wwPayNowModal");
+    const codModal = document.getElementById("wwCodModal");
+
+    const confirmPay = document.getElementById("wwConfirmPay");
+    const confirmCod = document.getElementById("wwConfirmCod");
+
+    function openModal(modal) {
+        if (!modal) return;
+        modal.classList.add("ww-show");
+        modal.setAttribute("aria-hidden", "false");
+    }
+
+    function closeModal(modal) {
+        if (!modal) return;
+        modal.classList.remove("ww-show");
+        modal.setAttribute("aria-hidden", "true");
+    }
+
+    if (payForm) {
+        payForm.addEventListener("submit", function (event) {
+            event.preventDefault();
+            openModal(payModal);
+        });
+    }
+
+    if (codForm) {
+        codForm.addEventListener("submit", function (event) {
+            event.preventDefault();
+            openModal(codModal);
+        });
+    }
+
+    if (confirmPay) {
+        confirmPay.addEventListener("click", function () {
+            const cardNumber = document.getElementById("wwCardNumber");
+            const cardName = document.getElementById("wwCardName");
+            const expiry = document.getElementById("wwCardExpiry");
+            const cvv = document.getElementById("wwCardCvv");
+
+            if (!cardNumber.value.trim() ||
+                !cardName.value.trim() ||
+                !expiry.value.trim() ||
+                !cvv.value.trim()) {
+                alert("Please enter all payment details.");
+                return;
+            }
+
+            confirmPay.disabled = true;
+            confirmPay.textContent = "Processing Payment...";
+
+            setTimeout(function () {
+                payForm.submit();
+            }, 700);
+        });
+    }
+
+    if (confirmCod) {
+        confirmCod.addEventListener("click", function () {
+            confirmCod.disabled = true;
+            confirmCod.textContent = "Confirming Order...";
+
+            setTimeout(function () {
+                codForm.submit();
+            }, 500);
+        });
+    }
+
+    document.querySelectorAll("[data-close-payment]").forEach(function (button) {
+        button.addEventListener("click", function () {
+            const modal = document.getElementById(button.getAttribute("data-close-payment"));
+            closeModal(modal);
+        });
+    });
+
+    [payModal, codModal].forEach(function (modal) {
+        if (!modal) return;
+
+        modal.addEventListener("click", function (event) {
+            if (event.target === modal) {
+                closeModal(modal);
+            }
+        });
+    });
+
+    document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") {
+            closeModal(payModal);
+            closeModal(codModal);
+        }
+    });
+
+    const cardNumber = document.getElementById("wwCardNumber");
+    if (cardNumber) {
+        cardNumber.addEventListener("input", function () {
+            let value = this.value.replace(/\D/g, "").slice(0, 16);
+            this.value = value.replace(/(.{4})/g, "$1 ").trim();
+        });
+    }
+
+    const expiry = document.getElementById("wwCardExpiry");
+    if (expiry) {
+        expiry.addEventListener("input", function () {
+            let value = this.value.replace(/\D/g, "").slice(0, 4);
+            if (value.length > 2) {
+                value = value.slice(0, 2) + "/" + value.slice(2);
+            }
+            this.value = value;
+        });
+    }
+})();
+</script>
+
+
+<!-- =========================================================
+     GLOBAL PROFILE / AVATAR / LOGOUT MENU
+========================================================= -->
+<style>
+#wwGlobalAccountButton{
+    position:fixed;top:14px;right:18px;width:43px;height:43px;
+    border-radius:50%;border:2px solid #fff;
+    background:linear-gradient(135deg,#1683ff,#20c997);
+    color:#fff;display:flex;align-items:center;justify-content:center;
+    font-family:Arial,sans-serif;font-size:13px;font-weight:700;
+    cursor:pointer;z-index:2147483000;
+    box-shadow:0 5px 18px rgba(0,0,0,.18);
+    user-select:none;transition:transform .18s ease,box-shadow .18s ease;
+}
+#wwGlobalAccountButton:hover{
+    transform:scale(1.05);box-shadow:0 7px 22px rgba(0,0,0,.23);
+}
+#wwGlobalAccountMenu{
+    position:fixed;top:66px;right:18px;width:235px;
+    background:#fff;border:1px solid #e6ebf2;border-radius:13px;
+    padding:10px;z-index:2147483001;
+    box-shadow:0 14px 38px rgba(15,23,42,.18);
+    font-family:Arial,sans-serif;display:none;
+}
+#wwGlobalAccountMenu.ww-open{display:block}
+.ww-account-header{
+    padding:8px 9px 12px;margin-bottom:5px;
+    border-bottom:1px solid #edf1f5;
+}
+.ww-account-name{
+    color:#172033;font-size:14px;font-weight:700;
+    line-height:1.35;word-break:break-word;
+}
+.ww-account-role{
+    margin-top:3px;color:#7b8799;font-size:11px;
+    text-transform:capitalize;
+}
+.ww-account-item{
+    display:block;width:100%;padding:10px 9px;border-radius:8px;
+    color:#263449;background:transparent;text-decoration:none;
+    font-size:12px;font-weight:600;text-align:left;
+    box-sizing:border-box;cursor:pointer;
+}
+.ww-account-item:hover{background:#f4f7fb}
+.ww-account-login{color:#1976f3}
+.ww-account-logout{color:#d13b3b}
+@media(max-width:600px){
+    #wwGlobalAccountButton{
+        top:10px;right:10px;width:39px;height:39px;font-size:11px;
+    }
+    #wwGlobalAccountMenu{top:58px;right:10px;width:210px}
+}
+</style>
+
+<div id="wwGlobalAccountButton" title="Account"
+     aria-label="Open account menu" role="button" tabindex="0">👤</div>
+
+<div id="wwGlobalAccountMenu" aria-hidden="true">
+    <div class="ww-account-header">
+        <div id="wwAccountName" class="ww-account-name">Guest</div>
+        <div id="wwAccountRole" class="ww-account-role">Account</div>
+    </div>
+
+    <a id="wwAccountProfile" class="ww-account-item"
+       href="/profile" style="display:none;">👤 My Profile</a>
+
+    <a id="wwAccountLogin" class="ww-account-item ww-account-login"
+       href="/login" style="display:none;">🔐 Login</a>
+
+    <a id="wwAccountLogout" class="ww-account-item ww-account-logout"
+       href="/logout" style="display:none;">↪ Logout</a>
+</div>
+
+<script>
+(function(){
+    "use strict";
+
+    const avatar=document.getElementById("wwGlobalAccountButton");
+    const menu=document.getElementById("wwGlobalAccountMenu");
+
+    if(!avatar || !menu) return;
+
+    const nameEl=document.getElementById("wwAccountName");
+    const roleEl=document.getElementById("wwAccountRole");
+    const profileEl=document.getElementById("wwAccountProfile");
+    const loginEl=document.getElementById("wwAccountLogin");
+    const logoutEl=document.getElementById("wwAccountLogout");
+
+    function loggedOut(){
+        avatar.textContent="👤";
+        avatar.title="Login";
+        if(nameEl) nameEl.textContent="Guest";
+        if(roleEl) roleEl.textContent="Not logged in";
+        if(profileEl) profileEl.style.display="none";
+        if(loginEl) loginEl.style.display="block";
+        if(logoutEl) logoutEl.style.display="none";
+    }
+
+    function loggedIn(user){
+        avatar.textContent=user.initials || "👤";
+        avatar.title=user.name || "My Profile";
+
+        if(nameEl) nameEl.textContent=user.name || "User";
+
+        if(roleEl){
+            const role=user.role || "Account";
+            roleEl.textContent=role.charAt(0).toUpperCase()+role.slice(1);
+        }
+
+        if(profileEl) profileEl.style.display="block";
+        if(loginEl) loginEl.style.display="none";
+        if(logoutEl) logoutEl.style.display="block";
+    }
+
+    fetch("/api/current_user",{
+        method:"GET",
+        credentials:"same-origin",
+        cache:"no-store"
+    })
+    .then(function(response){
+        if(!response.ok) throw new Error("Account API unavailable");
+        return response.json();
+    })
+    .then(function(user){
+        if(user && user.logged_in) loggedIn(user);
+        else loggedOut();
+    })
+    .catch(function(){
+        loggedOut();
+    });
+
+    function toggle(event){
+        if(event) event.stopPropagation();
+        const open=menu.classList.toggle("ww-open");
+        menu.setAttribute("aria-hidden",open ? "false" : "true");
+    }
+
+    avatar.addEventListener("click",toggle);
+
+    avatar.addEventListener("keydown",function(event){
+        if(event.key==="Enter" || event.key===" "){
+            event.preventDefault();
+            toggle(event);
+        }
+    });
+
+    menu.addEventListener("click",function(event){
+        event.stopPropagation();
+    });
+
+    document.addEventListener("click",function(){
+        menu.classList.remove("ww-open");
+        menu.setAttribute("aria-hidden","true");
+    });
+})();
+</script>
+<!-- END GLOBAL PROFILE / AVATAR / LOGOUT MENU -->
+
+
+<script>
+(function () {
+    "use strict";
+
+    function bindPaymentForm(form) {
+        if (!form || form.dataset.paymentBound === "1") return;
+        form.dataset.paymentBound = "1";
+
+        form.addEventListener("submit", function () {
+            if (form.dataset.submitting === "1") return;
+
+            form.dataset.submitting = "1";
+
+            var button = form.querySelector(
+                'button[type="submit"], input[type="submit"]'
+            );
+
+            if (button) {
+                button.disabled = true;
+
+                if (button.tagName.toLowerCase() === "input") {
+                    button.dataset.originalValue = button.value;
+                    button.value = "Processing...";
+                } else {
+                    button.dataset.originalHtml = button.innerHTML;
+                    button.innerHTML = "Processing...";
+                }
+            }
+        });
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll(
+            'form[action="/pay_now"], form[action="/confirm_cod"]'
+        ).forEach(bindPaymentForm);
+    });
+})();
+</script>
+
+</body>
+</html>

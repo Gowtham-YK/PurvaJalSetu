@@ -1,0 +1,351 @@
+/* =========================================
+   TANKER REGISTRATION UI
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* =========================================
+   BODY
+========================================= */
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f7fb;
+    color: #163b65;
+    min-height: 100vh;
+}
+
+
+/* =========================================
+   PAGE
+========================================= */
+
+.tanker-page {
+    width: 100%;
+    padding: 45px 20px 70px;
+}
+
+
+/* =========================================
+   PAGE HEADER
+========================================= */
+
+.tanker-header {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.tanker-header h1 {
+    font-size: 36px;
+    color: #163b65;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.tanker-header p {
+    font-size: 17px;
+    color: #52647a;
+}
+
+
+/* =========================================
+   FORM CARD
+========================================= */
+
+.form-card {
+    width: 100%;
+    max-width: 750px;
+    margin: 0 auto;
+
+    background: #ffffff;
+
+    padding: 35px 38px;
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+
+/* =========================================
+   FORM CARD HEADER
+========================================= */
+
+.form-card h2 {
+    color: #163b65;
+    font-size: 27px;
+    margin-bottom: 8px;
+}
+
+.form-description {
+    color: #52647a;
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 28px;
+}
+
+
+/* =========================================
+   FORM SECTIONS
+========================================= */
+
+.form-section {
+    margin-top: 28px;
+}
+
+.form-section:first-of-type {
+    margin-top: 0;
+}
+
+.form-section h3 {
+    color: #1769aa;
+    font-size: 18px;
+    margin-bottom: 16px;
+    font-weight: 700;
+}
+
+
+/* =========================================
+   FORM GROUP
+========================================= */
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    display: block;
+
+    font-size: 16px;
+    font-weight: 600;
+
+    color: #172b4d;
+
+    margin-bottom: 7px;
+}
+
+
+/* =========================================
+   INPUTS
+========================================= */
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+
+    padding: 12px 13px;
+
+    border: 1px solid #d1d9e2;
+
+    border-radius: 8px;
+
+    background: #ffffff;
+
+    color: #26384d;
+
+    font-size: 16px;
+
+    outline: none;
+
+    transition: 0.2s ease;
+}
+
+.form-group input,
+.form-group select {
+    height: 46px;
+}
+
+.form-group textarea {
+    min-height: 110px;
+    resize: vertical;
+}
+
+
+/* =========================================
+   INPUT FOCUS
+========================================= */
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: #1769aa;
+
+    box-shadow:
+        0 0 0 3px rgba(23, 105, 170, 0.10);
+}
+
+
+/* =========================================
+   PLACEHOLDER
+========================================= */
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: #7a8796;
+}
+
+
+/* =========================================
+   NOTICE BOX
+========================================= */
+
+.form-notice {
+    background: #edf5ff;
+
+    border-left: 4px solid #1769aa;
+
+    padding: 15px 16px;
+
+    margin-bottom: 28px;
+
+    color: #163b65;
+
+    font-size: 15px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================
+   TWO COLUMN FORM
+========================================= */
+
+.form-row {
+    display: flex;
+    gap: 18px;
+}
+
+.form-row .form-group {
+    flex: 1;
+}
+
+
+/* =========================================
+   FORM ACTIONS
+========================================= */
+
+.form-actions {
+    margin-top: 30px;
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 12px;
+}
+
+
+/* =========================================
+   PRIMARY BUTTON
+========================================= */
+
+.btn-primary {
+    display: inline-block;
+
+    padding: 13px 30px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #1769aa;
+
+    color: #ffffff;
+
+    font-size: 16px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    text-decoration: none;
+
+    transition: 0.2s ease;
+}
+
+.btn-primary:hover {
+    background: #12558a;
+    transform: translateY(-1px);
+}
+
+
+/* =========================================
+   SECONDARY BUTTON
+========================================= */
+
+.btn-secondary {
+    display: inline-block;
+
+    padding: 13px 30px;
+
+    border-radius: 8px;
+
+    border: 1px solid #cbd5e1;
+
+    background: #ffffff;
+
+    color: #163b65;
+
+    font-size: 16px;
+
+    font-weight: 600;
+
+    text-decoration: none;
+
+    transition: 0.2s ease;
+}
+
+.btn-secondary:hover {
+    background: #f4f7fb;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 700px) {
+
+    .tanker-page {
+        padding: 30px 15px 50px;
+    }
+
+    .tanker-header h1 {
+        font-size: 28px;
+    }
+
+    .tanker-header p {
+        font-size: 15px;
+    }
+
+    .form-card {
+        padding: 25px 20px;
+        border-radius: 14px;
+    }
+
+    .form-card h2 {
+        font-size: 23px;
+    }
+
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .form-actions {
+        flex-direction: column;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+        width: 100%;
+        text-align: center;
+    }
+}

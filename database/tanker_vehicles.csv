@@ -1,0 +1,4 @@
+vehicle_id,operator_id,registration_number,vehicle_model,capacity_kl,vehicle_status,created_at
+VEH-938A06191B,OP-BLR-0003,KA-03-MH-1111,tata tanker,12,active,2026-09-25T11:04:40
+VEH-F7F03AD034,OP-BLR-0003,KA-03-FL-1112,tata tanker,16,active,2026-09-25T11:04:40
+VEH-7C68A237AF,OP-BLR-0003,KA-03-GB-1113,tata tanker,20,active,2026-09-25T11:04:40

@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        {{ operator.operator_name }} | Tanker Operator Details
+    </title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: #f5f7fb;
+            color: #172033;
+        }
+
+        .page {
+            max-width: 1250px;
+            margin: auto;
+            padding: 32px;
+        }
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 22px;
+        }
+
+        .topbar h1 {
+            margin: 0;
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .topbar p {
+            margin: 5px 0 0;
+            color: #7b8799;
+            font-size: 11px;
+        }
+
+        .back-btn {
+            display: inline-block;
+            background: #1976f3;
+            color: white;
+            text-decoration: none;
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-size: 11px;
+            font-weight: 500;
+            transition: 0.2s;
+        }
+
+        .back-btn:hover {
+            background: #125fc4;
+        }
+
+
+        /* =========================
+           CARDS
+        ========================= */
+
+        .card {
+            background: white;
+            border: 1px solid #e7ebf1;
+            border-radius: 13px;
+            padding: 20px;
+            margin-bottom: 18px;
+            box-shadow: 0 3px 12px rgba(25, 40, 70, 0.04);
+        }
+
+        .card-title {
+            margin: 0 0 17px;
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+
+        /* =========================
+           STATS
+        ========================= */
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+            gap: 13px;
+            margin-bottom: 18px;
+        }
+
+        .stat {
+            background: white;
+            border: 1px solid #e7ebf1;
+            border-radius: 11px;
+            padding: 16px;
+            box-shadow: 0 3px 12px rgba(25, 40, 70, 0.04);
+        }
+
+        .stat span {
+            color: #7b8799;
+            font-size: 9px;
+        }
+
+        .stat strong {
+            display: block;
+            margin-top: 4px;
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+
+        /* =========================
+           OPERATOR DETAILS
+        ========================= */
+
+        .operator-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 12px;
+        }
+
+        .info {
+            background: #fafbfd;
+            border: 1px solid #edf0f5;
+            border-radius: 8px;
+            padding: 12px;
+        }
+
+        .info span {
+            display: block;
+            color: #8993a4;
+            font-size: 9px;
+        }
+
+        .info strong {
+            display: block;
+            margin-top: 4px;
+            font-size: 11px;
+            font-weight: 600;
+            word-break: break-word;
+        }
+
+
+        /* =========================
+           VEHICLE
+        ========================= */
+
+        .vehicle {
+            border: 1px solid #e4e9f0;
+            border-radius: 11px;
+            margin-bottom: 13px;
+            overflow: hidden;
+        }
+
+        .vehicle:last-child {
+            margin-bottom: 0;
+        }
+
+        .vehicle summary {
+            padding: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            background: #fafbfd;
+            cursor: pointer;
+            list-style: none;
+        }
+
+        .vehicle summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .vehicle summary:hover {
+            background: #f6f9fc;
+        }
+
+        .vehicle-title strong {
+            display: block;
+            font-size: 12px;
+        }
+
+        .vehicle-title small {
+            display: block;
+            margin-top: 4px;
+            color: #8290a3;
+            font-size: 9px;
+        }
+
+        .view-documents-text {
+            color: #1976f3;
+            font-size: 9px;
+            font-weight: 500;
+        }
+
+        .vehicle-body {
+            padding: 16px;
+            border-top: 1px solid #edf0f5;
+        }
+
+
+        /* =========================
+           DOCUMENTS
+        ========================= */
+
+        .documents {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+        }
+
+        .document {
+            border: 1px solid #e7ebf1;
+            border-radius: 9px;
+            padding: 14px;
+            background: white;
+        }
+
+        .document-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .document-name {
+            font-size: 10px;
+            font-weight: 600;
+        }
+
+        .filename {
+            margin-top: 4px;
+            color: #8993a4;
+            font-size: 8px;
+            word-break: break-word;
+        }
+
+
+        /* =========================
+           STATUS
+        ========================= */
+
+        .status {
+            padding: 5px 8px;
+            border-radius: 15px;
+            font-size: 8px;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .pending {
+            background: #fff3dd;
+            color: #c77b08;
+        }
+
+        .verified {
+            background: #e8f8ef;
+            color: #199956;
+        }
+
+        .rejected {
+            background: #ffe8e8;
+            color: #dc4141;
+        }
+
+        .missing {
+            background: #eef1f5;
+            color: #687589;
+        }
+
+
+        /* =========================
+           PDF BUTTON
+        ========================= */
+
+        .view-pdf {
+            display: inline-block;
+            padding: 7px 11px;
+            margin-bottom: 10px;
+            background: #e9f2ff;
+            color: #1976f3;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 9px;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+
+        .view-pdf:hover {
+            background: #1976f3;
+            color: white;
+        }
+
+
+        /* =========================
+           ADMIN REMARK
+        ========================= */
+
+        textarea {
+            width: 100%;
+            min-height: 65px;
+            padding: 9px;
+            resize: vertical;
+            border: 1px solid #dce2ea;
+            border-radius: 7px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 9px;
+            outline: none;
+        }
+
+        textarea:focus {
+            border-color: #1976f3;
+            box-shadow: 0 0 0 3px rgba(25, 118, 243, 0.07);
+        }
+
+
+        /* =========================
+           ACTION BUTTONS
+        ========================= */
+
+        .actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .actions button {
+            flex: 1;
+            border: none;
+            border-radius: 7px;
+            padding: 9px;
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            font-size: 9px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .verify {
+            background: #22a861;
+        }
+
+        .verify:hover {
+            background: #19864d;
+        }
+
+        .reject {
+            background: #e34b4b;
+        }
+
+        .reject:hover {
+            background: #c83c3c;
+        }
+
+
+        /* =========================
+           EMPTY
+        ========================= */
+
+        .empty {
+            text-align: center;
+            padding: 30px;
+            color: #8290a3;
+            font-size: 11px;
+        }
+
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 950px) {
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .operator-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .documents {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+        @media (max-width: 550px) {
+
+            .page {
+                padding: 18px;
+            }
+
+            .topbar {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .stats,
+            .operator-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .vehicle summary {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .actions {
+                flex-direction: column;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<div class="page">
+
+
+    <!-- =========================
+         HEADER
+    ========================= -->
+
+    <div class="topbar">
+
+        <div>
+
+            <h1>
+                {{ operator.operator_name }}
+            </h1>
+
+            <p>
+                Tanker Operator
+                •
+                {{ operator.operator_id }}
+            </p>
+
+        </div>
+
+
+        <a
+            href="{{ url_for('admin_dashboard') }}"
+            class="back-btn"
+        >
+            ← Admin Dashboard
+        </a>
+
+    </div>
+
+
+
+    <!-- =========================
+         DOCUMENT STATS
+    ========================= -->
+
+    <div class="stats">
+
+        <div class="stat">
+
+            <span>
+                Registered Vehicles
+            </span>
+
+            <strong>
+                {{ vehicles|length }}
+            </strong>
+
+        </div>
+
+
+        <div class="stat">
+
+            <span>
+                Required Documents
+            </span>
+
+            <strong>
+                {{ total_required_documents }}
+            </strong>
+
+        </div>
+
+
+        <div class="stat">
+
+            <span>
+                Uploaded Documents
+            </span>
+
+            <strong>
+                {{ uploaded_documents }}
+            </strong>
+
+        </div>
+
+
+        <div class="stat">
+
+            <span>
+                Verified Documents
+            </span>
+
+            <strong>
+                {{ verified_documents }}
+            </strong>
+
+        </div>
+
+
+        <div class="stat">
+
+            <span>
+                Pending / Rejected
+            </span>
+
+            <strong>
+                {{ pending_documents }}
+                /
+                {{ rejected_documents }}
+            </strong>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================
+         OPERATOR INFORMATION
+    ========================= -->
+
+    <div class="card">
+
+        <h2 class="card-title">
+            Operator Information
+        </h2>
+
+
+        <div class="operator-grid">
+
+
+            <div class="info">
+
+                <span>
+                    Operator ID
+                </span>
+
+                <strong>
+                    {{ operator.operator_id }}
+                </strong>
+
+            </div>
+
+
+            <div class="info">
+
+                <span>
+                    Operator Name
+                </span>
+
+                <strong>
+                    {{ operator.operator_name }}
+                </strong>
+
+            </div>
+
+
+            <div class="info">
+
+                <span>
+                    Operator Type
+                </span>
+
+                <strong>
+                    {{ operator.operator_type|title }}
+                </strong>
+
+            </div>
+
+
+            <div class="info">
+
+                <span>
+                    Approval Status
+                </span>
+
+                <strong>
+                    {{ operator.verification_status|title }}
+                </strong>
+
+            </div>
+
+
+            <div class="info">
+
+                <span>
+                    Phone
+                </span>
+
+                <strong>
+                    {{ operator.phone or "—" }}
+                </strong>
+
+            </div>
+
+
+            <div class="info">
+
+                <span>
+                    Email
+                </span>
+
+                <strong>
+                    {{ operator.email or "—" }}
+                </strong>
+
+            </div>
+
+
+            <div class="info">
+
+                <span>
+                    Area
+                </span>
+
+                <strong>
+                    {{ operator.area or "—" }}
+                </strong>
+
+            </div>
+
+
+            <div class="info">
+
+                <span>
+                    Pincode
+                </span>
+
+                <strong>
+                    {{ operator.pincode or "—" }}
+                </strong>
+
+            </div>
+
+
+            <div class="info">
+
+                <span>
+                    Operational Tankers
+                </span>
+
+                <strong>
+                    {{ operator.operational_tankers or "0" }}
+                </strong>
+
+            </div>
+
+
+            {% if operator.operator_type|lower == "independent" %}
+
+                <div class="info">
+
+                    <span>
+                        Water Type Supported
+                    </span>
+
+                    <strong>
+                        {{ operator.water_type_supported|title or "—" }}
+                    </strong>
+
+                </div>
+
+
+                <div class="info">
+
+                    <span>
+                        Service Radius
+                    </span>
+
+                    <strong>
+
+                        {{ operator.service_radius_km or "—" }}
+
+                        {% if operator.service_radius_km %}
+                            km
+                        {% endif %}
+
+                    </strong>
+
+                </div>
+
+            {% endif %}
+
+
+            {% if operator.operator_type|lower == "contracted" %}
+
+                <div class="info">
+
+                    <span>
+                        Contract ID
+                    </span>
+
+                    <strong>
+                        {{ operator.contract_id or "—" }}
+                    </strong>
+
+                </div>
+
+
+                <div class="info">
+
+                    <span>
+                        Contract Start
+                    </span>
+
+                    <strong>
+                        {{ operator.contract_start or "—" }}
+                    </strong>
+
+                </div>
+
+
+                <div class="info">
+
+                    <span>
+                        Contract End
+                    </span>
+
+                    <strong>
+                        {{ operator.contract_end or "—" }}
+                    </strong>
+
+                </div>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================
+         VEHICLES + DOCUMENTS
+    ========================= -->
+
+    <div class="card">
+
+        <h2 class="card-title">
+            Registered Vehicles & Documents
+        </h2>
+
+
+        {% set document_types = [
+            ("rc", "Registration Certificate (RC)"),
+            ("insurance", "Insurance"),
+            ("puc", "Pollution Certificate (PUC)"),
+            ("permit", "Permit")
+        ] %}
+
+
+        {% if vehicles %}
+
+
+            {% for vehicle in vehicles %}
+
+
+                <details
+                    class="vehicle"
+                    {% if loop.first %}open{% endif %}
+                >
+
+
+                    <summary>
+
+
+                        <div class="vehicle-title">
+
+                            <strong>
+                                🚚
+                                {{ vehicle.registration_number }}
+                            </strong>
+
+                            <small>
+
+                                {{ vehicle.vehicle_model or "Model not provided" }}
+
+                                •
+
+                                {{ vehicle.capacity_kl or "—" }} KL
+
+                                •
+
+                                {{ vehicle.vehicle_status|title or "Active" }}
+
+                            </small>
+
+                        </div>
+
+
+                        <span class="view-documents-text">
+                            View Documents
+                        </span>
+
+
+                    </summary>
+
+
+
+                    <div class="vehicle-body">
+
+
+                        <div class="documents">
+
+
+                            {% set vehicle_docs =
+                                documents_by_vehicle.get(
+                                    vehicle.vehicle_id,
+                                    {}
+                                )
+                            %}
+
+
+                            {% for doc_type, doc_label in document_types %}
+
+
+                                {% set document =
+                                    vehicle_docs.get(doc_type)
+                                %}
+
+
+                                <div class="document">
+
+
+                                    <div class="document-head">
+
+
+                                        <div>
+
+                                            <div class="document-name">
+                                                {{ doc_label }}
+                                            </div>
+
+
+                                            <div class="filename">
+
+                                                {% if document %}
+
+                                                    {{
+                                                        document.original_filename
+                                                    }}
+
+                                                {% else %}
+
+                                                    No PDF uploaded
+
+                                                {% endif %}
+
+                                            </div>
+
+                                        </div>
+
+
+
+                                        {% if document %}
+
+
+                                            {% set doc_status =
+                                                document.verification_status
+                                                |lower
+                                            %}
+
+
+                                            <span
+                                                class="
+                                                    status
+                                                    {{ doc_status }}
+                                                "
+                                            >
+
+                                                {{
+                                                    document.verification_status
+                                                    |title
+                                                }}
+
+                                            </span>
+
+
+                                        {% else %}
+
+
+                                            <span class="status missing">
+                                                Not Uploaded
+                                            </span>
+
+
+                                        {% endif %}
+
+
+                                    </div>
+
+
+
+                                    {% if document %}
+
+
+                                        <a
+                                            class="view-pdf"
+                                            target="_blank"
+
+                                            href="{{
+                                                url_for(
+                                                    'admin_view_tanker_document',
+                                                    document_id=
+                                                        document.document_id
+                                                )
+                                            }}"
+                                        >
+                                            View PDF
+                                        </a>
+
+
+
+                                        <form
+                                            method="POST"
+
+                                            action="{{
+                                                url_for(
+                                                    'admin_review_tanker_document',
+                                                    document_id=
+                                                        document.document_id
+                                                )
+                                            }}"
+                                        >
+
+
+                                            <textarea
+                                                name="admin_remark"
+                                                placeholder="Admin remark (required when rejecting)"
+                                            >{{ document.admin_remark or "" }}</textarea>
+
+
+                                            <div class="actions">
+
+
+                                                <button
+                                                    type="submit"
+                                                    name="action"
+                                                    value="verified"
+                                                    class="verify"
+                                                >
+                                                    ✓ Verify
+                                                </button>
+
+
+                                                <button
+                                                    type="submit"
+                                                    name="action"
+                                                    value="rejected"
+                                                    class="reject"
+                                                >
+                                                    ✕ Reject
+                                                </button>
+
+
+                                            </div>
+
+
+                                        </form>
+
+
+                                    {% endif %}
+
+
+                                </div>
+
+
+                            {% endfor %}
+
+
+                        </div>
+
+
+                    </div>
+
+
+                </details>
+
+
+            {% endfor %}
+
+
+        {% else %}
+
+
+            <div class="empty">
+
+                No vehicles are registered
+                for this tanker operator.
+
+            </div>
+
+
+        {% endif %}
+
+
+    </div>
+
+
+</div>
+
+</body>
+
+</html>
