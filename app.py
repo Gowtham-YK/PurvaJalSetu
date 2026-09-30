@@ -6736,9 +6736,15 @@ def supply():
     prediction = None
     weekly_forecast = None
 
-    if selected_id:
+    # Use the explicitly requested STP first, then fall back to the
+    # STP saved in the logged-in operator session. This is important for
+    # the STP transfer-request section because the page must know which
+    # destination STP belongs to the current operator.
+    effective_stp_id = selected_id or selected_stp_id
+
+    if effective_stp_id:
         for stp in stps:
-            if str(stp["stp_id"]) == str(selected_id):
+            if str(stp["stp_id"]).strip() == str(effective_stp_id).strip():
                 selected_stp = stp
 
                 try:
@@ -6806,6 +6812,73 @@ def supply():
             print("STP PRICING PAGE LOAD ERROR:", repr(e))
             pricing_data = None
 
+    # =========================================================
+    # STP → STP WATER TRANSFER REQUESTS
+    # =========================================================
+    # Incoming transfer requests belong to the currently selected
+    # destination STP.  Keep the existing supply-page UI unchanged;
+    # only provide the data that the existing template expects.
+    transfer_requests = []
+
+    if selected_stp and os.path.exists(STP_TRANSFERS_FILE):
+        selected_stp_id_for_transfers = str(
+            selected_stp.get("stp_id") or ""
+        ).strip()
+
+        try:
+            with open(
+                STP_TRANSFERS_FILE,
+                "r",
+                newline="",
+                encoding="utf-8"
+            ) as f:
+                reader = csv.DictReader(f)
+
+                for row in reader:
+                    destination_stp_id = str(
+                        row.get("destination_stp_id") or ""
+                    ).strip()
+
+                    if destination_stp_id != selected_stp_id_for_transfers:
+                        continue
+
+                    # Clean possible whitespace from CSV headers/values.
+                    clean_transfer = {}
+                    for key, value in row.items():
+                        if key is None:
+                            continue
+                        clean_transfer[str(key).strip()] = value
+
+                    # Show pending requests and requests that are already
+                    # being processed/completed, while leaving rejected or
+                    # expired requests out of the actionable request card.
+                    transfer_status = str(
+                        clean_transfer.get("status") or ""
+                    ).strip()
+
+                    if transfer_status in {
+                        "Pending",
+                        "Accepted",
+                        "Out for Delivery",
+                        "Delivered"
+                    }:
+                        transfer_requests.append(clean_transfer)
+
+            # Newest requests first.
+            transfer_requests.sort(
+                key=lambda item: str(
+                    item.get("requested_at") or ""
+                ),
+                reverse=True
+            )
+
+        except Exception as e:
+            print(
+                "STP TRANSFER REQUEST LOAD ERROR:",
+                repr(e)
+            )
+            transfer_requests = []
+
     return render_template(
     "supply.html",
     stps=stps,
@@ -6813,7 +6886,8 @@ def supply():
     demands=demands,
     prediction=prediction,
     weekly_forecast=weekly_forecast,
-    pricing_data=pricing_data
+    pricing_data=pricing_data,
+    transfer_requests=transfer_requests
     )
 
 @app.route("/update_capacity", methods=["POST"])
@@ -9611,6 +9685,18 @@ def request_water():
 @app.route('/request-water/create', methods=['POST'])
 def create_stp_transfer():
 
+    if not session.get("user_id"):
+        return jsonify({
+            "success": False,
+            "error": "Login required"
+        }), 401
+
+    if str(session.get("role") or "").strip().lower() != "stp":
+        return jsonify({
+            "success": False,
+            "error": "Unauthorized"
+        }), 403
+
     data = request.json or {}
 
     # =========================================================
@@ -9675,6 +9761,26 @@ def create_stp_transfer():
             "success": False,
             "error": "Destination STP not found"
         }), 404
+
+    # A logged-in STP operator can create a transfer request only for
+    # their own STP as the destination. This prevents the request from
+    # being created under a different STP and then disappearing from
+    # the correct operator's request list.
+    logged_in_stp_id = str(
+        session.get("stp_id") or
+        session.get("selected_stp_id") or
+        ""
+    ).strip()
+
+    if (
+        logged_in_stp_id
+        and str(destination_stp.get("stp_id") or "").strip()
+        != logged_in_stp_id
+    ):
+        return jsonify({
+            "success": False,
+            "error": "Destination STP does not match the logged-in STP"
+        }), 403
 
 
     # =========================================================
@@ -9902,19 +10008,28 @@ def create_stp_transfer():
     # SAVE REQUEST
     # =========================================================
 
-    with open(
-        STP_TRANSFERS_FILE,
-        "a",
-        newline="",
-        encoding="utf-8"
-    ) as f:
+    # Keep the CSV schema stable even when an older deployment has an
+    # older stp_transfers.csv. Missing optional columns are written as
+    # empty values instead of breaking the request.
+    ensure_stp_transfers_file()
 
-        writer = csv.DictWriter(
-            f,
-            fieldnames=STP_TRANSFER_FIELDS
-        )
+    with transfers_lock:
+        with open(
+            STP_TRANSFERS_FILE,
+            "a",
+            newline="",
+            encoding="utf-8"
+        ) as f:
 
-        writer.writerow(row)
+            writer = csv.DictWriter(
+                f,
+                fieldnames=STP_TRANSFER_FIELDS
+            )
+
+            writer.writerow({
+                field: row.get(field, "")
+                for field in STP_TRANSFER_FIELDS
+            })
 
 
     # =========================================================
@@ -9955,7 +10070,17 @@ def handle_transfer_request():
 
     updated_rows = []
     source_stp_id = None
+    destination_stp_id = None
     found = False
+
+    logged_in_stp_id = str(
+        session.get("stp_id") or
+        session.get("selected_stp_id") or
+        ""
+    ).strip()
+
+    if not logged_in_stp_id:
+        return "No STP is assigned to this account", 403
 
     # ---------------------------------------------------------
     # READ TRANSFER REQUESTS
@@ -9978,7 +10103,17 @@ def handle_transfer_request():
 
             found = True
 
-            source_stp_id = row.get("source_stp_id")
+            source_stp_id = (
+                row.get("source_stp_id") or ""
+            ).strip()
+
+            destination_stp_id = (
+                row.get("destination_stp_id") or ""
+            ).strip()
+
+            # Only the destination STP may accept or reject this request.
+            if destination_stp_id != logged_in_stp_id:
+                return "This transfer request is not for your STP", 403
 
             current_status = (
                 row.get("status") or ""
@@ -10159,7 +10294,7 @@ def handle_transfer_request():
 
     return redirect(
         request.referrer
-        or url_for("supply")
+        or url_for("supply", stp_id=logged_in_stp_id)
     )
 
 
