@@ -28,6 +28,428 @@
     </script>
 
     <link rel="stylesheet" href="{{ url_for('static', filename='responsive.css') }}">
+
+<style>
+/* =========================================================
+   TANKER REGISTRATION / STATUS UI REFRESH
+   Presentation only — form names, actions and workflow unchanged.
+========================================================= */
+:root{--tp-primary:#2563eb;--tp-primary-dark:#1d4ed8;--tp-ink:#172033;--tp-muted:#667085;--tp-border:#e5eaf1;--tp-bg:#f6f8fc;--tp-card:#fff;--tp-green:#16a34a;--tp-amber:#d97706;--tp-red:#dc2626;}
+body{background:linear-gradient(180deg,#f8faff 0%,#f4f7fb 100%);color:var(--tp-ink);}
+.navbar{position:sticky;top:0;z-index:1000;min-height:72px;padding:12px clamp(18px,4vw,56px);background:rgba(255,255,255,.96);backdrop-filter:blur(12px);border-bottom:1px solid #e8edf4;box-shadow:0 4px 18px rgba(20,35,65,.05);}
+.navbar .logo a{display:flex!important;align-items:center;gap:4px;color:var(--tp-ink);}
+.navbar nav{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.navbar nav a{padding:9px 14px;border-radius:9px;text-decoration:none;transition:.2s;color:#52627a;font-weight:500;}
+.navbar nav a:hover,.navbar nav a.active{background:#edf4ff;color:var(--tp-primary);}
+.tanker-form-page{min-height:calc(100vh - 72px);padding:42px 18px 70px;}
+.tanker-form-header{max-width:1000px;margin:0 auto 24px;text-align:center;padding:8px 10px;}
+.tanker-form-header h1{font-size:clamp(26px,3vw,38px);line-height:1.2;margin:0 0 9px;font-weight:700;letter-spacing:-.6px;color:var(--tp-ink);}
+.tanker-form-header p{margin:0;color:var(--tp-muted);font-size:14px;}
+.tanker-form-page form,.tanker-form-page .form-container,.tanker-form-page .registration-form,.tanker-form-page .tanker-form{max-width:1000px;margin:0 auto;background:var(--tp-card);border:1px solid var(--tp-border);border-radius:20px;padding:28px;box-shadow:0 12px 35px rgba(27,46,82,.07);}
+.tanker-form-page form h2,.tanker-form-page form h3{color:var(--tp-ink);margin-top:0;}
+.tanker-form-page input,.tanker-form-page select,.tanker-form-page textarea{width:100%;min-height:46px;padding:11px 13px;border:1px solid #dbe2ec;border-radius:10px;background:#fff;color:#182230;font:inherit;outline:none;transition:.2s;}
+.tanker-form-page input:focus,.tanker-form-page select:focus,.tanker-form-page textarea:focus{border-color:#79a7ff;box-shadow:0 0 0 4px rgba(37,99,235,.10);}
+.tanker-form-page label{display:block;margin:0 0 7px;color:#344054;font-size:13px;font-weight:600;}
+.tanker-form-page .form-group,.tanker-form-page .field,.tanker-form-page .input-group{margin-bottom:18px;}
+.tanker-form-page button,.tanker-form-page input[type=submit]{border:0!important;border-radius:10px!important;background:linear-gradient(135deg,var(--tp-primary),#3b82f6)!important;color:#fff!important;font-weight:600!important;min-height:46px;padding:11px 20px!important;cursor:pointer;box-shadow:0 8px 18px rgba(37,99,235,.18);transition:.2s!important;}
+.tanker-form-page button:hover,.tanker-form-page input[type=submit]:hover{transform:translateY(-1px);background:linear-gradient(135deg,var(--tp-primary-dark),var(--tp-primary))!important;box-shadow:0 10px 22px rgba(37,99,235,.23);}
+.tanker-form-page input[type=checkbox],.tanker-form-page input[type=radio]{width:auto;min-height:auto;box-shadow:none;}
+.tanker-form-page .location-section,.tanker-form-page #map{border-radius:14px;overflow:hidden;}
+.tanker-status-page{min-height:calc(100vh - 72px);padding:48px 18px 70px;}
+.tanker-status-container{width:min(900px,100%);margin:0 auto;}
+.tanker-status-header{text-align:center;margin-bottom:24px;}
+.tanker-status-header h1{font-size:clamp(28px,4vw,40px);margin:0 0 9px;letter-spacing:-.7px;color:var(--tp-ink);}
+.tanker-status-header p{max-width:620px;margin:auto;color:var(--tp-muted);font-size:14px;line-height:1.65;}
+.tanker-status-card{background:#fff;border:1px solid var(--tp-border);border-radius:20px;padding:28px;box-shadow:0 14px 40px rgba(27,46,82,.08);}
+.tanker-status-form-group{margin-bottom:17px;}
+.tanker-status-form-group label{display:block;margin-bottom:7px;color:#344054;font-weight:600;font-size:13px;}
+.tanker-status-form-group input{width:100%;height:48px;padding:0 14px;border:1px solid #dbe2ec;border-radius:10px;font:inherit;color:#172033;outline:none;transition:.2s;}
+.tanker-status-form-group input:focus{border-color:#79a7ff;box-shadow:0 0 0 4px rgba(37,99,235,.10);}
+.tanker-status-button{width:100%;height:48px;border:0;border-radius:10px;background:linear-gradient(135deg,#2563eb,#3b82f6);color:#fff;font-weight:700;font-size:14px;cursor:pointer;box-shadow:0 9px 20px rgba(37,99,235,.18);transition:.2s;}
+.tanker-status-button:hover{transform:translateY(-1px);background:linear-gradient(135deg,#1d4ed8,#2563eb);}
+.tanker-status-result{margin-top:25px;border:1px solid var(--tp-border);border-radius:16px;padding:22px;background:#fbfcfe;}
+.tanker-status-result-title{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding-bottom:16px;border-bottom:1px solid #e9edf3;}
+.tanker-status-result-title h2{margin:0;font-size:20px;color:var(--tp-ink);}
+.tanker-status-badge{display:inline-flex;align-items:center;padding:7px 11px;border-radius:999px;font-size:12px;font-weight:700;}
+.tanker-status-approved{background:#eaf8ef;color:var(--tp-green);}.tanker-status-pending{background:#fff6df;color:var(--tp-amber);}.tanker-status-rejected{background:#feecec;color:var(--tp-red);}.tanker-status-default{background:#eef2f7;color:#52627a;}
+.tanker-status-details{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:18px;}
+.tanker-status-detail{padding:14px;border:1px solid #e9edf3;border-radius:12px;background:#fff;min-width:0;}
+.tanker-status-detail-label{display:block;color:#7a8699;font-size:11px;text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px;font-weight:700;}
+.tanker-status-detail-value{display:block;color:#172033;font-size:14px;font-weight:600;word-break:break-word;}
+.tanker-status-message{margin-top:18px;padding:16px;border-radius:12px;border:1px solid transparent;}
+.tanker-status-message strong{display:block;margin-bottom:5px;font-size:14px;}.tanker-status-message p{margin:0;font-size:13px;line-height:1.6;color:#52627a;}
+.tanker-status-message-approved{background:#f0fbf4;border-color:#cdeed8;}.tanker-status-message-pending{background:#fffaf0;border-color:#f3dfaa;}.tanker-status-message-rejected{background:#fff4f4;border-color:#f2cccc;}
+.tanker-status-not-found{margin-top:24px;padding:24px;text-align:center;border:1px solid #f0d0d0;border-radius:14px;background:#fff7f7;}.tanker-status-not-found h3{margin:0 0 7px;color:#b42318;}.tanker-status-not-found p{margin:5px 0;color:#667085;font-size:13px;}
+.tanker-status-links{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;margin-top:22px;}.tanker-status-link{color:var(--tp-primary);font-size:13px;font-weight:600;text-decoration:none;}.tanker-status-link:hover{text-decoration:underline;}
+@media(max-width:700px){.navbar{align-items:flex-start;gap:10px;flex-direction:column}.navbar nav{width:100%;overflow:auto;flex-wrap:nowrap}.navbar nav a{white-space:nowrap}.tanker-form-page,.tanker-status-page{padding:30px 12px 50px}.tanker-form-page form,.tanker-form-page .form-container,.tanker-form-page .registration-form,.tanker-form-page .tanker-form,.tanker-status-card{padding:19px;border-radius:15px}.tanker-status-details{grid-template-columns:1fr}.tanker-status-result-title{align-items:flex-start;flex-direction:column}}
+</style>
+
+<style>
+
+/* =========================================================
+   FINAL TANKER REGISTRATION / STATUS UI
+   Self-contained overrides for the tanker pages.
+   No form names, routes, JS IDs or backend workflow changed.
+========================================================= */
+.tanker-ui-page,
+.tanker-ui-page * { box-sizing:border-box; }
+.tanker-ui-page {
+  min-height:calc(100vh - 72px);
+  padding:42px 20px 72px !important;
+  background:linear-gradient(180deg,#f7faff 0%,#f4f7fb 100%) !important;
+  color:#172033 !important;
+}
+.tanker-ui-page .tanker-form-header,
+.tanker-ui-page .tanker-status-header {
+  width:min(1040px,100%);
+  margin:0 auto 24px !important;
+  text-align:center;
+}
+.tanker-ui-page .tanker-form-header h1,
+.tanker-ui-page .tanker-status-header h1 {
+  margin:0 0 9px !important;
+  font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif !important;
+  font-size:clamp(28px,4vw,40px) !important;
+  line-height:1.2 !important;
+  font-weight:750 !important;
+  letter-spacing:-.7px !important;
+  color:#172033 !important;
+}
+.tanker-ui-page .tanker-form-header p,
+.tanker-ui-page .tanker-status-header p {
+  max-width:720px;
+  margin:0 auto !important;
+  color:#667085 !important;
+  font-size:14px !important;
+  line-height:1.65 !important;
+}
+.tanker-ui-page .tanker-form-container,
+.tanker-ui-page .tanker-status-container {
+  width:min(1040px,100%) !important;
+  margin:0 auto !important;
+}
+.tanker-ui-page .tanker-form-card,
+.tanker-ui-page .tanker-status-card {
+  width:100% !important;
+  background:#fff !important;
+  border:1px solid #e3e9f2 !important;
+  border-radius:22px !important;
+  box-shadow:0 18px 50px rgba(30,55,95,.09) !important;
+  overflow:hidden !important;
+}
+.tanker-ui-page .tanker-form-card-header {
+  padding:28px 32px 22px !important;
+  border-bottom:1px solid #edf1f6 !important;
+  background:linear-gradient(180deg,#fff,#fbfcff) !important;
+}
+.tanker-ui-page .tanker-form-card-header h2 {
+  margin:0 0 7px !important;
+  color:#172033 !important;
+  font-size:22px !important;
+  font-weight:700 !important;
+}
+.tanker-ui-page .tanker-form-card-header p {
+  margin:0 !important;
+  max-width:760px;
+  color:#667085 !important;
+  font-size:13px !important;
+  line-height:1.65 !important;
+}
+.tanker-ui-page .tanker-form-notice {
+  display:flex !important;
+  gap:12px !important;
+  align-items:flex-start !important;
+  margin:20px 32px 0 !important;
+  padding:15px 17px !important;
+  border:1px solid #cfe0ff !important;
+  border-radius:14px !important;
+  background:#f4f8ff !important;
+  color:#40516d !important;
+  font-size:13px !important;
+  line-height:1.55 !important;
+}
+.tanker-ui-page .tanker-form-notice-icon {
+  flex:0 0 32px;
+  width:32px !important;
+  height:32px !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  border-radius:9px !important;
+  background:#e3efff !important;
+  font-size:16px !important;
+}
+.tanker-ui-page .tanker-form-notice strong { color:#1e4fa8 !important; }
+.tanker-ui-page form {
+  width:100% !important;
+  margin:0 !important;
+  padding:28px 32px 32px !important;
+  background:#fff !important;
+  border:0 !important;
+  box-shadow:none !important;
+}
+.tanker-ui-page .tanker-form-section {
+  padding:0 0 25px !important;
+  margin:0 0 25px !important;
+  border-bottom:1px solid #edf1f5 !important;
+}
+.tanker-ui-page .tanker-form-section:last-of-type { margin-bottom:0 !important; }
+.tanker-ui-page .tanker-form-section h3 {
+  margin:0 0 17px !important;
+  padding:0 !important;
+  color:#172033 !important;
+  font-size:17px !important;
+  font-weight:700 !important;
+  letter-spacing:-.2px !important;
+}
+.tanker-ui-page .tanker-form-row {
+  display:grid !important;
+  grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+  gap:18px !important;
+  align-items:start !important;
+}
+.tanker-ui-page .tanker-form-group { margin:0 0 17px !important; min-width:0 !important; }
+.tanker-ui-page .tanker-form-group:last-child { margin-bottom:0 !important; }
+.tanker-ui-page label {
+  display:block !important;
+  margin:0 0 7px !important;
+  color:#344054 !important;
+  font-size:13px !important;
+  line-height:1.4 !important;
+  font-weight:650 !important;
+}
+.tanker-ui-page .required-mark { color:#dc2626 !important; margin-left:2px !important; }
+.tanker-ui-page input:not([type="hidden"]),
+.tanker-ui-page select,
+.tanker-ui-page textarea {
+  width:100% !important;
+  min-height:46px !important;
+  height:auto !important;
+  padding:11px 13px !important;
+  border:1px solid #d7dee9 !important;
+  border-radius:10px !important;
+  background:#fff !important;
+  color:#172033 !important;
+  font:inherit !important;
+  font-size:14px !important;
+  outline:none !important;
+  box-shadow:0 1px 2px rgba(16,24,40,.03) !important;
+  transition:border-color .18s,box-shadow .18s,background .18s !important;
+}
+.tanker-ui-page input:not([type="hidden"]):focus,
+.tanker-ui-page select:focus,
+.tanker-ui-page textarea:focus {
+  border-color:#70a0ff !important;
+  box-shadow:0 0 0 4px rgba(37,99,235,.10) !important;
+}
+.tanker-ui-page input::placeholder,
+.tanker-ui-page textarea::placeholder { color:#98a2b3 !important; }
+.tanker-ui-page input[type="date"] { min-height:46px !important; }
+.tanker-ui-page input[type="file"] {
+  padding:9px !important;
+  background:#fafbfc !important;
+}
+.tanker-ui-page input[type="checkbox"],
+.tanker-ui-page input[type="radio"] {
+  width:auto !important;
+  min-height:auto !important;
+  height:auto !important;
+  box-shadow:none !important;
+}
+.tanker-ui-page button,
+.tanker-ui-page .tanker-form-primary,
+.tanker-ui-page .tanker-form-secondary {
+  font-family:inherit !important;
+  text-decoration:none !important;
+  cursor:pointer !important;
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  gap:7px !important;
+  min-height:44px !important;
+  padding:10px 17px !important;
+  border-radius:10px !important;
+  font-size:13px !important;
+  font-weight:650 !important;
+  transition:transform .18s,box-shadow .18s,background .18s,border-color .18s !important;
+}
+.tanker-ui-page .tanker-form-primary,
+.tanker-ui-page form button[type="submit"] {
+  border:0 !important;
+  background:linear-gradient(135deg,#2563eb,#3b82f6) !important;
+  color:#fff !important;
+  box-shadow:0 8px 18px rgba(37,99,235,.18) !important;
+}
+.tanker-ui-page .tanker-form-primary:hover,
+.tanker-ui-page form button[type="submit"]:hover {
+  transform:translateY(-1px) !important;
+  box-shadow:0 11px 24px rgba(37,99,235,.24) !important;
+}
+.tanker-ui-page .tanker-form-secondary {
+  border:1px solid #d8e0eb !important;
+  background:#fff !important;
+  color:#344054 !important;
+  box-shadow:0 1px 2px rgba(16,24,40,.03) !important;
+}
+.tanker-ui-page .tanker-form-secondary:hover {
+  background:#f7f9fc !important;
+  border-color:#b9c5d5 !important;
+}
+.tanker-ui-page .tanker-form-actions {
+  display:flex !important;
+  align-items:center !important;
+  justify-content:space-between !important;
+  gap:14px !important;
+  padding-top:4px !important;
+}
+.tanker-ui-page #operator-map {
+  width:100% !important;
+  height:360px !important;
+  margin-top:14px !important;
+  border:1px solid #dbe2ec !important;
+  border-radius:14px !important;
+  overflow:hidden !important;
+  box-shadow:0 5px 18px rgba(20,40,70,.06) !important;
+  z-index:1 !important;
+}
+.tanker-ui-page #location-status {
+  margin:8px 0 0 !important;
+  padding:10px 12px !important;
+  border-radius:9px !important;
+  background:#f7f9fc !important;
+  color:#667085 !important;
+  font-size:12px !important;
+}
+.tanker-ui-page #search-results {
+  margin-top:8px !important;
+  border:1px solid #e4e9f0 !important;
+  border-radius:10px !important;
+  overflow:hidden !important;
+}
+.tanker-ui-page #search-results > * {
+  padding:10px 12px !important;
+  background:#fff !important;
+  border-bottom:1px solid #edf1f5 !important;
+  cursor:pointer !important;
+}
+.tanker-ui-page #search-results > *:last-child { border-bottom:0 !important; }
+.tanker-ui-page #search-results > *:hover { background:#f5f8ff !important; }
+.tanker-ui-page .vehicle-details-card {
+  border:1px solid #e1e7ef !important;
+  border-radius:14px !important;
+  background:#fff !important;
+  overflow:hidden !important;
+  box-shadow:0 4px 15px rgba(25,45,75,.04) !important;
+}
+.tanker-ui-page .vehicle-details-card summary {
+  padding:15px 17px !important;
+  color:#25324a !important;
+  font-weight:650 !important;
+  background:#f9fbfd !important;
+}
+.tanker-ui-page .vehicle-details-card > div { padding:18px !important; }
+.tanker-ui-page .leaflet-container { font-family:inherit !important; }
+
+/* Status page */
+.tanker-status-shell { min-height:calc(100vh - 72px); }
+.tanker-status-shell .tanker-status-card { padding:30px !important; }
+.tanker-status-shell .tanker-status-form-group { margin-bottom:18px !important; }
+.tanker-status-shell .tanker-status-form-group label { display:block !important; margin-bottom:7px !important; }
+.tanker-status-shell .tanker-status-form-group input {
+  width:100% !important;
+  height:48px !important;
+  padding:0 14px !important;
+  border:1px solid #d7dee9 !important;
+  border-radius:10px !important;
+  font:inherit !important;
+  font-size:14px !important;
+  color:#172033 !important;
+  outline:none !important;
+}
+.tanker-status-shell .tanker-status-form-group input:focus {
+  border-color:#70a0ff !important;
+  box-shadow:0 0 0 4px rgba(37,99,235,.10) !important;
+}
+.tanker-status-shell .tanker-status-button {
+  width:100% !important;
+  height:48px !important;
+  border:0 !important;
+  border-radius:10px !important;
+  background:linear-gradient(135deg,#2563eb,#3b82f6) !important;
+  color:#fff !important;
+  font-weight:700 !important;
+  cursor:pointer !important;
+  box-shadow:0 8px 18px rgba(37,99,235,.18) !important;
+}
+.tanker-status-shell .tanker-status-button:hover { transform:translateY(-1px); }
+.tanker-status-shell .tanker-status-result {
+  margin-top:25px !important;
+  border:1px solid #e2e8f0 !important;
+  border-radius:16px !important;
+  padding:22px !important;
+  background:#fbfcfe !important;
+}
+.tanker-status-shell .tanker-status-details {
+  display:grid !important;
+  grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+  gap:12px !important;
+  margin-top:18px !important;
+}
+.tanker-status-shell .tanker-status-detail {
+  padding:14px !important;
+  border:1px solid #e6ebf2 !important;
+  border-radius:12px !important;
+  background:#fff !important;
+}
+.tanker-status-shell .tanker-status-links { margin-top:22px !important; }
+.tanker-status-shell .tanker-status-link { color:#2563eb !important; font-weight:650 !important; text-decoration:none !important; }
+.tanker-status-shell .tanker-status-link:hover { text-decoration:underline !important; }
+@media (max-width:760px) {
+  .tanker-ui-page { padding:28px 12px 50px !important; }
+  .tanker-ui-page .tanker-form-card-header,
+  .tanker-ui-page form { padding-left:18px !important; padding-right:18px !important; }
+  .tanker-ui-page .tanker-form-notice { margin-left:18px !important; margin-right:18px !important; }
+  .tanker-ui-page .tanker-form-row { grid-template-columns:1fr !important; gap:0 !important; }
+  .tanker-ui-page .tanker-form-actions { flex-direction:column-reverse !important; align-items:stretch !important; }
+  .tanker-ui-page .tanker-form-actions > * { width:100% !important; }
+  .tanker-ui-page #operator-map { height:300px !important; }
+  .tanker-status-shell .tanker-status-card { padding:18px !important; }
+  .tanker-status-shell .tanker-status-details { grid-template-columns:1fr !important; }
+}
+
+
+/* Shared polished header */
+body:has(.tanker-ui-page) .navbar {
+  min-height:72px !important;
+  height:72px !important;
+  padding:0 clamp(18px,4vw,42px) !important;
+  background:rgba(255,255,255,.97) !important;
+  border-bottom:1px solid #e7ecf3 !important;
+  box-shadow:0 4px 18px rgba(20,35,65,.05) !important;
+}
+body:has(.tanker-ui-page) .navbar .logo a { display:flex !important; align-items:center !important; gap:8px !important; }
+body:has(.tanker-ui-page) .navbar .logo img { width:38px !important; height:38px !important; }
+body:has(.tanker-ui-page) .navbar .logo-text { font-size:20px !important; font-weight:600 !important; color:#2563eb !important; }
+body:has(.tanker-ui-page) .navbar nav { display:flex !important; align-items:center !important; gap:6px !important; }
+body:has(.tanker-ui-page) .navbar nav a {
+  margin:0 !important;
+  padding:9px 13px !important;
+  border-radius:9px !important;
+  color:#52627a !important;
+  font-size:13px !important;
+  font-weight:550 !important;
+  text-decoration:none !important;
+  line-height:1.2 !important;
+}
+body:has(.tanker-ui-page) .navbar nav a:hover { background:#edf4ff !important; color:#2563eb !important; }
+body:has(.tanker-ui-page) .navbar nav a.active { background:#22a447 !important; color:#fff !important; }
+@media(max-width:700px){
+  body:has(.tanker-ui-page) .navbar { height:auto !important; min-height:72px !important; padding:12px 16px !important; }
+  body:has(.tanker-ui-page) .navbar nav { overflow-x:auto !important; width:100% !important; padding-bottom:2px !important; }
+  body:has(.tanker-ui-page) .navbar nav a { white-space:nowrap !important; }
+}
+
+</style>
 </head>
 
 
@@ -84,7 +506,7 @@
      PAGE
 ====================================================== -->
 
-<main class="tanker-form-page">
+<main class="tanker-form-page tanker-ui-page">
 
 
     <!-- PAGE HEADER -->

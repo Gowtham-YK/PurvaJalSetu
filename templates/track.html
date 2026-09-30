@@ -330,6 +330,7 @@ function createOrderCard(order){
                         <div class="route-header-title">Tanker Route</div>
                         <div class="route-header-status">Preparing route...</div>
                     </div>
+                    <button type="button" class="route-close" onclick="closeRoute(this)">Hide Map</button>
                 </div>
                 <div class="route-map"></div>
                 <div class="route-bottom">
@@ -594,6 +595,7 @@ let activeTruckMarker=null;
 let activeTruckAnimation=null;
 let activeRouteKey=null;
 let activeGpsPollTimer=null;
+let activeLiveGpsReceived=false;
 let activeTraveledLine=null;
 let activeRemainingLine=null;
 
@@ -729,6 +731,11 @@ async function pollTankerLocation(order,card,pts){
 
         if(!Number.isFinite(lat)||!Number.isFinite(lon))return;
 
+        // Once a real tanker GPS position is available, let live GPS control
+        // the marker instead of competing with the simulated animation.
+        activeLiveGpsReceived=true;
+        stopTruckAnimation();
+
         if(!activeTruckMarker){
             activeTruckMarker=L.marker([lat,lon],{
                 icon:tankerMapIcon,
@@ -777,15 +784,23 @@ async function pollTankerLocation(order,card,pts){
     }
 }
 
+function stopGpsPolling(){
+    if(activeGpsPollTimer){
+        clearInterval(activeGpsPollTimer);
+        activeGpsPollTimer=null;
+    }
+}
+
 function startLiveGpsTracking(order,card,pts){
     if(!activeTrackingMap||!pts||pts.length<2)return;
 
     stopGpsPolling();
+    activeLiveGpsReceived=false;
 
-    if(activeTruckMarker){
-        try{activeTrackingMap.removeLayer(activeTruckMarker);}catch(e){}
-        activeTruckMarker=null;
-    }
+    // Keep the animated tanker marker visible until real GPS data arrives.
+    // The previous code removed the animation marker immediately when live
+    // polling started, so when no GPS position was available there was no
+    // tanker marker on the map at all.
     if(activeTraveledLine){
         try{activeTrackingMap.removeLayer(activeTraveledLine);}catch(e){}
         activeTraveledLine=null;
@@ -821,6 +836,7 @@ function closeRoute(button){
         activeTrackingMap=null;
     }
     activeTruckMarker=null;
+    activeLiveGpsReceived=false;
     activeTraveledLine=null;
     activeRemainingLine=null;
     activeRouteKey=null;
@@ -1299,7 +1315,7 @@ function animateTanker(pts,order,card){
     const duration=45000;
 
     function move(timestamp){
-        if(!activeTrackingMap || activeRouteKey!==String(order.order_id)){
+        if(!activeTrackingMap || activeRouteKey!==String(order.order_id) || activeLiveGpsReceived){
             activeTruckAnimation=null;
             return;
         }
@@ -1311,14 +1327,15 @@ function animateTanker(pts,order,card){
         routeProgress+=delta/duration;
 
         if(routeProgress>=1){
-            routeProgress=1;
-
-            activeTruckMarker.setLatLng(
-                pts[pts.length-1]
-            );
-
-            card.dataset.localTrackingComplete="true";
-            completeDelivery(order,card);
+            // This is only a visual fallback when live GPS is unavailable.
+            // Never mark an order delivered just because the demo animation
+            // reached the end of the route.
+            if(!activeLiveGpsReceived){
+                routeProgress=0;
+                activeTruckMarker.setLatLng(pts[0]);
+                activeTruckAnimation=requestAnimationFrame(move);
+                return;
+            }
 
             activeTruckAnimation=null;
             return;
