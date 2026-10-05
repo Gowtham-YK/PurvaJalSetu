@@ -27,7 +27,6 @@ from dotenv import load_dotenv
 from supabase import create_client
 from config import Config
 
-
 # =========================================================
 # JUNO AI LLM GATEWAY (OPTIONAL)
 # =========================================================
@@ -336,7 +335,11 @@ TANKER_REGISTRATIONS_FILE = os.path.join(
     "tanker_registrations.csv"
 )
 
-
+OCEMS_DIR = os.path.join(
+    BASE_DIR,
+    "database",
+    "ocems"
+)
 # =========================================================
 # TANKER VEHICLES
 # Added from File 1 without changing the existing
@@ -1768,6 +1771,229 @@ def astar_distance(lat1, lon1, lat2, lon2):
 
     return distance_km
 
+def get_ocems_file(stp_id):
+    """
+    Returns the OCEMS Excel file associated with an STP.
+    Example:
+        PSTP015 -> database/ocems/PSTP015.xlsx
+    """
+
+    stp_id = str(stp_id or "").strip()
+
+    if not stp_id:
+        return None
+
+    return os.path.join(
+        OCEMS_DIR,
+        f"{stp_id}.xlsx"
+    )
+
+
+def load_ocems_data(stp_id):
+    """
+    Reads the OCEMS Excel file.
+
+    Expected Excel structure:
+
+    Row 1:
+        Company Name | Puravankara Project Limited A & B
+
+    Row 2:
+        Station Name | WWTP
+
+    Row 3:
+        Parameter Name | pH | BOD | COD | TSS
+
+    Row 4:
+        Permissible Range | - | - | - | -
+
+    Row 5 onwards:
+        Timestamp | pH | BOD | COD | TSS
+    """
+
+    file_path = get_ocems_file(stp_id)
+
+    if not file_path or not os.path.exists(file_path):
+        return {
+            "available": False,
+            "company_name": None,
+            "station_name": None,
+            "parameters": [],
+            "rows": [],
+            "latest": None,
+            "file": file_path
+        }
+
+    try:
+
+        # Read the Average sheet exactly as supplied
+        df = pd.read_excel(
+            file_path,
+            sheet_name="Average",
+            header=None
+        )
+
+        if df.empty:
+            return {
+                "available": False,
+                "company_name": None,
+                "station_name": None,
+                "parameters": [],
+                "rows": [],
+                "latest": None,
+                "file": file_path
+            }
+
+        # ----------------------------------------
+        # METADATA
+        # ----------------------------------------
+
+        company_name = None
+        station_name = None
+
+        if len(df) > 0:
+            company_name = str(df.iloc[0, 1]).strip()
+
+        if len(df) > 1:
+            station_name = str(df.iloc[1, 1]).strip()
+
+        # ----------------------------------------
+        # PARAMETERS
+        # ----------------------------------------
+
+        parameters = []
+
+        if len(df) > 2:
+
+            for value in df.iloc[2, 1:].tolist():
+
+                if pd.notna(value):
+
+                    parameter = str(value).strip()
+
+                    if parameter:
+                        parameters.append(parameter)
+
+        # ----------------------------------------
+        # PERMISSIBLE RANGE
+        # ----------------------------------------
+
+        permissible_ranges = {}
+
+        if len(df) > 3:
+
+            for index, parameter in enumerate(parameters, start=1):
+
+                if index < len(df.columns):
+
+                    value = df.iloc[3, index]
+
+                    if pd.notna(value):
+                        permissible_ranges[parameter] = str(value).strip()
+                    else:
+                        permissible_ranges[parameter] = "-"
+
+        # ----------------------------------------
+        # ACTUAL READINGS
+        # ----------------------------------------
+
+        rows = []
+
+        # Data begins after:
+        # 0 = Company
+        # 1 = Station
+        # 2 = Parameter
+        # 3 = Permissible range
+        #
+        # Therefore readings start from row 4
+
+        for row_index in range(4, len(df)):
+
+            timestamp = df.iloc[row_index, 1]
+
+            if pd.isna(timestamp):
+                continue
+
+            row_data = {
+                "timestamp": str(timestamp)
+            }
+
+            for column_index, parameter in enumerate(parameters, start=1):
+
+                if column_index >= len(df.columns):
+                    row_data[parameter] = None
+                    continue
+
+                value = df.iloc[row_index, column_index]
+
+                if pd.isna(value):
+                    row_data[parameter] = None
+
+                else:
+
+                    # Convert numeric Excel values into normal numbers
+                    try:
+
+                        numeric_value = float(value)
+
+                        if numeric_value.is_integer():
+                            numeric_value = int(numeric_value)
+
+                        row_data[parameter] = numeric_value
+
+                    except (ValueError, TypeError):
+
+                        row_data[parameter] = str(value).strip()
+
+            rows.append(row_data)
+
+        # ----------------------------------------
+        # SORT BY TIMESTAMP
+        # ----------------------------------------
+
+        def parse_timestamp(row):
+
+            try:
+                return pd.to_datetime(
+                    row["timestamp"],
+                    dayfirst=True
+                )
+            except:
+                return pd.Timestamp.min
+
+        rows.sort(
+            key=parse_timestamp,
+            reverse=True
+        )
+
+        latest = rows[0] if rows else None
+
+        return {
+            "available": bool(rows),
+            "company_name": company_name,
+            "station_name": station_name,
+            "parameters": parameters,
+            "permissible_ranges": permissible_ranges,
+            "rows": rows,
+            "latest": latest,
+            "file": file_path
+        }
+
+    except Exception as e:
+
+        print("OCEMS EXCEL LOAD ERROR:", repr(e))
+
+        return {
+            "available": False,
+            "company_name": None,
+            "station_name": None,
+            "parameters": [],
+            "rows": [],
+            "latest": None,
+            "file": file_path,
+            "error": str(e)
+        }
+    
 # =========================================================
 # HOME + LOGIN
 # =========================================================
@@ -15411,6 +15637,136 @@ def _complete_transfer_locked():
         url_for("tanker_dashboard")
     )
 
+
+@app.route("/supply_ocems")
+def supply_ocems():
+
+    # ----------------------------------------
+    # LOGIN CHECK
+    # ----------------------------------------
+
+    if not session.get("user_id"):
+        return redirect(url_for("login"))
+
+    # Only STP operators
+    if str(session.get("role", "")).lower().strip() != "stp":
+        return "Unauthorized", 403
+
+    # ----------------------------------------
+    # GET STP ID
+    # ----------------------------------------
+
+    stp_id = str(
+        request.args.get("stp_id")
+        or session.get("stp_id")
+        or session.get("selected_stp_id")
+        or ""
+    ).strip()
+
+    if not stp_id:
+        return redirect(url_for("stp_dashboard"))
+
+    # ----------------------------------------
+    # FIND STP
+    # ----------------------------------------
+
+    stps = load_stps()
+
+    selected_stp = None
+
+    for stp in stps:
+
+        if str(
+            stp.get("stp_id") or ""
+        ).strip() == stp_id:
+
+            selected_stp = stp
+            break
+
+    if selected_stp is None:
+        return "STP not found", 404
+
+    # ----------------------------------------
+    # LOAD OCEMS
+    # ----------------------------------------
+
+    ocems = load_ocems_data(stp_id)
+
+    return render_template(
+        "supply_ocems.html",
+
+        selected_stp=selected_stp,
+
+        stp_id=stp_id,
+
+        ocems_available=ocems["available"],
+
+        company_name=ocems.get("company_name"),
+
+        station_name=ocems.get("station_name"),
+
+        parameters=ocems.get("parameters", []),
+
+        permissible_ranges=ocems.get(
+            "permissible_ranges",
+            {}
+        ),
+
+        ocems_rows=ocems.get("rows", []),
+
+        latest_ocems=ocems.get("latest")
+    )
+
+@app.route("/api/ocems_summary/<stp_id>")
+def api_ocems_summary(stp_id):
+
+    if not session.get("user_id"):
+        return jsonify({
+            "success": False,
+            "error": "Login required"
+        }), 401
+
+    if str(session.get("role", "")).lower().strip() != "stp":
+        return jsonify({
+            "success": False,
+            "error": "Unauthorized"
+        }), 403
+
+    ocems = load_ocems_data(stp_id)
+
+    if not ocems["available"]:
+
+        return jsonify({
+            "success": True,
+            "available": False
+        })
+
+    latest = ocems["latest"]
+
+    return jsonify({
+        "success": True,
+        "available": True,
+
+        "company_name": ocems.get(
+            "company_name"
+        ),
+
+        "station_name": ocems.get(
+            "station_name"
+        ),
+
+        "timestamp": latest.get(
+            "timestamp"
+        ),
+
+        "pH": latest.get("pH"),
+
+        "BOD": latest.get("BOD"),
+
+        "COD": latest.get("COD"),
+
+        "TSS": latest.get("TSS")
+    })
 
 if __name__ == "__main__":
     timeout_thread = threading.Thread(

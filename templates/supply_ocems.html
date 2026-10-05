@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>OCEMS Monitoring</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #0f172a;
+            color: #f8fafc;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: auto;
+            padding: 30px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 28px;
+        }
+
+        .back-btn {
+            text-decoration: none;
+            color: white;
+            background: #1e293b;
+            padding: 10px 18px;
+            border-radius: 8px;
+        }
+
+        .info-card {
+            background: #1e293b;
+            border-radius: 14px;
+            padding: 22px;
+            margin-bottom: 25px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 20px;
+        }
+
+        .info-item span {
+            display: block;
+            color: #94a3b8;
+            font-size: 13px;
+            margin-bottom: 5px;
+        }
+
+        .info-item strong {
+            font-size: 17px;
+        }
+
+        .status {
+            display: inline-block;
+            padding: 7px 14px;
+            border-radius: 20px;
+            background: #064e3b;
+            color: #6ee7b7;
+        }
+
+        .parameter-grid {
+            display: grid;
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 20px;
+
+            margin-bottom: 25px;
+        }
+
+        .parameter-card {
+            background: #1e293b;
+            padding: 22px;
+            border-radius: 14px;
+        }
+
+        .parameter-name {
+            color: #94a3b8;
+            font-size: 14px;
+        }
+
+        .parameter-value {
+            font-size: 32px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .parameter-unit {
+            color: #64748b;
+            font-size: 13px;
+        }
+
+        .charts {
+            display: grid;
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 20px;
+
+            margin-bottom: 25px;
+        }
+
+        .chart-card {
+            background: #1e293b;
+            padding: 20px;
+            border-radius: 14px;
+        }
+
+        .chart-card h3 {
+            margin-top: 0;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 300px;
+        }
+
+        .table-card {
+            background: #1e293b;
+            padding: 20px;
+            border-radius: 14px;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #334155;
+        }
+
+        th {
+            color: #94a3b8;
+        }
+
+        .unavailable {
+            background: #1e293b;
+            border-radius: 14px;
+            padding: 60px;
+            text-align: center;
+        }
+
+        .unavailable h2 {
+            margin-bottom: 10px;
+        }
+
+        .unavailable p {
+            color: #94a3b8;
+        }
+
+        @media (max-width: 900px) {
+
+            .parameter-grid {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .charts {
+                grid-template-columns: 1fr;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+
+        <div>
+            <h1>OCEMS Monitoring</h1>
+        </div>
+
+        <a
+            href="{{ url_for('supply', stp_id=stp_id) }}"
+            class="back-btn"
+        >
+            ← Back to STP Dashboard
+        </a>
+
+    </div>
+
+
+    {% if ocems_available %}
+
+    <!-- STP INFORMATION -->
+
+    <div class="info-card">
+
+        <div class="info-grid">
+
+            <div class="info-item">
+
+                <span>STP</span>
+
+                <strong>
+                    {{ selected_stp.stp_name }}
+                </strong>
+
+            </div>
+
+            <div class="info-item">
+
+                <span>Company</span>
+
+                <strong>
+                    {{ company_name or "—" }}
+                </strong>
+
+            </div>
+
+            <div class="info-item">
+
+                <span>Station</span>
+
+                <strong>
+                    {{ station_name or "—" }}
+                </strong>
+
+            </div>
+
+        </div>
+
+        <br>
+
+        <span class="status">
+            ● OCEMS Data Available
+        </span>
+
+        {% if latest_ocems and latest_ocems.timestamp %}
+
+        <span style="margin-left:15px;color:#94a3b8;">
+            Latest Reading:
+            {{ latest_ocems.timestamp }}
+        </span>
+
+        {% endif %}
+
+    </div>
+
+
+    <!-- CURRENT VALUES -->
+
+    <div class="parameter-grid">
+
+        {% for parameter in ["pH", "BOD", "COD", "TSS"] %}
+
+        <div class="parameter-card">
+
+            <div class="parameter-name">
+                {{ parameter }}
+            </div>
+
+            <div class="parameter-value">
+
+                {% if latest_ocems
+                      and latest_ocems.get(parameter) is not none %}
+
+                    {{ latest_ocems.get(parameter) }}
+
+                {% else %}
+
+                    —
+
+                {% endif %}
+
+            </div>
+
+            <div class="parameter-unit">
+
+                {% if parameter == "pH" %}
+                    pH
+                {% else %}
+                    mg/L
+                {% endif %}
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+
+    <!-- CHARTS -->
+
+    <div class="charts">
+
+        <div class="chart-card">
+
+            <h3>pH Trend</h3>
+
+            <div class="chart-container">
+
+                <canvas id="phChart"></canvas>
+
+            </div>
+
+        </div>
+
+
+        <div class="chart-card">
+
+            <h3>BOD Trend</h3>
+
+            <div class="chart-container">
+
+                <canvas id="bodChart"></canvas>
+
+            </div>
+
+        </div>
+
+
+        <div class="chart-card">
+
+            <h3>COD Trend</h3>
+
+            <div class="chart-container">
+
+                <canvas id="codChart"></canvas>
+
+            </div>
+
+        </div>
+
+
+        <div class="chart-card">
+
+            <h3>TSS Trend</h3>
+
+            <div class="chart-container">
+
+                <canvas id="tssChart"></canvas>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- HISTORICAL DATA -->
+
+    <div class="table-card">
+
+        <h3>OCEMS Historical Data</h3>
+
+        <br>
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>Timestamp</th>
+
+                    <th>pH</th>
+
+                    <th>BOD</th>
+
+                    <th>COD</th>
+
+                    <th>TSS</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                {% for row in ocems_rows %}
+
+                <tr>
+
+                    <td>
+                        {{ row.timestamp }}
+                    </td>
+
+                    <td>
+                        {{ row.pH if row.pH is not none else "—" }}
+                    </td>
+
+                    <td>
+                        {{ row.BOD if row.BOD is not none else "—" }}
+                    </td>
+
+                    <td>
+                        {{ row.COD if row.COD is not none else "—" }}
+                    </td>
+
+                    <td>
+                        {{ row.TSS if row.TSS is not none else "—" }}
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+    {% else %}
+
+
+    <!-- NO DATA -->
+
+    <div class="unavailable">
+
+        <h2>OCEMS Data Unavailable</h2>
+
+        <p>
+            No OCEMS dataset is currently available
+            for this STP.
+        </p>
+
+        <p>
+            STP ID:
+            <strong>{{ stp_id }}</strong>
+        </p>
+
+    </div>
+
+
+    {% endif %}
+
+</div>
+
+
+{% if ocems_available %}
+
+<script>
+
+const rows = {{ ocems_rows | tojson }};
+
+
+// Newest → oldest currently.
+// Reverse so graph displays oldest → newest.
+
+const graphRows = [...rows].reverse();
+
+
+const labels = graphRows.map(
+    row => row.timestamp
+);
+
+
+function getValues(parameter) {
+
+    return graphRows.map(
+        row => {
+
+            const value = row[parameter];
+
+            if (
+                value === null ||
+                value === undefined ||
+                value === ""
+            ) {
+                return null;
+            }
+
+            return Number(value);
+
+        }
+    );
+
+}
+
+
+function createChart(
+    canvasId,
+    parameter
+) {
+
+    const canvas =
+        document.getElementById(canvasId);
+
+    if (!canvas) return;
+
+    new Chart(
+        canvas,
+        {
+            type: "line",
+
+            data: {
+
+                labels: labels,
+
+                datasets: [
+                    {
+                        label: parameter,
+
+                        data: getValues(parameter),
+
+                        tension: 0.3,
+
+                        spanGaps: true
+                    }
+                ]
+
+            },
+
+            options: {
+
+                responsive: true,
+
+                maintainAspectRatio: false,
+
+                scales: {
+
+                    x: {
+                        ticks: {
+                            maxTicksLimit: 10
+                        }
+                    },
+
+                    y: {
+                        beginAtZero: false
+                    }
+
+                }
+
+            }
+
+        }
+    );
+
+}
+
+
+createChart(
+    "phChart",
+    "pH"
+);
+
+createChart(
+    "bodChart",
+    "BOD"
+);
+
+createChart(
+    "codChart",
+    "COD"
+);
+
+createChart(
+    "tssChart",
+    "TSS"
+);
+
+</script>
+
+{% endif %}
+
+</body>
+
+</html>

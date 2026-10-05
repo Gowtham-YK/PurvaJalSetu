@@ -1585,6 +1585,244 @@
         }
 
     </style>
+    <style>
+
+    /* =========================================
+    OCEMS MONITORING
+    ========================================= */
+
+    .ocems-section {
+
+        background: #ffffff;
+
+        border-radius: 14px;
+
+        padding: 24px;
+
+        margin-top: 22px;
+
+        margin-bottom: 22px;
+
+        box-shadow:
+            0 2px 10px rgba(15, 23, 42, 0.06);
+
+        border: 1px solid #eef2f7;
+    }
+
+
+    /* Header */
+
+    .ocems-header {
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: space-between;
+
+        margin-bottom: 22px;
+    }
+
+
+    .ocems-header h2 {
+
+        margin: 0;
+
+        font-size: 20px;
+
+        font-weight: 700;
+
+        color: #172033;
+    }
+
+
+    .ocems-header p {
+
+        margin: 5px 0 0;
+
+        font-size: 13px;
+
+        color: #8490a5;
+    }
+
+
+    /* View details button */
+
+    .ocems-details-btn {
+
+        display: inline-flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        padding: 9px 16px;
+
+        border-radius: 8px;
+
+        background: #2563eb;
+
+        color: #ffffff;
+
+        text-decoration: none;
+
+        font-size: 13px;
+
+        font-weight: 600;
+
+        transition: 0.2s ease;
+    }
+
+
+    .ocems-details-btn:hover {
+
+        background: #1d4ed8;
+
+        transform: translateY(-1px);
+    }
+
+
+    /* Parameter grid */
+
+    .ocems-grid {
+
+        display: grid;
+
+        grid-template-columns:
+            repeat(4, 1fr);
+
+        gap: 14px;
+    }
+
+
+    /* Individual parameter */
+
+    .ocems-value {
+
+        background: #f8fafc;
+
+        border: 1px solid #edf1f6;
+
+        border-radius: 10px;
+
+        padding: 17px 18px;
+
+        min-height: 105px;
+    }
+
+
+    .ocems-value span {
+
+        display: block;
+
+        color: #7b8799;
+
+        font-size: 12px;
+
+        font-weight: 500;
+
+        margin-bottom: 8px;
+    }
+
+
+    .ocems-value strong {
+
+        display: inline-block;
+
+        color: #172033;
+
+        font-size: 27px;
+
+        line-height: 1;
+
+        font-weight: 700;
+    }
+
+
+    .ocems-value small {
+
+        display: block;
+
+        color: #8994a6;
+
+        font-size: 11px;
+
+        margin-top: 7px;
+    }
+
+
+    /* Footer / status */
+
+    .ocems-footer {
+
+        display: flex;
+
+        align-items: center;
+
+        gap: 7px;
+
+        margin-top: 18px;
+
+        padding-top: 14px;
+
+        border-top: 1px solid #edf1f6;
+
+        color: #667085;
+
+        font-size: 12px;
+    }
+
+
+    .ocems-status-dot {
+
+        width: 8px;
+
+        height: 8px;
+
+        border-radius: 50%;
+
+        background: #16a34a;
+
+        display: inline-block;
+    }
+
+
+    /* Responsive */
+
+    @media (max-width: 900px) {
+
+        .ocems-grid {
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+        }
+
+    }
+
+
+    @media (max-width: 600px) {
+
+        .ocems-header {
+
+            align-items: flex-start;
+
+            flex-direction: column;
+
+            gap: 15px;
+
+        }
+
+
+        .ocems-grid {
+
+            grid-template-columns: 1fr;
+
+        }
+
+    }
+
+    </style>
     <link rel="stylesheet" href="{{ url_for('static', filename='responsive.css') }}">
 
 </head>
@@ -1998,8 +2236,70 @@
                 </div>
 
             </div>
+            
+            <!-- OCEMS MONITORING -->
+            <div class="ocems-section">
+
+                <div class="ocems-header">
+
+                    <div>
+                        <h2>OCEMS Monitoring</h2>
+                        <p>Latest wastewater quality parameters</p>
+                    </div>
+
+                    <a
+                        id="ocems-details-link"
+                        href="#"
+                        class="ocems-details-btn"
+                    >
+                        View Details →
+                    </a>
+
+                </div>
 
 
+                <div class="ocems-grid">
+
+                    <div class="ocems-value">
+                        <span>pH</span>
+                        <strong id="ocems-ph">—</strong>
+                    </div>
+
+
+                    <div class="ocems-value">
+                        <span>BOD</span>
+                        <strong id="ocems-bod">—</strong>
+                        <small>mg/L</small>
+                    </div>
+
+
+                    <div class="ocems-value">
+                        <span>COD</span>
+                        <strong id="ocems-cod">—</strong>
+                        <small>mg/L</small>
+                    </div>
+
+
+                    <div class="ocems-value">
+                        <span>TSS</span>
+                        <strong id="ocems-tss">—</strong>
+                        <small>mg/L</small>
+                    </div>
+
+                </div>
+
+
+                <div class="ocems-footer">
+
+                    <span class="ocems-status-dot"></span>
+
+                    <span id="ocems-status">
+                        OCEMS Data Unavailable
+                    </span>
+
+                </div>
+
+            </div>
             <!-- =========================
                  MAP + DEMAND REQUESTS
             ========================== -->
@@ -3510,7 +3810,132 @@
             });
         });
     </script>
+    <script>
 
+    async function loadOCEMS() {
+
+        const stpId =
+            "{{ selected_stp.stp_id if selected_stp else '' }}";
+
+        if (!stpId) {
+            return;
+        }
+
+
+        const detailsLink =
+            document.getElementById(
+                "ocems-details-link"
+            );
+
+
+        if (detailsLink) {
+
+            detailsLink.href =
+                `/supply_ocems?stp_id=${encodeURIComponent(stpId)}`;
+
+        }
+
+
+        try {
+
+            const response =
+                await fetch(
+                    `/api/ocems_summary/${encodeURIComponent(stpId)}`
+                );
+
+
+            const data =
+                await response.json();
+
+
+            if (
+                !data.success ||
+                !data.available
+            ) {
+
+                document.getElementById(
+                    "ocems-ph"
+                ).textContent = "—";
+
+
+                document.getElementById(
+                    "ocems-bod"
+                ).textContent = "—";
+
+
+                document.getElementById(
+                    "ocems-cod"
+                ).textContent = "—";
+
+
+                document.getElementById(
+                    "ocems-tss"
+                ).textContent = "—";
+
+
+                document.getElementById(
+                    "ocems-status"
+                ).textContent =
+                    "OCEMS Data Unavailable";
+
+                return;
+            }
+
+
+            document.getElementById(
+                "ocems-ph"
+            ).textContent =
+                data.pH ?? "—";
+
+
+            document.getElementById(
+                "ocems-bod"
+            ).textContent =
+                data.BOD ?? "—";
+
+
+            document.getElementById(
+                "ocems-cod"
+            ).textContent =
+                data.COD ?? "—";
+
+
+            document.getElementById(
+                "ocems-tss"
+            ).textContent =
+                data.TSS ?? "—";
+
+
+            document.getElementById(
+                "ocems-status"
+            ).textContent =
+                `● Monitoring | Latest: ${data.timestamp || "—"}`;
+
+        }
+
+        catch (error) {
+
+            console.error(
+                "OCEMS loading error:",
+                error
+            );
+
+            document.getElementById(
+                "ocems-status"
+            ).textContent =
+                "OCEMS Data Unavailable";
+
+        }
+
+    }
+
+
+    document.addEventListener(
+        "DOMContentLoaded",
+        loadOCEMS
+    );
+
+    </script>
 
 
 <!-- =========================================================

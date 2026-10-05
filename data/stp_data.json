@@ -195,6 +195,20 @@
             "quality_grade": "General",
             "last_reset_date": "2026-08-18",
             "last_reset_at": "2026-08-18T11:40:38.418442"
+        },
+        {
+            "stp_id": "PSTP015",
+            "stp_name": "WWTP",
+            "latitude": 12.92041869,
+            "longitude": 79.67598438,
+            "technology": "WWTP",
+            "total_capacity_mld": 0.6,
+            "current_load_mld": 0.45,
+            "available_capacity_mld": 0.14999999999999997,
+            "treatment_cost_per_kl": 10.0,
+            "quality_grade": "Silver",
+            "last_reset_date": "2026-10-05",
+            "last_reset_at": "2026-10-05T11:32:48.158686"
         }
     ]
 }
