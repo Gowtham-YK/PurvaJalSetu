@@ -1525,6 +1525,77 @@ body {
     line-height: 1;
 }
 
+/* ============================================
+   MATCHED STP - OCEMS WATER QUALITY CARDS
+============================================ */
+
+.matched-ocems {
+    margin-top: 16px;
+    border-top: 1px solid #e8edf3;
+    padding-top: 15px;
+}
+
+.matched-ocems-heading {
+    font-size: 12px;
+    font-weight: 600;
+    color: #172033;
+    margin: 0 0 4px;
+}
+
+.matched-ocems-subtitle {
+    font-size: 10px;
+    color: #748197;
+    margin: 0 0 12px;
+    line-height: 1.5;
+}
+
+/* Four cards in a 2 x 2 layout */
+.matched-ocems-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+}
+
+.matched-ocems-tile {
+    min-width: 0;
+    min-height: 96px;
+    padding: 12px;
+    border: 1px solid #e7edf5;
+    border-radius: 9px;
+    background: #f8fafc;
+}
+
+.matched-ocems-label {
+    display: block;
+    font-size: 10px;
+    color: #64748b;
+    margin-bottom: 7px;
+}
+
+.matched-ocems-value {
+    display: block;
+    font-size: 20px;
+    line-height: 1.25;
+    font-weight: 650;
+    color: #0f172a;
+    overflow-wrap: anywhere;
+}
+
+.matched-ocems-unit {
+    display: block;
+    font-size: 9px;
+    color: #94a3b8;
+    margin-top: 4px;
+}
+
+.matched-ocems-status {
+    font-size: 9px;
+    color: #64748b;
+    margin: 10px 0 0;
+    overflow-wrap: anywhere;
+}
+
+
 
 </style>
 
@@ -2610,6 +2681,14 @@ function hasValidDemandCoordinates(lat, lon){
 /* ================= SEARCH FUNCTION ================= */
 
 async function searchLocation(){
+    clearMatchedOcems();
+
+const previousBookButton =
+    document.getElementById("finalBookBtn");
+
+if (previousBookButton) {
+    previousBookButton.remove();
+}
 
     let place = document.getElementById("placeInput").value.trim();
     let requiredKLD = document.getElementById("kldInput").value || 0;
@@ -2869,6 +2948,7 @@ function addBookButton(
 
 let oldBtn = document.getElementById("finalBookBtn");
 if(oldBtn) oldBtn.remove();
+clearMatchedOcems();
 
 let btn = document.createElement("button");
 btn.id = "finalBookBtn";
@@ -2933,7 +3013,164 @@ btn.onclick = function(){
 };
 
 document.getElementById("resultCard").appendChild(btn);
+
+showMatchedOcems(nearest.stp_id, btn);
 }
+
+
+/* ==============================================
+   MATCHED STP OCEMS WATER QUALITY
+============================================== */
+
+let demandOcemsRequest = 0;
+
+// Remove old readings when the search changes.
+function clearMatchedOcems() {
+    demandOcemsRequest++;
+
+    const panel = document.getElementById("matchedOcems");
+
+    if (panel) {
+        panel.remove();
+    }
+}
+
+// Load readings for the matched STP.
+async function showMatchedOcems(stpId, bookButton) {
+
+    clearMatchedOcems();
+
+    if (!stpId || !bookButton) return;
+
+    const requestNumber = demandOcemsRequest;
+
+    const panel = document.createElement("section");
+    panel.id = "matchedOcems";
+    panel.className = "matched-ocems";
+
+    const heading = document.createElement("h3");
+    heading.className = "matched-ocems-heading";
+    heading.textContent = "OCEMS Water Quality";
+
+    panel.appendChild(heading);
+
+    const subtitle = document.createElement("p");
+    subtitle.className = "matched-ocems-subtitle";
+    subtitle.textContent = "Latest readings for the assigned STP";
+
+    panel.appendChild(subtitle);
+
+    const grid = document.createElement("div");
+    grid.className = "matched-ocems-grid";
+
+    const values = {};
+
+    ["pH", "BOD", "COD", "TSS"].forEach(parameter => {
+
+        const tile = document.createElement("div");
+        tile.className = "matched-ocems-tile";
+
+        const label = document.createElement("span");
+        label.className = "matched-ocems-label";
+        label.textContent = parameter;
+
+        const value = document.createElement("strong");
+        value.className = "matched-ocems-value";
+        value.textContent = "—";
+
+        values[parameter] = value;
+
+        const unit = document.createElement("span");
+        unit.className = "matched-ocems-unit";
+        unit.textContent = parameter === "pH"
+            ? "pH scale"
+            : "mg/L";
+
+        tile.append(label, value, unit);
+        grid.appendChild(tile);
+    });
+
+    panel.appendChild(grid);
+
+    const status = document.createElement("p");
+    status.className = "matched-ocems-status";
+    status.textContent = "Loading monitoring data...";
+
+    panel.appendChild(status);
+
+    bookButton.insertAdjacentElement("afterend", panel);
+
+    try {
+
+        const response = await fetch(
+            `/api/demand_ocems/${encodeURIComponent(stpId)}`,
+            {
+                credentials: "same-origin",
+                cache: "no-store"
+            }
+        );
+
+        if (!response.ok) {
+            throw new Error(
+                `OCEMS request failed: ${response.status}`
+            );
+        }
+
+        const data = await response.json();
+
+        // Prevent previous searches overwriting new readings.
+        if (
+            requestNumber !== demandOcemsRequest ||
+            !panel.isConnected
+        ) {
+            return;
+        }
+
+        if (
+            !data.success ||
+            !data.available ||
+            String(data.stp_id) !== String(stpId)
+        ) {
+            status.textContent =
+                "OCEMS data unavailable for this STP.";
+            return;
+        }
+
+        ["pH", "BOD", "COD", "TSS"].forEach(parameter => {
+
+            const reading = data[parameter];
+
+            values[parameter].textContent =
+                reading === null ||
+                reading === undefined ||
+                reading === ""
+                    ? "—"
+                    : String(reading);
+        });
+
+        status.textContent = data.timestamp
+            ? `Latest monitoring: ${data.timestamp}`
+            : "Monitoring timestamp unavailable";
+
+    } catch (error) {
+
+        if (
+            requestNumber !== demandOcemsRequest ||
+            !panel.isConnected
+        ) {
+            return;
+        }
+
+        console.error(
+            "Could not load matched-STP OCEMS:",
+            error
+        );
+
+        status.textContent =
+            "OCEMS data could not be loaded.";
+    }
+}
+
 
 /* ================= HELP TOGGLE ================= */
 function toggleHelp(){

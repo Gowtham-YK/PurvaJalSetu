@@ -949,7 +949,7 @@
                                         </a>
 
 
-
+                                    {% if document.verification_status | trim | lower != 'verified' %}
                                         <form
                                             method="POST"
 
@@ -996,6 +996,8 @@
 
 
                                         </form>
+                                    
+                                        {% endif %}
 
 
                                     {% endif %}
