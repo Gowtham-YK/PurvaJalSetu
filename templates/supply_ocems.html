@@ -194,7 +194,40 @@
             .info-grid {
                 grid-template-columns: 1fr;
             }
+        
+        /* =========================================
+        OCEMS QUALITY INDICATOR
+        ========================================= */
 
+        .permissible-range {
+            margin-top: 8px;
+            color: #94a3b8;
+            font-size: 11px;
+        }
+
+        .quality-indicator {
+            display: inline-block;
+            margin-top: 8px;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 10px;
+            font-weight: 700;
+        }
+
+        .quality-indicator.good {
+            color: #15803d;
+            background: #dcfce7;
+        }
+
+        .quality-indicator.bad {
+            color: #dc2626;
+            background: #fee2e2;
+        }
+
+        .quality-indicator.unknown {
+            color: #64748b;
+            background: #f1f5f9;
+        }
         }
 
     </style>
@@ -294,7 +327,7 @@
             <div class="parameter-value">
 
                 {% if latest_ocems
-                      and latest_ocems.get(parameter) is not none %}
+                    and latest_ocems.get(parameter) is not none %}
 
                     {{ latest_ocems.get(parameter) }}
 
@@ -314,6 +347,28 @@
                     mg/L
                 {% endif %}
 
+            </div>
+
+            <div class="permissible-range">
+
+                Limit:
+                {{ permissible_ranges.get(parameter, "—") }}
+
+            </div>
+
+            <div
+                class="quality-indicator"
+                data-parameter="{{ parameter }}"
+                data-value="{{
+                    latest_ocems.get(parameter)
+                    if latest_ocems
+                    else ''
+                }}"
+                data-range="{{
+                    permissible_ranges.get(parameter, '')
+                }}"
+            >
+                Checking...
             </div>
 
         </div>
@@ -598,7 +653,396 @@ createChart(
 </script>
 
 {% endif %}
+<script>
 
+function setQualityIndicator(
+    element,
+    status,
+    text
+) {
+
+    element.classList.remove(
+        "good",
+        "bad",
+        "unknown"
+    );
+
+    element.classList.add(
+        status
+    );
+
+    element.textContent =
+        text;
+}
+
+
+function checkQuality(
+    value,
+    rangeText
+) {
+
+    if (
+        value === null ||
+        value === undefined ||
+        value === "" ||
+        !rangeText
+    ) {
+
+        return {
+            status: "unknown",
+            text: "● Limit Unknown"
+        };
+
+    }
+
+
+    const numericValue =
+        Number(value);
+
+
+    if (Number.isNaN(numericValue)) {
+
+        return {
+            status: "unknown",
+            text: "● Unknown"
+        };
+
+    }
+
+
+    const range =
+        String(rangeText)
+            .trim()
+            .replace(/–/g, "-")
+            .replace(/—/g, "-");
+
+
+    // -----------------------------------------
+    // 5 - 9
+    // -----------------------------------------
+
+    let match =
+        range.match(
+            /^(-?\d+(?:\.\d+)?)\s*[-to]+\s*(-?\d+(?:\.\d+)?)$/i
+        );
+
+
+    if (match) {
+
+        const min =
+            Number(match[1]);
+
+        const max =
+            Number(match[2]);
+
+
+        const good =
+            numericValue >= min &&
+            numericValue <= max;
+
+
+        return {
+
+            status:
+                good
+                    ? "good"
+                    : "bad",
+
+            text:
+                good
+                    ? "● Good"
+                    : "● Bad"
+
+        };
+
+    }
+
+
+    // -----------------------------------------
+    // < 30
+    // -----------------------------------------
+
+    match =
+        range.match(
+            /^<\s*(-?\d+(?:\.\d+)?)$/
+        );
+
+
+    if (match) {
+
+        const max =
+            Number(match[1]);
+
+        const good =
+            numericValue < max;
+
+
+        return {
+
+            status:
+                good
+                    ? "good"
+                    : "bad",
+
+            text:
+                good
+                    ? "● Good"
+                    : "● Bad"
+
+        };
+
+    }
+
+
+    // -----------------------------------------
+    // <= 30
+    // -----------------------------------------
+
+    match =
+        range.match(
+            /^(?:<=|≤)\s*(-?\d+(?:\.\d+)?)$/
+        );
+
+
+    if (match) {
+
+        const max =
+            Number(match[1]);
+
+        const good =
+            numericValue <= max;
+
+
+        return {
+
+            status:
+                good
+                    ? "good"
+                    : "bad",
+
+            text:
+                good
+                    ? "● Good"
+                    : "● Bad"
+
+        };
+
+    }
+
+
+    // -----------------------------------------
+    // > 5
+    // -----------------------------------------
+
+    match =
+        range.match(
+            /^>\s*(-?\d+(?:\.\d+)?)$/
+        );
+
+
+    if (match) {
+
+        const min =
+            Number(match[1]);
+
+        const good =
+            numericValue > min;
+
+
+        return {
+
+            status:
+                good
+                    ? "good"
+                    : "bad",
+
+            text:
+                good
+                    ? "● Good"
+                    : "● Bad"
+
+        };
+
+    }
+
+
+    // -----------------------------------------
+    // >= 5
+    // -----------------------------------------
+
+    match =
+        range.match(
+            /^(?:>=|≥)\s*(-?\d+(?:\.\d+)?)$/
+        );
+
+
+    if (match) {
+
+        const min =
+            Number(match[1]);
+
+        const good =
+            numericValue >= min;
+
+
+        return {
+
+            status:
+                good
+                    ? "good"
+                    : "bad",
+
+            text:
+                good
+                    ? "● Good"
+                    : "● Bad"
+
+        };
+
+    }
+
+
+    return {
+
+        status: "unknown",
+
+        text: "● Limit Unknown"
+
+    };
+
+}
+
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        const indicators =
+            document.querySelectorAll(
+                ".quality-indicator"
+            );
+
+
+        indicators.forEach(
+            function (indicator) {
+
+                const value =
+                    indicator.dataset.value;
+
+                const range =
+                    indicator.dataset.range;
+
+
+                const result =
+                    checkQuality(
+                        value,
+                        range
+                    );
+
+
+                setQualityIndicator(
+                    indicator,
+                    result.status,
+                    result.text
+                );
+
+            }
+        );
+
+    }
+);
+
+</script>
+<script>
+
+function checkQualityIndicators() {
+
+    document.querySelectorAll(".quality-indicator").forEach(indicator => {
+
+        const value = parseFloat(indicator.dataset.value);
+        const range = indicator.dataset.range;
+
+        if (isNaN(value) || !range) {
+
+            indicator.textContent = "Unknown";
+            indicator.className = "quality-indicator unknown";
+
+            return;
+        }
+
+        let good = null;
+
+        // Range: 5 - 9
+        let rangeMatch = range.match(
+            /^\s*(-?\d+(?:\.\d+)?)\s*-\s*(-?\d+(?:\.\d+)?)\s*$/
+        );
+
+        if (rangeMatch) {
+
+            const min = parseFloat(rangeMatch[1]);
+            const max = parseFloat(rangeMatch[2]);
+
+            good = value >= min && value <= max;
+        }
+
+        // <= 30
+        let lessEqualMatch = range.match(
+            /^(?:<=|<)\s*(-?\d+(?:\.\d+)?)/
+        );
+
+        if (lessEqualMatch) {
+
+            const limit = parseFloat(lessEqualMatch[1]);
+
+            if (range.includes("<=")) {
+                good = value <= limit;
+            } else {
+                good = value < limit;
+            }
+        }
+
+        // >= 5
+        let greaterEqualMatch = range.match(
+            /^(?:>=|>)\s*(-?\d+(?:\.\d+)?)/
+        );
+
+        if (greaterEqualMatch) {
+
+            const limit = parseFloat(greaterEqualMatch[1]);
+
+            if (range.includes(">=")) {
+                good = value >= limit;
+            } else {
+                good = value > limit;
+            }
+        }
+
+        if (good === true) {
+
+            indicator.textContent = "Within Limit";
+            indicator.className = "quality-indicator good";
+
+        } else if (good === false) {
+
+            indicator.textContent = "Above Limit";
+            indicator.className = "quality-indicator bad";
+
+        } else {
+
+            indicator.textContent = "Unknown";
+            indicator.className = "quality-indicator unknown";
+        }
+
+    });
+
+}
+
+document.addEventListener(
+    "DOMContentLoaded",
+    checkQualityIndicators
+);
+
+</script>
 </body>
 
 </html>

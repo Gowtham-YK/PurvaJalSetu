@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>OCEMS Document Review</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+
+            margin: 0;
+
+            font-family: Arial, sans-serif;
+
+            background: #0f172a;
+
+            color: #f8fafc;
+
+        }
+
+        .container {
+
+            max-width: 1400px;
+
+            margin: auto;
+
+            padding: 30px;
+
+        }
+
+        .header {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 25px;
+
+        }
+
+        .header h1 {
+
+            margin: 0;
+
+            font-size: 25px;
+
+        }
+
+        .back {
+
+            background: #334155;
+
+            color: white;
+
+            padding: 10px 16px;
+
+            border-radius: 8px;
+
+            text-decoration: none;
+
+        }
+
+        .card {
+
+            background: #1e293b;
+
+            border-radius: 14px;
+
+            padding: 22px;
+
+            margin-bottom: 20px;
+
+        }
+
+        .info {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 15px;
+
+            margin-bottom: 20px;
+
+        }
+
+        .info-item {
+
+            background: #0f172a;
+
+            padding: 15px;
+
+            border-radius: 10px;
+
+        }
+
+        .info-item span {
+
+            display: block;
+
+            color: #94a3b8;
+
+            font-size: 12px;
+
+            margin-bottom: 5px;
+
+        }
+
+        .info-item strong {
+
+            font-size: 14px;
+
+        }
+
+        .document {
+
+            overflow-x: auto;
+
+        }
+
+        .ocems-preview-table {
+
+            width: 100%;
+
+            border-collapse: collapse;
+
+            background: #0f172a;
+
+        }
+
+        .ocems-preview-table td {
+
+            padding: 10px;
+
+            border: 1px solid #334155;
+
+            white-space: nowrap;
+
+        }
+
+        .actions {
+
+            display: flex;
+
+            gap: 10px;
+
+            align-items: center;
+
+            margin-top: 20px;
+
+        }
+
+        .approve,
+        .reject {
+
+            border: none;
+
+            padding: 10px 18px;
+
+            border-radius: 8px;
+
+            color: white;
+
+            cursor: pointer;
+
+            font-weight: 600;
+
+        }
+
+        .approve {
+
+            background: #16a34a;
+
+        }
+
+        .reject {
+
+            background: #dc2626;
+
+        }
+
+        textarea {
+
+            width: 100%;
+
+            min-height: 80px;
+
+            background: #0f172a;
+
+            color: white;
+
+            border: 1px solid #475569;
+
+            border-radius: 8px;
+
+            padding: 10px;
+
+            resize: vertical;
+
+        }
+
+        @media (max-width: 800px) {
+
+            .info {
+
+                grid-template-columns: 1fr 1fr;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<div class="container">
+
+
+    <div class="header">
+
+        <h1>OCEMS Document Review</h1>
+
+        <a
+            href="{{ url_for('admin_dashboard') }}"
+            class="back"
+        >
+            ← Back to Admin
+        </a>
+
+    </div>
+
+
+    <div class="card">
+
+        <div class="info">
+
+            <div class="info-item">
+
+                <span>STP</span>
+
+                <strong>
+                    {{ submission.stp_id }}
+                </strong>
+
+            </div>
+
+
+            <div class="info-item">
+
+                <span>Document</span>
+
+                <strong>
+                    {{ submission.original_filename }}
+                </strong>
+
+            </div>
+
+
+            <div class="info-item">
+
+                <span>Uploaded</span>
+
+                <strong>
+                    {{ submission.uploaded_at }}
+                </strong>
+
+            </div>
+
+
+            <div class="info-item">
+
+                <span>Status</span>
+
+                <strong>
+                    {{ submission.status|capitalize }}
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <h2>Document Contents</h2>
+
+        <div class="document">
+
+            {{ html_table|safe }}
+
+        </div>
+
+
+        {% if submission.status == "pending" %}
+
+        <form
+            method="POST"
+            action="{{ url_for(
+                'admin_review_ocems',
+                submission_id=submission.submission_id
+            ) }}"
+        >
+
+            <h3>Admin Remark</h3>
+
+            <textarea
+                name="admin_remark"
+                placeholder="Optional for approval. Required for rejection."
+            ></textarea>
+
+
+            <div class="actions">
+
+                <button
+                    type="submit"
+                    name="action"
+                    value="approved"
+                    class="approve"
+                    onclick="return confirm('Approve this OCEMS report?')"
+                >
+                    ✓ Approve
+                </button>
+
+
+                <button
+                    type="submit"
+                    name="action"
+                    value="rejected"
+                    class="reject"
+                    onclick="return confirm('Reject this OCEMS report?')"
+                >
+                    ✕ Reject
+                </button>
+
+            </div>
+
+        </form>
+
+        {% else %}
+
+            <p>
+                This submission has already been
+                <strong>
+                    {{ submission.status }}
+                </strong>.
+            </p>
+
+            {% if submission.admin_remark %}
+
+                <p>
+                    <strong>Admin Remark:</strong>
+                    {{ submission.admin_remark }}
+                </p>
+
+            {% endif %}
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

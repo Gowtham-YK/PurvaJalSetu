@@ -1583,7 +1583,161 @@
                 height: 330px;
             }
         }
+        
+        /* =========================================
+        OCEMS UPLOAD
+        ========================================= */
 
+        .ocems-upload-box {
+
+            margin-top: 20px;
+
+            padding-top: 18px;
+
+            border-top: 1px solid #edf1f6;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 20px;
+        }
+
+
+        .ocems-upload-box h3 {
+
+            margin: 0;
+
+            color: #172033;
+
+            font-size: 15px;
+        }
+
+
+        .ocems-upload-box p {
+
+            margin: 5px 0 0;
+
+            color: #8490a5;
+
+            font-size: 12px;
+        }
+
+
+        .ocems-upload-form {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            flex-wrap: wrap;
+        }
+
+
+        .ocems-upload-form input[type="file"] {
+
+            font-size: 12px;
+
+            max-width: 240px;
+        }
+
+
+        .ocems-upload-form button {
+
+            border: none;
+
+            padding: 9px 16px;
+
+            border-radius: 8px;
+
+            background: #2563eb;
+
+            color: #ffffff;
+
+            font-size: 13px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+        }
+
+
+        .ocems-upload-form button:hover {
+
+            background: #1d4ed8;
+        }
+
+
+        @media (max-width: 700px) {
+
+            .ocems-upload-box {
+
+                flex-direction: column;
+
+                align-items: flex-start;
+
+            }
+
+        }
+
+        /* =========================================
+        OCEMS QUALITY INDICATORS
+        ========================================= */
+
+        .ocems-indicator {
+
+            display: inline-block;
+
+            margin-top: 7px;
+
+            padding: 4px 9px;
+
+            border-radius: 20px;
+
+            font-size: 10px;
+
+            font-weight: 700;
+
+            line-height: 1;
+
+        }
+
+
+        /* GOOD */
+
+        .ocems-indicator.good {
+
+            color: #15803d;
+
+            background: #dcfce7;
+
+        }
+
+
+        /* BAD */
+
+        .ocems-indicator.bad {
+
+            color: #dc2626;
+
+            background: #fee2e2;
+
+        }
+
+
+        /* UNKNOWN */
+
+        .ocems-indicator.unknown {
+
+            color: #64748b;
+
+            background: #f1f5f9;
+
+        }
     </style>
     <style>
 
@@ -2261,29 +2415,72 @@
                 <div class="ocems-grid">
 
                     <div class="ocems-value">
+
                         <span>pH</span>
+
                         <strong id="ocems-ph">—</strong>
+
+                        <small
+                            id="ocems-ph-status"
+                            class="ocems-indicator"
+                        >
+                            —
+                        </small>
+
                     </div>
 
 
                     <div class="ocems-value">
+
                         <span>BOD</span>
+
                         <strong id="ocems-bod">—</strong>
+
                         <small>mg/L</small>
+
+                        <small
+                            id="ocems-bod-status"
+                            class="ocems-indicator"
+                        >
+                            —
+                        </small>
+
                     </div>
 
 
                     <div class="ocems-value">
+
                         <span>COD</span>
+
                         <strong id="ocems-cod">—</strong>
+
                         <small>mg/L</small>
+
+                        <small
+                            id="ocems-cod-status"
+                            class="ocems-indicator"
+                        >
+                            —
+                        </small>
+
                     </div>
 
 
                     <div class="ocems-value">
+
                         <span>TSS</span>
+
                         <strong id="ocems-tss">—</strong>
+
                         <small>mg/L</small>
+
+                        <small
+                            id="ocems-tss-status"
+                            class="ocems-indicator"
+                        >
+                            —
+                        </small>
+
                     </div>
 
                 </div>
@@ -2299,6 +2496,42 @@
 
                 </div>
 
+                <!-- OCEMS REPORT UPLOAD -->
+
+                <div class="ocems-upload-box">
+
+                    <div>
+
+                        <h3>Upload OCEMS Report</h3>
+
+                        <p>
+                            Upload the latest OCEMS Excel report for admin verification.
+                        </p>
+
+                    </div>
+
+
+                    <form
+                        method="POST"
+                        action="{{ url_for('upload_ocems_report') }}"
+                        enctype="multipart/form-data"
+                        class="ocems-upload-form"
+                    >
+
+                        <input
+                            type="file"
+                            name="ocems_file"
+                            accept=".xlsx,.xls"
+                            required
+                        >
+
+                        <button type="submit">
+                            Upload Report
+                        </button>
+
+                    </form>
+
+                </div>
             </div>
             <!-- =========================
                  MAP + DEMAND REQUESTS
@@ -3812,10 +4045,259 @@
     </script>
     <script>
 
+
+    function setOCEMSIndicator(
+        elementId,
+        status,
+        text
+    ) {
+
+        const element =
+            document.getElementById(
+                elementId
+            );
+
+
+        if (!element) {
+            return;
+        }
+
+
+        element.className =
+            `ocems-indicator ${status}`;
+
+
+        element.textContent =
+            text;
+    }
+
+
+    function updateOCEMSIndicator(
+        elementId,
+        value,
+        rangeText
+    ) {
+
+        if (
+            value === null ||
+            value === undefined ||
+            rangeText === null ||
+            rangeText === undefined
+        ) {
+
+            setOCEMSIndicator(
+                elementId,
+                "unknown",
+                "No Limit"
+            );
+
+            return;
+        }
+
+
+        const numericValue =
+            Number(value);
+
+
+        if (Number.isNaN(numericValue)) {
+
+            setOCEMSIndicator(
+                elementId,
+                "unknown",
+                "Unknown"
+            );
+
+            return;
+        }
+
+
+        const range =
+            String(rangeText)
+                .trim()
+                .replace(/–/g, "-")
+                .replace(/—/g, "-");
+
+
+        // -----------------------------------------
+        // RANGE: 5 - 9
+        // -----------------------------------------
+
+        let match =
+            range.match(
+                /^(-?\d+(?:\.\d+)?)\s*[-to]+\s*(-?\d+(?:\.\d+)?)$/i
+            );
+
+
+        if (match) {
+
+            const min =
+                Number(match[1]);
+
+            const max =
+                Number(match[2]);
+
+
+            if (
+                numericValue >= min &&
+                numericValue <= max
+            ) {
+
+                setOCEMSIndicator(
+                    elementId,
+                    "good",
+                    "● Good"
+                );
+
+            } else {
+
+                setOCEMSIndicator(
+                    elementId,
+                    "bad",
+                    "● Bad"
+                );
+
+            }
+
+            return;
+        }
+
+
+        // -----------------------------------------
+        // RANGE: < 30
+        // -----------------------------------------
+
+        match =
+            range.match(
+                /^<\s*(-?\d+(?:\.\d+)?)$/
+            );
+
+
+        if (match) {
+
+            const max =
+                Number(match[1]);
+
+
+            setOCEMSIndicator(
+                elementId,
+                numericValue < max
+                    ? "good"
+                    : "bad",
+                numericValue < max
+                    ? "● Good"
+                    : "● Bad"
+            );
+
+            return;
+        }
+
+
+        // -----------------------------------------
+        // RANGE: <= 30
+        // -----------------------------------------
+
+        match =
+            range.match(
+                /^(?:<=|≤)\s*(-?\d+(?:\.\d+)?)$/
+            );
+
+
+        if (match) {
+
+            const max =
+                Number(match[1]);
+
+
+            setOCEMSIndicator(
+                elementId,
+                numericValue <= max
+                    ? "good"
+                    : "bad",
+                numericValue <= max
+                    ? "● Good"
+                    : "● Bad"
+            );
+
+            return;
+        }
+
+
+        // -----------------------------------------
+        // RANGE: > 5
+        // -----------------------------------------
+
+        match =
+            range.match(
+                /^>\s*(-?\d+(?:\.\d+)?)$/
+            );
+
+
+        if (match) {
+
+            const min =
+                Number(match[1]);
+
+
+            setOCEMSIndicator(
+                elementId,
+                numericValue > min
+                    ? "good"
+                    : "bad",
+                numericValue > min
+                    ? "● Good"
+                    : "● Bad"
+            );
+
+            return;
+        }
+
+
+        // -----------------------------------------
+        // RANGE: >= 5
+        // -----------------------------------------
+
+        match =
+            range.match(
+                /^(?:>=|≥)\s*(-?\d+(?:\.\d+)?)$/
+            );
+
+
+        if (match) {
+
+            const min =
+                Number(match[1]);
+
+
+            setOCEMSIndicator(
+                elementId,
+                numericValue >= min
+                    ? "good"
+                    : "bad",
+                numericValue >= min
+                    ? "● Good"
+                    : "● Bad"
+            );
+
+            return;
+        }
+
+
+        // -----------------------------------------
+        // COULD NOT UNDERSTAND RANGE
+        // -----------------------------------------
+
+        setOCEMSIndicator(
+            elementId,
+            "unknown",
+            "Limit Unknown"
+        );
+    }
+
     async function loadOCEMS() {
 
         const stpId =
             "{{ selected_stp.stp_id if selected_stp else '' }}";
+
 
         if (!stpId) {
             return;
@@ -3873,6 +4355,31 @@
                 ).textContent = "—";
 
 
+                setOCEMSIndicator(
+                    "ocems-ph-status",
+                    "unknown",
+                    "No Data"
+                );
+
+                setOCEMSIndicator(
+                    "ocems-bod-status",
+                    "unknown",
+                    "No Data"
+                );
+
+                setOCEMSIndicator(
+                    "ocems-cod-status",
+                    "unknown",
+                    "No Data"
+                );
+
+                setOCEMSIndicator(
+                    "ocems-tss-status",
+                    "unknown",
+                    "No Data"
+                );
+
+
                 document.getElementById(
                     "ocems-status"
                 ).textContent =
@@ -3881,6 +4388,10 @@
                 return;
             }
 
+
+            // -----------------------------------------
+            // DISPLAY VALUES
+            // -----------------------------------------
 
             document.getElementById(
                 "ocems-ph"
@@ -3906,6 +4417,46 @@
                 data.TSS ?? "—";
 
 
+            // -----------------------------------------
+            // GET PERMISSIBLE RANGES
+            // -----------------------------------------
+
+            const ranges =
+                data.permissible_ranges || {};
+
+
+            // -----------------------------------------
+            // CHECK EACH PARAMETER
+            // -----------------------------------------
+
+            updateOCEMSIndicator(
+                "ocems-ph-status",
+                data.pH,
+                ranges["pH"]
+            );
+
+
+            updateOCEMSIndicator(
+                "ocems-bod-status",
+                data.BOD,
+                ranges["BOD"]
+            );
+
+
+            updateOCEMSIndicator(
+                "ocems-cod-status",
+                data.COD,
+                ranges["COD"]
+            );
+
+
+            updateOCEMSIndicator(
+                "ocems-tss-status",
+                data.TSS,
+                ranges["TSS"]
+            );
+
+
             document.getElementById(
                 "ocems-status"
             ).textContent =
@@ -3913,12 +4464,14 @@
 
         }
 
+
         catch (error) {
 
             console.error(
                 "OCEMS loading error:",
                 error
             );
+
 
             document.getElementById(
                 "ocems-status"
