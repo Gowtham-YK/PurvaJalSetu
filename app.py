@@ -16390,6 +16390,53 @@ def supply_ocems():
         latest_ocems=ocems.get("latest")
     )
 
+# =========================================================
+# DEMAND DASHBOARD - MATCHED STP OCEMS SUMMARY
+# =========================================================
+
+@app.route("/api/demand_ocems/<stp_id>")
+def api_demand_ocems(stp_id):
+
+    # Only logged-in demand users can access this API.
+    if not session.get("user_id"):
+        return jsonify({
+            "success": False,
+            "error": "Login required"
+        }), 401
+
+    if str(session.get("role") or "").strip().lower() != "demand":
+        return jsonify({
+            "success": False,
+            "error": "Unauthorized"
+        }), 403
+
+    # Check the STP exists in the registered STP records.
+    stp = get_stp_by_id(stp_id)
+
+    if stp is None:
+        return jsonify({
+            "success": False,
+            "error": "Unknown STP"
+        }), 404
+
+    # Reuse the existing OCEMS Excel loader.
+    ocems = load_ocems_data(stp["stp_id"])
+
+    latest = ocems.get("latest") or {}
+
+    return jsonify({
+        "success": True,
+        "available": bool(
+            ocems.get("available") and latest
+        ),
+        "stp_id": stp["stp_id"],
+        "timestamp": latest.get("timestamp"),
+        "pH": latest.get("pH"),
+        "BOD": latest.get("BOD"),
+        "COD": latest.get("COD"),
+        "TSS": latest.get("TSS")
+    })
+
 @app.route("/api/ocems_summary/<stp_id>")
 def api_ocems_summary(stp_id):
 
