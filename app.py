@@ -340,6 +340,61 @@ OCEMS_DIR = os.path.join(
     "database",
     "ocems"
 )
+
+# =========================================================
+# OCEMS UPLOAD / APPROVAL
+# =========================================================
+
+OCEMS_UPLOAD_DIR = os.path.join(
+    BASE_DIR,
+    "uploads",
+    "ocems"
+)
+
+OCEMS_SUBMISSIONS_FILE = os.path.join(
+    DATABASE_DIR,
+    "ocems_submissions.csv"
+)
+
+os.makedirs(
+    OCEMS_UPLOAD_DIR,
+    exist_ok=True
+)
+
+OCEMS_SUBMISSION_FIELDS = [
+    "submission_id",
+    "stp_id",
+    "original_filename",
+    "stored_filename",
+    "uploaded_at",
+    "status",
+    "admin_remark",
+    "approved_at",
+    "approved_by"
+]
+
+
+def ensure_ocems_submissions_file():
+
+    if (
+        not os.path.exists(OCEMS_SUBMISSIONS_FILE)
+        or os.path.getsize(OCEMS_SUBMISSIONS_FILE) == 0
+    ):
+
+        with open(
+            OCEMS_SUBMISSIONS_FILE,
+            "w",
+            newline="",
+            encoding="utf-8"
+        ) as f:
+
+            writer = csv.DictWriter(
+                f,
+                fieldnames=OCEMS_SUBMISSION_FIELDS
+            )
+
+            writer.writeheader()
+
 # =========================================================
 # TANKER VEHICLES
 # Added from File 1 without changing the existing
@@ -1878,20 +1933,61 @@ def load_ocems_data(stp_id):
         # PERMISSIBLE RANGE
         # ----------------------------------------
 
+        # Default permissible ranges used when
+        # the OCEMS Excel file does not provide
+        # a valid limit.
+
+        DEFAULT_PERMISSIBLE_RANGES = {
+            "pH": "5 - 9",
+            "BOD": "< 30",
+            "COD": "< 250",
+            "TSS": "< 30"
+        }
+
         permissible_ranges = {}
 
-        if len(df) > 3:
+        invalid_values = [
+            "",
+            "-",
+            "—",
+            "NA",
+            "N/A",
+            "na",
+            "n/a",
+            "null",
+            "None",
+            "none",
+            "nan"
+        ]
 
-            for index, parameter in enumerate(parameters, start=1):
+        for index, parameter in enumerate(parameters, start=1):
 
-                if index < len(df.columns):
+            excel_value = None
 
-                    value = df.iloc[3, index]
+            # Try to read the permissible value from Excel
+            if len(df) > 3 and index < len(df.columns):
 
-                    if pd.notna(value):
-                        permissible_ranges[parameter] = str(value).strip()
-                    else:
-                        permissible_ranges[parameter] = "-"
+                value = df.iloc[3, index]
+
+                if pd.notna(value):
+                    excel_value = str(value).strip()
+
+            # If Excel contains a valid value, use it
+            if excel_value and excel_value not in invalid_values:
+
+                permissible_ranges[parameter] = excel_value
+
+            # Otherwise use the system default
+            elif parameter in DEFAULT_PERMISSIBLE_RANGES:
+
+                permissible_ranges[parameter] = (
+                    DEFAULT_PERMISSIBLE_RANGES[parameter]
+                )
+
+            # Unknown parameter
+            else:
+
+                permissible_ranges[parameter] = "-"
 
         # ----------------------------------------
         # ACTUAL READINGS
@@ -5170,6 +5266,33 @@ def admin_dashboard():
 
 
     # =========================
+    # LOAD OCEMS SUBMISSIONS
+    # =========================
+
+    ensure_ocems_submissions_file()
+
+    ocems_submissions = []
+
+    if (
+        os.path.exists(OCEMS_SUBMISSIONS_FILE)
+        and os.path.getsize(OCEMS_SUBMISSIONS_FILE) > 0
+    ):
+
+        with open(
+            OCEMS_SUBMISSIONS_FILE,
+            "r",
+            newline="",
+            encoding="utf-8"
+        ) as f:
+
+            reader = csv.DictReader(f)
+
+            ocems_submissions = list(reader)
+
+
+    # Newest first
+    ocems_submissions.reverse()
+    # =========================
     # ADMIN PAGE
     # =========================
 
@@ -5201,7 +5324,9 @@ def admin_dashboard():
             vehicles_by_operator,
 
         documents_by_vehicle=
-            documents_by_vehicle
+            documents_by_vehicle,
+
+        ocems_submissions=ocems_submissions
     )
 
 @app.route("/admin/tanker/<operator_id>/status/<status>")
@@ -15637,6 +15762,554 @@ def _complete_transfer_locked():
         url_for("tanker_dashboard")
     )
 
+# =========================================================
+# OCEMS REPORT UPLOAD
+# =========================================================
+
+@app.route(
+    "/ocems/upload",
+    methods=["POST"]
+)
+@login_required(role="stp")
+def upload_ocems_report():
+
+    # -----------------------------------------
+    # GET CURRENT STP
+    # -----------------------------------------
+
+    stp_id = str(
+        session.get("stp_id")
+        or session.get("selected_stp_id")
+        or ""
+    ).strip()
+
+    if not stp_id:
+        return "STP not identified.", 400
+
+
+    # -----------------------------------------
+    # GET FILE
+    # -----------------------------------------
+
+    uploaded_file = request.files.get("ocems_file")
+
+    if (
+        uploaded_file is None
+        or not uploaded_file.filename
+    ):
+        return (
+            "Please select an OCEMS Excel file.",
+            400
+        )
+
+
+    # -----------------------------------------
+    # FILE NAME
+    # -----------------------------------------
+
+    original_filename = secure_filename(
+        uploaded_file.filename
+    )
+
+    extension = os.path.splitext(
+        original_filename
+    )[1].lower()
+
+
+    # -----------------------------------------
+    # ONLY EXCEL
+    # -----------------------------------------
+
+    if extension not in {
+        ".xlsx",
+        ".xls"
+    }:
+        original_filename = secure_filename(
+        uploaded_file.filename
+    )
+
+    extension = os.path.splitext(
+        original_filename
+    )[1].lower()
+
+    if extension != ".xlsx":
+        return (
+            "Only .xlsx OCEMS Excel files are allowed.",
+            400
+        )
+
+
+    # -----------------------------------------
+    # MAX FILE SIZE: 10 MB
+    # -----------------------------------------
+
+    uploaded_file.seek(
+        0,
+        os.SEEK_END
+    )
+
+    file_size = uploaded_file.tell()
+
+    uploaded_file.seek(0)
+
+    if file_size > 10 * 1024 * 1024:
+        return (
+            "OCEMS file must be 10 MB or smaller.",
+            400
+        )
+
+
+    # -----------------------------------------
+    # CREATE SUBMISSION ID
+    # -----------------------------------------
+
+    submission_id = (
+        "OCEMS-"
+        + uuid.uuid4().hex[:12].upper()
+    )
+
+
+    # -----------------------------------------
+    # UNIQUE STORED NAME
+    # -----------------------------------------
+
+    stored_filename = (
+        f"{stp_id}_"
+        f"{uuid.uuid4().hex[:12]}"
+        f"{extension}"
+    )
+
+    stored_filename = secure_filename(
+        stored_filename
+    )
+
+
+    stored_path = os.path.join(
+        OCEMS_UPLOAD_DIR,
+        stored_filename
+    )
+
+
+    # -----------------------------------------
+    # SAVE FILE
+    # -----------------------------------------
+
+    uploaded_file.save(
+        stored_path
+    )
+
+
+    # -----------------------------------------
+    # SAVE SUBMISSION RECORD
+    # -----------------------------------------
+
+    ensure_ocems_submissions_file()
+
+    new_submission = {
+
+        "submission_id":
+            submission_id,
+
+        "stp_id":
+            stp_id,
+
+        "original_filename":
+            original_filename,
+
+        "stored_filename":
+            stored_filename,
+
+        "uploaded_at":
+            datetime.now().isoformat(
+                timespec="seconds"
+            ),
+
+        "status":
+            "pending",
+
+        "admin_remark":
+            "",
+
+        "approved_at":
+            "",
+
+        "approved_by":
+            ""
+    }
+
+
+    with open(
+        OCEMS_SUBMISSIONS_FILE,
+        "a",
+        newline="",
+        encoding="utf-8"
+    ) as f:
+
+        writer = csv.DictWriter(
+            f,
+            fieldnames=OCEMS_SUBMISSION_FIELDS
+        )
+
+        writer.writerow(
+            new_submission
+        )
+
+
+    return redirect(
+        url_for(
+            "supply",
+            stp_id=stp_id
+        )
+    )
+
+# =========================================================
+# ADMIN - VIEW OCEMS DOCUMENT
+# =========================================================
+
+@app.route(
+    "/admin/ocems/<submission_id>/view"
+)
+@login_required(role="admin")
+def admin_view_ocems(submission_id):
+
+    ensure_ocems_submissions_file()
+
+    submission = None
+
+    with open(
+        OCEMS_SUBMISSIONS_FILE,
+        "r",
+        newline="",
+        encoding="utf-8"
+    ) as f:
+
+        reader = csv.DictReader(f)
+
+        for row in reader:
+
+            if (
+                str(
+                    row.get("submission_id") or ""
+                ).strip()
+                ==
+                str(submission_id).strip()
+            ):
+
+                submission = row
+                break
+
+
+    if submission is None:
+        return "OCEMS submission not found.", 404
+
+
+    stored_filename = os.path.basename(
+        str(
+            submission.get("stored_filename")
+            or ""
+        ).strip()
+    )
+
+
+    file_path = os.path.join(
+        OCEMS_UPLOAD_DIR,
+        stored_filename
+    )
+
+
+    if not os.path.isfile(file_path):
+        return "Uploaded OCEMS file not found.", 404
+
+
+    try:
+
+        df = pd.read_excel(
+            file_path,
+            sheet_name="Average",
+            header=None
+        )
+
+        html_table = df.fillna("").to_html(
+            index=False,
+            header=False,
+            classes="ocems-preview-table"
+        )
+
+    except Exception as e:
+
+        return (
+            f"Could not read OCEMS document: {e}",
+            400
+        )
+
+
+    return render_template(
+        "admin_ocems_view.html",
+        submission=submission,
+        html_table=html_table
+    )
+
+# =========================================================
+# ADMIN - REVIEW OCEMS
+# =========================================================
+
+@app.route(
+    "/admin/ocems/<submission_id>/review",
+    methods=["POST"]
+)
+@login_required(role="admin")
+def admin_review_ocems(submission_id):
+
+    action = str(
+        request.form.get("action") or ""
+    ).strip().lower()
+
+    admin_remark = str(
+        request.form.get("admin_remark") or ""
+    ).strip()
+
+
+    if action not in {
+        "approved",
+        "rejected"
+    }:
+
+        return (
+            "Invalid OCEMS review action.",
+            400
+        )
+
+
+    if (
+        action == "rejected"
+        and not admin_remark
+    ):
+
+        return (
+            "Please provide a reason for rejection.",
+            400
+        )
+
+
+    ensure_ocems_submissions_file()
+
+    rows = []
+
+    submission = None
+
+
+    with open(
+        OCEMS_SUBMISSIONS_FILE,
+        "r",
+        newline="",
+        encoding="utf-8"
+    ) as f:
+
+        reader = csv.DictReader(f)
+
+        fieldnames = (
+            reader.fieldnames
+            or OCEMS_SUBMISSION_FIELDS
+        )
+
+        rows = list(reader)
+
+
+    # -----------------------------------------
+    # FIND SUBMISSION
+    # -----------------------------------------
+
+    for row in rows:
+
+        if (
+            str(
+                row.get("submission_id") or ""
+            ).strip()
+            ==
+            str(submission_id).strip()
+        ):
+
+            submission = row
+            break
+
+
+    if submission is None:
+        return (
+            "OCEMS submission not found.",
+            404
+        )
+
+
+    # -----------------------------------------
+    # REJECT
+    # -----------------------------------------
+
+    if action == "rejected":
+
+        submission["status"] = "rejected"
+
+        submission["admin_remark"] = (
+            admin_remark
+        )
+
+        submission["approved_at"] = ""
+
+        submission["approved_by"] = ""
+
+
+    # -----------------------------------------
+    # APPROVE
+    # -----------------------------------------
+
+    else:
+
+        stored_filename = os.path.basename(
+            str(
+                submission.get(
+                    "stored_filename"
+                ) or ""
+            ).strip()
+        )
+
+        source_path = os.path.join(
+            OCEMS_UPLOAD_DIR,
+            stored_filename
+        )
+
+
+        if not os.path.isfile(
+            source_path
+        ):
+
+            return (
+                "Uploaded OCEMS file not found.",
+                404
+            )
+
+
+        stp_id = str(
+            submission.get("stp_id")
+            or ""
+        ).strip()
+
+
+        if not stp_id:
+            return (
+                "Invalid STP ID.",
+                400
+            )
+
+
+        # -----------------------------------------
+        # APPROVED FILE BECOMES ACTIVE OCEMS FILE
+        # -----------------------------------------
+
+        os.makedirs(
+            OCEMS_DIR,
+            exist_ok=True
+        )
+
+
+        active_filename = (
+            f"{secure_filename(stp_id)}.xlsx"
+        )
+
+        active_path = os.path.join(
+            OCEMS_DIR,
+            active_filename
+        )
+
+
+        # Convert/copy into the existing active
+        # OCEMS location.
+
+        if source_path.lower().endswith(".xlsx"):
+
+            with open(
+                source_path,
+                "rb"
+            ) as source:
+
+                with open(
+                    active_path,
+                    "wb"
+                ) as destination:
+
+                    destination.write(
+                        source.read()
+                    )
+
+        else:
+
+            # Convert old .xls files into .xlsx
+            # because load_ocems_data() uses Excel
+            # reading and the active file convention
+            # is <STP_ID>.xlsx.
+
+            excel_df = pd.read_excel(
+                source_path,
+                sheet_name=None
+            )
+
+            with pd.ExcelWriter(
+                active_path,
+                engine="openpyxl"
+            ) as writer:
+
+                for sheet_name, sheet_df in (
+                    excel_df.items()
+                ):
+
+                    sheet_df.to_excel(
+                        writer,
+                        sheet_name=sheet_name,
+                        index=False,
+                        header=False
+                    )
+
+
+        submission["status"] = "approved"
+
+        submission["admin_remark"] = (
+            admin_remark
+        )
+
+        submission["approved_at"] = (
+            datetime.now().isoformat(
+                timespec="seconds"
+            )
+        )
+
+        submission["approved_by"] = (
+            session.get("user_id")
+            or "admin"
+        )
+
+
+    # -----------------------------------------
+    # SAVE CSV
+    # -----------------------------------------
+
+    with open(
+        OCEMS_SUBMISSIONS_FILE,
+        "w",
+        newline="",
+        encoding="utf-8"
+    ) as f:
+
+        writer = csv.DictWriter(
+            f,
+            fieldnames=fieldnames
+        )
+
+        writer.writeheader()
+
+        writer.writerows(rows)
+
+
+    return redirect(
+        url_for("admin_dashboard")
+    )
 
 @app.route("/supply_ocems")
 def supply_ocems():
@@ -15746,26 +16419,17 @@ def api_ocems_summary(stp_id):
     return jsonify({
         "success": True,
         "available": True,
-
-        "company_name": ocems.get(
-            "company_name"
-        ),
-
-        "station_name": ocems.get(
-            "station_name"
-        ),
-
-        "timestamp": latest.get(
-            "timestamp"
-        ),
-
+        "company_name": ocems.get("company_name"),
+        "station_name": ocems.get("station_name"),
+        "timestamp": latest.get("timestamp"),
         "pH": latest.get("pH"),
-
         "BOD": latest.get("BOD"),
-
         "COD": latest.get("COD"),
-
-        "TSS": latest.get("TSS")
+        "TSS": latest.get("TSS"),
+        "permissible_ranges": ocems.get(
+            "permissible_ranges",
+            {}
+        )
     })
 
 if __name__ == "__main__":

@@ -1708,7 +1708,150 @@
 
 </section>
 
+<!-- ========================================= -->
+<!-- OCEMS REPORT APPROVALS -->
+<!-- ========================================= -->
 
+<section class="admin-section">
+
+    <div class="section-header">
+
+        <div>
+
+            <h2>OCEMS Report Approvals</h2>
+
+            <p>
+                Review OCEMS reports submitted by STP operators.
+            </p>
+
+        </div>
+
+        <div class="section-count">
+
+            {{ ocems_submissions|length }}
+            Reports
+
+        </div>
+
+    </div>
+
+
+    {% if ocems_submissions %}
+
+    <div class="table-container">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>STP</th>
+
+                    <th>Document</th>
+
+                    <th>Uploaded</th>
+
+                    <th>Status</th>
+
+                    <th>Action</th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody>
+
+                {% for submission in ocems_submissions %}
+
+                <tr>
+
+                    <td>
+
+                        <strong>
+                            {{ submission.stp_id }}
+                        </strong>
+
+                    </td>
+
+
+                    <td>
+
+                        {{ submission.original_filename }}
+
+                    </td>
+
+
+                    <td>
+
+                        {{ submission.uploaded_at }}
+
+                    </td>
+
+
+                    <td>
+
+                        {% if submission.status|lower == "approved" %}
+
+                            <span class="status approved">
+                                Approved
+                            </span>
+
+                        {% elif submission.status|lower == "rejected" %}
+
+                            <span class="status rejected">
+                                Rejected
+                            </span>
+
+                        {% else %}
+
+                            <span class="status pending">
+                                Pending
+                            </span>
+
+                        {% endif %}
+
+                    </td>
+
+
+                    <td>
+
+                        <a
+                            href="{{ url_for(
+                                'admin_view_ocems',
+                                submission_id=submission.submission_id
+                            ) }}"
+                            class="action-btn"
+                        >
+                            View
+                        </a>
+
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+    {% else %}
+
+        <div class="empty-state">
+
+            <p>
+                No OCEMS reports have been uploaded.
+            </p>
+
+        </div>
+
+    {% endif %}
+
+</section>
 
 <!-- =========================
   TANKER PARTNER REGISTRATIONS
