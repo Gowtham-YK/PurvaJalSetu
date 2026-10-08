@@ -1537,6 +1537,7 @@ ensure_users_file()
 # SYNTHETIC / DEMAND HEATMAP DATASET
 # =========================================================
 
+# Demand heatmap source: database/synthetic_orders.csv
 DEMAND_CSV_FILE = os.path.join(
     DATABASE_DIR,
     "synthetic_orders.csv"
