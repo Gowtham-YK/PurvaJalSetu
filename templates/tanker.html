@@ -1507,6 +1507,39 @@
             .dashboard-reports .report-docs { grid-template-columns:1fr; }
         }
 
+        
+/* TWO-STAGE TANKER ANIMATION */
+
+.tanker-journey-marker {
+    background: transparent !important;
+    border: none !important;
+}
+
+.tanker-journey-truck {
+    font-size: 28px;
+    line-height: 36px;
+    width: 38px;
+    height: 38px;
+    text-align: center;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,.3));
+    animation: tankerJourneyBob .6s ease-in-out infinite alternate;
+}
+
+@keyframes tankerJourneyBob {
+    from { transform: translateY(-2px); }
+    to { transform: translateY(2px); }
+}
+
+.tanker-journey-label {
+    margin-top: 8px;
+    padding: 8px 12px;
+    background: #eff6ff;
+    border-radius: 7px;
+    color: #1d4ed8;
+    font-size: 11px;
+    font-weight: 600;
+}
+
     </style>
 
     <link rel="stylesheet" href="{{ url_for('static', filename='responsive.css') }}">
@@ -2029,23 +2062,23 @@
 
 
 
-                            <!-- VIEW ROUTE -->
-
+                            
+                            <!-- TWO-STAGE TANKER ROUTE -->
                             <button
                                 type="button"
                                 class="route-button"
-                                onclick="showRoute(
-                                    {{ order.stp_lat }},
-                                    {{ order.stp_lon }},
-                                    {{ order.delivery_lat or 0 }},
-                                    {{ order.delivery_lon or 0 }},
-                                    '{{ order.location | e }}'
-                                )"
+                                data-order-id="{{ order.order_id | e }}"
+                                data-status="{{ order.status | e }}"
+                                data-request-type="{{ order.request_type | default('demand') | e }}"
+                                data-stp-lat="{{ order.stp_lat | default('', true) }}"
+                                data-stp-lon="{{ order.stp_lon | default('', true) }}"
+                                data-delivery-lat="{{ order.delivery_lat | default('', true) }}"
+                                data-delivery-lon="{{ order.delivery_lon | default('', true) }}"
+                                onclick="showTwoStageTankerRoute(this)"
                             >
-
-                                 View Route
-
+                                View Tanker Journey
                             </button>
+
 
 
 
@@ -2855,6 +2888,340 @@
         );
     });
 }
+
+
+/* =========================================
+   TWO-STAGE TANKER JOURNEY
+========================================= */
+
+let journeyMarker = null;
+let journeyFrame = null;
+let journeyRequestNumber = 0;
+let journeyLabel = null;
+
+const registeredTankerPosition = [
+    Number({{ operator_latitude | default(0, true) | tojson }}),
+    Number({{ operator_longitude | default(0, true) | tojson }})
+];
+
+const journeyTruckIcon = L.divIcon({
+    className: "tanker-journey-marker",
+    html: '<div class="tanker-journey-truck">🚚</div>',
+    iconSize: [38, 38],
+    iconAnchor: [19, 19]
+});
+
+function validJourneyPoint(point) {
+    return Array.isArray(point) &&
+        point.length === 2 &&
+        point.every(Number.isFinite) &&
+        Math.abs(point[0]) <= 90 &&
+        Math.abs(point[1]) <= 180 &&
+        !(point[0] === 0 && point[1] === 0);
+}
+
+function stopJourneyAnimation() {
+    if (journeyFrame !== null) {
+        cancelAnimationFrame(journeyFrame);
+        journeyFrame = null;
+    }
+
+    if (journeyMarker) {
+        map.removeLayer(journeyMarker);
+        journeyMarker = null;
+    }
+}
+
+function setJourneyLabel(message) {
+    if (!journeyLabel) {
+        journeyLabel = document.createElement("div");
+        journeyLabel.className = "tanker-journey-label";
+        document.getElementById("map").after(journeyLabel);
+    }
+
+    journeyLabel.textContent = message;
+}
+
+async function getJourneyTankerStart() {
+    try {
+        const response = await fetch(
+            "/api/tanker/location/latest",
+            { credentials: "same-origin", cache: "no-store" }
+        );
+
+        if (response.ok) {
+            const data = await response.json();
+            const loc = data.location;
+
+            if (loc) {
+                const point = [
+                    Number(loc.latitude),
+                    Number(loc.longitude)
+                ];
+
+                if (validJourneyPoint(point)) {
+                    return point;
+                }
+            }
+        }
+    } catch (error) {
+        console.warn("Tanker location unavailable:", error);
+    }
+
+    return registeredTankerPosition;
+}
+
+async function fetchJourneyRoadRoute(start, end) {
+    const url =
+        "https://router.project-osrm.org/route/v1/driving/" +
+        start[1] + "," + start[0] + ";" +
+        end[1] + "," + end[0] +
+        "?overview=full&geometries=geojson";
+
+    const response = await fetch(url);
+
+    if (!response.ok) {
+        throw new Error("Routing service unavailable");
+    }
+
+    const data = await response.json();
+
+    if (!data.routes || !data.routes.length) {
+        throw new Error("Road route not found");
+    }
+
+    const route = data.routes[0];
+
+    return {
+        points: route.geometry.coordinates.map(
+            point => [Number(point[1]), Number(point[0])]
+        ),
+        distance: route.distance,
+        duration: route.duration
+    };
+}
+
+function animateJourneyTruck(points, durationMs, requestNumber) {
+    if (!points.length) return;
+
+    journeyMarker = L.marker(points[0], {
+        icon: journeyTruckIcon,
+        zIndexOffset: 1500
+    }).addTo(map);
+
+    // Cumulative distances make the truck move at
+    // a visually consistent speed along the road.
+    const distances = [0];
+
+    for (let i = 1; i < points.length; i++) {
+        const segment = map.distance(
+            L.latLng(points[i - 1]),
+            L.latLng(points[i])
+        );
+
+        distances.push(distances[i - 1] + segment);
+    }
+
+    const totalDistance = distances[distances.length - 1];
+
+    if (totalDistance <= 0) return;
+
+    let startTime = null;
+
+    function frame(timestamp) {
+        if (requestNumber !== journeyRequestNumber ||
+            !journeyMarker) return;
+
+        if (startTime === null) startTime = timestamp;
+
+        const progress = Math.min(
+            (timestamp - startTime) / durationMs,
+            1
+        );
+
+        const travelled = progress * totalDistance;
+        let index = 1;
+
+        while (
+            index < distances.length - 1 &&
+            distances[index] < travelled
+        ) {
+            index++;
+        }
+
+        const segmentDistance =
+            distances[index] - distances[index - 1];
+
+        const fraction = segmentDistance > 0
+            ? (travelled - distances[index - 1]) /
+              segmentDistance
+            : 0;
+
+        const from = points[index - 1];
+        const to = points[index];
+
+        journeyMarker.setLatLng([
+            from[0] + (to[0] - from[0]) * fraction,
+            from[1] + (to[1] - from[1]) * fraction
+        ]);
+
+        if (progress < 1) {
+            journeyFrame = requestAnimationFrame(frame);
+        } else {
+            journeyFrame = null;
+            setJourneyLabel(
+                "Simulation completed — awaiting actual status update"
+            );
+        }
+    }
+
+    journeyFrame = requestAnimationFrame(frame);
+}
+
+async function showTwoStageTankerRoute(button) {
+    const requestNumber = ++journeyRequestNumber;
+
+    stopJourneyAnimation();
+
+    if (routeLayer) map.removeLayer(routeLayer);
+    if (startMarker) map.removeLayer(startMarker);
+    if (endMarker) map.removeLayer(endMarker);
+
+    routeLayer = null;
+    startMarker = null;
+    endMarker = null;
+
+    const status = button.dataset.status
+        .trim().toLowerCase().replace(/_/g, " ");
+
+    const stp = [
+        Number(button.dataset.stpLat),
+        Number(button.dataset.stpLon)
+    ];
+
+    const delivery = [
+        Number(button.dataset.deliveryLat),
+        Number(button.dataset.deliveryLon)
+    ];
+
+    if (!validJourneyPoint(stp)) {
+        setJourneyLabel("STP coordinates unavailable.");
+        return;
+    }
+
+    const isPickedUp = [
+        "out for delivery",
+        "delivered"
+    ].includes(status);
+
+    let start;
+    let end;
+
+    if (isPickedUp) {
+        start = stp;
+        end = delivery;
+    } else {
+        start = await getJourneyTankerStart();
+        end = stp;
+    }
+
+    if (requestNumber !== journeyRequestNumber) return;
+
+    if (!validJourneyPoint(start) ||
+        !validJourneyPoint(end)) {
+        setJourneyLabel("Required route coordinates unavailable.");
+        return;
+    }
+
+    const stageText = isPickedUp
+        ? "Stage 2: STP → Delivery"
+        : "Stage 1: Tanker → Pickup STP";
+
+    setJourneyLabel(stageText + " | Calculating road route...");
+
+    try {
+        const route = await fetchJourneyRoadRoute(start, end);
+
+        if (requestNumber !== journeyRequestNumber) return;
+
+        startMarker = L.marker(start)
+            .addTo(map)
+            .bindPopup(
+                isPickedUp ? "Pickup STP" : "Tanker starting location"
+            );
+
+        endMarker = L.marker(end)
+            .addTo(map)
+            .bindPopup(
+                isPickedUp ? "Delivery destination" : "Pickup STP"
+            );
+
+        routeLayer = L.polyline(route.points, {
+            color: isPickedUp ? "#16a34a" : "#2563eb",
+            weight: 5,
+            opacity: 0.9
+        }).addTo(map);
+
+        map.fitBounds(routeLayer.getBounds(), {
+            padding: [40, 40]
+        });
+
+        const distanceEl = document.getElementById(
+            "routeDistance"
+        );
+
+        const timeEl = document.getElementById(
+            "routeTime"
+        );
+
+        const infoEl = document.getElementById(
+            "routeInfo"
+        );
+
+        if (distanceEl) {
+            distanceEl.textContent =
+                (route.distance / 1000).toFixed(2) + " km";
+        }
+
+        if (timeEl) {
+            timeEl.textContent =
+                (route.duration / 60).toFixed(1) + " mins";
+        }
+
+        if (infoEl) infoEl.style.display = "block";
+
+        if (status === "delivered") {
+            journeyMarker = L.marker(end, {
+                icon: journeyTruckIcon
+            }).addTo(map);
+
+            setJourneyLabel("Delivery completed");
+            return;
+        }
+
+        setJourneyLabel(
+            stageText + " | Simulated movement"
+        );
+
+        // Preview animation duration: 45 seconds.
+        // Not an actual estimated delivery time.
+        animateJourneyTruck(
+            route.points,
+            45000,
+            requestNumber
+        );
+
+    } catch (error) {
+        console.error("Tanker journey error:", error);
+
+        if (requestNumber === journeyRequestNumber) {
+            setJourneyLabel(
+                "Unable to load the road route."
+            );
+        }
+    }
+}
+
 
 
 </script>
